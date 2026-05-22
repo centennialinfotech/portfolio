@@ -314,6 +314,204 @@ export default function App() {
           </div>
         </div>
       </section>
+      {/* PRICING */}
+<section
+  id="pricing"
+  className="relative z-10 px-6 md:px-16 lg:px-28 py-32 border-t border-white/[0.03]"
+>
+  <div className="max-w-[1400px] mx-auto">
+
+    <div className="text-center mb-20">
+      <h2 className="text-5xl md:text-6xl font-black">
+        Simple Pricing
+      </h2>
+
+      <p className="text-gray-400 text-xl mt-6 max-w-2xl mx-auto">
+        Affordable portfolio websites designed to help you stand out.
+      </p>
+    </div>
+
+    <div className="grid lg:grid-cols-3 gap-8">
+
+      {/* BASIC */}
+      <div className="bg-white/[0.06] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+        <h3 className="text-3xl font-black">
+          Basic
+        </h3>
+
+        <div className="flex items-end gap-2 mt-8">
+          <span className="text-6xl font-black">
+            $19
+          </span>
+
+          <span className="text-gray-400 mb-2">
+            one time
+          </span>
+        </div>
+
+        <div className="space-y-5 mt-10 text-gray-300">
+
+          <p>✔ Responsive Portfolio</p>
+          <p>✔ Free Hosting</p>
+          <p>✔ Resume Upload</p>
+          <p>✔ Contact Section</p>
+          <p>✔ Mobile Friendly</p>
+        </div>
+
+        <button className="w-full mt-10 py-4 rounded-2xl bg-white text-black font-semibold hover:scale-[1.02] transition-transform">
+          Get Started
+        </button>
+      </div>
+
+      {/* PRO */}
+      <div className="relative rounded-[32px] p-[1px] bg-gradient-to-br from-blue-500 to-purple-600">
+
+        <div className="bg-black rounded-[32px] p-10 h-full">
+
+          <div className="inline-flex px-4 py-2 rounded-full bg-white text-black font-semibold mb-6">
+            Most Popular
+          </div>
+
+          <h3 className="text-3xl font-black">
+            Professional
+          </h3>
+
+          <div className="flex items-end gap-2 mt-8">
+            <span className="text-6xl font-black">
+              $35
+            </span>
+
+            <span className="text-gray-400 mb-2">
+              one time
+            </span>
+          </div>
+
+          <div className="space-y-5 mt-10 text-gray-300">
+
+            <p>✔ Custom Domain</p>
+            <p>✔ Premium Design</p>
+            <p>✔ SEO Optimization</p>
+            <p>✔ Unlimited Projects</p>
+            <p>✔ Priority Support</p>
+          </div>
+
+          <button className="w-full mt-10 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 font-semibold hover:opacity-90 transition-opacity">
+            Upgrade Now
+          </button>
+        </div>
+      </div>
+
+      {/* BUSINESS */}
+      <div className="bg-white/[0.06] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+        <h3 className="text-3xl font-black">
+          Business
+        </h3>
+
+        <div className="flex items-end gap-2 mt-8">
+          <span className="text-6xl font-black">
+            $49
+          </span>
+
+          <span className="text-gray-400 mb-2">
+            one time
+          </span>
+        </div>
+
+        <div className="space-y-5 mt-10 text-gray-300">
+
+          <p>✔ Advanced Portfolio</p>
+          <p>✔ Admin Dashboard</p>
+          <p>✔ Blog Support</p>
+          <p>✔ Analytics</p>
+          <p>✔ Premium Hosting</p>
+        </div>
+
+        <button className="w-full mt-10 py-4 rounded-2xl bg-white text-black font-semibold hover:scale-[1.02] transition-transform">
+          Contact Sales
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+{/* FAQ SECTION */}
+<section
+  id="faq"
+  className="relative z-10 px-6 md:px-16 lg:px-28 py-32 border-t border-white/[0.03]"
+>
+  <div className="max-w-5xl mx-auto">
+
+    {/* HEADING */}
+    <div className="text-center mb-20">
+
+      <h2 className="text-5xl md:text-6xl font-black leading-tight">
+        Frequently Asked Questions
+      </h2>
+
+      <p className="text-gray-400 text-xl mt-6 leading-relaxed">
+        Everything you need to know before getting started.
+      </p>
+    </div>
+
+    {/* FAQ ITEMS */}
+    <div className="space-y-6">
+
+      {[
+        {
+          question: "How long does it take to build my portfolio?",
+          answer:
+            "Your portfolio website is instantly ready to launch with modern design, hosting and mobile responsiveness included."
+        },
+
+        {
+          question: "Can I use my own custom domain?",
+          answer:
+            "Yes. You can connect your personal custom domain anytime for professional branding."
+        },
+
+        {
+          question: "Will my portfolio work on mobile devices?",
+          answer:
+            "Absolutely. Every portfolio is fully responsive across desktop, tablet and mobile."
+        },
+
+        {
+          question: "Can I update projects and skills later?",
+          answer:
+            "Yes. You can easily add or edit projects, skills, resume and other information anytime."
+        },
+
+        {
+          question: "Is hosting included?",
+          answer:
+            "Yes. Hosting is included in all plans so your website stays online smoothly."
+        },
+
+        {
+          question: "Do recruiters really prefer portfolio websites?",
+          answer:
+            "Yes. A professional portfolio creates stronger first impressions and increases trust with recruiters and clients."
+        }
+      ].map((item, index) => (
+
+        <div
+          key={index}
+          className="bg-white/[0.06] border border-white/10 rounded-[28px] p-8 backdrop-blur-xl hover:border-white/20 transition-all"
+        >
+
+          <h3 className="text-2xl font-bold">
+            {item.question}
+          </h3>
+
+          <p className="text-gray-400 mt-5 leading-relaxed text-lg">
+            {item.answer}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
     </div>
   );
 }
