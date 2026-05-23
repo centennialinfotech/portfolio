@@ -11,15 +11,62 @@ import {
   FaPhoneAlt,
   FaMapMarkerAlt,
   FaPaperPlane,
+  FaCode,
+  FaGraduationCap,
+  FaCog,
+  FaPaintBrush
 } from "react-icons/fa";
 import githubLogo from "../assets/github.png";
 import linkedinLogo from "../assets/linkedin.png";
 
 
 const HeroSection = () => {
+ 
+const iconMap = {
+  code: <FaCode />,
+  learn: <FaGraduationCap />,
+  cog: <FaCog />,
+  hobby: <FaPaintBrush />,
+};  
+const getIcon = (key) => iconMap[key] || <FaCode />;
 
 const [editMode, setEditMode] = useState(false);
 
+const [headerSection, setHeaderSection] = useState(() => {
+  const saved = localStorage.getItem("headerSection");
+
+  return saved
+    ? JSON.parse(saved)
+    : {
+        logo: "Portfolio",
+        logoImage: "",
+      };
+});
+
+useEffect(() => {
+  localStorage.setItem("headerSection", JSON.stringify(headerSection));
+}, [headerSection]);
+const handleLogoUpload = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    setHeaderSection({
+      ...headerSection,
+      logoImage: reader.result,
+    });
+  };
+
+  reader.readAsDataURL(file);
+};
+const removeLogo = () => {
+  setHeaderSection({
+    ...headerSection,
+    logoImage: "",
+  });
+};
 /*********Home section : Start ******* */
 const [heroSection, setHeroSection] =
   useState(() => {
@@ -112,7 +159,7 @@ const [aboutSection, setAboutSection] =
           cards: [
             {
               id: 1,
-              icon: "</>",
+              icon: "code",
               title: "Web Development",
               description:
                 "Passionate about creating responsive applications.",
@@ -120,7 +167,7 @@ const [aboutSection, setAboutSection] =
 
             {
               id: 2,
-              icon: "🎓",
+              icon: "learn",
               title: "Continuous Learning",
               description:
                 "Always eager to learn new technologies.",
@@ -128,7 +175,7 @@ const [aboutSection, setAboutSection] =
 
             {
               id: 3,
-              icon: "⚙️",
+              icon: "cog",
               title: "Problem Solving",
               description:
                 "Enjoy tackling complex challenges.",
@@ -136,7 +183,7 @@ const [aboutSection, setAboutSection] =
 
             {
               id: 4,
-              icon: "🖌️",
+              icon: "hobby",
               title: "My Hobby",
               description:
                 "My aim is clear to become full stack developer.",
@@ -385,7 +432,49 @@ useEffect(() => {
     <>
       {/* Header */}
       <header className="dashboard header">
-        <div className="logo">Portfolio</div>
+       <div className="logo">
+  {editMode ? (
+    <div className="logo-edit">
+      <input
+        value={headerSection.logo}
+        onChange={(e) =>
+          setHeaderSection({
+            ...headerSection,
+            logo: e.target.value,
+          })
+        }
+      />
+
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleLogoUpload}
+      />
+
+      {/* ✅ REMOVE BUTTON */}
+      {headerSection.logoImage && (
+        <button
+          className="remove-btn"
+          onClick={removeLogo}
+        >
+          Remove Logo
+        </button>
+      )}
+    </div>
+  ) : (
+    <div className="logo-display">
+      {headerSection.logoImage ? (
+        <img
+          src={headerSection.logoImage}
+          alt="logo"
+          className="logo-img"
+        />
+      ) : (
+        headerSection.logo
+      )}
+    </div>
+  )}
+</div>
 
         <nav className="navbar">
           <a href="#home">Home</a>
@@ -531,17 +620,18 @@ useEffect(() => {
 
     <div className="hero-buttons">
 
-      {
-        heroSection.cv && (
-          <a
-            href={heroSection.cv}
-            download
-            className="cv-btn"
-          >
-            DOWNLOAD CV
-          </a>
-        )
-      }
+      <a
+  href={heroSection.cv || "#"}
+  className={`cv-btn ${!heroSection.cv ? "disabled" : ""}`}
+  onClick={(e) => {
+    if (!heroSection.cv) {
+      e.preventDefault();
+      alert("Please upload CV first");
+    }
+  }}
+>
+  DOWNLOAD CV
+</a>
 
       <div className="social-icons">
 
@@ -609,8 +699,28 @@ useEffect(() => {
     <div className="about-card" key={card.id}>
 
   <div className="icon">
-    {card.icon}
-  </div>
+   {editMode ? (
+    <select
+      value={card.icon}
+      onChange={(e) => {
+        const updated = [...aboutSection.cards];
+        updated[index].icon = e.target.value;
+
+        setAboutSection({
+          ...aboutSection,
+          cards: updated,
+        });
+      }}
+    >
+      <option value="code">Code</option>
+      <option value="learn">Learn</option>
+      <option value="cog">Cog</option>
+      <option value="hobby">Hobby</option>
+    </select>
+  ) : (
+    getIcon(card.icon)
+  )}
+</div>
 
   {editMode ? (
     <>
