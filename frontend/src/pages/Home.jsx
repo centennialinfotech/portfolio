@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../css/home.css';
 import { User, Briefcase, Link, ShieldCheck, Sparkles, Globe, FileText, Rocket, Smartphone, LayoutDashboard, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 export default function Home() {

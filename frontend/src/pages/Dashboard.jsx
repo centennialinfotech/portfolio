@@ -1,4 +1,5 @@
 import React from "react";
+import '../css/demo_dashboard.css';
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import {
@@ -264,6 +265,8 @@ const [projectsSection, setProjectsSection] =
               demo: "#",
 
               hasDemo: true,
+              showCode: true,
+    showDemo: true
             },
 
             {
@@ -281,8 +284,10 @@ const [projectsSection, setProjectsSection] =
               code: "#",
 
               demo: "#",
+              showCode: true,
+    showDemo: true
 
-              hasDemo: false,
+              
             },
           ],
         };
@@ -603,66 +608,101 @@ useEffect(() => {
 
     <div className="about-card" key={card.id}>
 
-      <div className="icon">
-        {card.icon}
-      </div>
+  <div className="icon">
+    {card.icon}
+  </div>
 
-      {
-        editMode ? (
-          <>
+  {editMode ? (
+    <>
 
-            <input
-              type="text"
-              value={card.title}
-              onChange={(e) => {
+      <input
+        value={card.title}
+        onChange={(e) => {
 
-                const updated =
-                  [...aboutSection.cards];
+          const updated =
+            [...aboutSection.cards];
 
-                updated[index].title =
-                  e.target.value;
+          updated[index].title =
+            e.target.value;
 
-                setAboutSection({
-                  ...aboutSection,
-                  cards: updated,
-                });
+          setAboutSection({
+            ...aboutSection,
+            cards: updated,
+          });
 
-              }}
-            />
+        }}
+      />
 
-            <textarea
-              value={card.description}
-              onChange={(e) => {
+      <textarea
+        value={card.description}
+        onChange={(e) => {
 
-                const updated =
-                  [...aboutSection.cards];
+          const updated =
+            [...aboutSection.cards];
 
-                updated[index].description =
-                  e.target.value;
+          updated[index].description =
+            e.target.value;
 
-                setAboutSection({
-                  ...aboutSection,
-                  cards: updated,
-                });
+          setAboutSection({
+            ...aboutSection,
+            cards: updated,
+          });
 
-              }}
-            />
+        }}
+      />
 
-          </>
-        ) : (
-          <>
+      <button
+        className="delete-btn"
+        onClick={() => {
 
-            <h3>{card.title}</h3>
+          const updated =
+            aboutSection.cards.filter(
+              (item) =>
+                item.id !== card.id
+            );
 
-            <p>{card.description}</p>
+          setAboutSection({
+            ...aboutSection,
+            cards: updated,
+          });
 
-          </>
-        )
-      }
+        }}
+      >
+        🗑 Delete
+      </button>
 
-    </div>
+    </>
+  ) : (
+    <>
+      <h3>{card.title}</h3>
+
+      <p>{card.description}</p>
+    </>
+  )}
+
+</div>
 
   ))}
+   {editMode && (
+    <button
+      className="add-btn"
+      onClick={() => {
+        const newCard = {
+          id: Date.now(),
+          icon: "✨",
+          title: "New Skill",
+          description: "Add description here.",
+        };
+
+        setAboutSection({
+          ...aboutSection,
+          cards: [...aboutSection.cards, newCard],
+        });
+      }}
+    >
+      + Add Card
+    </button>
+  )}
 
 </div>
 </section>
@@ -807,11 +847,51 @@ useEffect(() => {
               ></div>
 
             </div>
+            {editMode && (
+  <button
+    className="delete-btn"
+    onClick={() => {
+      const updated =
+        skillsSection.skills.filter(
+          (s) => s.id !== skill.id
+        );
+
+      setSkillsSection({
+        ...skillsSection,
+        skills: updated,
+      });
+    }}
+  >
+    🗑
+  </button>
+)}
 
           </div>
 
         ))
       }
+      {editMode && (
+  <button
+    className="add-btn"
+    onClick={() => {
+      const newSkill = {
+        id: Date.now(),
+        name: "New Skill",
+        percentage: 50,
+      };
+
+      setSkillsSection({
+        ...skillsSection,
+        skills: [
+          ...skillsSection.skills,
+          newSkill,
+        ],
+      });
+    }}
+  >
+    + Add Skill
+  </button>
+)}
 
     </div>
 
@@ -819,70 +899,89 @@ useEffect(() => {
 
     <div className="skills-right">
 
-      {
-        editMode ? (
-          <input
-            className="title-input"
-            value={skillsSection.rightTitle}
-            onChange={(e) =>
-              setSkillsSection({
-                ...skillsSection,
-                rightTitle:
-                  e.target.value,
-              })
-            }
-          />
-        ) : (
-          <h3>
-            {skillsSection.rightTitle}
-          </h3>
-        )
-      }
-
-      <div className="tech-grid">
-
-        {
-          skillsSection.technologies.map(
-            (tech, index) => (
-
-            <div
-              className="tech-card"
-              key={index}
-            >
-
-              {
-                editMode ? (
-                  <input
-                    value={tech}
-                    onChange={(e) => {
-
-                      const updated =
-                        [...skillsSection.technologies];
-
-                      updated[index] =
-                        e.target.value;
-
-                      setSkillsSection({
-                        ...skillsSection,
-                        technologies:
-                          updated,
-                      });
-
-                    }}
-                  />
-                ) : (
-                  tech
-                )
-              }
-
-            </div>
-
-          ))
+  {
+    editMode ? (
+      <input
+        className="title-input"
+        value={skillsSection.rightTitle}
+        onChange={(e) =>
+          setSkillsSection({
+            ...skillsSection,
+            rightTitle: e.target.value,
+          })
         }
+      />
+    ) : (
+      <h3>{skillsSection.rightTitle}</h3>
+    )
+  }
 
-      </div>
+  <div className="tech-grid">
 
-    </div>
+    {skillsSection.technologies.map((tech, index) => (
+
+      <div className="tech-card" key={index}>
+
+  {editMode ? (
+    <input
+      value={tech}
+      onChange={(e) => {
+        const updated = [...skillsSection.technologies];
+        updated[index] = e.target.value;
+
+        setSkillsSection({
+          ...skillsSection,
+          technologies: updated,
+        });
+      }}
+    />
+  ) : (
+    tech
+  )}
+
+  {/* DELETE BUTTON MOVED HERE (AFTER TEXT) */}
+  {editMode && (
+    <button
+      className="delete-btn"
+      onClick={() => {
+        const updated = skillsSection.technologies.filter(
+          (_, i) => i !== index
+        );
+
+        setSkillsSection({
+          ...skillsSection,
+          technologies: updated,
+        });
+      }}
+    >
+      🗑
+    </button>
+  )}
+
+</div>
+    ))}
+
+  </div>
+
+  {/* ADD BUTTON */}
+  {editMode && (
+    <button
+      className="add-btn"
+      onClick={() => {
+        setSkillsSection({
+          ...skillsSection,
+          technologies: [
+            ...skillsSection.technologies,
+            "New Tech",
+          ],
+        });
+      }}
+    >
+      + Add Tech
+    </button>
+  )}
+
+</div>
 
   </div>
 
@@ -1018,78 +1117,151 @@ useEffect(() => {
 
           <div className="project-buttons">
 
-            {
-              editMode ? (
-                <>
-                  <input
-                    placeholder="Code Link"
-                    value={project.code}
-                    onChange={(e) => {
+  {editMode ? (
+    <>
+      {project.showCode && (
+        <input
+          placeholder="Code Link"
+          value={project.code}
+          onChange={(e) => {
+            const updated = [...projectsSection.projects];
+            updated[index].code = e.target.value;
 
-                      const updated =
-                        [...projectsSection.projects];
+            setProjectsSection({
+              ...projectsSection,
+              projects: updated,
+            });
+          }}
+        />
+      )}
 
-                      updated[index].code =
-                        e.target.value;
+      <button
+        className="delete-btn"
+        onClick={() => {
+          const updated = [...projectsSection.projects];
 
-                      setProjectsSection({
-                        ...projectsSection,
-                        projects: updated,
-                      });
+          updated[index] = {
+            ...updated[index],
+            showCode: !updated[index].showCode,
+          };
 
-                    }}
-                  />
+          setProjectsSection({
+            ...projectsSection,
+            projects: updated,
+          });
+        }}
+      >
+        🗑 Toggle Code Button
+      </button>
 
-                  <input
-                    placeholder="Demo Link"
-                    value={project.demo}
-                    onChange={(e) => {
+      {project.showDemo && (
+        <input
+          placeholder="Demo Link"
+          value={project.demo}
+          onChange={(e) => {
+            const updated = [...projectsSection.projects];
+            updated[index].demo = e.target.value;
 
-                      const updated =
-                        [...projectsSection.projects];
+            setProjectsSection({
+              ...projectsSection,
+              projects: updated,
+            });
+          }}
+        />
+      )}
 
-                      updated[index].demo =
-                        e.target.value;
+      <button
+        className="delete-btn"
+        onClick={() => {
+          const updated = [...projectsSection.projects];
 
-                      setProjectsSection({
-                        ...projectsSection,
-                        projects: updated,
-                      });
+          updated[index] = {
+            ...updated[index],
+            showDemo: !updated[index].showDemo,
+          };
 
-                    }}
-                  />
-                </>
-              ) : (
-                <>
-                  <a
-                    href={project.code}
-                    className="btn-outline"
-                  >
-                    <FaGithub />
-                    CODE
-                  </a>
+          setProjectsSection({
+            ...projectsSection,
+            projects: updated,
+          });
+        }}
+      >
+        🗑 Toggle Demo Button
+      </button>
+    </>
+  ) : (
+    <>
+      {project.showCode && (
+        <a href={project.code} className="btn-outline">
+          <FaGithub /> CODE
+        </a>
+      )}
 
-                  {
-                    project.hasDemo && (
-                      <a
-                        href={project.demo}
-                        className="btn-filled"
-                      >
-                        <FaExternalLinkAlt />
-                        LIVE DEMO
-                      </a>
-                    )
-                  }
-                </>
-              )
-            }
+      {project.showDemo && (
+        <a
+          href={project.demo}
+          className="btn-filled"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FaExternalLinkAlt /> LIVE DEMO
+        </a>
+      )}
+    </>
+  )}
 
-          </div>
+</div>
+          {editMode && (
+  <button
+    className="delete-btn"
+    onClick={() => {
+      const updated = projectsSection.projects.filter(
+        (p) => p.id !== project.id
+      );
+
+      setProjectsSection({
+        ...projectsSection,
+        projects: updated,
+      });
+    }}
+  >
+    🗑 Delete Project
+  </button>
+)}
 
         </div>
 
       ))
     }
+    {editMode && (
+  <button
+    className="add-btn"
+    onClick={() => {
+      const newProject = {
+        id: Date.now(),
+        title: "New Project",
+        description: "Project description here...",
+        tag: "New Tag",
+        code: "#",
+        demo: "#",
+        showCode: true,
+  showDemo: true,
+        
+      };
+
+      setProjectsSection({
+        ...projectsSection,
+        projects: [
+          ...projectsSection.projects,
+          newProject,
+        ],
+      });
+    }}
+  >
+    + Add Project
+  </button>
+)}
+    
 
   </div>
 
