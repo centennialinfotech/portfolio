@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import {
   FaGithub,
@@ -15,250 +16,869 @@ import linkedinLogo from "../assets/linkedin.png";
 
 
 const HeroSection = () => {
-  const projects = [
-  {
-    title: "Sales Funnel Optimization",
-    description:
-      "Improved a company’s sales funnel to increase conversions.",
-    tag: "Funnel steps (lead → call → close)",
-    code: "#",
-    demo: "#",
-    hasDemo: true,
-  },
-  {
-    title: "CRM Management Project",
-    description:
-      "Managed leads using tools like HubSpot or Salesforce.",
-    tag: "Lead tracking system",
-    code: "#",
-    hasDemo: false,
-  },
-  {
-    title: "Product Sales Campaign",
-    description:
-      "Sold a product/service using digital or direct sales methods.",
-    tag: "Strategy used",
-    code: "#",
-    hasDemo: false,
-  },
-  {
-    title: "Sign IN/UP",
-    description: "check it",
-    tag: "MERN Stack project",
-    code: "#",
-    hasDemo: false,
-  },
-];
+
+const [editMode, setEditMode] = useState(false);
+
+/*********Home section : Start ******* */
+const [heroSection, setHeroSection] =
+  useState(() => {
+
+    const saved =
+      localStorage.getItem("heroSection");
+
+    return saved
+      ? JSON.parse(saved)
+      : {
+          greeting: "Hi, I'm",
+
+          firstName: "Ashwani",
+
+          lastName: "Kumar Chauhan",
+
+          role: "MERN Stack Developer",
+
+          description:
+            "Passionate about creating responsive applications.",
+
+          github:
+            "https://github.com/yourusername",
+
+          linkedin:
+            "https://linkedin.com/in/yourusername",
+
+          image: "/profile.png",
+
+          cv: "",
+        };
+});
+useEffect(() => { localStorage.setItem("heroSection", JSON.stringify(heroSection));}, [heroSection]);
+/*************Image upload ************* */
+const handleImageUpload = (e) => {
+
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+
+    setHeroSection({
+      ...heroSection,
+      image: reader.result,
+    });
+
+  };
+
+  reader.readAsDataURL(file);
+};
+
+/*************Cv upload ****** */
+const handleCVUpload = (e) => {
+
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+
+    setHeroSection({
+      ...heroSection,
+      cv: reader.result,
+    });
+
+  };
+
+  reader.readAsDataURL(file);
+};
+
+/*********Home section : end ******* */
+
+/*********About section : Start ******* */
+const [aboutSection, setAboutSection] =
+  useState(() => {
+
+    const saved =
+      localStorage.getItem("aboutSection");
+
+    return saved
+      ? JSON.parse(saved)
+      : {
+          title: "About Me",
+
+          cards: [
+            {
+              id: 1,
+              icon: "</>",
+              title: "Web Development",
+              description:
+                "Passionate about creating responsive applications.",
+            },
+
+            {
+              id: 2,
+              icon: "🎓",
+              title: "Continuous Learning",
+              description:
+                "Always eager to learn new technologies.",
+            },
+
+            {
+              id: 3,
+              icon: "⚙️",
+              title: "Problem Solving",
+              description:
+                "Enjoy tackling complex challenges.",
+            },
+
+            {
+              id: 4,
+              icon: "🖌️",
+              title: "My Hobby",
+              description:
+                "My aim is clear to become full stack developer.",
+            },
+          ],
+        };
+});
+
+useEffect(() => {
+  localStorage.setItem(
+    "aboutSection",
+    JSON.stringify(aboutSection)
+  );
+}, [aboutSection]);
+
+/*********About section : End ******* */
+/*********skill  section : Start ******* */
+
+const [skillsSection, setSkillsSection] =
+  useState(() => {
+
+    const saved =
+      localStorage.getItem("skillsSection");
+
+    return saved
+      ? JSON.parse(saved)
+      : {
+          title: "Skills & Technologies",
+
+          leftTitle: "Technical Proficiency",
+
+          rightTitle:
+            "Technologies I Work With",
+
+          skills: [
+            {
+              id: 1,
+              name: "AI",
+              percentage: 85,
+            },
+
+            {
+              id: 2,
+              name: "ABC",
+              percentage: 80,
+            },
+
+            {
+              id: 3,
+              name: "MERN Stack",
+              percentage: 90,
+            },
+
+            {
+              id: 4,
+              name: "Generative AI",
+              percentage: 70,
+            },
+
+            {
+              id: 5,
+              name: "HTML",
+              percentage: 90,
+            },
+
+            {
+              id: 6,
+              name: "CSS",
+              percentage: 79,
+            },
+          ],
+
+          technologies: [
+            "AI",
+            "ABC",
+            "MERN Stack",
+            "Generative AI",
+            "HTML",
+            "CSS",
+          ],
+        };
+});
+
+useEffect(() => {
+
+  localStorage.setItem(
+    "skillsSection",
+    JSON.stringify(skillsSection)
+  );
+
+}, [skillsSection]);
+/********* skill  section : End    ******* */
+/*********project section : Start ******* */
+const [projectsSection, setProjectsSection] =
+  useState(() => {
+
+    const saved =
+      localStorage.getItem("projectsSection");
+
+    return saved
+      ? JSON.parse(saved)
+      : {
+          title: "Recent Projects",
+
+          githubText:
+            "WANT TO SEE MORE OF MY WORK?",
+
+          githubLink:
+            "https://github.com/",
+
+          projects: [
+            {
+              id: 1,
+
+              title:
+                "Sales Funnel Optimization",
+
+              description:
+                "Improved a company’s sales funnel to increase conversions.",
+
+              tag:
+                "Funnel steps (lead → call → close)",
+
+              code: "#",
+
+              demo: "#",
+
+              hasDemo: true,
+            },
+
+            {
+              id: 2,
+
+              title:
+                "CRM Management Project",
+
+              description:
+                "Managed leads using tools like HubSpot or Salesforce.",
+
+              tag:
+                "Lead tracking system",
+
+              code: "#",
+
+              demo: "#",
+
+              hasDemo: false,
+            },
+          ],
+        };
+});
+
+useEffect(() => {
+
+  localStorage.setItem(
+    "projectsSection",
+    JSON.stringify(projectsSection)
+  );
+
+}, [projectsSection]);
+/********* project section : End ******* */
+/*********Contact section : Start ******* */
+
+const [contactSection, setContactSection] =
+  useState(() => {
+
+    const saved =
+      localStorage.getItem("contactSection");
+
+    return saved
+      ? JSON.parse(saved)
+      : {
+          title: "Get In Touch",
+
+          leftTitle:
+            "Contact Information",
+
+          rightTitle:
+            "Send me a Message",
+
+          email:
+            "Ashwanikumarchauhan014@gmail.com",
+
+          phone:
+            "9616129738",
+
+          location:
+            "U.P, INDIA",
+
+          opportunityTitle:
+            "Open for Opportunities",
+
+          opportunityDescription:
+            "I'm actively looking for entry-level MERN Stack Developer roles and internship opportunities. If you have an exciting project or role, feel free to connect with me!",
+        };
+});
+useEffect(() => {localStorage.setItem("contactSection", JSON.stringify(contactSection));}, [contactSection]);
+/*********Contact section : end ******* */
+/*********footer section : start ******* */
+const [footerSection, setFooterSection] =
+  useState(() => {
+
+    const saved =
+      localStorage.getItem("footerSection");
+
+    return saved
+      ? JSON.parse(saved)
+      : {
+          name: "ashwani",
+
+          description:
+            "Building digital experiences with precision and passion.",
+
+          github:
+            "https://github.com/",
+
+          linkedin:
+            "https://linkedin.com/",
+
+          email:
+            "yourmail@gmail.com",
+
+          copyright:
+            "© 2026 Ashwani kumar chauhan. All rights reserved.",
+
+          location:
+            "Lucknow, Uttar Pradesh, India",
+        };
+});
+useEffect(() => {
+
+  localStorage.setItem(
+    "footerSection",
+    JSON.stringify(footerSection)
+  );
+
+}, [footerSection]);
+
+/*********footer section : end ******* */
+
   return (
     <>
       {/* Header */}
       <header className="dashboard header">
-        <div className="logo">Portfolio.</div>
+        <div className="logo">Portfolio</div>
 
         <nav className="navbar">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Skills</a>
-          <a href="#">Projects</a>
-          <a href="#">Contact</a>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <button
+    className="customize-btn"
+    onClick={() => setEditMode(!editMode)}
+  >⚙️
+    {editMode ? "Done" : "Customize"}
+  </button>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-left">
+      <section className="hero" id="home">
+
+  <div className="hero-left">
+
+    {
+      editMode ? (
+        <div className="hero-edit">
+
+          <input
+            value={heroSection.greeting}
+            onChange={(e) =>
+              setHeroSection({
+                ...heroSection,
+                greeting: e.target.value,
+              })
+            }
+          />
+
+          <input
+            value={heroSection.firstName}
+            onChange={(e) =>
+              setHeroSection({
+                ...heroSection,
+                firstName: e.target.value,
+              })
+            }
+          />
+
+          <input
+            value={heroSection.lastName}
+            onChange={(e) =>
+              setHeroSection({
+                ...heroSection,
+                lastName: e.target.value,
+              })
+            }
+          />
+
+          <input
+            value={heroSection.role}
+            onChange={(e) =>
+              setHeroSection({
+                ...heroSection,
+                role: e.target.value,
+              })
+            }
+          />
+
+          <textarea
+            value={heroSection.description}
+            onChange={(e) =>
+              setHeroSection({
+                ...heroSection,
+                description: e.target.value,
+              })
+            }
+          />
+
+          <input
+            value={heroSection.github}
+            onChange={(e) =>
+              setHeroSection({
+                ...heroSection,
+                github: e.target.value,
+              })
+            }
+          />
+
+          <input
+            value={heroSection.linkedin}
+            onChange={(e) =>
+              setHeroSection({
+                ...heroSection,
+                linkedin: e.target.value,
+              })
+            }
+          />
+
+          <label>
+            Upload Profile Image
+          </label>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+
+          <label>
+            Upload CV
+          </label>
+
+          <input
+            type="file"
+            accept=".pdf,.doc,.docx"
+            onChange={handleCVUpload}
+          />
+
+        </div>
+      ) : (
+        <>
           <h1>
-            Hi, I'm <span>Ashwani</span>
+
+            {heroSection.greeting}{" "}
+
+            <span>
+              {heroSection.firstName}
+            </span>
+
             <br />
-            Kumar Chauhan
+
+            {heroSection.lastName}
+
           </h1>
 
-          <h2>MERN Stack Developer</h2>
+          <h2>
+            {heroSection.role}
+          </h2>
 
           <p>
-            Passionate to create websites that are helpful for users.
+            {heroSection.description}
           </p>
+        </>
+      )
+    }
 
-          <div className="hero-buttons">
-            <button className="cv-btn">
-              DOWNLOAD CV
-            </button>
+    <div className="hero-buttons">
 
-            <div className="social-icons">
-  <a
-    href="https://github.com/yourusername"
-    target="_blank"
-    rel="noreferrer"
-  >
-    <FaGithub size={28} />
-  </a>
+      {
+        heroSection.cv && (
+          <a
+            href={heroSection.cv}
+            download
+            className="cv-btn"
+          >
+            DOWNLOAD CV
+          </a>
+        )
+      }
 
-  <a
-    href="https://linkedin.com/in/yourusername"
-    target="_blank"
-    rel="noreferrer"
-  >
-    <FaLinkedin size={28} />
-  </a>
-</div>
-          </div>
-        </div>
+      <div className="social-icons">
 
-        <div className="hero-right">
-          <div className="image-circle">
-            <img
-              src="/profile.png"
-              alt="Ashwani"
-            />
-          </div>
-        </div>
-      </section>
-      <section className="about-section">
+        <a
+          href={heroSection.github}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FaGithub size={28} />
+        </a>
+
+        <a
+          href={heroSection.linkedin}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FaLinkedin size={28} />
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div className="hero-right">
+
+    <div className="image-circle">
+
+      <img
+        src={heroSection.image}
+        alt="profile"
+      />
+
+    </div>
+
+  </div>
+
+</section>
+      <section className="about-section" id="about">
   <div className="section-title">
-    <h2>About Me</h2>
+    <h2>
+  {editMode ? (
+    <input
+      className="title-input"
+      value={aboutSection.title}
+      onChange={(e) =>
+        setAboutSection({
+          ...aboutSection,
+          title: e.target.value,
+        })
+      }
+    />
+  ) : (
+    aboutSection.title
+  )}
+</h2>
     <div className="underline"></div>
   </div>
 
   <div className="about-container">
 
-    <div className="about-card">
-      <div className="icon">{`</>`}</div>
+  {aboutSection.cards.map((card, index) => (
 
-      <h3>Web Development</h3>
+    <div className="about-card" key={card.id}>
 
-      <p>
-        Passionate about creating responsive applications.
-      </p>
+      <div className="icon">
+        {card.icon}
+      </div>
+
+      {
+        editMode ? (
+          <>
+
+            <input
+              type="text"
+              value={card.title}
+              onChange={(e) => {
+
+                const updated =
+                  [...aboutSection.cards];
+
+                updated[index].title =
+                  e.target.value;
+
+                setAboutSection({
+                  ...aboutSection,
+                  cards: updated,
+                });
+
+              }}
+            />
+
+            <textarea
+              value={card.description}
+              onChange={(e) => {
+
+                const updated =
+                  [...aboutSection.cards];
+
+                updated[index].description =
+                  e.target.value;
+
+                setAboutSection({
+                  ...aboutSection,
+                  cards: updated,
+                });
+
+              }}
+            />
+
+          </>
+        ) : (
+          <>
+
+            <h3>{card.title}</h3>
+
+            <p>{card.description}</p>
+
+          </>
+        )
+      }
+
     </div>
 
-    <div className="about-card">
-      <div className="icon">🎓</div>
+  ))}
 
-      <h3>Continuous Learning</h3>
-
-      <p>
-        Always eager to learn new technologies.
-      </p>
-    </div>
-
-    <div className="about-card">
-      <div className="icon">⚙️</div>
-
-      <h3>Problem Solving</h3>
-
-      <p>
-        Enjoy tackling complex challenges.
-      </p>
-    </div>
-
-    <div className="about-card">
-      <div className="icon">🖌️</div>
-
-      <h3>My Hobby Is Learning New Technology</h3>
-
-      <p>
-        My aim is clear to become full stack developer
-      </p>
-    </div>
-
-  </div>
+</div>
 </section>
-<section className="skills-section">
+<section
+  className="skills-section"
+  id="skills"
+>
 
   <div className="skills-title">
-    <h2>Skills & Technologies</h2>
+
+    <h2>
+
+      {
+        editMode ? (
+          <input
+            className="title-input"
+            value={skillsSection.title}
+            onChange={(e) =>
+              setSkillsSection({
+                ...skillsSection,
+                title: e.target.value,
+              })
+            }
+          />
+        ) : (
+          skillsSection.title
+        )
+      }
+
+      {editMode && (
+        <button className="edit-btn">
+          ✏️
+        </button>
+      )}
+
+    </h2>
+
     <div className="skills-line"></div>
+
   </div>
 
   <div className="skills-container">
 
-    {/* Left Side */}
+    {/* LEFT */}
+
     <div className="skills-left">
 
-      <h3>Technical Proficiency</h3>
+      {
+        editMode ? (
+          <input
+            className="title-input"
+            value={skillsSection.leftTitle}
+            onChange={(e) =>
+              setSkillsSection({
+                ...skillsSection,
+                leftTitle:
+                  e.target.value,
+              })
+            }
+          />
+        ) : (
+          <h3>
+            {skillsSection.leftTitle}
+          </h3>
+        )
+      }
 
-      <div className="skill">
-        <div className="skill-info">
-          <span>AI</span>
-          <span>85%</span>
-        </div>
+      {
+        skillsSection.skills.map(
+          (skill, index) => (
 
-        <div className="progress-bar">
-          <div className="progress ai"></div>
-        </div>
-      </div>
+          <div
+            className="skill"
+            key={skill.id}
+          >
 
-      <div className="skill">
-        <div className="skill-info">
-          <span>ABC</span>
-          <span>80%</span>
-        </div>
+            <div className="skill-info">
 
-        <div className="progress-bar">
-          <div className="progress abc"></div>
-        </div>
-      </div>
+              {
+                editMode ? (
+                  <>
+                    <input
+                      value={skill.name}
+                      onChange={(e) => {
 
-      <div className="skill">
-        <div className="skill-info">
-          <span>MERN stack</span>
-          <span>90%</span>
-        </div>
+                        const updated =
+                          [...skillsSection.skills];
 
-        <div className="progress-bar">
-          <div className="progress mern"></div>
-        </div>
-      </div>
+                        updated[index].name =
+                          e.target.value;
 
-      <div className="skill">
-        <div className="skill-info">
-          <span>Generative AI</span>
-          <span>70%</span>
-        </div>
+                        setSkillsSection({
+                          ...skillsSection,
+                          skills: updated,
+                        });
 
-        <div className="progress-bar">
-          <div className="progress genai"></div>
-        </div>
-      </div>
+                      }}
+                    />
 
-      <div className="skill">
-        <div className="skill-info">
-          <span>HTML</span>
-          <span>90%</span>
-        </div>
+                    <input
+                      type="number"
+                      value={skill.percentage}
+                      onChange={(e) => {
 
-        <div className="progress-bar">
-          <div className="progress html"></div>
-        </div>
-      </div>
+                        const updated =
+                          [...skillsSection.skills];
 
-      <div className="skill">
-        <div className="skill-info">
-          <span>CSS</span>
-          <span>79%</span>
-        </div>
+                        updated[index].percentage =
+                          e.target.value;
 
-        <div className="progress-bar">
-          <div className="progress css"></div>
-        </div>
-      </div>
+                        setSkillsSection({
+                          ...skillsSection,
+                          skills: updated,
+                        });
+
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <span>
+                      {skill.name}
+                    </span>
+
+                    <span>
+                      {skill.percentage}%
+                    </span>
+                  </>
+                )
+              }
+
+            </div>
+
+            <div className="progress-bar">
+
+              <div
+                className="progress"
+                style={{
+                  width:
+                    `${skill.percentage}%`,
+                }}
+              ></div>
+
+            </div>
+
+          </div>
+
+        ))
+      }
 
     </div>
 
-    {/* Right Side */}
+    {/* RIGHT */}
+
     <div className="skills-right">
 
-      <h3>Technologies I Work With</h3>
+      {
+        editMode ? (
+          <input
+            className="title-input"
+            value={skillsSection.rightTitle}
+            onChange={(e) =>
+              setSkillsSection({
+                ...skillsSection,
+                rightTitle:
+                  e.target.value,
+              })
+            }
+          />
+        ) : (
+          <h3>
+            {skillsSection.rightTitle}
+          </h3>
+        )
+      }
 
       <div className="tech-grid">
 
-        <div className="tech-card">AI</div>
-        <div className="tech-card">ABC</div>
-        <div className="tech-card">MERN stack</div>
+        {
+          skillsSection.technologies.map(
+            (tech, index) => (
 
-        <div className="tech-card">Generative AI</div>
-        <div className="tech-card">HTML</div>
-        <div className="tech-card">CSS</div>
+            <div
+              className="tech-card"
+              key={index}
+            >
+
+              {
+                editMode ? (
+                  <input
+                    value={tech}
+                    onChange={(e) => {
+
+                      const updated =
+                        [...skillsSection.technologies];
+
+                      updated[index] =
+                        e.target.value;
+
+                      setSkillsSection({
+                        ...skillsSection,
+                        technologies:
+                          updated,
+                      });
+
+                    }}
+                  />
+                ) : (
+                  tech
+                )
+              }
+
+            </div>
+
+          ))
+        }
 
       </div>
 
@@ -267,161 +887,724 @@ const HeroSection = () => {
   </div>
 
 </section>
- <section className="projects-section">
-      <h1 className="section-title">Recent Projects</h1>
+ <section
+  className="projects-section"
+  id="projects"
+>
 
-      <div className="projects-grid">
-        {projects.map((project, index) => (
-          <div className="project-card" key={index}>
-            <h2>
-              <FaRocket className="rocket-icon" /> {project.title}
-            </h2>
+  <h1 className="section-title">
 
-            <p>{project.description}</p>
+    {
+      editMode ? (
+        <input
+          className="title-input"
+          value={projectsSection.title}
+          onChange={(e) =>
+            setProjectsSection({
+              ...projectsSection,
+              title: e.target.value,
+            })
+          }
+        />
+      ) : (
+        projectsSection.title
+      )
+    }
 
-            <span className="project-tag">{project.tag}</span>
+    {editMode && (
+      <button className="edit-btn">
+        ✏️
+      </button>
+    )}
 
-            <div className="project-buttons">
-              <a href={project.code} className="btn-outline">
-                <FaGithub /> CODE
-              </a>
+  </h1>
 
-              {project.hasDemo && (
-                <a href={project.demo} className="btn-filled">
-                  <FaExternalLinkAlt /> LIVE DEMO
-                </a>
-              )}
-            </div>
+  <div className="projects-grid">
+
+    {
+      projectsSection.projects.map(
+        (project, index) => (
+
+        <div
+          className="project-card"
+          key={project.id}
+        >
+
+          <h2>
+
+            <FaRocket
+              className="rocket-icon"
+            />
+
+            {
+              editMode ? (
+                <input
+                  value={project.title}
+                  onChange={(e) => {
+
+                    const updated =
+                      [...projectsSection.projects];
+
+                    updated[index].title =
+                      e.target.value;
+
+                    setProjectsSection({
+                      ...projectsSection,
+                      projects: updated,
+                    });
+
+                  }}
+                />
+              ) : (
+                project.title
+              )
+            }
+
+          </h2>
+
+          {
+            editMode ? (
+              <textarea
+                value={
+                  project.description
+                }
+                onChange={(e) => {
+
+                  const updated =
+                    [...projectsSection.projects];
+
+                  updated[index].description =
+                    e.target.value;
+
+                  setProjectsSection({
+                    ...projectsSection,
+                    projects: updated,
+                  });
+
+                }}
+              />
+            ) : (
+              <p>
+                {project.description}
+              </p>
+            )
+          }
+
+          {
+            editMode ? (
+              <input
+                value={project.tag}
+                onChange={(e) => {
+
+                  const updated =
+                    [...projectsSection.projects];
+
+                  updated[index].tag =
+                    e.target.value;
+
+                  setProjectsSection({
+                    ...projectsSection,
+                    projects: updated,
+                  });
+
+                }}
+              />
+            ) : (
+              <span className="project-tag">
+                {project.tag}
+              </span>
+            )
+          }
+
+          <div className="project-buttons">
+
+            {
+              editMode ? (
+                <>
+                  <input
+                    placeholder="Code Link"
+                    value={project.code}
+                    onChange={(e) => {
+
+                      const updated =
+                        [...projectsSection.projects];
+
+                      updated[index].code =
+                        e.target.value;
+
+                      setProjectsSection({
+                        ...projectsSection,
+                        projects: updated,
+                      });
+
+                    }}
+                  />
+
+                  <input
+                    placeholder="Demo Link"
+                    value={project.demo}
+                    onChange={(e) => {
+
+                      const updated =
+                        [...projectsSection.projects];
+
+                      updated[index].demo =
+                        e.target.value;
+
+                      setProjectsSection({
+                        ...projectsSection,
+                        projects: updated,
+                      });
+
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <a
+                    href={project.code}
+                    className="btn-outline"
+                  >
+                    <FaGithub />
+                    CODE
+                  </a>
+
+                  {
+                    project.hasDemo && (
+                      <a
+                        href={project.demo}
+                        className="btn-filled"
+                      >
+                        <FaExternalLinkAlt />
+                        LIVE DEMO
+                      </a>
+                    )
+                  }
+                </>
+              )
+            }
+
           </div>
-        ))}
-      </div>
 
-      <div className="github-section">
-        <p>WANT TO SEE MORE OF MY WORK?</p>
-
-        <a href="https://github.com/" className="github-btn">
-          <FaGithub /> VISIT MY GITHUB
-        </a>
-      </div>
-    </section>
-    <section className="contact-section">
-      <h1 className="contact-title">Get In Touch</h1>
-
-      <div className="contact-container">
-        {/* LEFT SIDE */}
-        <div className="contact-left">
-          <h2>Contact Information</h2>
-
-          <div className="info-card">
-            <div className="icon-box">
-              <FaEnvelope />
-            </div>
-
-            <div>
-              <span>EMAIL</span>
-              <p>Ashwanikumarchauhan014@gmail.com</p>
-            </div>
-          </div>
-
-          <div className="info-card">
-            <div className="icon-box">
-              <FaPhoneAlt />
-            </div>
-
-            <div>
-              <span>PHONE</span>
-              <p>9616129738</p>
-            </div>
-          </div>
-
-          <div className="info-card">
-            <div className="icon-box">
-              <FaMapMarkerAlt />
-            </div>
-
-            <div>
-              <span>LOCATION</span>
-              <p>U.P, INDIA</p>
-            </div>
-          </div>
-
-          <div className="opportunity-card">
-            <h3>Open for Opportunities</h3>
-
-            <p>
-              I'm actively looking for entry-level MERN Stack Developer
-              roles and internship opportunities. If you have an exciting
-              project or role, feel free to connect with me!
-            </p>
-          </div>
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="contact-right">
-          <h2>Send me a Message</h2>
+      ))
+    }
 
-          <form className="contact-form">
-            <input type="text" placeholder="Your Name * *" />
-            <input type="email" placeholder="Email Address * *" />
+  </div>
 
-            <textarea
-              rows="6"
-              placeholder="Your Message * *"
-            ></textarea>
+  <div className="github-section">
 
-            <button type="submit">
-              <FaPaperPlane />
-              SEND MESSAGE
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-     <footer className="footer">
-      <div className="footer-top">
-        <div className="footer-left">
-          <h1>ashwani</h1>
+    {
+      editMode ? (
+        <>
+          <input
+            value={
+              projectsSection.githubText
+            }
+            onChange={(e) =>
+              setProjectsSection({
+                ...projectsSection,
+                githubText:
+                  e.target.value,
+              })
+            }
+          />
 
+          <input
+            value={
+              projectsSection.githubLink
+            }
+            onChange={(e) =>
+              setProjectsSection({
+                ...projectsSection,
+                githubLink:
+                  e.target.value,
+              })
+            }
+          />
+        </>
+      ) : (
+        <>
           <p>
-            Building digital experiences with
-            <br />
-            precision and passion.
+            {
+              projectsSection.githubText
+            }
           </p>
-        </div>
 
-        <div className="footer-icons">
           <a
-            href="https://github.com/"
-            target="_blank"
-            rel="noreferrer"
+            href={
+              projectsSection.githubLink
+            }
+            className="github-btn"
           >
             <FaGithub />
+            VISIT MY GITHUB
           </a>
+        </>
+      )
+    }
 
-          <a
-            href="https://linkedin.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaLinkedin />
-          </a>
+  </div>
 
-          <a href="mailto:yourmail@gmail.com">
-            <FaEnvelope />
-          </a>
+</section>
+    <section
+  className="contact-section"
+  id="contact"
+>
+
+  <h1 className="contact-title">
+
+    {
+      editMode ? (
+        <input
+          className="title-input"
+          value={contactSection.title}
+          onChange={(e) =>
+            setContactSection({
+              ...contactSection,
+              title: e.target.value,
+            })
+          }
+        />
+      ) : (
+        contactSection.title
+      )
+    }
+
+    {editMode && (
+      <button className="edit-btn">
+        ✏️
+      </button>
+    )}
+
+  </h1>
+
+  <div className="contact-container">
+
+    {/* LEFT */}
+
+    <div className="contact-left">
+
+      {
+        editMode ? (
+          <input
+            className="title-input"
+            value={
+              contactSection.leftTitle
+            }
+            onChange={(e) =>
+              setContactSection({
+                ...contactSection,
+                leftTitle:
+                  e.target.value,
+              })
+            }
+          />
+        ) : (
+          <h2>
+            {contactSection.leftTitle}
+          </h2>
+        )
+      }
+
+      {/* EMAIL */}
+
+      <div className="info-card">
+
+        <div className="icon-box">
+          <FaEnvelope />
         </div>
+
+        <div>
+
+          <span>EMAIL</span>
+
+          {
+            editMode ? (
+              <input
+                value={
+                  contactSection.email
+                }
+                onChange={(e) =>
+                  setContactSection({
+                    ...contactSection,
+                    email:
+                      e.target.value,
+                  })
+                }
+              />
+            ) : (
+              <p>
+                {contactSection.email}
+              </p>
+            )
+          }
+
+        </div>
+
       </div>
 
-      <div className="footer-line"></div>
+      {/* PHONE */}
 
-      <div className="footer-bottom">
-        <p>
-          © 2026 Ashwani kumar chauhan. All rights reserved.
-        </p>
+      <div className="info-card">
 
-        <span>Lucknow, Uttar Pradesh, India</span>
+        <div className="icon-box">
+          <FaPhoneAlt />
+        </div>
+
+        <div>
+
+          <span>PHONE</span>
+
+          {
+            editMode ? (
+              <input
+                value={
+                  contactSection.phone
+                }
+                onChange={(e) =>
+                  setContactSection({
+                    ...contactSection,
+                    phone:
+                      e.target.value,
+                  })
+                }
+              />
+            ) : (
+              <p>
+                {contactSection.phone}
+              </p>
+            )
+          }
+
+        </div>
+
       </div>
-    </footer>
+
+      {/* LOCATION */}
+
+      <div className="info-card">
+
+        <div className="icon-box">
+          <FaMapMarkerAlt />
+        </div>
+
+        <div>
+
+          <span>LOCATION</span>
+
+          {
+            editMode ? (
+              <input
+                value={
+                  contactSection.location
+                }
+                onChange={(e) =>
+                  setContactSection({
+                    ...contactSection,
+                    location:
+                      e.target.value,
+                  })
+                }
+              />
+            ) : (
+              <p>
+                {contactSection.location}
+              </p>
+            )
+          }
+
+        </div>
+
+      </div>
+
+      {/* OPPORTUNITY */}
+
+      <div className="opportunity-card">
+
+        {
+          editMode ? (
+            <>
+              <input
+                value={
+                  contactSection.opportunityTitle
+                }
+                onChange={(e) =>
+                  setContactSection({
+                    ...contactSection,
+                    opportunityTitle:
+                      e.target.value,
+                  })
+                }
+              />
+
+              <textarea
+                value={
+                  contactSection.opportunityDescription
+                }
+                onChange={(e) =>
+                  setContactSection({
+                    ...contactSection,
+                    opportunityDescription:
+                      e.target.value,
+                  })
+                }
+              />
+            </>
+          ) : (
+            <>
+              <h3>
+                {
+                  contactSection.opportunityTitle
+                }
+              </h3>
+
+              <p>
+                {
+                  contactSection.opportunityDescription
+                }
+              </p>
+            </>
+          )
+        }
+
+      </div>
+
+    </div>
+
+    {/* RIGHT */}
+
+    <div className="contact-right">
+
+      {
+        editMode ? (
+          <input
+            className="title-input"
+            value={
+              contactSection.rightTitle
+            }
+            onChange={(e) =>
+              setContactSection({
+                ...contactSection,
+                rightTitle:
+                  e.target.value,
+              })
+            }
+          />
+        ) : (
+          <h2>
+            {contactSection.rightTitle}
+          </h2>
+        )
+      }
+
+      <form className="contact-form">
+
+        <input
+          type="text"
+          placeholder="Your Name"
+        />
+
+        <input
+          type="email"
+          placeholder="Email Address"
+        />
+
+        <textarea
+          rows="6"
+          placeholder="Your Message"
+        ></textarea>
+
+        <button type="submit">
+
+          <FaPaperPlane />
+
+          SEND MESSAGE
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+     <footer className="footer">
+
+  <div className="footer-top">
+
+    <div className="footer-left">
+
+      {
+        editMode ? (
+          <>
+            <input
+              value={footerSection.name}
+              onChange={(e) =>
+                setFooterSection({
+                  ...footerSection,
+                  name: e.target.value,
+                })
+              }
+            />
+
+            <textarea
+              value={
+                footerSection.description
+              }
+              onChange={(e) =>
+                setFooterSection({
+                  ...footerSection,
+                  description:
+                    e.target.value,
+                })
+              }
+            />
+          </>
+        ) : (
+          <>
+            <h1>
+              {footerSection.name}
+            </h1>
+
+            <p>
+              {
+                footerSection.description
+              }
+            </p>
+          </>
+        )
+      }
+
+    </div>
+
+    <div className="footer-icons">
+
+      {
+        editMode ? (
+          <div className="footer-edit-links">
+
+            <input
+              placeholder="GitHub Link"
+              value={footerSection.github}
+              onChange={(e) =>
+                setFooterSection({
+                  ...footerSection,
+                  github:
+                    e.target.value,
+                })
+              }
+            />
+
+            <input
+              placeholder="LinkedIn Link"
+              value={footerSection.linkedin}
+              onChange={(e) =>
+                setFooterSection({
+                  ...footerSection,
+                  linkedin:
+                    e.target.value,
+                })
+              }
+            />
+
+            <input
+              placeholder="Email"
+              value={footerSection.email}
+              onChange={(e) =>
+                setFooterSection({
+                  ...footerSection,
+                  email:
+                    e.target.value,
+                })
+              }
+            />
+
+          </div>
+        ) : (
+          <>
+            <a
+              href={footerSection.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaGithub />
+            </a>
+
+            <a
+              href={footerSection.linkedin}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaLinkedin />
+            </a>
+
+            <a
+              href={`mailto:${footerSection.email}`}
+            >
+              <FaEnvelope />
+            </a>
+          </>
+        )
+      }
+
+    </div>
+
+  </div>
+
+  <div className="footer-line"></div>
+
+  <div className="footer-bottom">
+
+    {
+      editMode ? (
+        <>
+          <input
+            value={
+              footerSection.copyright
+            }
+            onChange={(e) =>
+              setFooterSection({
+                ...footerSection,
+                copyright:
+                  e.target.value,
+              })
+            }
+          />
+
+          <input
+            value={
+              footerSection.location
+            }
+            onChange={(e) =>
+              setFooterSection({
+                ...footerSection,
+                location:
+                  e.target.value,
+              })
+            }
+          />
+        </>
+      ) : (
+        <>
+          <p>
+            {
+              footerSection.copyright
+            }
+          </p>
+
+          <span>
+            {footerSection.location}
+          </span>
+        </>
+      )
+    }
+
+  </div>
+
+</footer>
     </>
   );
 };
