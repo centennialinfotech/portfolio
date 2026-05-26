@@ -9,9 +9,9 @@ import PlanDetails from "./pages/PlanDetails";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import Success from "./pages/Success";
-import PrivacyPolicy from "./pages/Privacy-Policy";
-import RefundPolicy from "./pages/Refund-Policy";
-import TermCondition from "./pages/Term-Condition";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
+import TermCondition from "./pages/TermCondition";
 import CookieBanner from "./components/CookieBanner";
 
 function App() {
