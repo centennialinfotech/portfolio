@@ -409,12 +409,14 @@ export default function Trial() {
             {editMode ? "Done" : "Customize"}
           </button>
 
-          <button
-            onClick={() => navigate("/pricing")}
-            className="customize-btn"
-          >
-            Go Premium
-          </button>
+          {!isPremium && (
+            <button
+              onClick={() => navigate("/pricing")}
+              className="customize-btn"
+            >
+              Go Premium
+            </button>
+          )}
           <div className="user-session">
             <span>{username} </span>
 
