@@ -32,7 +32,7 @@ export default function Success() {
           </div>
         </div>
         <button
-          onClick={() => navigate("/trial")}
+          onClick={() => navigate("/portfolio")}
           className="w-full mt-10 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 font-semibold"
         >
           Go To Dashboard

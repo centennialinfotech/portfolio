@@ -38,7 +38,7 @@ export default function Login() {
         setUser(currentUser);
 
         if (type === "register") {
-          navigate("/trial");
+          navigate("/portfolio");
         }
       }
     });
@@ -67,7 +67,7 @@ export default function Login() {
         trialEndsAt: Date.now() + 3 * 24 * 60 * 60 * 1000,
       });
 
-      navigate("/trial");
+      navigate("/portfolio");
     } catch (error) {
       alert(error.message);
     }

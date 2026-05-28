@@ -1,39 +1,42 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Trial from "./pages/Trial";
-import Pricing from "./pages/Pricing";
-import PlanDetails from "./pages/PlanDetails";
-import Checkout from "./pages/Checkout";
-import Payment from "./pages/Payment";
-import Success from "./pages/Success";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import RefundPolicy from "./pages/RefundPolicy";
-import TermCondition from "./pages/TermCondition";
 import CookieBanner from "./components/CookieBanner";
+
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const PlanDetails = lazy(() => import("./pages/PlanDetails"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const Payment = lazy(() => import("./pages/Payment"));
+const Success = lazy(() => import("./pages/Success"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
+const TermCondition = lazy(() => import("./pages/TermCondition"));
 
 function App() {
   return (
     <>
       <CookieBanner />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/demo" element={<Dashboard />} />
-        <Route path="/trial" element={<Trial />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/plan/:planId" element={<PlanDetails />} />
-        <Route path="/checkout/:planId" element={<Checkout />} />
-        <Route path="/payment/:planId" element={<Payment />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/refund-policy" element={<RefundPolicy />} />
-        <Route path="/term-condition" element={<TermCondition />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/demo" element={<Dashboard />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/plan/:planId" element={<PlanDetails />} />
+          <Route path="/checkout/:planId" element={<Checkout />} />
+          <Route path="/payment/:planId" element={<Payment />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/term-condition" element={<TermCondition />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }

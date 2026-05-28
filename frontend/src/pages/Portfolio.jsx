@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
+import "../css/portfolio.css";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-
 import { doc, getDoc, setDoc } from "firebase/firestore";
-
 import { auth, db } from "../services/firebase";
 import {
   FaGithub,
@@ -19,7 +18,6 @@ import {
   FaCog,
   FaPaintBrush,
 } from "react-icons/fa";
-import "../css/trial.css";
 import githubLogo from "../assets/github.png";
 import linkedinLogo from "../assets/linkedin.png";
 
@@ -420,7 +418,7 @@ export default function Trial() {
           <div className="user-session">
             <span>{username} </span>
 
-            <button onClick={logout} className="logout-btn">
+            <button onClick={logout} className="customize-btn">
               Signout
             </button>
           </div>
