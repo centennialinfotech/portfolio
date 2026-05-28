@@ -33,17 +33,20 @@ export default function Home() {
           <button
             onClick={() => {
               document
-                .getElementById("hero")
+                .getElementById("fixed")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
             className="bg-gradient-to-r from-blue-500 to-purple-500 px-5 py-3 rounded-l-full font-semibold shadow-2xl hover:scale-105 transition-all"
           >
-            🚀 Start <br /> Trial
+            Go to <br /> top
           </button>
         </div>
       )}
       {/* BACKGROUND GLOW */}
-      <div className="absolute top-0 left-0 w-[700px] h-[700px] bg-blue-500/20 rounded-full blur-[120px]"></div>
+      <div
+        className="absolute top-0 left-0 w-[700px] h-[700px] bg-blue-500/20 rounded-full blur-[120px]"
+        id="fixed"
+      ></div>
 
       <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-purple-500/20 rounded-full blur-[120px]"></div>
 
@@ -63,9 +66,12 @@ export default function Home() {
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-white/80">
-          <a href="/pricing" className="hover:text-white transition-colors">
+          <button
+            onClick={() => navigate("/pricing")}
+            className="customize-btn"
+          >
             Go Premium
-          </a>
+          </button>
           <a href="#features" className="hover:text-white transition-colors">
             Features
           </a>

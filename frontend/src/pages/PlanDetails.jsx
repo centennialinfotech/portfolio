@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/plandetail.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function PlanDetails() {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../css/checkout.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../services/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
