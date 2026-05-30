@@ -12,12 +12,15 @@ import {
   Smartphone,
   LayoutDashboard,
   Star,
+  Menu,
+  X,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 export default function Home() {
+  const [mobileMenu, setMobileMenu] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -85,6 +88,32 @@ export default function Home() {
 
       {/* NAVBAR */}
       <nav className="relative z-20 flex items-center justify-between px-6 md:px-16 lg:px-28 py-6 border-b border-white/10 backdrop-blur-xl">
+        {mobileMenu && (
+          <div className="md:hidden px-6 py-4 bg-black/95 border-b border-white/10">
+            <div className="flex flex-col gap-4">
+              {!loading && !isPremium && (
+                <button
+                  onClick={() => navigate("/pricing")}
+                  className="text-left"
+                >
+                  Go Premium
+                </button>
+              )}
+
+              <a href="#features" onClick={() => setMobileMenu(false)}>
+                Features
+              </a>
+
+              <a href="#pricing" onClick={() => setMobileMenu(false)}>
+                Pricing
+              </a>
+
+              <a href="#faq" onClick={() => setMobileMenu(false)}>
+                FAQ
+              </a>
+            </div>
+          </div>
+        )}
         <div>
           <h1 className="text-[18px] sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
             Centennial
@@ -129,6 +158,12 @@ export default function Home() {
           className="bg-gradient-to-r from-blue-500 to-purple-500 hover:scale-105 px-6 py-3 rounded-2xl font-semibold transition-all shadow-2xl"
         >
           Get Started
+        </button>
+        <button
+          className="md:hidden"
+          onClick={() => setMobileMenu(!mobileMenu)}
+        >
+          {mobileMenu ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
 
