@@ -100,7 +100,7 @@ export default function Login() {
         { merge: true },
       );
       console.log("WRITE SUCCESS");
-      navigate("/trial");
+      navigate("/portfolio");
     } catch (error) {
       console.error("FULL ERROR:", error);
       console.log(error);
@@ -127,7 +127,7 @@ export default function Login() {
         console.log("USER DATA:", docSnap.data());
       }
 
-      navigate("/trial");
+      navigate("/portfolio");
     } catch (error) {
       alert(error.message);
     }
