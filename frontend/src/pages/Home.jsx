@@ -236,6 +236,12 @@ export default function Home() {
               >
                 Create My Portfolio
               </button>
+              <button
+                onClick={() => navigate("/login?type=login")}
+                className="px-10 py-5 rounded-2xl border border-white/15 bg-white/[0.06]"
+              >
+                Login
+              </button>
 
               <button
                 onClick={() => navigate("/login?type=demo")}
