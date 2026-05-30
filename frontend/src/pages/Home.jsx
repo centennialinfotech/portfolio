@@ -91,17 +91,17 @@ export default function Home() {
         {mobileMenu && (
           <div className="absolute top-full right-4 mt-2 w-56 md:hidden bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl z-50">
             <div className="flex flex-col p-4 gap-4">
-              {!loading && !isPremium && (
-                <button
-                  onClick={() => {
-                    navigate("/pricing");
-                    setMobileMenu(false);
-                  }}
-                  className="text-left text-white hover:text-blue-400"
-                >
-                  Go Premium
-                </button>
-              )}
+              <button
+                onClick={() => {
+                  document
+                    .getElementById("hero")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                  setMobileMenu(false);
+                }}
+                className="text-left text-white hover:text-blue-400"
+              >
+                Get Started
+              </button>
 
               <a
                 href="#features"
@@ -164,16 +164,14 @@ export default function Home() {
           </a>
         </div>
 
-        <button
-          onClick={() => {
-            document
-              .getElementById("hero")
-              ?.scrollIntoView({ behavior: "smooth" });
-          }}
-          className="bg-gradient-to-r from-blue-500 to-purple-500 hover:scale-105 px-6 py-3 rounded-2xl font-semibold transition-all shadow-2xl"
-        >
-          Get Started
-        </button>
+        {!loading && !isPremium && (
+          <button
+            onClick={() => navigate("/pricing")}
+            className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:scale-105 px-6 py-3 rounded-2xl font-semibold transition-all shadow-2xl"
+          >
+            Go Premium
+          </button>
+        )}
         <button
           className="md:hidden"
           onClick={() => setMobileMenu(!mobileMenu)}
