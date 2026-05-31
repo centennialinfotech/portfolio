@@ -159,6 +159,9 @@ body {
   display: flex;
   gap: 20px;
   margin-top: 40px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .cv-btn,
@@ -711,11 +714,21 @@ body {
   .projects-section {
     padding: 40px 20px;
   }
+ .hero-buttons {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
 
+  .social-icons {
+    justify-content: center;
+  }
 
 }
 .social-icons {
   display: flex;
+  align-items: center;
   gap: 20px;
 }
 
@@ -1304,10 +1317,7 @@ html {
     font-size: 16px;
   }
 
-  .hero-buttons {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+ 
 
   .image-circle {
     width: 240px;
@@ -1413,6 +1423,9 @@ html {
     width: 100%;
     font-size: 9px;
     overflow: hidden;
+    background: #fff;
+        color: #000;
+    
   }
 
   .logo-edit input[type="file"]::file-selector-button {

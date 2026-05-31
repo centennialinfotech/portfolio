@@ -593,18 +593,6 @@ export default function Trial() {
             >
               {isPremium ? "DOWNLOAD CV" : "PREMIUM ONLY"}
             </button>
-            {/* <a
-              href={heroSection.cv || "#"}
-              className={`cv-btn ${!heroSection.cv ? "disabled" : ""}`}
-              onClick={(e) => {
-                if (!heroSection.cv) {
-                  e.preventDefault();
-                  alert("Please upload CV first");
-                }
-              }}
-            >
-              DOWNLOAD CV
-            </a> */}
 
             <div className="social-icons">
               <a href={heroSection.github} target="_blank" rel="noreferrer">
