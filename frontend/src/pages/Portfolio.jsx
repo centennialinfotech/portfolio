@@ -768,8 +768,6 @@ export default function Trial() {
             ) : (
               skillsSection.title
             )}
-
-            {editMode && <button className="edit-btn">✏️</button>}
           </h2>
 
           <div className="skills-line"></div>
@@ -978,8 +976,6 @@ export default function Trial() {
           ) : (
             projectsSection.title
           )}
-
-          {editMode && <button className="edit-btn">✏️</button>}
         </h1>
 
         <div className="projects-grid">
@@ -1233,8 +1229,6 @@ export default function Trial() {
           ) : (
             contactSection.title
           )}
-
-          {editMode && <button className="edit-btn">✏️</button>}
         </h1>
 
         <div className="contact-container">

@@ -290,6 +290,42 @@ body {
     padding: 6px 10px;
     margin-right: 8px;
   }
+  
+  .hero input,
+.hero textarea,
+.about-section input,
+.about-section textarea,
+.about-section .about-container input,
+.about-section .about-container textarea,
+.skills-section input,
+.skills-section textarea,
+.projects-section input,
+.projects-section textarea,
+.contact-section input,
+.contact-section textarea,
+.footer input,
+.footer textarea,
+.footer .footer-bottom input{
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #fff;
+  color: #000;
+  outline: none;
+  box-sizing: border-box;
+}
+.about-container .icon select{
+  font-size: 15px;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.about-container .icon select option{
+  font-size: 15px;
+  border: 1px solid #fff;
+  color: #000;
+}
+
 /* Responsive */
 
 @media (max-width: 768px) {
@@ -1024,10 +1060,7 @@ html {
   width: 100%;
   margin-top: 10px;
   padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background: #222;
-  color: white;
+ 
 }
 
 .about-card textarea {
@@ -1064,14 +1097,7 @@ html {
   gap: 14px;
 }
 
-.hero-edit input,
-.hero-edit textarea {
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #222;
-  color: white;
-}
+
 
 .hero-edit textarea {
   min-height: 100px;
