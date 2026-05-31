@@ -44,8 +44,10 @@ body {
   z-index: 1000;
 }
 .icon {
-  width: 22px;
+  width: 100%;
   height: 22px;
+  padding-bottom: 40px;
+   
 }
 .dashboard.header {
   width: 100%;
@@ -319,6 +321,8 @@ body {
   font-size: 15px;
   border: 1px solid #fff;
   color: #fff;
+  margin-bottom: 10px;
+  border-radius: 3px;
 }
 .about-container .icon select option{
   font-size: 15px;
