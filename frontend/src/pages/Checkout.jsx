@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/checkout.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../services/firebase";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   collection,
   addDoc,
@@ -10,6 +11,8 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { auth } from "../services/firebase";
+console.log(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 export default function Checkout() {
   const navigate = useNavigate();
   const { planId } = useParams();
@@ -46,15 +49,18 @@ export default function Checkout() {
     email: "",
     country: "",
   });
+  const [error, setError] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("razorpay");
 
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
     if (!customer.name || !customer.email || !customer.country) {
-      alert("Please fill all fields");
+      setError("Please fill in all required fields.");
       return;
     }
+
+    setError("");
 
     try {
       setLoading(true);
@@ -127,6 +133,14 @@ export default function Checkout() {
                 );
               }
 
+              localStorage.setItem(
+                "premiumUser",
+                JSON.stringify({
+                  plan: plan.name,
+                  paymentId: response.razorpay_payment_id,
+                }),
+              );
+
               navigate("/success");
             } catch (error) {
               console.log(error);
@@ -151,12 +165,65 @@ export default function Checkout() {
 
       // PAYPAL
       if (paymentMethod === "paypal") {
-        window.location.href = "https://www.paypal.com/";
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/payment/create-paypal-order`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              planId,
+              customer,
+            }),
+          },
+        );
+
+        const data = await response.json();
+
+        console.log("PayPal Response:", data);
+
+        if (!data.success) {
+          throw new Error("Unable to create PayPal order");
+        }
+
+        window.location.href = data.approvalUrl;
       }
 
       // STRIPE / CARD
       if (paymentMethod === "card") {
-        alert("Stripe integration next step");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/payment/create-stripe-session`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              planId,
+              customer,
+            }),
+          },
+        );
+
+        const data = await response.json();
+        console.log(data);
+        // const text = await response.text();
+        // console.log("Response:", text);
+
+        //const data = text ? JSON.parse(text) : {};
+
+        if (!data.success) {
+          throw new Error(data.error || "Unable to create Stripe session");
+        }
+
+        window.location.assign(data.url);
+
+        if (result.error) {
+          throw new Error(result.error.message);
+        }
+
+        return;
       }
     } catch (error) {
       console.error(error);
@@ -189,7 +256,9 @@ export default function Checkout() {
                   name: e.target.value,
                 })
               }
-              className="w-full p-4 rounded-2xl bg-black/40 border border-white/10"
+              className={`w-full p-4 rounded-2xl bg-black/40 border ${
+                error && !customer.name ? "border-red-500" : "border-white/10"
+              }`}
             />
 
             <input
@@ -202,7 +271,9 @@ export default function Checkout() {
                   email: e.target.value,
                 })
               }
-              className="w-full p-4 rounded-2xl bg-black/40 border border-white/10"
+              className={`w-full p-4 rounded-2xl bg-black/40 text-white border ${
+                error && !customer.email ? "border-red-500" : "border-white/10"
+              }`}
             />
 
             <input
@@ -215,7 +286,11 @@ export default function Checkout() {
                   country: e.target.value,
                 })
               }
-              className="w-full p-4 rounded-2xl bg-black/40 border border-white/10"
+              className={`w-full p-4 rounded-2xl bg-black/40 text-white border ${
+                error && !customer.country
+                  ? "border-red-500"
+                  : "border-white/10"
+              }`}
             />
 
             <input
@@ -291,6 +366,11 @@ export default function Checkout() {
           </div>
 
           {/* BUY BUTTON */}
+          {error && (
+            <div className="mt-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+              {error}
+            </div>
+          )}
           <button
             onClick={handleCheckout}
             disabled={loading}
