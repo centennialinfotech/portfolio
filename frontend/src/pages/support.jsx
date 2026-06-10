@@ -4,29 +4,17 @@ import "../css/support.css";
 
 export default function Support() {
   const navigate = useNavigate();
+
   useEffect(() => {
-    const script = document.createElement("script");
-
-    script.async = true;
-    script.src = "https://embed.tawk.to/6a2915d68705f01c35099884/1jqo7qk7h";
-    script.charset = "UTF-8";
-    script.setAttribute("crossorigin", "*");
-
-    script.onload = () => {
-      console.log("Tawk Loaded");
-    };
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
+    if (window.Tawk_API) {
+      window.Tawk_API.hideWidget();
+    }
   }, []);
+
   const openChat = () => {
     if (window.Tawk_API) {
+      window.Tawk_API.showWidget();
       window.Tawk_API.maximize();
-    } else {
-      setTimeout(openChat, 1000);
     }
   };
 
@@ -79,7 +67,7 @@ export default function Support() {
               onClick={openChat}
               className="px-6 py-3 rounded-xl bg-green-500 hover:bg-green-600 transition"
             >
-              Start Chat
+              Start Live Chat
             </button>
           </div>
 
