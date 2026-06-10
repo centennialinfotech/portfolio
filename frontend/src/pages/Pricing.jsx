@@ -52,7 +52,7 @@ export default function Pricing() {
             FAQ
           </button>
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/support")}
             className="text-white/70 hover:text-white"
           >
             Support
