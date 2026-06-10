@@ -1,8 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import "../css/support.css";
 
 export default function Support() {
   const navigate = useNavigate();
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.async = true;
+    script.src = "https://embed.tawk.to/6a2915d68705f01c35099884/1jqo7qk7h";
+    script.charset = "UTF-8";
+    script.setAttribute("crossorigin", "*");
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">
@@ -51,7 +66,13 @@ export default function Support() {
 
             <button
               className="px-6 py-3 rounded-xl bg-green-500 hover:bg-green-600 transition"
-              onClick={() => navigate("/livechat")}
+              onClick={() => {
+                if (window.Tawk_API) {
+                  window.Tawk_API.maximize();
+                } else {
+                  console.log("Tawk chat still loading...");
+                }
+              }}
             >
               Start Chat
             </button>
