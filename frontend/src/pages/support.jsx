@@ -12,12 +12,23 @@ export default function Support() {
     script.charset = "UTF-8";
     script.setAttribute("crossorigin", "*");
 
+    script.onload = () => {
+      console.log("Tawk Loaded");
+    };
+
     document.body.appendChild(script);
 
     return () => {
       document.body.removeChild(script);
     };
   }, []);
+  const openChat = () => {
+    if (window.Tawk_API) {
+      window.Tawk_API.maximize();
+    } else {
+      setTimeout(openChat, 1000);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">
@@ -65,14 +76,8 @@ export default function Support() {
             </p>
 
             <button
+              onClick={openChat}
               className="px-6 py-3 rounded-xl bg-green-500 hover:bg-green-600 transition"
-              onClick={() => {
-                if (window.Tawk_API) {
-                  window.Tawk_API.maximize();
-                } else {
-                  console.log("Tawk chat still loading...");
-                }
-              }}
             >
               Start Chat
             </button>
