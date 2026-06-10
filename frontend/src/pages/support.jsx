@@ -82,7 +82,7 @@ export default function Support() {
             </p>
 
             <button
-              onClick={() => navigate("/create-ticket")}
+              onClick={() => navigate("/ticket")}
               className="px-6 py-3 rounded-xl bg-purple-500 hover:bg-purple-600 transition"
             >
               Create Ticket
