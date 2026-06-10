@@ -1,3 +1,5 @@
+import "../css/ticket.css";
+
 export default function CreateTicket() {
   return (
     <div className="bg-black pt-20">
