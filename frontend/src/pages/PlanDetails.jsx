@@ -131,7 +131,7 @@ export default function PlanDetails() {
                 </span>{" "}
                 and{" "}
                 <span
-                  onClick={() => navigate("/term-condition.jsx")}
+                  onClick={() => navigate("/term-condition")}
                   className="text-blue-400 cursor-pointer hover:underline"
                 >
                   Terms & Conditions
