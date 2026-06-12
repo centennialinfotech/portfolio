@@ -1,10 +1,43 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { auth, db } from "../services/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { useNavigate, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const hidePremiumButton =
+    location.pathname.startsWith("/pricing") ||
+    location.pathname.startsWith("/checkout");
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        setIsPremium(false);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+          setIsPremium(userSnap.data().premium === true);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
@@ -64,6 +97,14 @@ export default function Navbar() {
           >
             Support
           </button>
+          {!hidePremiumButton && !loading && !isPremium && (
+            <button
+              onClick={() => navigate("/pricing")}
+              className="bg-gradient-to-r from-yellow-500 to-orange-500 px-5 py-2 rounded-xl font-semibold"
+            >
+              Go Premium
+            </button>
+          )}
         </div>
       </nav>
 
