@@ -1,12 +1,10 @@
 import PublicLayout from "../layouts/PublicLayout";
-import { HiMenu, HiX } from "react-icons/hi";
 import { useState } from "react";
 import "../css/pricing.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Pricing() {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <PublicLayout>
