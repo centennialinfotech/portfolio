@@ -13,7 +13,8 @@ export default function Navbar() {
   const [loading, setLoading] = useState(true);
   const hidePremiumButton =
     location.pathname.startsWith("/pricing") ||
-    location.pathname.startsWith("/checkout");
+    location.pathname.startsWith("/checkout") ||
+    location.pathname.startsWith("/plan/basic");
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
