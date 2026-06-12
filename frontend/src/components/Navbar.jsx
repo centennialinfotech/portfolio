@@ -51,6 +51,14 @@ export default function Navbar() {
             </span>
           </h1>
         </div>
+        {!hidePremiumButton && !loading && !isPremium && (
+          <button
+            onClick={() => navigate("/pricing")}
+            className="lg:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-xl text-sm font-semibold"
+          >
+            Premium
+          </button>
+        )}
 
         <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
@@ -119,14 +127,6 @@ export default function Navbar() {
           <button onClick={() => navigate("/features")}>Feature</button>
           <button onClick={() => navigate("/faq")}>FAQ</button>
           <button onClick={() => navigate("/support")}>Support</button>
-          {!hidePremiumButton && !loading && !isPremium && (
-            <button
-              onClick={() => navigate("/pricing")}
-              className="bg-gradient-to-r from-yellow-500 to-orange-500 px-5 py-2 rounded-xl font-semibold"
-            >
-              Go Premium
-            </button>
-          )}
         </div>
       )}
     </>
