@@ -457,7 +457,7 @@ export default function Home() {
       {/* PRICING */}
       <section
         id="pricing"
-        className="relative z-10 px-6 md:px-16 lg:px-28 py-32 border-t border-white/[0.03]"
+        className="relative z-10 px-6 md:px-16 lg:px-28 py-8 border-t border-white/[0.03]"
       >
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-20">
@@ -558,7 +558,7 @@ export default function Home() {
       {/* FAQ SECTION */}
       <section
         id="faq"
-        className="relative z-10 px-6 md:px-16 lg:px-28 py-32 border-t border-white/[0.03]"
+        className="relative z-10 px-6 md:px-16 lg:px-28 py-8 border-t border-white/[0.03]"
       >
         <div className="max-w-5xl mx-auto">
           {/* HEADING */}
