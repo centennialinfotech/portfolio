@@ -1,3 +1,4 @@
+import PublicLayout from "../layouts/PublicLayout";
 import "../css/faq.css";
 export default function FAQ() {
   const faqs = [
@@ -28,29 +29,31 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-black text-center mb-6">
-          Frequently Asked Questions
-        </h1>
+    <PublicLayout>
+      <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl font-black text-center mb-6">
+            Frequently Asked Questions
+          </h1>
 
-        <p className="text-white/70 text-center mb-16">
-          Find answers to common questions.
-        </p>
+          <p className="text-white/70 text-center mb-16">
+            Find answers to common questions.
+          </p>
 
-        <div className="space-y-6">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="bg-white/[0.05] border border-white/10 rounded-[24px] p-8"
-            >
-              <h3 className="text-xl font-bold mb-3">{faq.q}</h3>
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-white/[0.05] border border-white/10 rounded-[24px] p-8"
+              >
+                <h3 className="text-xl font-bold mb-3">{faq.q}</h3>
 
-              <p className="text-white/70">{faq.a}</p>
-            </div>
-          ))}
+                <p className="text-white/70">{faq.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </PublicLayout>
   );
 }
