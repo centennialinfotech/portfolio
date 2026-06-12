@@ -120,7 +120,10 @@ export default function Pricing() {
                   <p>✔ SEO Optimization</p> <p>✔ Unlimited Projects</p>{" "}
                   <p>✔ Priority Support</p>{" "}
                 </div>{" "}
-                <button className="w-full mt-8 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 font-semibold hover:opacity-90 transition-opacity">
+                <button
+                  onClick={() => navigate("/support")}
+                  className="w-full mt-8 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 font-semibold hover:opacity-90 transition-opacity"
+                >
                   {" "}
                   Contact Sales{" "}
                 </button>{" "}
@@ -143,7 +146,10 @@ export default function Pricing() {
                 <p>✔ Blog Support</p> <p>✔ Analytics</p>{" "}
                 <p>✔ Premium Hosting</p>{" "}
               </div>{" "}
-              <button className="w-full mt-8 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-white text-black font-semibold hover:scale-[1.02] transition-transform">
+              <button
+                onClick={() => navigate("/support")}
+                className="w-full mt-8 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-white text-black font-semibold hover:scale-[1.02] transition-transform"
+              >
                 {" "}
                 Contact Sales{" "}
               </button>{" "}
