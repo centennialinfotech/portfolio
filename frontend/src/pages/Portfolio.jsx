@@ -395,6 +395,7 @@ export default function Trial() {
                     logo: e.target.value,
                   })
                 }
+                placeholder="Enter Logo Name"
               />
 
               <input type="file" accept="image/*" onChange={handleLogoUpload} />
@@ -482,6 +483,7 @@ export default function Trial() {
                     greeting: e.target.value,
                   })
                 }
+                placeholder="Enter Greeting"
               />
 
               <input
@@ -492,6 +494,7 @@ export default function Trial() {
                     firstName: e.target.value,
                   })
                 }
+                placeholder="Enter First Name"
               />
 
               <input
@@ -502,6 +505,7 @@ export default function Trial() {
                     lastName: e.target.value,
                   })
                 }
+                placeholder="Enter Last Name"
               />
 
               <input
@@ -512,6 +516,7 @@ export default function Trial() {
                     role: e.target.value,
                   })
                 }
+                placeholder="Enter Role"
               />
 
               <textarea
@@ -522,6 +527,7 @@ export default function Trial() {
                     description: e.target.value,
                   })
                 }
+                placeholder="Enter Your Professional Tagline"
               />
 
               <input
@@ -532,6 +538,7 @@ export default function Trial() {
                     github: e.target.value,
                   })
                 }
+                placeholder="Enter GitHub URL"
               />
 
               <input
@@ -542,6 +549,7 @@ export default function Trial() {
                     linkedin: e.target.value,
                   })
                 }
+                placeholder="Enter LinkedIn URL"
               />
               <label className="toggle-row">
                 <input
@@ -664,6 +672,7 @@ export default function Trial() {
                     title: e.target.value,
                   })
                 }
+                placeholder="Enter About Section title"
               />
             ) : (
               aboutSection.title
@@ -689,6 +698,7 @@ export default function Trial() {
                       });
                     }}
                   >
+                    <option value="">Select Icons</option>
                     <option value="code">Code</option>
                     <option value="learn">Learn</option>
                     <option value="cog">Cog</option>
@@ -713,6 +723,7 @@ export default function Trial() {
                         cards: updated,
                       });
                     }}
+                    placeholder="Enter Skill"
                   />
 
                   <textarea
@@ -727,6 +738,7 @@ export default function Trial() {
                         cards: updated,
                       });
                     }}
+                    placeholder="Enter Description"
                   />
 
                   <button
@@ -789,6 +801,7 @@ export default function Trial() {
                     title: e.target.value,
                   })
                 }
+                placeholder="Enter Skill Section Title"
               />
             ) : (
               skillsSection.title
@@ -812,6 +825,7 @@ export default function Trial() {
                     leftTitle: e.target.value,
                   })
                 }
+                placeholder="Enter Skills & Technology Title"
               />
             ) : (
               <h3>{skillsSection.leftTitle}</h3>
@@ -834,6 +848,7 @@ export default function Trial() {
                             skills: updated,
                           });
                         }}
+                        placeholder="Enter Skill"
                       />
 
                       <input
@@ -849,6 +864,7 @@ export default function Trial() {
                             skills: updated,
                           });
                         }}
+                        placeholder="Enter Proficiency Value"
                       />
                     </>
                   ) : (
@@ -921,6 +937,7 @@ export default function Trial() {
                     rightTitle: e.target.value,
                   })
                 }
+                placeholder="Enter Technology Title"
               />
             ) : (
               <h3>{skillsSection.rightTitle}</h3>
@@ -941,6 +958,7 @@ export default function Trial() {
                           technologies: updated,
                         });
                       }}
+                      placeholder="Enter Skill"
                     />
                   ) : (
                     tech
@@ -997,6 +1015,7 @@ export default function Trial() {
                   title: e.target.value,
                 })
               }
+              placeholder="Enter Project Section Title"
             />
           ) : (
             projectsSection.title
@@ -1022,6 +1041,7 @@ export default function Trial() {
                         projects: updated,
                       });
                     }}
+                    placeholder="Enter Project Title"
                   />
                 ) : (
                   project.title
@@ -1041,6 +1061,7 @@ export default function Trial() {
                       projects: updated,
                     });
                   }}
+                  placeholder="Enter Project Description"
                 />
               ) : (
                 <p>{project.description}</p>
@@ -1059,6 +1080,7 @@ export default function Trial() {
                       projects: updated,
                     });
                   }}
+                  placeholder="Enter Project Tag"
                 />
               ) : (
                 <span className="project-tag">{project.tag}</span>
@@ -1069,7 +1091,6 @@ export default function Trial() {
                   <>
                     {project.showCode && (
                       <input
-                        placeholder="Code Link"
                         value={project.code}
                         onChange={(e) => {
                           const updated = [...projectsSection.projects];
@@ -1080,6 +1101,7 @@ export default function Trial() {
                             projects: updated,
                           });
                         }}
+                        placeholder="Enter Project URL"
                       />
                     )}
 
@@ -1104,7 +1126,7 @@ export default function Trial() {
 
                     {project.showDemo && (
                       <input
-                        placeholder="Demo Link"
+                        placeholder="Enter Project Demo URL"
                         value={project.demo}
                         onChange={(e) => {
                           const updated = [...projectsSection.projects];
@@ -1214,6 +1236,7 @@ export default function Trial() {
                     githubText: e.target.value,
                   })
                 }
+                placeholder="Enter More Projects title"
               />
 
               <input
@@ -1224,6 +1247,7 @@ export default function Trial() {
                     githubLink: e.target.value,
                   })
                 }
+                placeholder="Enter More Projects URL"
               />
             </>
           ) : (
@@ -1250,6 +1274,7 @@ export default function Trial() {
                   title: e.target.value,
                 })
               }
+              placeholder="Enter Contact Title"
             />
           ) : (
             contactSection.title
@@ -1270,6 +1295,7 @@ export default function Trial() {
                     leftTitle: e.target.value,
                   })
                 }
+                placeholder="Enter Contact Sub Title"
               />
             ) : (
               <h2>{contactSection.leftTitle}</h2>
@@ -1294,6 +1320,7 @@ export default function Trial() {
                         email: e.target.value,
                       })
                     }
+                    placeholder="Enter Contact Email"
                   />
                 ) : (
                   <p>{contactSection.email}</p>
@@ -1320,6 +1347,7 @@ export default function Trial() {
                         phone: e.target.value,
                       })
                     }
+                    placeholder="Enter Contact Number"
                   />
                 ) : (
                   <p>{contactSection.phone}</p>
@@ -1346,6 +1374,7 @@ export default function Trial() {
                         location: e.target.value,
                       })
                     }
+                    placeholder="Enter Contact Address"
                   />
                 ) : (
                   <p>{contactSection.location}</p>
@@ -1366,6 +1395,7 @@ export default function Trial() {
                         opportunityTitle: e.target.value,
                       })
                     }
+                    placeholder="Enter Opportunity Title"
                   />
 
                   <textarea
@@ -1376,6 +1406,7 @@ export default function Trial() {
                         opportunityDescription: e.target.value,
                       })
                     }
+                    placeholder="Enter Opportunity Description"
                   />
                 </>
               ) : (
@@ -1401,6 +1432,7 @@ export default function Trial() {
                     rightTitle: e.target.value,
                   })
                 }
+                placeholder="Enter Send Message Title"
               />
             ) : (
               <h2>{contactSection.rightTitle}</h2>
@@ -1434,6 +1466,7 @@ export default function Trial() {
                       name: e.target.value,
                     })
                   }
+                  placeholder="Enter Name"
                 />
 
                 <textarea
@@ -1444,6 +1477,7 @@ export default function Trial() {
                       description: e.target.value,
                     })
                   }
+                  placeholder="Enter Experience description"
                 />
               </>
             ) : (
@@ -1467,6 +1501,7 @@ export default function Trial() {
                       github: e.target.value,
                     })
                   }
+                  placeholder="Enter GitHub URL"
                 />
 
                 <input
@@ -1478,6 +1513,7 @@ export default function Trial() {
                       linkedin: e.target.value,
                     })
                   }
+                  placeholder="Enter LinkedIn URL"
                 />
 
                 <input
@@ -1489,6 +1525,7 @@ export default function Trial() {
                       email: e.target.value,
                     })
                   }
+                  placeholder="Enter Email"
                 />
                 <label className="toggle-row">
                   <input
@@ -1577,6 +1614,7 @@ export default function Trial() {
                     copyright: e.target.value,
                   })
                 }
+                placeholder="Enter Copyright Title URL"
               />
 
               <input
@@ -1587,6 +1625,7 @@ export default function Trial() {
                     location: e.target.value,
                   })
                 }
+                placeholder="Enter Location"
               />
             </>
           ) : (
