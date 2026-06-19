@@ -13,9 +13,13 @@ body,
   background: black;
   font-family: Arial, sans-serif;
 }
-
+img {
+  max-width: 100%;
+  height: auto;
+}
 body {
   color: white;
+  overflow-x: hidden;
 }
 
 #root {
@@ -1017,4 +1021,233 @@ html {
   margin-top: 5px;
   font-size: 12px;
   padding: 4px 8px;
+}
+/* =========================
+   HEADER
+========================= */
+
+@media (max-width: 768px) {
+  .dashboard.header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .customize-btn {
+    width: 100%;
+  }
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero h2 {
+    font-size: 1.2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .image-circle {
+    width: 250px;
+    height: 250px;
+    margin: auto;
+  }
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+@media (max-width: 768px) {
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card {
+    width: 100%;
+  }
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+@media (max-width: 768px) {
+  .skills-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .skills-left,
+  .skills-right {
+    width: 100%;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    width: 100%;
+  }
+
+  .project-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-outline,
+  .btn-filled {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .contact-left,
+  .contact-right {
+    width: 100%;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+  }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .footer-icons {
+    justify-content: center;
+  }
+}
+
+/* =========================
+   EDIT MODE INPUTS
+========================= */
+
+@media (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    width: 100%;
+  }
+
+  .hero-edit,
+  .footer-edit-links,
+  .logo-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-btn,
+  .delete-btn {
+    width: 100%;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  h2 {
+    font-size: 1.2rem !important;
+  }
+
+  h3 {
+    font-size: 1rem !important;
+  }
+
+  p,
+  span,
+  a,
+  button {
+    font-size: 14px;
+  }
+
+  .section-title,
+  .contact-title,
+  .skills-title {
+    text-align: center;
+  }
+
+  .image-circle {
+    width: 200px;
+    height: 200px;
+  }
 }
