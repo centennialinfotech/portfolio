@@ -105,7 +105,7 @@ export default function Home() {
                     ?.scrollIntoView({ behavior: "smooth" });
                   setMobileMenu(false);
                 }}
-                className="text-left text-white hover:text-blue-400"
+                className="text-2xl font-semibold text-white hover:text-blue-400"
               >
                 Get Started
               </button>
@@ -113,7 +113,7 @@ export default function Home() {
               <a
                 href="#features"
                 onClick={() => setMobileMenu(false)}
-                className="text-white/80 hover:text-white"
+                className="text-2xl font-semibold text-white hover:text-blue-400 transition-colors"
               >
                 Features
               </a>
@@ -121,7 +121,7 @@ export default function Home() {
               <a
                 href="#pricing"
                 onClick={() => setMobileMenu(false)}
-                className="text-white/80 hover:text-white"
+                className="text-2xl font-semibold text-white hover:text-blue-400 transition-colors"
               >
                 Pricing
               </a>
@@ -129,7 +129,7 @@ export default function Home() {
               <a
                 href="#faq"
                 onClick={() => setMobileMenu(false)}
-                className="text-white/80 hover:text-white"
+                className="text-2xl font-semibold text-white hover:text-blue-400 transition-colors"
               >
                 FAQ
               </a>
