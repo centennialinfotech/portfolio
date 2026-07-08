@@ -418,7 +418,7 @@ const HeroSection = () => {
             {menuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
           </button>
         </div>
-        <nav className={`navbar ${menuOpen ? "mobile-open" : ""}`}>
+        <nav className="navbar">
           <a href="#home" onClick={() => setMenuOpen(false)}>
             Home
           </a>
@@ -440,6 +440,28 @@ const HeroSection = () => {
           </a>
         </nav>
       </header>
+
+      {menuOpen && (
+        <div className="mobile-nav-panel">
+          <div className="mobile-nav-links">
+            <a href="#home" onClick={() => setMenuOpen(false)}>
+              Home
+            </a>
+            <a href="#about" onClick={() => setMenuOpen(false)}>
+              About
+            </a>
+            <a href="#skills" onClick={() => setMenuOpen(false)}>
+              Skills
+            </a>
+            <a href="#projects" onClick={() => setMenuOpen(false)}>
+              Projects
+            </a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="hero" id="home">
