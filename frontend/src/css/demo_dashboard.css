@@ -39,7 +39,7 @@ body {
   line-height: 1.4;
 
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
   z-index: 1000;
 }
@@ -50,7 +50,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-   
 }
 .dashboard.header {
   width: 100%;
@@ -58,9 +57,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;  
+  left: 0;
   background: #07122b;
   z-index: 1000;
 }
@@ -73,6 +72,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 .logo-display {
   color: white;
   font-size: 28px;
@@ -84,6 +84,9 @@ body {
 .navbar {
   display: flex;
   gap: 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1001;
 }
 
 .navbar a {
@@ -275,7 +278,7 @@ body {
 .about-card:hover {
   transform: translateY(-10px);
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .icon {
@@ -301,19 +304,19 @@ body {
   font-size: 24px;
   line-height: 1.8;
 }
-  input[type="file"] {
-    font-size: 12px;
-    width: 100%;
-    max-width: 100%;
-  }
+input[type="file"] {
+  font-size: 12px;
+  width: 100%;
+  max-width: 100%;
+}
 
-  input[type="file"]::file-selector-button {
-    font-size: 12px;
-    padding: 6px 10px;
-    margin-right: 8px;
-  }
-  
-  .hero input,
+input[type="file"]::file-selector-button {
+  font-size: 12px;
+  padding: 6px 10px;
+  margin-right: 8px;
+}
+
+.hero input,
 .hero textarea,
 .about-section input,
 .about-section textarea,
@@ -327,7 +330,7 @@ body {
 .contact-section textarea,
 .footer input,
 .footer textarea,
-.footer .footer-bottom input{
+.footer .footer-bottom input {
   width: 100%;
   padding: 12px 14px;
   border: 2px solid #000;
@@ -337,14 +340,14 @@ body {
   outline: none;
   box-sizing: border-box;
 }
-.about-container .icon select{
+.about-container .icon select {
   font-size: 15px;
   border: 1px solid #fff;
   color: #fff;
   margin-bottom: 10px;
   border-radius: 3px;
 }
-.about-container .icon select option{
+.about-container .icon select option {
   font-size: 15px;
   border: 1px solid #fff;
   color: #000;
@@ -353,7 +356,6 @@ body {
 /* Responsive */
 
 @media (max-width: 768px) {
-
   .about-section {
     padding: 60px 20px;
   }
@@ -514,7 +516,6 @@ body {
 /* Responsive */
 
 @media (max-width: 1000px) {
-
   .skills-container {
     flex-direction: column;
   }
@@ -534,7 +535,6 @@ body {
 }
 
 @media (max-width: 600px) {
-
   .skills-section {
     padding: 60px 20px;
   }
@@ -677,10 +677,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
-
- 
-
   .customize-btn {
     margin-left: 0;
     padding: 8px 12px;
@@ -692,6 +688,11 @@ body {
     font-size: 13px;
   }
 
+  .dashboard.header {
+    flex-wrap: wrap;
+    padding: 20px 20px;
+  }
+
   .mobile-menu-btn {
     display: flex;
     align-items: center;
@@ -699,30 +700,46 @@ body {
   }
 
   .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
+    display: none;
+  }
 
+  .mobile-nav-panel {
+    display: block;
     width: 100%;
     background: #07122b;
-
-    display: none;
-    flex-direction: column;
-    padding: 20px;
-    gap: 18px;
+    padding: 6px 0 0;
+    position: sticky;
+    top: 56px;
+    z-index: 999;
   }
 
-  .navbar.mobile-open {
+  .mobile-nav-links {
     display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 4px;
+    justify-content: space-between;
+    padding: 0 2px;
+    overflow-x: auto;
   }
 
-  .mobile-user-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+  .mobile-nav-links a {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    padding: 8px 4px;
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    transition: 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .mobile-nav-links a:hover {
+    background: rgba(34, 211, 238, 0.18);
+    color: #22d3ee;
   }
   .section-title {
     font-size: 38px;
@@ -731,7 +748,7 @@ body {
   .projects-section {
     padding: 40px 20px;
   }
- .hero-buttons {
+  .hero-buttons {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -741,7 +758,6 @@ body {
   .social-icons {
     justify-content: center;
   }
-
 }
 .social-icons {
   display: flex;
@@ -920,12 +936,7 @@ body {
   }
 }
 .footer {
-  background: linear-gradient(
-    90deg,
-    #020d2d 0%,
-    #03103a 50%,
-    #020a26 100%
-  );
+  background: linear-gradient(90deg, #020d2d 0%, #03103a 50%, #020a26 100%);
   padding: 90px 80px 50px;
   color: white;
   font-family: Arial, sans-serif;
@@ -1065,7 +1076,7 @@ html {
 }
 
 .edit-btn {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
   cursor: pointer;
@@ -1076,7 +1087,7 @@ html {
 }
 
 .edit-btn:hover {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .customize-btn {
@@ -1094,7 +1105,6 @@ html {
   width: 100%;
   margin-top: 10px;
   padding: 10px;
- 
 }
 
 .about-card textarea {
@@ -1130,8 +1140,6 @@ html {
   flex-direction: column;
   gap: 14px;
 }
-
-
 
 .hero-edit textarea {
   min-height: 100px;
@@ -1191,7 +1199,6 @@ html {
 ========================= */
 
 @media (max-width: 1024px) {
-
   .dashboard.header {
     padding: 20px 30px;
   }
@@ -1228,9 +1235,7 @@ html {
 ========================= */
 
 @media (max-width: 768px) {
-
-
-.dashboard.header {
+  .dashboard.header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1269,12 +1274,10 @@ html {
   .customize-btn,
   .premium-btn {
     padding: 6px;
-  min-width: 36px;
-  height: 36px;
-  font-size: 0;
+    min-width: 36px;
+    height: 36px;
+    font-size: 0;
   }
-
- 
 
   .mobile-menu-btn {
     display: flex;
@@ -1283,7 +1286,7 @@ html {
   }
 
   .navbar {
-   position: fixed;
+    position: fixed;
 
     top: 60px; /* adjust to your header height */
     left: 0;
@@ -1312,8 +1315,8 @@ html {
 
   .navbar.mobile-open {
     display: flex;
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
   }
 
   .navbar a,
@@ -1354,8 +1357,6 @@ html {
   .hero-left p {
     font-size: 16px;
   }
-
- 
 
   .image-circle {
     width: 240px;
@@ -1424,7 +1425,7 @@ html {
   .project-buttons {
     flex-direction: column;
   }
-   .info-card {
+  .info-card {
     flex-direction: column;
     text-align: center;
   }
@@ -1462,8 +1463,7 @@ html {
     font-size: 9px;
     overflow: hidden;
     background: #fff;
-        color: #000;
-    
+    color: #000;
   }
 
   .logo-edit input[type="file"]::file-selector-button {
@@ -1477,55 +1477,54 @@ html {
   }
   /* MOBILE INPUT FIX */
 
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
+    input,
+    textarea,
+    select {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
 
-  input,
-  textarea,
-  select {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
+    .title-input {
+      width: 100%;
+      max-width: 100%;
+      font-size: 18px;
+    }
 
-  .title-input {
-    width: 100%;
-    max-width: 100%;
-    font-size: 18px;
-  }
+    .hero-edit input,
+    .hero-edit textarea,
+    .logo-edit input,
+    .about-card input,
+    .about-card textarea,
+    .skill-info input,
+    .project-card input,
+    .project-card textarea,
+    .contact-left input,
+    .contact-right input,
+    .footer-edit-links input,
+    .footer-bottom input {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
 
-  .hero-edit input,
-  .hero-edit textarea,
-  .logo-edit input,
-  .about-card input,
-  .about-card textarea,
-  .skill-info input,
-  .project-card input,
-  .project-card textarea,
-  .contact-left input,
-  .contact-right input,
-  .footer-edit-links input,
-  .footer-bottom input {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
+    .logo-edit {
+      width: 100%;
+      overflow: hidden;
+    }
 
-  .logo-edit {
-    width: 100%;
-    overflow: hidden;
+    .project-card,
+    .about-card,
+    .contact-right,
+    .opportunity-card,
+    .tech-card {
+      overflow: hidden;
+    }
   }
-
-  .project-card,
-  .about-card,
-  .contact-right,
-  .opportunity-card,
-  .tech-card {
-    overflow: hidden;
-  }
-}
 }
 
 /* =========================
@@ -1533,7 +1532,6 @@ html {
 ========================= */
 
 @media (max-width: 480px) {
-
   .hero-left h1 {
     font-size: 32px;
   }
