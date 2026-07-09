@@ -419,23 +419,59 @@ const HeroSection = () => {
           </button>
         </div>
         <nav className="navbar">
-          <a href="#home" onClick={() => setMenuOpen(false)}>
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .getElementById("home")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Home
           </a>
-
-          <a href="#about" onClick={() => setMenuOpen(false)}>
+          <a
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .getElementById("about")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             About
           </a>
-
-          <a href="#skills" onClick={() => setMenuOpen(false)}>
+          <a
+            href="#skills"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .getElementById("skills")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Skills
           </a>
-
-          <a href="#projects" onClick={() => setMenuOpen(false)}>
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .getElementById("projects")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Projects
           </a>
-
-          <a href="#contact" onClick={() => setMenuOpen(false)}>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Contact
           </a>
         </nav>
@@ -444,19 +480,59 @@ const HeroSection = () => {
       {menuOpen && (
         <div className="mobile-nav-panel">
           <div className="mobile-nav-links">
-            <a href="#home" onClick={() => setMenuOpen(false)}>
+            <a
+              href="#home"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("home")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Home
             </a>
-            <a href="#about" onClick={() => setMenuOpen(false)}>
+            <a
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("about")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               About
             </a>
-            <a href="#skills" onClick={() => setMenuOpen(false)}>
+            <a
+              href="#skills"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("skills")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Skills
             </a>
-            <a href="#projects" onClick={() => setMenuOpen(false)}>
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Projects
             </a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Contact
             </a>
           </div>
