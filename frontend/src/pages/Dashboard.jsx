@@ -379,10 +379,7 @@ const HeroSection = () => {
                   })
                 }
               />
-
               <input type="file" accept="image/*" onChange={handleLogoUpload} />
-
-              {/* ✅ REMOVE BUTTON */}
               {headerSection.logoImage && (
                 <button className="remove-btn" onClick={removeLogo}>
                   Remove Logo
@@ -403,141 +400,31 @@ const HeroSection = () => {
             </div>
           )}
         </div>
+
+        <nav className={`navbar ${menuOpen ? "mobile-open" : ""}`}>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
         <div className="header-actions">
           <button
             className="customize-btn"
             onClick={() => setEditMode(!editMode)}
           >
-            ⚙️
+            {editMode ? "💾 Save" : "⚙️"}
           </button>
-
+          <button className="premium-btn">Premium</button>
           <button
             className="mobile-menu-btn"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {menuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
+            {menuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
           </button>
         </div>
-        <nav className="navbar">
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("home")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Home
-          </a>
-          <a
-            href="#about"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("about")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            About
-          </a>
-          <a
-            href="#skills"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("skills")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Skills
-          </a>
-          <a
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Projects
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Contact
-          </a>
-        </nav>
       </header>
-
-      {menuOpen && (
-        <div className="mobile-nav-panel">
-          <div className="mobile-nav-links">
-            <a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById("home")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              Home
-            </a>
-            <a
-              href="#about"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById("about")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              About
-            </a>
-            <a
-              href="#skills"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById("skills")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              Skills
-            </a>
-            <a
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById("projects")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              Projects
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              Contact
-            </a>
-          </div>
-        </div>
-      )}
 
       {/* Hero Section */}
       <section className="hero" id="home">
