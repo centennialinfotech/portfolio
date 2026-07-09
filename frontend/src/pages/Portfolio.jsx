@@ -388,21 +388,11 @@ export default function Trial() {
       {mobileMenu && (
         <div className="mobile-nav-panel">
           <div className="mobile-nav-links">
-            <a href="#home" onClick={() => setMobileMenu(false)}>
-              Home
-            </a>
-            <a href="#about" onClick={() => setMobileMenu(false)}>
-              About
-            </a>
-            <a href="#skills" onClick={() => setMobileMenu(false)}>
-              Skills
-            </a>
-            <a href="#projects" onClick={() => setMobileMenu(false)}>
-              Projects
-            </a>
-            <a href="#contact" onClick={() => setMobileMenu(false)}>
-              Contact
-            </a>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
           </div>
         </div>
       )}
