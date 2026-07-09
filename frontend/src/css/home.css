@@ -345,3 +345,20 @@ button {
   padding-top: 96px !important;
 }
 
+/* Make Go Premium button same height as hamburger on all mobile */
+@media (max-width: 480px) {
+  .go-premium-btn {
+    height: 36px !important;
+    padding: 0 10px !important;
+    font-size: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 8px !important;
+  }
+
+  .hamburger-btn svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
