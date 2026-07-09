@@ -8,13 +8,20 @@ import { HiMenu, HiX } from "react-icons/hi";
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Check URL for menu parameter
+  const [menuOpen, setMenuOpen] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("menu") === "open";
+  });
+
   const [isPremium, setIsPremium] = useState(false);
   const [loading, setLoading] = useState(true);
   const hidePremiumButton =
     location.pathname.startsWith("/pricing") ||
     location.pathname.startsWith("/checkout") ||
     location.pathname.startsWith("/plan/basic");
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
@@ -40,6 +47,29 @@ export default function Navbar() {
     return () => unsubscribe();
   }, []);
 
+  // Update menu state when URL changes
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setMenuOpen(params.get("menu") === "open");
+  }, [location.search]);
+
+  const toggleMenu = () => {
+    const newState = !menuOpen;
+    const params = new URLSearchParams(window.location.search);
+    if (newState) {
+      params.set("menu", "open");
+    } else {
+      params.delete("menu");
+    }
+    navigate(`${location.pathname}?${params.toString()}`, { replace: true });
+  };
+
+  const handleNav = (path) => {
+    // Add menu=open to the URL when navigating
+    const separator = path.includes("?") ? "&" : "?";
+    window.location.href = `${path}${separator}menu=open`;
+  };
+
   return (
     <>
       <nav className="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-28 py-6 border-b border-white/10 bg-black">
@@ -60,7 +90,7 @@ export default function Navbar() {
           </button>
         )}
 
-        <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="lg:hidden" onClick={toggleMenu}>
           {menuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
         </button>
 
@@ -118,15 +148,45 @@ export default function Navbar() {
       </nav>
 
       {menuOpen && (
-        <div className="lg:hidden flex flex-col gap-4 px-6 py-6 border-b border-white/10 bg-black">
-          <button onClick={() => navigate("/")}>Home</button>
-          <button onClick={() => navigate("/login?type=demo")}>Try Demo</button>
-          <button onClick={() => navigate("/login?type=register")}>
-            Use Trial
-          </button>
-          <button onClick={() => navigate("/features")}>Feature</button>
-          <button onClick={() => navigate("/faq")}>FAQ</button>
-          <button onClick={() => navigate("/support")}>Support</button>
+        <div className="lg:hidden bg-black/95 backdrop-blur-xl border-b border-white/10">
+          <div className="flex flex-row flex-nowrap items-center justify-between gap-1 px-2 py-2 w-full">
+            <a
+              href="/?menu=open"
+              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            >
+              Home
+            </a>
+            <a
+              href="/login?type=demo&menu=open"
+              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            >
+              Demo
+            </a>
+            <a
+              href="/login?type=register&menu=open"
+              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            >
+              Trial
+            </a>
+            <a
+              href="/features?menu=open"
+              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            >
+              Features
+            </a>
+            <a
+              href="/faq?menu=open"
+              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            >
+              FAQ
+            </a>
+            <a
+              href="/support?menu=open"
+              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            >
+              Support
+            </a>
+          </div>
         </div>
       )}
     </>
