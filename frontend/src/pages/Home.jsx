@@ -253,7 +253,7 @@ export default function Home() {
 
         {/* Mobile Menu - Sticky below navbar */}
         {mobileMenu && (
-          <div className="mobile-menu-panel sm:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
+          <div className="md:hidden bg-black/95 backdrop-blur-xl -mt-1 border-0">
             <div className="flex flex-row flex-wrap items-stretch p-0 gap-0">
               <button
                 onClick={() => {
