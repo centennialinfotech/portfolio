@@ -396,7 +396,7 @@ export default function PublicPortfolio() {
       </section>
       <section className="skills-section" id="skills">
         <div className="skills-title">
-          <h2>skillsSection.technologies.title</h2>
+          <h2>{skillsSection.title} </h2>
 
           <div className="skills-line"></div>
         </div>
