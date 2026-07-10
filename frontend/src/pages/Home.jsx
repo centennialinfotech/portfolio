@@ -233,14 +233,12 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-3 nav-right">
-            {!loading && !isPremium && (
-              <button
-                onClick={() => navigate("/pricing")}
-                className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
-              >
-                Go Premium
-              </button>
-            )}
+            <button
+              onClick={() => navigate("/pricing")}
+              className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
+            >
+              Go Premium
+            </button>
 
             <button
               className="block sm:hidden hamburger-btn"
@@ -260,7 +258,6 @@ export default function Home() {
                   document
                     .getElementById("hero")
                     ?.scrollIntoView({ behavior: "smooth" });
-              
                 }}
                 className="flex-1 min-w-[70px] text-center text-sm text-white hover:text-blue-400 px-2 py-3 rounded-lg hover:bg-white/10"
               >
@@ -269,7 +266,6 @@ export default function Home() {
 
               <a
                 href="#features"
-              
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 Features
@@ -277,7 +273,6 @@ export default function Home() {
 
               <a
                 href="#pricing"
-              
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 Pricing
@@ -285,7 +280,6 @@ export default function Home() {
 
               <a
                 href="#faq"
-            
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 FAQ
