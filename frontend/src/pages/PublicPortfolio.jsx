@@ -375,7 +375,7 @@ export default function PublicPortfolio() {
       </section>
       <section className="about-section" id="about">
         <div className="section-title">
-          <h2>{aboutSection.title}</h2>
+          <h2> {aboutSection.title} </h2>
           <div className="underline"></div>
         </div>
 
