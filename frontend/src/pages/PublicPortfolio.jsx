@@ -448,14 +448,14 @@ export default function PublicPortfolio() {
         </div>
       </section>
       <section className="projects-section" id="projects">
-        <h1 className="section-title">projectsSection.title</h1>
+        <h1 className="section-title">{projectsSection.title}</h1>
 
         <div className="projects-grid">
           {projectsSection.projects.map((project, index) => (
             <div className="project-card" key={project.id}>
               <h2>
                 <FaRocket className="rocket-icon" />
-                project.title
+                {project.title}
               </h2>
 
               <p>{project.description}</p>
