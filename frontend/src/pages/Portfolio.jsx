@@ -239,7 +239,6 @@ export default function Trial() {
           if (data.skillsSection) setSkillsSection(data.skillsSection);
           if (data.projectsSection) setProjectsSection(data.projectsSection);
           if (data.contactSection) setContactSection(data.contactSection);
-          console.log(data.projectsSection);
 
           if (data.footerSection) {
             // ✅ FIX: Ensure booleans are preserved
@@ -369,8 +368,11 @@ export default function Trial() {
           </button>
 
           {!isPremium && (
-            <button className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl">
-              Go Premium
+            <button
+              onClick={() => navigate("/pricing")}
+              className="premium-btn"
+            >
+              Premium
             </button>
           )}
 

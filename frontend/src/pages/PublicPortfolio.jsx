@@ -498,7 +498,7 @@ export default function PublicPortfolio() {
         </div>
       </section>
       <section className="contact-section" id="contact">
-        <h1 className="contact-title">contactSection.title</h1>
+        <h1 className="contact-title">{contactSection.title}</h1>
 
         <div className="contact-container">
           {/* LEFT */}
