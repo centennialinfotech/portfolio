@@ -26,17 +26,28 @@ const PublicPortfolio = lazy(() => import("./pages/PublicPortfolio"));
 function App() {
   const host = window.location.hostname;
 
-  // Development
   const isLocalhost = host === "localhost" || host === "127.0.0.1";
 
-  // Production
-  const isMainDomain =
-    host === "centennialinfotech.com" || host === "www.centennialinfotech.com";
+  const reservedSubdomains = [
+    "www",
+    "portfolio",
+    "admin",
+    "api",
+    "mail",
+    "support",
+    "login",
+    "dashboard",
+  ];
 
-  const subdomain =
-    !isLocalhost && !isMainDomain && host.endsWith(".centennialinfotech.com")
-      ? host.split(".")[0]
-      : null;
+  let subdomain = null;
+
+  if (!isLocalhost && host.endsWith(".centennialinfotech.com")) {
+    const firstPart = host.split(".")[0];
+
+    if (!reservedSubdomains.includes(firstPart)) {
+      subdomain = firstPart;
+    }
+  }
   if (subdomain) {
     return (
       <Suspense fallback={<div>Loading...</div>}>
