@@ -369,17 +369,10 @@ export default function Trial() {
 
           {!isPremium && (
             <button
-<<<<<<< HEAD
               className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
               onClick={() => navigate("/pricing")}
             >
               Go Premium
-=======
-              onClick={() => navigate("/pricing")}
-              className="premium-btn"
-            >
-              Premium
->>>>>>> d61e709f09567eda3637da7cd521188e0fae8735
             </button>
           )}
 
