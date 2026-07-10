@@ -37,113 +37,6 @@ export default function PublicPortfolio() {
   const [editMode, setEditMode] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    const getUserBySubdomain = async () => {
-      try {
-        const host = window.location.hostname;
-        const subdomain = host.split(".")[0].toLowerCase();
-
-        console.log("Host:", host);
-        console.log("Searching:", subdomain);
-
-        const q = query(
-          collection(db, "users"),
-          where("subdomain", "==", subdomain),
-        );
-
-        const snapshot = await getDocs(q);
-
-        if (snapshot.empty) {
-          setError("No user found for this subdomain.");
-          setLoading(false);
-          return;
-        }
-
-        const userDoc = snapshot.docs[0];
-        const uid = userDoc.id;
-
-        console.log("User UID:", uid);
-
-        console.log("Loading portfolio for uid:", uid);
-
-        const portfolioRef = doc(db, "trialData", uid);
-
-        console.log("Document Path:", portfolioRef.path);
-
-        const portfolioSnap = await getDoc(portfolioRef);
-
-        console.log("Exists:", portfolioSnap.exists());
-
-        if (!portfolioSnap.exists()) {
-          setError("Portfolio not found.");
-          setLoading(false);
-          return;
-        }
-
-        const data = portfolioSnap.data();
-
-        console.log("Portfolio:", data);
-
-        if (data.headerSection) setHeaderSection(data.headerSection);
-
-        if (data.heroSection) {
-          setHeroSection({
-            ...data.heroSection,
-            showGithub: data.heroSection.showGithub ?? true,
-            showLinkedin: data.heroSection.showLinkedin ?? true,
-          });
-        }
-
-        if (data.aboutSection) setAboutSection(data.aboutSection);
-        if (data.skillsSection) setSkillsSection(data.skillsSection);
-        if (data.projectsSection) setProjectsSection(data.projectsSection);
-        if (data.contactSection) setContactSection(data.contactSection);
-
-        if (data.footerSection) {
-          setFooterSection({
-            ...data.footerSection,
-            showGithub: data.footerSection.showGithub ?? true,
-            showLinkedin: data.footerSection.showLinkedin ?? true,
-            showEmail: data.footerSection.showEmail ?? true,
-          });
-        }
-
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-
-    getUserBySubdomain();
-  }, []);
-
-  if (loading) {
-    return (
-      <div style={{ padding: 40 }}>
-        <h2>Loading...</h2>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div style={{ padding: 40 }}>
-        <h2>{error}</h2>
-      </div>
-    );
-  }
-
-  const iconMap = {
-    code: <FaCode />,
-    learn: <FaGraduationCap />,
-    cog: <FaCog />,
-    hobby: <FaPaintBrush />,
-  };
-  const getIcon = (key) => iconMap[key] || <FaCode />;
-
   const [headerSection, setHeaderSection] = useState({
     logo: "Portfolio",
     logoImage: "",
@@ -261,6 +154,112 @@ export default function PublicPortfolio() {
     copyright: "© 2026 Ashwani kumar chauhan. All rights reserved.",
     location: "Lucknow, Uttar Pradesh, India",
   });
+
+  useEffect(() => {
+    const getUserBySubdomain = async () => {
+      try {
+        const host = window.location.hostname;
+        const subdomain = host.split(".")[0].toLowerCase();
+
+        console.log("Host:", host);
+        console.log("Searching:", subdomain);
+
+        const q = query(
+          collection(db, "users"),
+          where("subdomain", "==", subdomain),
+        );
+
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+          setError("No user found for this subdomain.");
+          setLoading(false);
+          return;
+        }
+
+        const userDoc = snapshot.docs[0];
+        const uid = userDoc.id;
+
+        console.log("User UID:", uid);
+
+        console.log("Loading portfolio for uid:", uid);
+
+        const portfolioRef = doc(db, "trialData", uid);
+
+        console.log("Document Path:", portfolioRef.path);
+
+        const portfolioSnap = await getDoc(portfolioRef);
+
+        console.log("Exists:", portfolioSnap.exists());
+
+        if (!portfolioSnap.exists()) {
+          setError("Portfolio not found.");
+          setLoading(false);
+          return;
+        }
+
+        const data = portfolioSnap.data();
+
+        console.log("Portfolio:", data);
+
+        if (data.headerSection) setHeaderSection(data.headerSection);
+
+        if (data.heroSection) {
+          setHeroSection({
+            ...data.heroSection,
+            showGithub: data.heroSection.showGithub ?? true,
+            showLinkedin: data.heroSection.showLinkedin ?? true,
+          });
+        }
+
+        if (data.aboutSection) setAboutSection(data.aboutSection);
+        if (data.skillsSection) setSkillsSection(data.skillsSection);
+        if (data.projectsSection) setProjectsSection(data.projectsSection);
+        if (data.contactSection) setContactSection(data.contactSection);
+
+        if (data.footerSection) {
+          setFooterSection({
+            ...data.footerSection,
+            showGithub: data.footerSection.showGithub ?? true,
+            showLinkedin: data.footerSection.showLinkedin ?? true,
+            showEmail: data.footerSection.showEmail ?? true,
+          });
+        }
+
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    getUserBySubdomain();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ padding: 40 }}>
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div style={{ padding: 40 }}>
+        <h2>{error}</h2>
+      </div>
+    );
+  }
+
+  const iconMap = {
+    code: <FaCode />,
+    learn: <FaGraduationCap />,
+    cog: <FaCog />,
+    hobby: <FaPaintBrush />,
+  };
+  const getIcon = (key) => iconMap[key] || <FaCode />;
 
   return (
     <>
