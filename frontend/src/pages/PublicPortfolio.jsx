@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../css/portfolio.css";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -29,7 +29,6 @@ export default function PublicPortfolio() {
   const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   useEffect(() => {
     const getUserBySubdomain = async () => {
