@@ -75,17 +75,15 @@ export default function PublicPortfolio() {
 
         console.log("Exists:", portfolioSnap.exists());
 
-        if (portfolioSnap.exists()) {
-          console.log(portfolioSnap.data());
-        }
-
-        const portfolioSnap = await getDoc(doc(db, "trialData", uid));
-
         if (!portfolioSnap.exists()) {
           setError("Portfolio not found.");
           setLoading(false);
           return;
         }
+
+        const data = portfolioSnap.data();
+
+        console.log("Portfolio:", data);
 
         const data = portfolioSnap.data();
 
