@@ -108,17 +108,21 @@ body {
 }
 
 .premium-btn {
-  padding: 10px 16px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 10px;
-  background: #22d3ee;
-  color: #07122b;
-  font-weight: 700;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
 }
 
-.mobile-nav-panel {
-  display: none;
+.premium-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
 }
 
 .mobile-user-info {
