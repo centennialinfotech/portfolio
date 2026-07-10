@@ -216,6 +216,7 @@ export default function PublicPortfolio() {
         if (data.skillsSection) setSkillsSection(data.skillsSection);
         if (data.projectsSection) setProjectsSection(data.projectsSection);
         if (data.contactSection) setContactSection(data.contactSection);
+        console.log(data.skillsSection);
 
         if (data.footerSection) {
           setFooterSection({
