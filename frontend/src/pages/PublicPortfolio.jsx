@@ -35,10 +35,10 @@ export default function PublicPortfolio() {
       try {
         // Get subdomain from URL
         const host = window.location.hostname;
-        const subdomain = host.split(".")[0];
+        const subdomain = host.split(".")[0].toLowerCase();
 
         console.log("Host:", host);
-        console.log("Subdomain:", subdomain);
+        console.log("Searching for:", subdomain);
 
         // Search user by subdomain
         const q = query(
