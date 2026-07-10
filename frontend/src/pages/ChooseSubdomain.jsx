@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 import "../css/choose-subdomain.css";
+import { defaultPortfolio } from "../data/defaultPortfolio";
 
 export default function ChooseSubdomain() {
   const [subdomain, setSubdomain] = useState("");
@@ -186,6 +187,11 @@ export default function ChooseSubdomain() {
       console.log("Subdomain reserved successfully.");
 
       setMessage("✅ Subdomain reserved successfully!");
+      const portfolioRef = doc(db, "trialData", auth.currentUser.uid);
+      const portfolioSnap = await getDoc(portfolioRef);
+      if (!portfolioSnap.exists()) {
+        await setDoc(portfolioRef, defaultPortfolio);
+      }
 
       // Redirect to portfolio
       navigate("/portfolio");
