@@ -230,6 +230,9 @@ export default function Home() {
               Pricing
             </a>
 
+            <a href="#faq" className="hover:text-white transition-colors">
+              FAQ
+            </a>
             {auth.currentUser && (
               <a
                 href="/retrieve-domain"
@@ -238,10 +241,6 @@ export default function Home() {
                 My Domains
               </a>
             )}
-
-            <a href="#faq" className="hover:text-white transition-colors">
-              FAQ
-            </a>
           </div>
 
           <div className="flex items-center gap-3 nav-right">
