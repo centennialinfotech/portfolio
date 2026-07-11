@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../css/retrievedomain.css";
-const BASE_DOMAIN = "portfolio.com"; // Change to your domain
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../services/firebase";
+const BASE_DOMAIN = "centennialinfotech.com"; // Change to your domain
 export default function RetrieveDomain() {
   const [email, setEmail] = useState("");
   const [domains, setDomains] = useState([]);
@@ -15,30 +17,45 @@ export default function RetrieveDomain() {
     setDomains([]);
 
     try {
-      const response = await fetch("/api/domains/retrieve", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
+      const usersRef = collection(db, "users");
+
+      const q = query(
+        usersRef,
+        where("email", "==", email.trim().toLowerCase()),
+      );
+
+      const snapshot = await getDocs(q);
+
+      if (snapshot.empty) {
+        setMessage("❌ No account found with this email.");
+        return;
+      }
+
+      const foundDomains = [];
+
+      snapshot.forEach((doc) => {
+        const user = doc.data();
+
+        if (user.subdomain) {
+          foundDomains.push({
+            id: doc.id,
+            subdomain: user.subdomain,
+          });
+        }
       });
 
-      const data = await response.json();
-
-      if (data.success) {
-        setDomains(data.domains);
-
-        if (data.domains.length === 0) {
-          setMessage("No domains found.");
-        }
+      if (foundDomains.length === 0) {
+        setMessage("❌ No subdomain registered for this account.");
       } else {
-        setMessage(data.message || "Unable to retrieve domains.");
+        setDomains(foundDomains);
+        setMessage("✅ Domain found.");
       }
-    } catch (error) {
-      setMessage("Something went wrong.");
+    } catch (err) {
+      console.error(err);
+      setMessage("❌ " + err.message);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -89,11 +106,11 @@ export default function RetrieveDomain() {
             {domains.map((domain) => (
               <div className="domain-card" key={domain.id}>
                 <div className="domain-name">
-                  https://{domain.subdomain}.{BASE_DOMAIN}
+                  http://{domain.subdomain}.{BASE_DOMAIN}
                 </div>
 
                 <a
-                  href={`https://${domain.subdomain}.${BASE_DOMAIN}`}
+                  href={`http://${domain.subdomain}.${BASE_DOMAIN}`}
                   className="primary-btn"
                   target="_blank"
                   rel="noopener noreferrer"
