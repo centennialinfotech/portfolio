@@ -7,6 +7,7 @@ import { defaultPortfolio } from "../data/defaultPortfolio";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function ChooseSubdomain() {
+  console.log("ChooseSubdomain rendered");
   const [subdomain, setSubdomain] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [checking, setChecking] = useState(false);
@@ -16,21 +17,13 @@ export default function ChooseSubdomain() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("useEffect fired");
+
     const check = async () => {
+      console.log("check() started");
+
       const user = auth.currentUser;
-
       console.log("USER:", user);
-
-      if (!user) return;
-
-      const ref = doc(db, "users", user.uid);
-      const snap = await getDoc(ref);
-
-      console.log("EXISTS:", snap.exists());
-
-      if (snap.exists()) {
-        console.log("DATA:", snap.data());
-      }
     };
 
     check();
