@@ -161,23 +161,8 @@ export default function Login() {
 
       console.log("USER:", user);
 
-      await setDoc(
-        doc(db, "users", user.uid),
-        {
-          uid: user.uid,
-          name: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-
-          provider: "google",
-
-          plan: "trial",
-          createdAt: Date.now(),
-          trialEndsAt: Date.now() + 3 * 24 * 60 * 60 * 1000,
-        },
-        { merge: true },
-      );
-      console.log("WRITE SUCCESS");
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
     } catch (error) {
       console.error(error);
       setErrorMsg(getFirebaseError(error));
