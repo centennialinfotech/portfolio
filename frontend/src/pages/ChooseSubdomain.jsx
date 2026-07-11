@@ -32,13 +32,22 @@ export default function ChooseSubdomain() {
       console.log("Document exists:", snap.exists());
 
       if (snap.exists()) {
-        console.log("User document:", snap.data());
-        console.log("Subdomain =", data.subdomain);
-        console.log("Skipped =", data.skippedSubdomain);
+        const data = snap.data();
 
-        if (snap.data().subdomain) {
-          console.log("Redirecting to portfolio...");
+        console.log("User document:", data);
+        console.log("Subdomain:", data.subdomain);
+        console.log("Skipped:", data.skippedSubdomain);
+
+        if (data.subdomain) {
+          console.log("Redirecting...");
           navigate("/portfolio", { replace: true });
+          return;
+        }
+
+        if (data.skippedSubdomain) {
+          console.log("Skipped previously...");
+          navigate("/portfolio", { replace: true });
+          return;
         }
       } else {
         console.log("No user document found");
