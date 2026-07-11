@@ -15,67 +15,6 @@ export default function ChooseSubdomain() {
 
   const navigate = useNavigate();
 
-  /*
-  useEffect(() => {
-    const checkUserStatus = async () => {
-      if (!auth.currentUser) return;
-
-      try {
-        const userRef = doc(db, "users", auth.currentUser.uid);
-        const userSnap = await getDoc(userRef);
-
-        if (!userSnap.exists()) return;
-
-        const userData = userSnap.data();
-
-        if (userData.subdomain) {
-          navigate("/portfolio");
-          return;
-        }
-
-        if (userData.skippedSubdomain) {
-          navigate("/portfolio");
-          return;
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    checkUserStatus();
-  }, [navigate]);
-  */
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log("Auth user:", user);
-
-      if (!user) {
-        console.log("No logged in user");
-        return;
-      }
-
-      try {
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
-
-        console.log("Document exists:", userSnap.exists());
-
-        if (!userSnap.exists()) return;
-
-        const userData = userSnap.data();
-        console.log("User data:", userData);
-
-        if (userData.subdomain) {
-          console.log("Redirecting to portfolio...");
-          navigate("/portfolio", { replace: true });
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [navigate]);
   useEffect(() => {
     const check = async () => {
       const user = auth.currentUser;
