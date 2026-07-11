@@ -1,4 +1,5 @@
 
+@import "tailwindcss";
 
 * {
   box-sizing: border-box;
@@ -1010,161 +1011,240 @@ html {
   font-size: 12px;
   padding: 4px 8px;
 }
-------------
-.retrieve-page {
-    min-height: calc(100vh - 80px); /* adjust if you have a header */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 60px 20px;
-    background: #f8fafc;
-    box-sizing: border-box;
-}
-.retrieve-container {
-   width: 100%;
-    max-width: 550px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 32px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+/* body{
+    background:#0f0f10;
+    color:#fff;
+    font-family:Inter,sans-serif;
+} */
+
+.subdomain-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px;
+    background:radial-gradient(circle at top,#1b1b1f,#0a0a0b);
 }
 
-.retrieve-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: #222;
+.subdomain-card{
+    width:100%;
+    max-width:850px;
+    background:#151518;
+    border:1px solid #2a2a2f;
+    border-radius:20px;
+    padding:45px;
+    box-shadow:0 0 60px rgba(0,0,0,.4);
 }
 
-.retrieve-description {
-  color: #666;
-  margin-bottom: 24px;
-  line-height: 1.5;
-}
-
-.retrieve-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#1d4ed8;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:20px;
 }
 
 .retrieve-input {
   width: 100%;
-  padding: 14px 16px;
-  font-size: 16px;
-  border: 1px solid #dcdcdc;
-  border-radius: 8px;
-  transition: 0.3s;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.retrieve-input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-.retrieve-button {
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  padding: 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.retrieve-button:hover {
-  background: #1d4ed8;
-}
-
-.retrieve-button:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-}
-
-.message {
-  margin-top: 20px;
-  text-align: center;
-  color: #555;
-}
-
-.domain-list {
-  margin-top: 30px;
-}
-
-.domain-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  border: 1px solid #e5e7eb;
+  padding: 14px 18px;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
-  margin-bottom: 12px;
-  transition: 0.3s;
-}
-
-.domain-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,.08);
-}
-
-.domain-name {
-  font-weight: 600;
   font-size: 16px;
-  color: #111827;
+  margin: 20px 0;
 }
 
-.open-button {
-  background: #16a34a;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: .3s;
+.subdomain-card h1{
+    font-size:42px;
+    margin-bottom:12px;
 }
 
-.open-button:hover {
-  background: #15803d;
+.subtitle{
+    color:#9ca3af;
+    line-height:1.8;
+    margin-bottom:35px;
 }
 
-.no-domain {
-  margin-top: 25px;
-  padding: 16px;
-  background: #f8fafc;
-  border-radius: 8px;
-  text-align: center;
-  color: #666;
+.url-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#0f0f10;
+    border:1px solid #333;
+    border-radius:14px;
+    padding:16px;
 }
 
-.register-link {
-  display: inline-block;
-  margin-top: 12px;
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 600;
+.url-box span{
+    color:#9ca3af;
 }
 
-.register-link:hover {
-  text-decoration: underline;
+.url-box input{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:#fff;
+    font-size:20px;
+    font-weight:600;
 }
 
-@media (max-width: 600px) {
-  .retrieve-container {
-    margin: 20px;
-    padding: 24px;
-  }
+.url-box:focus-within{
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+}
 
-  .domain-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
+.preview{
+    margin-top:25px;
+    padding:20px;
+    background:#101114;
+    border:1px solid #2a2a2f;
+    border-radius:14px;
+}
 
-  .open-button {
-    width: 100%;
-    text-align: center;
-  }
+.preview small{
+    color:#9ca3af;
+}
+
+.preview strong{
+    display:block;
+    margin-top:10px;
+    color:#60a5fa;
+    font-size:18px;
+}
+
+.status{
+    margin-top:20px;
+    padding:14px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+.status.success{
+    background:rgba(34,197,94,.15);
+    color:#4ade80;
+    border:1px solid rgba(34,197,94,.25);
+}
+
+.status.error{
+    background:rgba(239,68,68,.15);
+    color:#f87171;
+    border:1px solid rgba(239,68,68,.25);
+}
+
+.btn-group{
+    display:flex;
+    gap:15px;
+    margin-top:30px;
+}
+
+.primary-btn{
+    flex:1;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:15px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.primary-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.secondary-btn{
+    flex:1;
+    background:transparent;
+    color:#fff;
+    border:1px solid #3b3b42;
+    border-radius:12px;
+    padding:15px;
+    cursor:pointer;
+}
+
+.secondary-btn:hover{
+    background:#202024;
+}
+
+.feature-grid{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.feature{
+    background:#101114;
+    border:1px solid #2a2a2f;
+    border-radius:16px;
+    padding:22px;
+    transition:.3s;
+}
+
+.feature:hover{
+    border-color:#2563eb;
+    transform:translateY(-4px);
+}
+
+.feature h4{
+    margin:15px 0 8px;
+}
+
+.feature p{
+    color:#9ca3af;
+    line-height:1.6;
+}
+
+.rules{
+    margin-top:40px;
+    background:#101114;
+    border:1px solid #2a2a2f;
+    border-radius:16px;
+    padding:25px;
+}
+
+.rules h3{
+    margin-bottom:15px;
+}
+
+.rules li{
+    color:#9ca3af;
+    margin-bottom:10px;
+}
+
+@media(max-width:768px){
+
+.subdomain-card{
+padding:25px;
+}
+
+.subdomain-card h1{
+font-size:32px;
+}
+
+.url-box{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.url-box input{
+width:100%;
+}
+
+.feature-grid{
+grid-template-columns:1fr;
+}
+
+.btn-group{
+flex-direction:column;
+}
+
 }

@@ -42,15 +42,18 @@ export default function RetrieveDomain() {
   };
 
   return (
-    <div className="retrieve-page">
-      <div className="retrieve-container">
-        <h1 className="retrieve-title">Retrieve Your Domain</h1>
+    <div className="subdomain-page">
+      <div className="subdomain-card">
+        <div className="badge">🔍 Domain Recovery</div>
 
-        <p className="retrieve-description">
-          Enter the email address you used when registering your subdomain.
+        <h1>Retrieve Your Portfolio URL</h1>
+
+        <p className="subtitle">
+          Enter the email address you used to register your portfolio. We'll
+          locate your registered subdomain(s).
         </p>
 
-        <form className="retrieve-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             className="retrieve-input"
@@ -60,47 +63,47 @@ export default function RetrieveDomain() {
             required
           />
 
-          <button type="submit" className="retrieve-button" disabled={loading}>
-            {loading ? "Searching..." : "Find My Domains"}
-          </button>
+          <div className="btn-group">
+            <button type="submit" className="primary-btn" disabled={loading}>
+              {loading ? "Searching..." : "Find My Domains"}
+            </button>
+          </div>
         </form>
 
-        {message && <div className="message">{message}</div>}
+        {message && (
+          <div
+            className={`status ${
+              message.startsWith("✅") ? "success" : "error"
+            }`}
+          >
+            {message}
+          </div>
+        )}
 
         {domains.length > 0 && (
-          <div className="domain-list">
-            <h2>Registered Domains</h2>
+          <>
+            <div className="divider"></div>
+
+            <h3>Your Registered Domains</h3>
 
             {domains.map((domain) => (
               <div className="domain-card" key={domain.id}>
                 <div className="domain-name">
-                  {domain.subdomain}.{BASE_DOMAIN}
+                  https://{domain.subdomain}.{BASE_DOMAIN}
                 </div>
 
                 <a
                   href={`https://${domain.subdomain}.${BASE_DOMAIN}`}
+                  className="primary-btn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="open-button"
                 >
                   Open
                 </a>
               </div>
             ))}
-          </div>
+          </>
         )}
-
-        {!loading &&
-          domains.length === 0 &&
-          message === "No domains found." && (
-            <div className="no-domain">
-              <p>No domains are registered with this email.</p>
-
-              <a href="/register-domain" className="register-link">
-                Register a New Domain
-              </a>
-            </div>
-          )}
       </div>
     </div>
   );
