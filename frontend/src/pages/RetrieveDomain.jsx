@@ -3,11 +3,13 @@ import "../css/retrievedomain.css";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../services/firebase";
 const BASE_DOMAIN = "centennialinfotech.com"; // Change to your domain
+import { useNavigate } from "react-router-dom";
 export default function RetrieveDomain() {
   const [email, setEmail] = useState("");
   const [domains, setDomains] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -83,6 +85,13 @@ export default function RetrieveDomain() {
           <div className="btn-group">
             <button type="submit" className="primary-btn" disabled={loading}>
               {loading ? "Searching..." : "Find My Domains"}
+            </button>
+            <button
+              type="submit"
+              className="primary-btn"
+              onClick={() => navigate("/choose-subdomain")}
+            >
+              Register Subdomain
             </button>
           </div>
         </form>

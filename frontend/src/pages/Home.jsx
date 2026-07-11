@@ -24,6 +24,7 @@ export default function Home() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [hasSubdomain, setHasSubdomain] = useState(false);
 
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -63,6 +64,7 @@ export default function Home() {
 
     return () => unsubscribe();
   }, []);
+
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {show && (
@@ -228,12 +230,14 @@ export default function Home() {
               Pricing
             </a>
 
-            <a
-              href="/choose-subdomain"
-              className="hover:text-white transition-colors"
-            >
-              Subdomain
-            </a>
+            {auth.currentUser && (
+              <a
+                href="/retrieve-domain"
+                className="hover:text-white transition-colors"
+              >
+                My Domains
+              </a>
+            )}
 
             <a href="#faq" className="hover:text-white transition-colors">
               FAQ
