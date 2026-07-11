@@ -228,6 +228,10 @@ export default function Home() {
             </a>
 
             <a href="#faq" className="hover:text-white transition-colors">
+              Subdomain
+            </a>
+
+            <a href="#faq" className="hover:text-white transition-colors">
               FAQ
             </a>
           </div>
@@ -260,7 +264,6 @@ export default function Home() {
                   document
                     .getElementById("hero")
                     ?.scrollIntoView({ behavior: "smooth" });
-              
                 }}
                 className="flex-1 min-w-[70px] text-center text-sm text-white hover:text-blue-400 px-2 py-3 rounded-lg hover:bg-white/10"
               >
@@ -269,7 +272,6 @@ export default function Home() {
 
               <a
                 href="#features"
-              
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 Features
@@ -277,7 +279,6 @@ export default function Home() {
 
               <a
                 href="#pricing"
-              
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 Pricing
@@ -285,7 +286,6 @@ export default function Home() {
 
               <a
                 href="#faq"
-            
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 FAQ

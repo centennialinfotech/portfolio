@@ -193,34 +193,7 @@ export default function Login() {
 
       setSuccessMsg("Login successful!");
 
-      try {
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
-
-        if (!userSnap.exists()) {
-          navigate("/choose-subdomain");
-          return;
-        }
-
-        const userData = userSnap.data();
-
-        // Has already chosen a subdomain
-        if (userData.subdomain) {
-          navigate("/portfolio");
-          return;
-        }
-
-        // User skipped the step
-        if (userData.skippedSubdomain === true) {
-          navigate("/portfolio");
-          return;
-        }
-
-        // User must choose a subdomain
-        navigate("/choose-subdomain");
-      } catch (err) {
-        console.error(err);
-      }
+      navigate("/choose-subdomain");
     } catch (error) {
       setErrorMsg(getFirebaseError(error));
     }
