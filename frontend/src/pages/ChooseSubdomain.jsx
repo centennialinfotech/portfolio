@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export default function ChooseSubdomain() {
   console.log("ChooseSubdomain rendered");
+  alert("ChooseSubdomain mounted");
   const [subdomain, setSubdomain] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [checking, setChecking] = useState(false);
