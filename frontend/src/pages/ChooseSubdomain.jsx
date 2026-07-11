@@ -206,7 +206,7 @@ export default function ChooseSubdomain() {
       <div className="subdomain-card">
         <div className="badge">🚀 FREE Portfolio URL</div>
 
-        <h1>Choose Your Portfolio URL</h1>
+        <h1>Choose Your Portfolio URL </h1>
 
         <p className="subtitle">
           Every account includes a free portfolio URL that you can share with
