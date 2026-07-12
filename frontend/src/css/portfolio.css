@@ -728,12 +728,11 @@ input[type="file"]::file-selector-button {
 }
 
 .contact-right h2 {
-  color: black;
+  color: #ffffff;
   font-size: 18px;
   white-space: nowrap;
   /* display: flex;
   justify-content: center; */
-  background-color: white;
   height: 50px;
   font-weight: bold;
   font-size: 15px;
