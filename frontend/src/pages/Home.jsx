@@ -145,7 +145,8 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-3 nav-right">
-            {userData ? (
+            {/* Show avatar for any logged-in user */}
+            {userData && (
               <div className="relative">
                 <button
                   onClick={() => setUserMenu(!userMenu)}
@@ -181,7 +182,10 @@ export default function Home() {
                   </div>
                 )}
               </div>
-            ) : (
+            )}
+
+            {/* Show Go Premium only if NOT premium */}
+            {(!userData || userData.premium !== true) && (
               <button
                 onClick={() => navigate("/pricing")}
                 className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
