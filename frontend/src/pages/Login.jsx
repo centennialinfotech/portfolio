@@ -32,7 +32,8 @@ export default function Login() {
   const [resetMode, setResetMode] = useState(false);
 
   const [form, setForm] = useState({
-    username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -282,6 +283,35 @@ export default function Login() {
         /> */}
 
           {/* EMAIL */}
+          {isRegister && (
+            <>
+              <input
+                type="text"
+                placeholder="First Name"
+                value={form.firstName}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    firstName: e.target.value,
+                  })
+                }
+                className="w-full p-3 sm:p-4 rounded-xl bg-black/30 border border-white/10 mb-4 text-sm sm:text-base"
+              />
+
+              <input
+                type="text"
+                placeholder="Last Name"
+                value={form.lastName}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    lastName: e.target.value,
+                  })
+                }
+                className="w-full p-3 sm:p-4 rounded-xl bg-black/30 border border-white/10 mb-4 text-sm sm:text-base"
+              />
+            </>
+          )}
           <input
             type="email"
             placeholder="Email"
