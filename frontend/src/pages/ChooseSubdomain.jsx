@@ -7,8 +7,6 @@ import { defaultPortfolio } from "../data/defaultPortfolio";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function ChooseSubdomain() {
-  console.log("ChooseSubdomain rendered");
-
   const [subdomain, setSubdomain] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [checking, setChecking] = useState(false);
@@ -22,8 +20,6 @@ export default function ChooseSubdomain() {
     const check = async () => {
       const user = auth.currentUser;
 
-      console.log("USER:", user);
-
       if (!user) {
         setCurrentUser(null);
         navigate("/login");
@@ -33,24 +29,15 @@ export default function ChooseSubdomain() {
       const ref = doc(db, "users", user.uid);
       const snap = await getDoc(ref);
 
-      console.log("UID:", user.uid);
-      console.log("Document exists:", snap.exists());
-
       if (snap.exists()) {
         const data = snap.data();
 
-        console.log("User document:", data);
-        console.log("Subdomain:", data.subdomain);
-        console.log("Skipped:", data.skippedSubdomain);
-
         if (data.subdomain) {
-          console.log("Redirecting...");
           navigate("/portfolio", { replace: true });
           return;
         }
 
         if (data.skippedSubdomain) {
-          console.log("Skipped previously...");
           navigate("/portfolio", { replace: true });
           return;
         }
@@ -153,8 +140,6 @@ export default function ChooseSubdomain() {
   };
 
   const reserve = async () => {
-    console.log("Reserve button clicked");
-
     if (!auth.currentUser) {
       setMessage("❌ Please login first.");
       return;
@@ -182,8 +167,6 @@ export default function ChooseSubdomain() {
         return;
       }
 
-      console.log("Saving subdomain...");
-
       await setDoc(doc(db, "subdomains", value), {
         uid: auth.currentUser.uid,
         createdAt: new Date(),
@@ -194,8 +177,6 @@ export default function ChooseSubdomain() {
         portfolioPublished: true,
         skippedSubdomain: false,
       });
-
-      console.log("Subdomain reserved successfully.");
 
       setMessage("✅ Subdomain reserved successfully!");
       const portfolioRef = doc(db, "trialData", auth.currentUser.uid);
