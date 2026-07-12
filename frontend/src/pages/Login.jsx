@@ -139,6 +139,8 @@ export default function Login() {
 
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
+        firstName: form.firstName,
+        lastName: form.lastName,
         email: user.email,
         provider: "email",
         plan: "trial",
