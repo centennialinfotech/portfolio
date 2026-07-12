@@ -3079,7 +3079,7 @@ html {
 @media screen and (min-width: 1100px) and (max-width: 1368px) and (orientation: landscape) {
   .dashboard.header {
     padding: 8px 25px !important;
-    min-height: 50px !important;
+    min-height: 60px !important;
     gap: 15px !important;
   }
 
