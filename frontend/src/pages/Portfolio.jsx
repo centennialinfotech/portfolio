@@ -379,7 +379,7 @@ export default function Trial() {
 
         <div className="header-actions">
           <button
-            className="customize-btn"
+            className="customize-btn flex items-center gap-1 md:gap-2"
             onClick={async () => {
               if (editMode) {
                 await savePortfolio();
@@ -403,11 +403,12 @@ export default function Trial() {
           <div className="relative">
             <button
               onClick={() => setUserMenu(!userMenu)}
-              className="flex items-center"
+              className="flex items-center gap-1 md:gap-2"
             >
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
-                {firstName}
+                {userData?.name?.charAt(0).toUpperCase()}
               </div>
+              <span className="hidden md:block text-white">{firstName}</span>
             </button>
 
             {userMenu && (
