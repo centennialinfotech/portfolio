@@ -640,7 +640,7 @@ input[type="file"]::file-selector-button {
 .contact-section {
   background: #e5e5e5;
   min-height: 100vh;
-  padding: 70px 40px;
+  padding: 0px 40px 40px 70px;
   font-family: Arial, sans-serif;
 }
 
