@@ -147,7 +147,7 @@ export default function Trial() {
     opportunityDescription:
       "I'm actively looking for entry-level MERN Stack Developer roles and internship opportunities. If you have an exciting project or role, feel free to connect with me!",
   });
-  Michael;
+
   const [footerSection, setFooterSection] = useState({
     name: "John Michael",
     description: "Building digital experiences with precision and passion.",
