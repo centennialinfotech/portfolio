@@ -100,6 +100,9 @@ body {
   align-items: center;
   gap: 10px;
 }
+.header-actions .relative {
+  position: relative;
+}
 
 .logo-img {
   height: 50px;
@@ -3110,7 +3113,7 @@ html {
   }
 
   .dashboard.header .navbar a {
-    font-size: 13px !important;
+    font-size: 18px !important;
     padding: 4px 8px !important;
   }
 

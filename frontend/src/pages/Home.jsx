@@ -98,7 +98,7 @@ export default function Home() {
 
       {/* NAVBAR */}
       <div className="sticky-nav w-full bg-black/95 backdrop-blur-xl border-b border-white/10 md:bg-black/95 md:backdrop-blur-xl md:border-b md:border-white/10">
-        <nav className="flex items-center justify-between px-6 md:px-16 lg:px-28 py-6">
+        <nav className="flex items-center justify-between px-4 md:px-10 lg:px-20 py-3">
           <div>
             <h1 className="text-[18px] sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
               Centennial
