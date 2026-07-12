@@ -20,11 +20,14 @@ import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
 export default function Home() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const [loading, setLoading] = useState(true);
   const [hasSubdomain, setHasSubdomain] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [userMenu, setUserMenu] = useState(false);
 
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -37,10 +40,12 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
         setIsPremium(false);
+        setUserData(null);
         setLoading(false);
         return;
       }
@@ -51,9 +56,10 @@ export default function Home() {
         const userSnap = await getDoc(userRef);
 
         if (userSnap.exists()) {
-          const userData = userSnap.data();
+          const data = userSnap.data();
 
-          setIsPremium(userData.premium === true);
+          setUserData(data);
+          setIsPremium(data.premium === true);
         }
       } catch (error) {
         console.log(error);
@@ -139,12 +145,50 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-3 nav-right">
-            <button
-              onClick={() => navigate("/pricing")}
-              className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
-            >
-              Go Premium
-            </button>
+            {userData ? (
+              <div className="relative">
+                <button
+                  onClick={() => setUserMenu(!userMenu)}
+                  className="flex items-center gap-2"
+                >
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                    {userData.name?.charAt(0).toUpperCase()}
+                  </div>
+
+                  <span className="hidden md:block text-white">
+                    {userData.name}
+                  </span>
+                </button>
+
+                {userMenu && (
+                  <div className="absolute right-0 mt-3 w-44 bg-black border border-white/10 rounded-xl shadow-xl p-2 z-50">
+                    <button
+                      onClick={() => navigate("/retrieve-domain")}
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10"
+                    >
+                      My Domains
+                    </button>
+
+                    <button
+                      onClick={async () => {
+                        await signOut(auth);
+                        setUserMenu(false);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-red-400 hover:bg-white/10"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={() => navigate("/pricing")}
+                className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
+              >
+                Go Premium
+              </button>
+            )}
 
             <button
               className="block sm:hidden hamburger-btn"
