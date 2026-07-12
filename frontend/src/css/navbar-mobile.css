@@ -137,3 +137,254 @@
     line-height: 1 !important;
   }
 }
+
+/* ============================================
+   IPAD PRO (1024px) - PROPER LAYOUT
+   ============================================ */
+
+@media only screen and (min-device-width: 850px) and (max-device-width: 1023) {
+  /* NAVBAR */
+  nav.sticky {
+    padding: 8px 30px !important;
+    min-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 15px !important;
+    /* background: red; */
+    height: 90px;
+  }
+
+  /* LOGO - TIGHT ON LEFT */
+  nav.sticky .cursor-pointer {
+    flex: 0 0 auto !important;
+  }
+
+  nav.sticky .cursor-pointer h1 {
+    font-size: 23px !important;
+    white-space: nowrap !important;
+  }
+
+  nav.sticky .cursor-pointer h1 span {
+    font-size: 23px !important;
+  }
+
+  /* Show subtitle */
+  nav.sticky .cursor-pointer .text-xs {
+    font-size: 11px !important;
+    display: block !important;
+  }
+
+  /* SHOW DESKTOP NAV LINKS IN MIDDLE */
+  nav.sticky .hidden.lg\:flex {
+    display: flex !important;
+    align-items: center !important;
+    gap: 22px !important;
+    flex: 1 !important;
+    justify-content: center !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button {
+    font-size: 17px !important;
+    padding: 5px 10px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button:hover {
+    color: #22d3ee !important;
+  }
+
+  /* HIDE HAMBURGER ON IPAD PRO */
+  nav.sticky .lg\:hidden {
+    display: none !important;
+  }
+
+  /* HIDE MOBILE MENU */
+  .lg\:hidden.bg-black\/95 {
+    display: none !important;
+  }
+
+  /* GO PREMIUM BUTTON - ON RIGHT */
+  nav.sticky .hidden.lg\:flex .bg-gradient-to-r {
+    font-size: 18px !important;
+    padding: 7px 18px !important;
+    min-width: 119px !important;
+    height: 55px !important;
+    border-radius: 6px !important;
+    line-height: 1 !important;
+  }
+}
+
+/* ============================================
+   SURFACE PRO 7 - NAVBAR FIX
+   ============================================ */
+
+/* Surface Pro 7 - Detect by width */
+@media screen and (min-width: 900px) and (max-width: 1100px) {
+  /* NAVBAR */
+  nav.sticky {
+    padding: 6px 20px !important;
+    min-height: 53px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    /* background-color: red; */
+  }
+
+  /* LOGO */
+  nav.sticky .cursor-pointer h1 {
+    font-size: 25px !important;
+    white-space: nowrap !important;
+  }
+
+  nav.sticky .cursor-pointer h1 span {
+    font-size: 25px !important;
+  }
+
+  nav.sticky .cursor-pointer .text-xs {
+    font-size: 9px !important;
+    display: block !important;
+  }
+
+  /* SHOW NAV LINKS */
+  nav.sticky .hidden.lg\:flex {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex: 1 !important;
+    justify-content: center !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button {
+    font-size: 16px !important;
+    padding: 4px 6px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button:hover {
+    color: #22d3ee !important;
+  }
+
+  /* HIDE HAMBURGER */
+  nav.sticky .lg\:hidden {
+    display: none !important;
+  }
+
+  /* HIDE MOBILE MENU */
+  .lg\:hidden.bg-black\/95 {
+    display: none !important;
+  }
+
+  /* GO PREMIUM BUTTON */
+  nav.sticky .hidden.lg\:flex .bg-gradient-to-r {
+    font-size: 11px !important;
+    padding: 5px 12px !important;
+    min-width: 50px !important;
+    height: 40px !important;
+    border-radius: 5px !important;
+    line-height: 1 !important;
+  }
+}
+
+@media screen and (max-width: 344px) {
+  /* ONLY UPGRADE BUTTON - DECREASED SIZE */
+  nav.sticky .lg\:hidden.bg-gradient-to-r {
+    font-size: 12px !important;
+    padding: 2px 5px !important;
+    min-width: 68px !important;
+    height: 29px !important;
+    border-radius: 3px !important;
+    line-height: 1 !important;
+  }
+}
+
+/* ============================================
+   GALAXY Z FOLD 5 (Folded - 344px)
+   ============================================ */
+
+@media screen and (max-width: 344px) {
+  /* ONLY UPGRADE BUTTON - DECREASED SIZE */
+  nav.sticky .lg\:hidden.bg-gradient-to-r {
+    font-size: 15px !important;
+    padding: 2px 5px !important;
+    min-width: 68px !important;
+    height: 27px !important;
+    border-radius: 3px !important;
+    line-height: 1 !important;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  /* NAVBAR - FULL WIDTH */
+  nav.sticky {
+    padding: 6px 25px !important;
+    min-height: 61px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 15px !important;
+    width: 100% !important;
+    /* background-color: red; */
+  }
+
+  /* LOGO - LEFT */
+  nav.sticky .cursor-pointer {
+    flex: 0 0 auto !important;
+  }
+
+  nav.sticky .cursor-pointer h1 {
+    font-size: 28px !important;
+    white-space: nowrap !important;
+  }
+
+  nav.sticky .cursor-pointer h1 span {
+    font-size: 28px !important;
+  }
+
+  nav.sticky .cursor-pointer .text-xs {
+    display: none !important;
+  }
+
+  /* NAV LINKS - CENTER (take all available space) */
+  nav.sticky .hidden.lg\:flex {
+    display: flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    padding-left: 300px;
+  }
+
+  nav.sticky .hidden.lg\:flex button {
+    font-size: 22px !important;
+    padding: 5px 8px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button:hover {
+    color: #22d3ee !important;
+  }
+
+  /* GO PREMIUM - RIGHT (fixed at end) */
+  nav.sticky .hidden.lg\:flex .bg-gradient-to-r {
+    font-size: 21px !important;
+    padding: 5px 14px !important;
+    min-width: 137px !important;
+    height: 54px !important;
+    border-radius: 5px !important;
+    line-height: 1 !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+  }
+
+  /* HIDE HAMBURGER */
+  nav.sticky .lg\:hidden {
+    display: none !important;
+  }
+
+  /* HIDE MOBILE MENU */
+  .lg\:hidden.bg-black\/95 {
+    display: none !important;
+  }
+}
