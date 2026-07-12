@@ -2,14 +2,19 @@ import PublicLayout from "../layouts/PublicLayout";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import "../css/support.css";
-
 export default function Support() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (window.Tawk_API) {
-      window.Tawk_API.hideWidget();
-    }
+    // Wait for Tawk.to to load
+    const checkTawk = setInterval(() => {
+      if (window.Tawk_API && typeof window.Tawk_API.hideWidget === "function") {
+        window.Tawk_API.hideWidget();
+        clearInterval(checkTawk);
+      }
+    }, 500);
+
+    return () => clearInterval(checkTawk);
   }, []);
 
   const openChat = () => {
@@ -49,7 +54,7 @@ export default function Support() {
 
               <a
                 href="mailto:support@centennialinfotech.com"
-                className="inline-block px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition"
+                className="inline-block px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition text-sm max-w-full break-all whitespace-normal min-w-[120px]"
               >
                 support@centennialinfotech.com
               </a>

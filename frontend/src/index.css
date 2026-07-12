@@ -1,62 +1,77 @@
-@import "tailwindcss";
+/* ============================================
+   SURFACE PRO 7 ONLY (1200-1500px, 3:2 ratio)
+   ============================================ */
 
-* {
-  box-sizing: border-box;
+/* Surface Pro 7 has 2736x1824 resolution with 3:2 aspect ratio */
+/* Width range: 1200px - 1500px */
+
+@media screen and (min-width: 1200px) and (max-width: 1500px) and (min-resolution: 200dpi) {
+  /* NAVBAR */
+  nav.sticky {
+    padding: 8px 25px !important;
+    min-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 15px !important;
+  }
+
+  /* LOGO - TIGHT ON LEFT */
+  nav.sticky .cursor-pointer {
+    flex: 0 0 auto !important;
+  }
+
+  nav.sticky .cursor-pointer h1 {
+    font-size: 18px !important;
+    white-space: nowrap !important;
+  }
+
+  nav.sticky .cursor-pointer h1 span {
+    font-size: 18px !important;
+  }
+
+  /* Show subtitle */
+  nav.sticky .cursor-pointer .text-xs {
+    font-size: 10px !important;
+    display: block !important;
+  }
+
+  /* SHOW DESKTOP NAV LINKS IN MIDDLE */
+  nav.sticky .hidden.lg\:flex {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    flex: 1 !important;
+    justify-content: center !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button {
+    font-size: 15px !important;
+    padding: 5px 10px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button:hover {
+    color: #22d3ee !important;
+  }
+
+  /* HIDE HAMBURGER ON SURFACE PRO 7 */
+  nav.sticky .lg\:hidden {
+    display: none !important;
+  }
+
+  /* HIDE MOBILE MENU */
+  .lg\:hidden.bg-black\/95 {
+    display: none !important;
+  }
+
+  /* GO PREMIUM BUTTON - ON RIGHT */
+  nav.sticky .hidden.lg\:flex .bg-gradient-to-r {
+    font-size: 13px !important;
+    padding: 7px 16px !important;
+    min-width: 60px !important;
+    height: 34px !important;
+    border-radius: 6px !important;
+    line-height: 1 !important;
+  }
 }
-
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  background: black;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  color: white;
-}
-
-#root {
-  min-height: 100vh;
-}
-.floating-trial-btn {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  background: #2563eb;
-  color: white;
-
-  padding: 14px 16px;
-  border: none;
-  border-radius: 12px;
-
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.4;
-
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-  z-index: 1000;
-}
-.icon {
-  width: 22px;
-  height: 22px;
-}
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
-/* body {
-  background: #07122b;
-  font-family: Arial, sans-serif;
-} */
-
-/* HEADER */
-

@@ -1,0 +1,139 @@
+/* ============================================
+   IPHONE 12 PRO (390px) - BUTTON SIZE ONLY
+   ============================================ */
+
+@media screen and (min-width: 376px) and (max-width: 390px) {
+  /* UPGRADE BUTTON - ONLY THIS CHANGES */
+  nav.sticky .lg\:hidden.bg-gradient-to-r {
+    font-size: 12px !important;
+    padding: 2px 6px !important;
+    min-width: 51px !important;
+    height: 30px !important;
+    border-radius: 3px !important;
+    line-height: 1 !important;
+  }
+}
+
+/* ============================================
+   IPHONE SE ONLY - DECREASE BUTTON
+   ============================================ */
+
+/* iPhone SE (1st generation) - 320px */
+@media only screen and (min-device-width: 320px) and (max-device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+  nav.sticky .lg\:hidden.bg-gradient-to-r {
+    font-size: 6px !important;
+    padding: 2px 5px !important;
+    min-width: 28px !important;
+    height: 18px !important;
+    border-radius: 3px !important;
+    line-height: 1 !important;
+  }
+}
+
+/* iPhone SE (2nd & 3rd generation) - 375px */
+@media only screen and (min-device-width: 375px) and (max-device-width: 375px) and (-webkit-min-device-pixel-ratio: 2) {
+  nav.sticky .lg\:hidden.bg-gradient-to-r {
+    font-size: 8px !important;
+    padding: 3px 7px !important;
+    min-width: 35px !important;
+    height: 24px !important;
+    border-radius: 4px !important;
+    line-height: 1 !important;
+  }
+}
+
+/* ============================================
+   SAMSUNG GALAXY S8+ (360px) - DECREASE LOGO ONLY
+   ============================================ */
+
+@media screen and (max-width: 360px) {
+  /* LOGO - DECREASED */
+  nav.sticky .cursor-pointer h1 {
+    font-size: 19px !important;
+    white-space: nowrap !important;
+  }
+
+  nav.sticky .cursor-pointer h1 span {
+    font-size: 19px !important;
+  }
+
+  /* Hide subtitle */
+  nav.sticky .cursor-pointer .text-xs {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   IPAD MINI (768px) - PROPER LAYOUT
+   ============================================ */
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 820px) {
+  /* NAVBAR */
+  nav.sticky {
+    padding: 6px 15px !important;
+    min-height: 74px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    /* background-color: red; */
+  }
+
+  /* LOGO - TIGHT ON LEFT */
+  nav.sticky .cursor-pointer {
+    flex: 0 0 auto !important;
+  }
+
+  nav.sticky .cursor-pointer h1 {
+    font-size: 14px !important;
+    white-space: nowrap !important;
+  }
+
+  nav.sticky .cursor-pointer h1 span {
+    font-size: 14px !important;
+  }
+
+  /* Hide subtitle */
+  nav.sticky .cursor-pointer .text-xs {
+    display: none !important;
+  }
+
+  /* SHOW DESKTOP NAV LINKS IN MIDDLE */
+  nav.sticky .hidden.lg\:flex {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    flex: 1 !important;
+    justify-content: center !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button {
+    font-size: 14px !important;
+    padding: 4px 8px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  nav.sticky .hidden.lg\:flex button:hover {
+    color: #22d3ee !important;
+  }
+
+  /* HIDE HAMBURGER ON IPAD MINI */
+  nav.sticky .lg\:hidden {
+    display: none !important;
+  }
+
+  /* HIDE MOBILE MENU */
+  .lg\:hidden.bg-black\/95 {
+    display: none !important;
+  }
+
+  /* GO PREMIUM BUTTON - ON RIGHT */
+  nav.sticky .hidden.lg\:flex .bg-gradient-to-r {
+    font-size: 12px !important;
+    padding: 6px 14px !important;
+    min-width: 55px !important;
+    height: 30px !important;
+    border-radius: 5px !important;
+    line-height: 1 !important;
+  }
+}
