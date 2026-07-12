@@ -30,6 +30,7 @@ export default function Home() {
   const [userMenu, setUserMenu] = useState(false);
 
   const navigate = useNavigate();
+  const firstName = userData?.name?.split(" ")[0] || "";
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -157,7 +158,7 @@ export default function Home() {
                   </div>
 
                   <span className="hidden md:block text-white">
-                    {userData.name}
+                    {firstName}
                   </span>
                 </button>
 
