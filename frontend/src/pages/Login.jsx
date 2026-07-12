@@ -293,7 +293,7 @@ export default function Login() {
             <>
               <input
                 type="text"
-                placeholder="First Name"
+                placeholder="First Name *"
                 value={form.firstName}
                 onChange={(e) =>
                   setForm({
@@ -320,7 +320,7 @@ export default function Login() {
           )}
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Email *"
             value={form.email}
             onChange={(e) =>
               setForm({
@@ -335,7 +335,7 @@ export default function Login() {
           {!resetMode && (
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Password *"
               value={form.password}
               onChange={(e) =>
                 setForm({
