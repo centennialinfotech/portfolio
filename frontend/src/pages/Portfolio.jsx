@@ -35,6 +35,39 @@ export default function Trial() {
   const [userData, setUserData] = useState(null);
   const firstName = userData?.name?.split(" ")[0] || "";
 
+  // GitHub validation state
+  const [githubErrors, setGithubErrors] = useState({
+    heroGithub: "",
+    projectsGithubLink: "",
+    footerGithub: "",
+  });
+
+  // Validate GitHub username (no URL, only valid chars)
+  const validateGithubUsername = (value) => {
+    if (!value) return "";
+    if (value.includes("github.com") || value.includes("http") || value.includes("/")) {
+      return "⚠️ Enter only your username, not the full URL (e.g. johndoe)";
+    }
+    if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(value)) {
+      return "⚠️ Invalid username. Use only letters, numbers, and hyphens (no spaces).";
+    }
+    return "";
+  };
+
+  // Validate full GitHub URL
+  const validateGithubUrl = (value) => {
+    if (!value) return "";
+    try {
+      const url = new URL(value);
+      if (!url.hostname.includes("github.com")) {
+        return "⚠️ Must be a GitHub URL (e.g. https://github.com/yourusername)";
+      }
+      return "";
+    } catch {
+      return "⚠️ Enter a valid URL (e.g. https://github.com/yourusername)";
+    }
+  };
+
   const iconMap = {
     code: <FaCode />,
     learn: <FaGraduationCap />,
@@ -530,20 +563,21 @@ export default function Trial() {
                 <div className="url-input-wrapper">
                   <span className="url-prefix">https://github.com/</span>
                   <input
-                    className="url-username-input"
+                    className={`url-username-input${githubErrors.heroGithub ? " input-error" : ""}`}
                     value={heroSection.githubUsername}
-                    onChange={(e) =>
-                      setHeroSection({
-                        ...heroSection,
-                        githubUsername: e.target.value,
-                      })
-                    }
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setHeroSection({ ...heroSection, githubUsername: val });
+                      setGithubErrors((prev) => ({ ...prev, heroGithub: validateGithubUsername(val) }));
+                    }}
                     placeholder="yourusername"
                   />
                 </div>
-                <small className="input-hint">
-                  💡 Only enter your username (e.g., johnmichael)
-                </small>
+                {githubErrors.heroGithub ? (
+                  <small className="input-error-msg">{githubErrors.heroGithub}</small>
+                ) : (
+                  <small className="input-hint">💡 Only enter your username (e.g., johnmichael)</small>
+                )}
               </div>
 
               {/* LinkedIn Username Input */}
@@ -1298,17 +1332,22 @@ export default function Trial() {
                 placeholder="Enter More Projects title"
               />
 
-              <input
-                value={projectsSection.githubLink}
-                onChange={(e) =>
-                  setProjectsSection({
-                    ...projectsSection,
-                    githubLink: e.target.value,
-                  })
-                }
-                placeholder="Enter More Projects URL"
-              />
-            </>
+              <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                <input
+                  className={githubErrors.projectsGithubLink ? "input-error" : ""}
+                  value={projectsSection.githubLink}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setProjectsSection({ ...projectsSection, githubLink: val });
+                    setGithubErrors((prev) => ({ ...prev, projectsGithubLink: validateGithubUrl(val) }));
+                  }}
+                  placeholder="https://github.com/yourusername"
+                />
+                {githubErrors.projectsGithubLink && (
+                  <small className="input-error-msg">{githubErrors.projectsGithubLink}</small>
+                )}
+              </div>
+            <>
           ) : (
             <>
               <p>{projectsSection.githubText}</p>
@@ -1556,16 +1595,19 @@ export default function Trial() {
                   <div className="url-input-wrapper">
                     <span className="url-prefix">https://github.com/</span>
                     <input
+                      className={githubErrors.footerGithub ? "input-error" : ""}
                       value={footerSection.githubUsername}
-                      onChange={(e) =>
-                        setFooterSection({
-                          ...footerSection,
-                          githubUsername: e.target.value,
-                        })
-                      }
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setFooterSection({ ...footerSection, githubUsername: val });
+                        setGithubErrors((prev) => ({ ...prev, footerGithub: validateGithubUsername(val) }));
+                      }}
                       placeholder="yourusername"
                     />
                   </div>
+                  {githubErrors.footerGithub && (
+                    <small className="input-error-msg">{githubErrors.footerGithub}</small>
+                  )}
                 </div>
 
                 <div className="url-input-group">
