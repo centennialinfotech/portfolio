@@ -347,6 +347,7 @@ button {
 
 /* Make Go Premium button same height as hamburger on all mobile */
 @media (max-width: 480px) {
+  /* Only style the mobile premium button (inside the hamburger wrapper div) */
   .go-premium-btn {
     height: 36px !important;
     padding: 0 10px !important;
@@ -356,6 +357,7 @@ button {
     border-radius: 8px !important;
   }
 
+  /* Explicitly keep the desktop-only "hidden md:block" button hidden */
   nav .nav-right > .go-premium-btn {
     display: none !important;
   }

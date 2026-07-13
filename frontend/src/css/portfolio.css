@@ -1075,6 +1075,22 @@ html {
   font-style: italic;
 }
 
+/* GitHub validation error styles */
+.input-error {
+  border: 1.5px solid #ef4444 !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
+  outline: none !important;
+}
+
+.input-error-msg {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #ef4444;
+  font-style: normal;
+  font-weight: 500;
+}
+
 .hero-edit .url-input-group .input-label {
   color: #fff;
 }

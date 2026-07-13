@@ -78,16 +78,7 @@
   }
 
   .sticky-nav nav .nav-right .go-premium-btn {
-    font-size: 6px !important;
-    padding: 2px 6px !important;
-    min-width: 35px !important;
-    height: 20px !important;
-    border-radius: 3px !important;
-    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
-    color: black !important;
-    font-weight: 600 !important;
-    border: none !important;
-    cursor: pointer !important;
+    display: none !important;
   }
 
   /* ===== HIDE HAMBURGER MENU ===== */
