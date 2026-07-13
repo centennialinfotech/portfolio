@@ -661,8 +661,10 @@ export default function Trial() {
           ) : (
             <>
               <h1>
-                {heroSection.greeting} <span>{heroSection.firstName}</span>
-                {heroSection.lastName}
+                {heroSection.greeting} <br />
+                <span>
+                  {heroSection.firstName} {heroSection.lastName}
+                </span>
               </h1>
               <h2>{heroSection.role}</h2>
               <p>{heroSection.description}</p>
