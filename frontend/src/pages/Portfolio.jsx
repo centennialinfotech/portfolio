@@ -342,29 +342,46 @@ export default function Trial() {
           {editMode ? (
             <div className="logo-edit">
               <input
+                className="bg-white text-black w-72 rounded-lg px-3"
                 value={headerSection.logo}
                 onChange={(e) =>
                   setHeaderSection({ ...headerSection, logo: e.target.value })
                 }
                 placeholder="Enter Logo Name"
               />
-              <input type="file" accept="image/*" onChange={handleLogoUpload} />
-              {headerSection.logoImage && (
-                <button className="remove-btn" onClick={removeLogo}>
-                  Remove
-                </button>
-              )}
+              <div className="flex items-center gap-3 pt-2">
+                <label className="cursor-pointer w-40">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleLogoUpload}
+                    className="hidden"
+                  />
+
+                  <div className="border border-dashed border-gray-400 rounded-lg px-4 py-2 bg-white hover:bg-gray-50 transition flex items-center justify-center text-sm text-black">
+                    📷 Upload Logo
+                  </div>
+                </label>
+
+                {headerSection.logoImage && (
+                  <button className="remove-btn" onClick={removeLogo}>
+                    Remove
+                  </button>
+                )}
+              </div>
             </div>
           ) : (
             <>
-              {headerSection.logoImage && (
-                <img
-                  src={headerSection.logoImage}
-                  alt="logo"
-                  className="logo-img"
-                />
-              )}
-              <span className="logo-display">{headerSection.logo}</span>
+              <div className="flex items-center gap-2">
+                {headerSection.logoImage && (
+                  <img
+                    src={headerSection.logoImage}
+                    alt="logo"
+                    className="logo-img"
+                  />
+                )}
+                <span className="logo-display pr-1"> {headerSection.logo}</span>
+              </div>
             </>
           )}
         </div>
@@ -463,7 +480,7 @@ export default function Trial() {
 
       {/* Hero Section */}
       <section className="hero" id="home">
-        <div className="hero-left">
+        <div className={`hero-left ${editMode ? "pt-10" : ""}`}>
           {editMode ? (
             <div className="hero-edit">
               <input

@@ -2340,8 +2340,8 @@ html {
     width: 80px !important;
     font-size: 12px !important;
     padding: 4px 8px !important;
-    background: #0f1a33 !important;
-    color: white !important;
+    background-color: none;
+    color: #000 !important;
     border: 1px solid #2a3a55 !important;
     border-radius: 4px !important;
   }
@@ -3151,3 +3151,7 @@ html {
     padding-top: 75px !important;
   }
 }
+.edit-mode-padding{
+  padding-top: 140px;
+}
+

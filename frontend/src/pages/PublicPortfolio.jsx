@@ -267,7 +267,7 @@ export default function PublicPortfolio() {
       {/* Header */}
       <header className="dashboard header">
         <div className="logo">
-          <>
+          <div className="flex items-center gap-2">
             {headerSection.logoImage && (
               <img
                 src={headerSection.logoImage}
@@ -275,8 +275,8 @@ export default function PublicPortfolio() {
                 className="logo-img"
               />
             )}
-            <span className="logo-display">{headerSection.logo}</span>
-          </>
+            <span className="logo-display pr-1">{headerSection.logo}</span>
+          </div>
         </div>
 
         <nav className={`navbar ${mobileMenu ? "mobile-open" : ""}`}>
@@ -326,20 +326,21 @@ export default function PublicPortfolio() {
             <button
               className="cv-btn"
               onClick={() => {
-                if (!heroSection.cv) {
-                  alert("Resume not available");
+                if (!isPremium) {
+                  alert("Upgrade to premium to download CV");
                   return;
                 }
-
-                const link = document.createElement("a");
-                link.href = heroSection.cv;
-                link.download = `${heroSection.firstName || "resume"}-Resume`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                if (heroSection.cv) {
+                  const link = document.createElement("a");
+                  link.href = heroSection.cv;
+                  link.download = "resume";
+                  link.click();
+                } else {
+                  alert("No CV uploaded");
+                }
               }}
             >
-              DOWNLOAD RESUME
+              {isPremium ? "DOWNLOAD CV" : "PREMIUM ONLY"}
             </button>
 
             {/* ✅ Social Icons - Now using heroSection directly */}
@@ -374,79 +375,62 @@ export default function PublicPortfolio() {
           </div>
         </div>
       </section>
+
       <section className="about-section" id="about">
         <div className="section-title">
-          <h2> {aboutSection.title} </h2>
+          <h2>{aboutSection.title}</h2>
           <div className="underline"></div>
         </div>
 
         <div className="about-container">
           {aboutSection.cards.map((card, index) => (
             <div className="about-card" key={card.id}>
-              <div className="icon"> {getIcon(card.icon)}</div>
-
-              <>
-                <h3>{card.title}</h3>
-
-                <p>{card.description}</p>
-              </>
+              <div className="icon">{getIcon(card.icon)}</div>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
             </div>
           ))}
         </div>
       </section>
+
       <section className="skills-section" id="skills">
         <div className="skills-title">
-          <h2>{skillsSection.title} </h2>
-
+          <h2>{skillsSection.title}</h2>
           <div className="skills-line"></div>
         </div>
 
         <div className="skills-container">
-          {/* LEFT */}
-
           <div className="skills-left">
             <h3>{skillsSection.leftTitle}</h3>
-
             {skillsSection.skills.map((skill, index) => (
               <div className="skill" key={skill.id}>
                 <div className="skill-info">
-                  <>
-                    <span>{skill.name}</span>
-
-                    <span>{skill.percentage}%</span>
-                  </>
+                  <span>{skill.name}</span>
+                  <span>{skill.percentage}%</span>
                 </div>
-
                 <div className="progress-bar">
                   <div
                     className="progress"
-                    style={{
-                      width: `${skill.percentage}%`,
-                    }}
+                    style={{ width: `${skill.percentage}%` }}
                   ></div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* RIGHT */}
-
           <div className="skills-right">
             <h3>{skillsSection.rightTitle}</h3>
-
             <div className="tech-grid">
               {skillsSection.technologies.map((tech, index) => (
                 <div className="tech-card" key={index}>
-                  tech
-                  {/* DELETE BUTTON MOVED HERE (AFTER TEXT) */}
+                  {tech}
                 </div>
               ))}
             </div>
-
-            {/* ADD BUTTON */}
           </div>
         </div>
       </section>
+
       <section className="projects-section" id="projects">
         <h1 className="section-title">{projectsSection.title}</h1>
 
@@ -457,177 +441,134 @@ export default function PublicPortfolio() {
                 <FaRocket className="rocket-icon" />
                 {project.title}
               </h2>
-
               <p>{project.description}</p>
-
               <span className="project-tag">{project.tag}</span>
-
               <div className="project-buttons">
-                <>
-                  {project.showCode && (
-                    <a href={project.code} className="btn-outline">
-                      <FaGithub /> CODE
-                    </a>
-                  )}
-
-                  {project.showDemo && (
-                    <a
-                      href={project.demo}
-                      className="btn-filled"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <FaExternalLinkAlt /> LIVE DEMO
-                    </a>
-                  )}
-                </>
+                {project.showCode && (
+                  <a href={project.code} className="btn-outline">
+                    <FaGithub /> CODE
+                  </a>
+                )}
+                {project.showDemo && (
+                  <a
+                    href={project.demo}
+                    className="btn-filled"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FaExternalLinkAlt /> LIVE DEMO
+                  </a>
+                )}
               </div>
             </div>
           ))}
         </div>
 
         <div className="github-section">
-          <>
-            <p>{projectsSection.githubText}</p>
-
-            <a href={projectsSection.githubLink} className="github-btn">
-              <FaGithub />
-              VISIT MY GITHUB
-            </a>
-          </>
+          <p>{projectsSection.githubText}</p>
+          <a href={projectsSection.githubLink} className="github-btn">
+            <FaGithub />
+            VISIT MY GITHUB
+          </a>
         </div>
       </section>
+
       <section className="contact-section" id="contact">
         <h1 className="contact-title">{contactSection.title}</h1>
 
         <div className="contact-container">
-          {/* LEFT */}
-
           <div className="contact-left">
             <h2>{contactSection.leftTitle}</h2>
-
-            {/* EMAIL */}
 
             <div className="info-card">
               <div className="icon-box">
                 <FaEnvelope />
               </div>
-
               <div>
                 <span>EMAIL</span>
-
                 <p>{contactSection.email}</p>
               </div>
             </div>
-
-            {/* PHONE */}
 
             <div className="info-card">
               <div className="icon-box">
                 <FaPhoneAlt />
               </div>
-
               <div>
                 <span>PHONE</span>
-
                 <p>{contactSection.phone}</p>
               </div>
             </div>
-
-            {/* LOCATION */}
 
             <div className="info-card">
               <div className="icon-box">
                 <FaMapMarkerAlt />
               </div>
-
               <div>
                 <span>LOCATION</span>
-
                 <p>{contactSection.location}</p>
               </div>
             </div>
 
-            {/* OPPORTUNITY */}
-
             <div className="opportunity-card">
-              <>
-                <h3>{contactSection.opportunityTitle}</h3>
-
-                <p>{contactSection.opportunityDescription}</p>
-              </>
+              <h3>{contactSection.opportunityTitle}</h3>
+              <p>{contactSection.opportunityDescription}</p>
             </div>
           </div>
 
-          {/* RIGHT */}
-
           <div className="contact-right">
             <h2>{contactSection.rightTitle}</h2>
-
             <form className="contact-form">
               <input type="text" placeholder="Your Name" />
-
               <input type="email" placeholder="Email Address" />
-
               <textarea rows="6" placeholder="Your Message"></textarea>
-
               <button type="submit">
-                <FaPaperPlane />
-                SEND MESSAGE
+                <FaPaperPlane /> SEND MESSAGE
               </button>
             </form>
           </div>
         </div>
       </section>
+
       <footer className="footer">
         <div className="footer-top">
           <div className="footer-left">
-            <>
-              <h1>{footerSection.name}</h1>
-
-              <p>{footerSection.description}</p>
-            </>
+            <h1>{footerSection.name}</h1>
+            <p>{footerSection.description}</p>
           </div>
 
           <div className="footer-icons">
-            <>
-              {footerSection.showGithub && (
-                <a
-                  href={`https://github.com/${footerSection.githubUsername}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaGithub />
-                </a>
-              )}
-
-              {footerSection.showLinkedin && (
-                <a
-                  href={`https://linkedin.com/in/${footerSection.linkedinUsername}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaLinkedin />
-                </a>
-              )}
-
-              {footerSection.showEmail && (
-                <a href={`mailto:${footerSection.email}`}>
-                  <FaEnvelope />
-                </a>
-              )}
-            </>
+            {footerSection.showGithub && (
+              <a
+                href={`https://github.com/${footerSection.githubUsername}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub />
+              </a>
+            )}
+            {footerSection.showLinkedin && (
+              <a
+                href={`https://linkedin.com/in/${footerSection.linkedinUsername}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaLinkedin />
+              </a>
+            )}
+            {footerSection.showEmail && (
+              <a href={`mailto:${footerSection.email}`}>
+                <FaEnvelope />
+              </a>
+            )}
           </div>
         </div>
 
         <div className="footer-line"></div>
 
         <div className="footer-bottom">
-          <>
-            <p>{footerSection.copyright}</p>
-
-            <span>{footerSection.location}</span>
-          </>
+          <p>{footerSection.copyright}</p>
+          <span>{footerSection.location}</span>
         </div>
       </footer>
     </>
