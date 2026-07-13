@@ -64,7 +64,7 @@
 }
 
 /* ============================================
-   IPAD MINI (768px) - PROPER LAYOUT
+   IPAD MINI (768px) - MOBILE MENU LAYOUT
    ============================================ */
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 820px) {
@@ -76,7 +76,6 @@
     align-items: center !important;
     justify-content: space-between !important;
     gap: 10px !important;
-    /* background-color: red; */
   }
 
   /* LOGO - TIGHT ON LEFT */
@@ -84,13 +83,10 @@
     flex: 0 0 auto !important;
   }
 
-  nav.sticky .cursor-pointer h1 {
-    font-size: 14px !important;
-    white-space: nowrap !important;
-  }
-
+  nav.sticky .cursor-pointer h1,
   nav.sticky .cursor-pointer h1 span {
     font-size: 14px !important;
+    white-space: nowrap !important;
   }
 
   /* Hide subtitle */
@@ -98,43 +94,19 @@
     display: none !important;
   }
 
-  /* SHOW DESKTOP NAV LINKS IN MIDDLE */
-  nav.sticky .hidden.lg\:flex {
-    display: flex !important;
-    align-items: center !important;
-    gap: 15px !important;
-    flex: 1 !important;
-    justify-content: center !important;
-  }
-
-  nav.sticky .hidden.lg\:flex button {
-    font-size: 14px !important;
-    padding: 4px 8px !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-  }
-
-  nav.sticky .hidden.lg\:flex button:hover {
-    color: #22d3ee !important;
-  }
-
-  /* HIDE HAMBURGER ON IPAD MINI */
+  /* KEEP HAMBURGER VISIBLE ON IPAD MINI */
   nav.sticky .lg\:hidden {
-    display: none !important;
+    display: block !important;
   }
 
-  /* HIDE MOBILE MENU */
+  /* KEEP MOBILE MENU PANEL AVAILABLE */
   .lg\:hidden.bg-black\/95 {
-    display: none !important;
+    display: block !important;
   }
 
-  /* GO PREMIUM BUTTON - ON RIGHT */
-  nav.sticky .hidden.lg\:flex .bg-gradient-to-r {
-    font-size: 12px !important;
-    padding: 6px 14px !important;
-    min-width: 55px !important;
-    height: 30px !important;
-    border-radius: 5px !important;
-    line-height: 1 !important;
+  /* Hide desktop nav links if present */
+  nav.sticky .hidden.lg\:flex {
+    display: none !important;
   }
 }
 

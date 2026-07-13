@@ -112,7 +112,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="hidden md:flex flex-1 items-center justify-center gap-6 text-white/80 nav-links">
+          <div className="hidden lg:flex flex-1 items-center justify-center gap-6 text-white/80 nav-links">
             <button
               onClick={() =>
                 document
@@ -149,7 +149,7 @@ export default function Home() {
             {(!userData || userData.premium !== true) && (
               <button
                 onClick={() => navigate("/pricing")}
-                className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
+                className="hidden lg:block go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
               >
                 Go Premium
               </button>
@@ -209,14 +209,14 @@ export default function Home() {
               {(!userData || userData.premium !== true) && (
                 <button
                   onClick={() => navigate("/pricing")}
-                  className="md:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-lg text-sm font-semibold"
+                  className="lg:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-lg text-sm font-semibold"
                 >
                   Go Premium
                 </button>
               )}
 
               <button
-                className="block md:hidden"
+                className="block lg:hidden"
                 onClick={() => setMobileMenu(!mobileMenu)}
               >
                 {mobileMenu ? <X size={28} /> : <Menu size={28} />}
@@ -267,7 +267,7 @@ export default function Home() {
 
     
 {mobileMenu && (
-  <div className="mobile-menu-panel w-full sm:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
+  <div className="mobile-menu-panel w-full lg:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
     <div className="flex flex-col w-full">
       <button
         onClick={() => {
