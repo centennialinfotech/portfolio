@@ -13,6 +13,175 @@ import {
 import { auth } from "../services/firebase";
 console.log(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+
+// COUNTRIES ARRAY
+const countries = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Congo",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech",
+  "Denmark",
+  "Dominican",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Eritrea",
+  "Estonia",
+  "Eswatini",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Guatemala",
+  "Guinea",
+  "Guyana",
+  "Haiti",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar",
+  "Namibia",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Korea",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Panama",
+  "Papua",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Somalia",
+  "South Africa",
+  "South Korea",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Taiwan",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Togo",
+  "Trinidad",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States",
+  "Uruguay",
+  "Uzbekistan",
+  "Vatican City",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe",
+];
+
 export default function Checkout() {
   const navigate = useNavigate();
   const { planId } = useParams();
@@ -57,6 +226,12 @@ export default function Checkout() {
   const handleCheckout = async () => {
     if (!customer.name || !customer.email || !customer.country) {
       setError("Please fill in all required fields.");
+      return;
+    }
+
+    // Gmail validation
+    if (!customer.email.endsWith("@gmail.com")) {
+      setError("Please use a Gmail address (example@gmail.com)");
       return;
     }
 
@@ -263,7 +438,7 @@ export default function Checkout() {
 
             <input
               type="email"
-              placeholder="Email Address"
+              placeholder="yourname@gmail.com"
               value={customer.email}
               onChange={(e) =>
                 setCustomer({
@@ -272,13 +447,13 @@ export default function Checkout() {
                 })
               }
               className={`w-full p-4 rounded-2xl bg-black/40 text-white border ${
-                error && !customer.email ? "border-red-500" : "border-white/10"
+                (error && !customer.email) ||
+                (customer.email && !customer.email.endsWith("@gmail.com"))
+                  ? "border-red-500"
+                  : "border-white/10"
               }`}
             />
-
-            <input
-              type="text"
-              placeholder="Country"
+            <select
               value={customer.country}
               onChange={(e) =>
                 setCustomer({
@@ -290,8 +465,17 @@ export default function Checkout() {
                 error && !customer.country
                   ? "border-red-500"
                   : "border-white/10"
-              }`}
-            />
+              } appearance-none`}
+            >
+              <option value="" className="bg-black">
+                Select your country
+              </option>
+              {countries.map((country) => (
+                <option key={country} value={country} className="bg-black">
+                  {country}
+                </option>
+              ))}
+            </select>
 
             <input
               type="text"
