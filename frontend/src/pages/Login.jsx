@@ -32,7 +32,8 @@ export default function Login() {
   const [resetMode, setResetMode] = useState(false);
 
   const [form, setForm] = useState({
-    username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -126,6 +127,10 @@ export default function Login() {
     try {
       setErrorMsg("");
       setSuccessMsg("");
+      if (!form.firstName.trim()) {
+        setErrorMsg("Please enter your first name.");
+        return;
+      }
 
       const result = await createUserWithEmailAndPassword(
         auth,
@@ -138,6 +143,9 @@ export default function Login() {
 
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
+        firstName: form.firstName,
+        lastName: form.lastName,
+        name: `${form.firstName} ${form.lastName}`,
         email: user.email,
         provider: "email",
         plan: "trial",
@@ -159,26 +167,29 @@ export default function Login() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      console.log("USER:", user);
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
 
-      await setDoc(
-        doc(db, "users", user.uid),
-        {
+      // Create the document only for first-time Google users
+      if (!userSnap.exists()) {
+        await setDoc(userRef, {
           uid: user.uid,
           name: user.displayName,
           email: user.email,
           photoURL: user.photoURL,
-
           provider: "google",
-
           plan: "trial",
           createdAt: Date.now(),
+          trialStartedAt: Date.now(),
           trialEndsAt: Date.now() + 3 * 24 * 60 * 60 * 1000,
-        },
-        { merge: true },
-      );
-      console.log("WRITE SUCCESS");
-      navigate("/choose-subdomain");
+        });
+
+        console.log("New Google user created");
+      } else {
+        console.log("Existing Google user");
+      }
+
+      // Let onAuthStateChanged handle navigation
     } catch (error) {
       console.error(error);
       setErrorMsg(getFirebaseError(error));
@@ -193,7 +204,7 @@ export default function Login() {
 
       setSuccessMsg("Login successful!");
 
-      navigate("/portfolio");
+      navigate("/choose-subdomain");
     } catch (error) {
       setErrorMsg(getFirebaseError(error));
     }
@@ -279,9 +290,38 @@ export default function Login() {
         /> */}
 
           {/* EMAIL */}
+          {isRegister && (
+            <>
+              <input
+                type="text"
+                placeholder="First Name *"
+                value={form.firstName}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    firstName: e.target.value,
+                  })
+                }
+                className="w-full p-3 sm:p-4 rounded-xl bg-black/30 border border-white/10 mb-4 text-sm sm:text-base"
+              />
+
+              <input
+                type="text"
+                placeholder="Last Name"
+                value={form.lastName}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    lastName: e.target.value,
+                  })
+                }
+                className="w-full p-3 sm:p-4 rounded-xl bg-black/30 border border-white/10 mb-4 text-sm sm:text-base"
+              />
+            </>
+          )}
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Email *"
             value={form.email}
             onChange={(e) =>
               setForm({
@@ -296,7 +336,7 @@ export default function Login() {
           {!resetMode && (
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Password *"
               value={form.password}
               onChange={(e) =>
                 setForm({

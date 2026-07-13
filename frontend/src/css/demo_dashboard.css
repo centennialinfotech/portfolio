@@ -811,8 +811,7 @@ body {
   width: 100%;
 }
 
-/* INPUTS */
-input[type="file"] {
+INPUTS input[type="file"] {
   font-size: 12px;
   width: 100%;
   max-width: 100%;
@@ -1470,5 +1469,223 @@ html {
   input[type="file"]::file-selector-button {
     font-size: 10px;
     padding: 4px 8px;
+  }
+}
+
+/* ============================================
+   SURFACE PRO 7 - FIX CHOOSE INPUT
+   ============================================ */
+
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+  /* ===== HEADER ===== */
+  .dashboard.header {
+    padding: 8px 20px !important;
+    min-height: 50px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  /* ===== LOGO ===== */
+  .dashboard.header .logo {
+    flex: 0 0 auto !important;
+    max-width: 80px !important;
+  }
+
+  .dashboard.header .logo-display {
+    font-size: 16px !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 30px !important;
+  }
+
+  /* ===== LOGO EDIT - FIX CHOOSE INPUT ===== */
+  .dashboard.header .logo-edit {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 5px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 55px !important;
+    font-size: 10px !important;
+    padding: 3px 5px !important;
+    height: 26px !important;
+    background: #0f1a33 !important;
+    color: white !important;
+    border: 1px solid #2a3a55 !important;
+    border-radius: 4px !important;
+  }
+
+  /* CHOOSE INPUT - ENLARGED */
+  .dashboard.header .logo-edit input[type="file"] {
+    display: inline-block !important;
+    max-width: 70px !important;
+    width: 70px !important;
+    font-size: 9px !important;
+    padding: 3px 6px !important;
+    height: 26px !important;
+    background: #1a2a44 !important;
+    color: white !important;
+    border: 1px solid #3a5a7a !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"]::file-selector-button {
+    font-size: 7px !important;
+    padding: 2px 4px !important;
+    background: #2a4a6a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 7px !important;
+    padding: 2px 5px !important;
+    height: 22px !important;
+    background: #ff4d4f !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+  }
+
+  /* ===== NAVBAR - PROPER SPACE ===== */
+  .dashboard.header .navbar {
+    display: flex !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 18px !important;
+    padding: 0 15px !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 14px !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 4px 8px !important;
+    white-space: nowrap !important;
+  }
+
+  .dashboard.header .navbar a:hover {
+    color: #22d3ee !important;
+  }
+
+  /* ===== HIDE MOBILE MENU ===== */
+  .dashboard.header .mobile-nav-panel {
+    display: none !important;
+  }
+
+  .dashboard.header .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* ===== HEADER ACTIONS ===== */
+  .dashboard.header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* ===== CUSTOMIZE BUTTON ===== */
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 11px !important;
+    padding: 5px 12px !important;
+    min-width: 65px !important;
+    height: 32px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn.edit-mode {
+    background: #4caf50 !important;
+  }
+
+  /* ===== GO PREMIUM BUTTON ===== */
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 10px !important;
+    padding: 4px 12px !important;
+    height: 32px !important;
+    min-width: 75px !important;
+    border-radius: 5px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: black !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding-top: 85px !important;
+  }
+}
+
+/* ============================================
+   SURFACE PRO 7 - OVERRIDE FILE INPUT
+   ============================================ */
+
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+  /* OVERRIDE THE 100% WIDTH FOR SURFACE PRO 7 */
+  .dashboard.header .logo-edit input[type="file"] {
+    width: 70px !important;
+    max-width: 70px !important;
+    min-width: 70px !important;
+    flex: 0 0 70px !important;
+    font-size: 9px !important;
+    padding: 3px 6px !important;
+    height: 28px !important;
+    background: #1a2a44 !important;
+    color: white !important;
+    border: 1px solid #3a5a7a !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    box-sizing: border-box !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"]::file-selector-button {
+    font-size: 7px !important;
+    padding: 2px 4px !important;
+    background: #2a4a6a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+  }
+
+  /* ALSO FIX TEXT INPUT */
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 50px !important;
+    max-width: 50px !important;
+    font-size: 10px !important;
+    padding: 3px 5px !important;
+    height: 28px !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 7px !important;
+    padding: 2px 5px !important;
+    height: 24px !important;
+    background: #ff4d4f !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
   }
 }

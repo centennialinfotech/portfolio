@@ -22,6 +22,7 @@ const Features = lazy(() => import("./pages/Features"));
 const FAQ = lazy(() => import("./pages/Faq"));
 const ChooseSubdomain = lazy(() => import("./pages/ChooseSubdomain"));
 const PublicPortfolio = lazy(() => import("./pages/PublicPortfolio"));
+const RetrieveDomain = lazy(() => import("./pages/RetrieveDomain"));
 
 function App() {
   const host = window.location.hostname;
@@ -80,6 +81,7 @@ function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/choose-subdomain" element={<ChooseSubdomain />} />
+          <Route path="/retrieve-domain" element={<RetrieveDomain />} />
         </Routes>
       </Suspense>
     </>

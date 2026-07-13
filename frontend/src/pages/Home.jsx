@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../css/home.css";
+import "../css/home2morestyles.css";
 import {
   User,
   Briefcase,
@@ -19,12 +20,17 @@ import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
 export default function Home() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [hasSubdomain, setHasSubdomain] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [userMenu, setUserMenu] = useState(false);
 
   const navigate = useNavigate();
+  const firstName = userData?.name?.split(" ")[0] || "";
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -35,10 +41,12 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
         setIsPremium(false);
+        setUserData(null);
         setLoading(false);
         return;
       }
@@ -49,9 +57,10 @@ export default function Home() {
         const userSnap = await getDoc(userRef);
 
         if (userSnap.exists()) {
-          const userData = userSnap.data();
+          const data = userSnap.data();
 
-          setIsPremium(userData.premium === true);
+          setUserData(data);
+          setIsPremium(data.premium === true);
         }
       } catch (error) {
         console.log(error);
@@ -62,6 +71,7 @@ export default function Home() {
 
     return () => unsubscribe();
   }, []);
+
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {show && (
@@ -87,9 +97,9 @@ export default function Home() {
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] bg-purple-500/20 rounded-full blur-[120px]"></div>
 
       {/* NAVBAR */}
-      {/* <div className="sticky top-0 z-20 bg-black/95 backdrop-blur-xl border-b border-white/10 md:static md:bg-transparent md:backdrop-blur-none md:border-b-0">
-        <nav className="flex items-center justify-between px-6 md:px-16 lg:px-28 py-6 border-b border-white/10 backdrop-blur-xl md:static md:bg-transparent md:backdrop-blur-none">
-          <div>
+      <div className="sticky-nav w-full bg-black/95 backdrop-blur-xl border-b border-white/10 md:bg-black/95 md:backdrop-blur-xl md:border-b md:border-white/10">
+        <nav className="max-w-[1400px] mx-auto flex items-center justify-between px-4 md:px-10 lg:px-20 py-3 gap-4">
+          <div className="flex-shrink-0">
             <h1 className="text-[18px] sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
               Centennial
               <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
@@ -102,7 +112,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 text-white/80 nav-links">
+          <div className="hidden md:flex flex-1 items-center justify-center gap-6 text-white/80 nav-links">
             <button
               onClick={() =>
                 document
@@ -125,10 +135,18 @@ export default function Home() {
             <a href="#faq" className="hover:text-white transition-colors">
               FAQ
             </a>
+            {auth.currentUser && (
+              <a
+                href="/retrieve-domain"
+                className="hover:text-white transition-colors"
+              >
+                My Domains
+              </a>
+            )}
           </div>
 
-          <div className="flex items-center gap-3 nav-right">
-            {!loading && !isPremium && (
+          <div className="flex items-center gap-3 nav-right flex-shrink-0">
+            {(!userData || userData.premium !== true) && (
               <button
                 onClick={() => navigate("/pricing")}
                 className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
@@ -137,117 +155,73 @@ export default function Home() {
               </button>
             )}
 
-            <button
-              className="block sm:hidden hamburger-btn"
-              onClick={() => setMobileMenu(!mobileMenu)}
-            >
-              {mobileMenu ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-        </nav>
-
-        {mobileMenu && (
-          <div className="px-0 pb-2 sm:hidden">
-            <div className="w-full bg-black/95 backdrop-blur-xl border-x-0 border-b-0 border-white/10 shadow-2xl rounded-none">
-              <div className="flex flex-row flex-wrap items-stretch p-0 gap-0">
+            {/* Show avatar for any logged-in user */}
+            {userData && (
+              <div className="relative">
                 <button
-                  onClick={() => {
-                    document
-                      .getElementById("hero")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                    setMobileMenu(false);
-                  }}
-                  className="flex-1 min-w-[70px] text-center text-sm text-white hover:text-blue-400 px-2 py-3 rounded-lg hover:bg-white/10"
+                  onClick={() => setUserMenu(!userMenu)}
+                  className="flex items-center gap-1 md:gap-2"
                 >
-                  Get Started
+                  <div className="flex-shrink-0 w-8 h-8 md:w-9 md:h-9 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
+                    {userData.name?.charAt(0).toUpperCase()}
+                  </div>
+
+                  <span className="hidden md:block text-white">
+                    {firstName}
+                  </span>
                 </button>
 
-                <a
-                  href="#features"
-                  onClick={() => setMobileMenu(false)}
-                  className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
-                >
-                  Features
-                </a>
+                {userMenu && (
+                  <div className="absolute -right-20 mt-3 w-50 bg-black border border-white/10 rounded-xl shadow-xl p-3 z-50">
+                    <div className="mb-3 border-b border-white/10 pb-3">
+                      <p className="text-white font-semibold break-words">
+                        {userData?.name}
+                      </p>
 
-                <a
-                  href="#pricing"
-                  onClick={() => setMobileMenu(false)}
-                  className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
-                >
-                  Pricing
-                </a>
+                      <p className="text-white/50 text-sm break-words">
+                        {userData?.email}
+                      </p>
+                    </div>
 
-                <a
-                  href="#faq"
-                  onClick={() => setMobileMenu(false)}
-                  className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
-                >
-                  FAQ
-                </a>
+                    <button
+                      onClick={() => navigate("/retrieve-domain")}
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10"
+                    >
+                      My Domains
+                    </button>
+
+                    <button
+                      onClick={async () => {
+                        await signOut(auth);
+                        setUserMenu(false);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-red-400 hover:bg-white/10"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
-            </div>
-          </div>
-        )}
-      </div> */}
-
-      {/* NAVBAR */}
-      <div className="sticky-nav w-full bg-black/95 backdrop-blur-xl border-b border-white/10 md:bg-black/95 md:backdrop-blur-xl md:border-b md:border-white/10">
-        <nav className="flex items-center justify-between px-6 md:px-16 lg:px-28 py-6">
-          <div>
-            <h1 className="text-[18px] sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
-              Centennial
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-                Portfolio
-              </span>
-            </h1>
-
-            <p className="text-xs text-white/60 mt-1 tracking-[3px] uppercase">
-              Build Your Digital Identity
-            </p>
-          </div>
-
-          <div className="hidden md:flex items-center gap-8 text-white/80 nav-links">
-            <button
-              onClick={() =>
-                document
-                  .getElementById("hero")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="hover:text-white transition-colors"
-            >
-              Get Started
-            </button>
-
-            <a href="#features" className="hover:text-white transition-colors">
-              Features
-            </a>
-
-            <a href="#pricing" className="hover:text-white transition-colors">
-              Pricing
-            </a>
-
-            <a href="#faq" className="hover:text-white transition-colors">
-              FAQ
-            </a>
-          </div>
-
-          <div className="flex items-center gap-3 nav-right">
-            {!loading && !isPremium && (
-              <button
-                onClick={() => navigate("/pricing")}
-                className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
-              >
-                Go Premium
-              </button>
             )}
 
-            <button
-              className="block sm:hidden hamburger-btn"
-              onClick={() => setMobileMenu(!mobileMenu)}
-            >
-              {mobileMenu ? <X size={28} /> : <Menu size={28} />}
-            </button>
+            {/* Show Go Premium only if NOT premium */}
+            <div className="flex items-center gap-2">
+              {(!userData || userData.premium !== true) && (
+                <button
+                  onClick={() => navigate("/pricing")}
+                  className="md:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-lg text-sm font-semibold"
+                >
+                  Go Premium
+                </button>
+              )}
+
+              <button
+                className="block md:hidden"
+                onClick={() => setMobileMenu(!mobileMenu)}
+              >
+                {mobileMenu ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
           </div>
         </nav>
 
@@ -260,7 +234,6 @@ export default function Home() {
                   document
                     .getElementById("hero")
                     ?.scrollIntoView({ behavior: "smooth" });
-              
                 }}
                 className="flex-1 min-w-[70px] text-center text-sm text-white hover:text-blue-400 px-2 py-3 rounded-lg hover:bg-white/10"
               >
@@ -269,7 +242,6 @@ export default function Home() {
 
               <a
                 href="#features"
-              
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 Features
@@ -277,7 +249,6 @@ export default function Home() {
 
               <a
                 href="#pricing"
-              
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 Pricing
@@ -285,7 +256,6 @@ export default function Home() {
 
               <a
                 href="#faq"
-            
                 className="flex-1 min-w-[70px] text-center text-sm text-white/80 hover:text-white px-2 py-3 rounded-lg hover:bg-white/10"
               >
                 FAQ
@@ -548,7 +518,7 @@ export default function Home() {
       {/* FEATURES */}
       <section
         id="features"
-        className="relative z-10 px-6 md:px-16 lg:px-28 py-10 "
+        className="scroll-mt-24 relative z-10 px-6 md:px-16 lg:px-28 py-10 "
       >
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-24">
@@ -614,7 +584,7 @@ export default function Home() {
       {/* PRICING */}
       <section
         id="pricing"
-        className="relative z-10 px-6 md:px-16 lg:px-28 py-8 border-t border-white/[0.03]"
+        className="scroll-mt-24 relative z-10 px-6 md:px-16 lg:px-28 py-8 border-t border-white/[0.03]"
       >
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-20">
@@ -715,7 +685,7 @@ export default function Home() {
       {/* FAQ SECTION */}
       <section
         id="faq"
-        className="relative z-10 px-6 md:px-16 lg:px-28 py-8 border-t border-white/[0.03]"
+        className="scroll-mt-24 relative z-10 px-6 md:px-16 lg:px-28 py-8 border-t border-white/[0.03]"
       >
         <div className="max-w-5xl mx-auto">
           {/* HEADING */}

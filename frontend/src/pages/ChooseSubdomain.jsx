@@ -3,44 +3,50 @@ import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 import "../css/choose-subdomain.css";
+import { defaultPortfolio } from "../data/defaultPortfolio";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function ChooseSubdomain() {
   const [subdomain, setSubdomain] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [checking, setChecking] = useState(false);
   const [message, setMessage] = useState("");
+  const [copyMessage, setCopyMessage] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkUserStatus = async () => {
-      if (!auth.currentUser) return;
+    const check = async () => {
+      const user = auth.currentUser;
 
-      try {
-        const userRef = doc(db, "users", auth.currentUser.uid);
-        const userSnap = await getDoc(userRef);
+      if (!user) {
+        setCurrentUser(null);
+        navigate("/login");
+        return;
+      }
 
-        if (!userSnap.exists()) return;
+      const ref = doc(db, "users", user.uid);
+      const snap = await getDoc(ref);
 
-        const userData = userSnap.data();
+      if (snap.exists()) {
+        const data = snap.data();
 
-        // User already has a subdomain
-        if (userData.subdomain) {
-          navigate("/portfolio");
+        if (data.subdomain) {
+          navigate("/portfolio", { replace: true });
           return;
         }
 
-        // User clicked "Skip for Now" previously
-        if (userData.skippedSubdomain) {
-          navigate("/portfolio");
+        if (data.skippedSubdomain) {
+          navigate("/portfolio", { replace: true });
           return;
         }
-      } catch (err) {
-        console.error(err);
+      } else {
+        console.log("No user document found");
       }
     };
 
-    checkUserStatus();
+    check();
   }, [navigate]);
 
   const checkAvailability = async () => {
@@ -61,14 +67,12 @@ export default function ChooseSubdomain() {
       return false;
     }
 
-    // Maximum length
     if (value.length > 30) {
       setMessage("❌ Maximum 30 characters.");
       setChecking(false);
       return false;
     }
 
-    // Only lowercase letters, numbers and hyphens
     const regex = /^[a-z0-9-]+$/;
 
     if (!regex.test(value)) {
@@ -79,7 +83,6 @@ export default function ChooseSubdomain() {
       return false;
     }
 
-    // Cannot start or end with a hyphen
     if (value.startsWith("-") || value.endsWith("-")) {
       setMessage("❌ Subdomain cannot start or end with a hyphen.");
       setChecking(false);
@@ -137,8 +140,6 @@ export default function ChooseSubdomain() {
   };
 
   const reserve = async () => {
-    console.log("Reserve button clicked");
-
     if (!auth.currentUser) {
       setMessage("❌ Please login first.");
       return;
@@ -147,7 +148,6 @@ export default function ChooseSubdomain() {
     try {
       const value = subdomain.trim().toLowerCase();
 
-      // Check if the user already owns a subdomain
       const userRef = doc(db, "users", auth.currentUser.uid);
       const userSnap = await getDoc(userRef);
 
@@ -161,38 +161,67 @@ export default function ChooseSubdomain() {
         }
       }
 
-      // Validate and check availability
       const available = await checkAvailability();
 
       if (!available) {
         return;
       }
 
-      console.log("Saving subdomain...");
-
-      // Reserve the subdomain
       await setDoc(doc(db, "subdomains", value), {
         uid: auth.currentUser.uid,
         createdAt: new Date(),
       });
 
-      // Update user document
       await updateDoc(userRef, {
         subdomain: value,
         portfolioPublished: true,
         skippedSubdomain: false,
       });
 
-      console.log("Subdomain reserved successfully.");
-
       setMessage("✅ Subdomain reserved successfully!");
+      const portfolioRef = doc(db, "trialData", auth.currentUser.uid);
+      const portfolioSnap = await getDoc(portfolioRef);
+      if (!portfolioSnap.exists()) {
+        await setDoc(portfolioRef, defaultPortfolio);
+      }
 
-      // Redirect to portfolio
       navigate("/portfolio");
     } catch (err) {
       console.error(err);
       setMessage(`❌ ${err.message}`);
     }
+  };
+
+  const handleCopy = (url) => {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopyMessage("✅ Copied!");
+      setTimeout(() => setCopyMessage(""), 2000);
+    });
+  };
+
+  const handleShare = async (url) => {
+    const shareData = {
+      title: "My Portfolio",
+      text: `Check out my portfolio: ${subdomain || "john"}`,
+      url: url,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          handleCopy(url);
+        }
+      }
+    } else {
+      handleCopy(url);
+    }
+  };
+
+  const getFullUrl = () => {
+    const value = subdomain.trim().toLowerCase() || "john";
+    return `https://${value}.centennialinfotech.com`;
   };
 
   return (
@@ -209,24 +238,38 @@ export default function ChooseSubdomain() {
 
         <div className="url-box">
           <span>https://</span>
-
           <input
             type="text"
             placeholder="john"
             value={subdomain}
             onChange={(e) => setSubdomain(e.target.value.toLowerCase())}
           />
-
           <span>.centennialinfotech.com</span>
         </div>
 
         <div className="preview">
-          Portfolio URL Preview
-          <strong>
-            https://
-            {subdomain || "john"}
-            .centennialinfotech.com
-          </strong>
+          <small>Portfolio URL Preview</small>
+          <strong>{getFullUrl()}</strong>
+
+          {/* Copy & Share Buttons */}
+          <div className="preview-actions">
+            <button
+              className="preview-copy-btn"
+              onClick={() => handleCopy(getFullUrl())}
+              title="Copy URL"
+            >
+              📋 Copy
+            </button>
+            <button
+              className="preview-share-btn"
+              onClick={() => handleShare(getFullUrl())}
+              title="Share URL"
+            >
+              📤 Share
+            </button>
+          </div>
+
+          {copyMessage && <div className="copy-success">{copyMessage}</div>}
         </div>
 
         {message && (
