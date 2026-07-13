@@ -142,7 +142,7 @@ export default function Trial() {
     rightTitle: "Send me a Message",
     email: "johnmichael@example.com",
     phone: "+1 (212) 555-1234",
-    location: "123 Main Street, Apt 4B Los Angeles, CA 90001, USA",
+    location: "123 Main Street, Los Angeles, CA 90001, USA",
     opportunityTitle: "Open for Opportunities",
     opportunityDescription:
       "I'm actively looking for entry-level MERN Stack Developer roles and internship opportunities. If you have an exciting project or role, feel free to connect with me!",
@@ -158,7 +158,7 @@ export default function Trial() {
     showLinkedin: true,
     showEmail: true,
     copyright: "© 2026 John Michael. All rights reserved.",
-    location: "123 Main Street, Apt 4B Los Angeles, CA 90001, USA",
+    location: "123 Main Street, Los Angeles, CA 90001, USA",
   });
 
   // Image upload handlers
