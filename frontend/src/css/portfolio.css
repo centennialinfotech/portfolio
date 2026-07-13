@@ -3151,6 +3151,221 @@ html {
     padding-top: 75px !important;
   }
 }
+
+/* ============================================
+   GALAXY Z FOLD 5 (344x882px)
+   ============================================ */
+@media screen and (max-width: 350px) and (min-height: 800px) {
+  /* Header */
+  .dashboard.header {
+    padding: 6px 8px !important;
+    min-height: 40px !important;
+    gap: 4px !important;
+  }
+
+  .logo-display {
+    font-size: 14px !important;
+    max-width: 70px !important;
+  }
+
+  .navbar {
+    display: none !important;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 70px 12px 40px !important;
+    flex-direction: column-reverse !important;
+  }
+
+  .hero-left h1 {
+    font-size: 24px !important;
+  }
+
+  .hero-left h2 {
+    font-size: 18px !important;
+  }
+
+  .hero-left p {
+    font-size: 13px !important;
+  }
+
+  .image-circle {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  /* About Section */
+  .about-section {
+    padding: 40px 12px !important;
+  }
+
+  .section-title h2 {
+    font-size: 28px !important;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .about-card {
+    padding: 24px 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .about-card h3 {
+    font-size: 18px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .about-card p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+
+  .icon {
+    font-size: 32px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Skills Section */
+  .skills-section {
+    padding: 40px 12px !important;
+  }
+
+  .skills-title h2 {
+    font-size: 28px !important;
+  }
+
+  .skills-left h3,
+  .skills-right h3 {
+    font-size: 18px !important;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .tech-card {
+    font-size: 13px !important;
+    padding: 12px !important;
+  }
+
+  /* Projects Section */
+  .projects-section {
+    padding: 40px 12px !important;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .project-card {
+    padding: 16px !important;
+  }
+
+  .project-card h2 {
+    font-size: 16px !important;
+  }
+
+  .project-card p {
+    font-size: 12px !important;
+  }
+
+  /* Contact Section */
+  .contact-section {
+    padding: 40px 12px !important;
+  }
+
+  .contact-title {
+    font-size: 28px !important;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .contact-left h2,
+  .contact-right h2 {
+    font-size: 16px !important;
+  }
+
+  .contact-right {
+    padding: 16px !important;
+  }
+
+  .info-card {
+    padding: 12px !important;
+    gap: 8px !important;
+  }
+
+  .info-card p {
+    font-size: 12px !important;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 40px 12px 30px !important;
+  }
+
+  .footer-left h1 {
+    font-size: 28px !important;
+  }
+
+  .footer-left p {
+    font-size: 13px !important;
+  }
+
+  .footer-bottom p,
+  .footer-bottom span {
+    font-size: 12px !important;
+  }
+
+  .footer-icons a {
+    font-size: 20px !important;
+  }
+
+  /* Mobile UI Elements */
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+
+  .mobile-nav-panel {
+    display: block !important;
+    top: 40px !important;
+    padding: 4px 0 !important;
+  }
+
+  .mobile-nav-links a {
+    font-size: 10px !important;
+    padding: 6px 3px !important;
+  }
+
+  /* Input Fields */
+  .hero-edit input,
+  .hero-edit textarea,
+  .about-card input,
+  .about-card textarea {
+    font-size: 12px !important;
+    padding: 8px 10px !important;
+  }
+
+  .url-prefix {
+    font-size: 10px !important;
+    padding: 6px 8px !important;
+    min-width: 80px !important;
+  }
+
+  .url-username-input {
+    font-size: 12px !important;
+    padding: 6px 8px !important;
+  }
+}
+
 .edit-mode-padding{
   padding-top: 140px;
 }
