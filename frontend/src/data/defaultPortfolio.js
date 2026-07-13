@@ -6,15 +6,15 @@ export const defaultPortfolio = {
 
   heroSection: {
     greeting: "Hi, I'm",
-    firstName: "John",
-    lastName: "Michael",
+    firstName: "Emma",
+    lastName: "Johnson",
     role: "MERN Stack Developer",
     description: "Passionate about creating responsive applications.",
     githubUsername: "yourusername",
     linkedinUsername: "yourusername",
     showGithub: true,
     showLinkedin: true,
-    image: "/profile.png",
+    image: "/default-profile.png",
     cv: "",
   },
 
@@ -96,7 +96,7 @@ export const defaultPortfolio = {
     title: "Get In Touch",
     leftTitle: "Contact Information",
     rightTitle: "Send me a Message",
-    email: "johnmichael@example.com",
+    email: "emmajohnson@example.com",
     phone: "+1 (212) 555-1234",
     location: "123 Main Street, Los Angeles, CA 90001, USA",
     opportunityTitle: "Open for Opportunities",
@@ -105,7 +105,7 @@ export const defaultPortfolio = {
   },
 
   footerSection: {
-    name: "John Michael",
+    name: "Emma Johnson",
     description: "Building digital experiences with precision and passion.",
     githubUsername: "yourusername",
     linkedinUsername: "yourusername",
@@ -113,7 +113,7 @@ export const defaultPortfolio = {
     showGithub: true,
     showLinkedin: true,
     showEmail: true,
-    copyright: "© 2026 John Michael. All rights reserved.",
+    copyright: "© 2026 Emma Johnson. All rights reserved.",
     location: "123 Main Street, Los Angeles, CA 90001, USA",
   },
 
