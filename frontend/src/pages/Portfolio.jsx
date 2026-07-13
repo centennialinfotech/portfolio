@@ -198,9 +198,13 @@ export default function Trial() {
 
   // NEW: Remove Profile Image with input reset
   const removeProfileImage = () => {
-    setHeroSection({ ...heroSection, image: "/profile.png" });
+    setHeroSection((prev) => ({
+      ...prev,
+      image: "/default-profile.jpg",
+    }));
+
     if (imageInputRef.current) {
-      imageInputRef.current.value = ""; // Reset the file input
+      imageInputRef.current.value = "";
     }
   };
 
@@ -618,10 +622,11 @@ export default function Trial() {
                     style={{ flex: 1 }}
                   />
                   <RemoveBtnPortfolio
-                    onClick={removeProfileImage} // ← USE NEW FUNCTION
+                    onClick={removeProfileImage}
                     label="Profile Image"
                     show={
-                      heroSection.image && heroSection.image !== "/profile.png"
+                      heroSection.image &&
+                      heroSection.image !== "/default-profile.jpg"
                     }
                   />
                 </div>

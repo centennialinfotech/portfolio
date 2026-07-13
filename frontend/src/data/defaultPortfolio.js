@@ -14,7 +14,7 @@ export const defaultPortfolio = {
     linkedinUsername: "yourusername",
     showGithub: true,
     showLinkedin: true,
-    image: "/profile.png",
+    image: "/default-profile.png",
     cv: "",
   },
 
