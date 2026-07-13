@@ -98,8 +98,8 @@ export default function Home() {
 
       {/* NAVBAR */}
       <div className="sticky-nav w-full bg-black/95 backdrop-blur-xl border-b border-white/10 md:bg-black/95 md:backdrop-blur-xl md:border-b md:border-white/10">
-        <nav className="flex items-center justify-between px-4 md:px-10 lg:px-20 py-3">
-          <div>
+        <nav className="max-w-[1400px] mx-auto flex items-center justify-between px-4 md:px-10 lg:px-20 py-3 gap-4">
+          <div className="flex-shrink-0">
             <h1 className="text-[18px] sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
               Centennial
               <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
@@ -112,7 +112,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="hidden md:flex items-center gap-6 text-white/80 nav-links">
+          <div className="hidden md:flex flex-1 items-center justify-center gap-6 text-white/80 nav-links">
             <button
               onClick={() =>
                 document
@@ -143,6 +143,9 @@ export default function Home() {
                 My Domains
               </a>
             )}
+          </div>
+
+          <div className="flex items-center gap-3 nav-right flex-shrink-0">
             {(!userData || userData.premium !== true) && (
               <button
                 onClick={() => navigate("/pricing")}
@@ -151,9 +154,7 @@ export default function Home() {
                 Go Premium
               </button>
             )}
-          </div>
 
-          <div className="flex items-center gap-3 nav-right">
             {/* Show avatar for any logged-in user */}
             {userData && (
               <div className="relative">
@@ -206,7 +207,7 @@ export default function Home() {
             {/* Show Go Premium only if NOT premium */}
 
             <button
-              className="block sm:hidden hamburger-btn"
+              className="block md:hidden hamburger-btn"
               onClick={() => setMobileMenu(!mobileMenu)}
             >
               {mobileMenu ? <X size={28} /> : <Menu size={28} />}
