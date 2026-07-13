@@ -225,10 +225,10 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* Mobile Menu - Sticky below navbar */}
+        {/* Mobile Menu - Sticky below navbar
         {mobileMenu && (
-          <div className="md:hidden bg-black/95 backdrop-blur-xl -mt-1 border-0">
-            <div className="flex flex-row flex-wrap items-stretch p-0 gap-0">
+          <div className="mobile-menu-panel sm:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
+            <div className="flex flex-col w-full items-stretch p-0 gap-0">
               <button
                 onClick={() => {
                   document
@@ -262,7 +262,55 @@ export default function Home() {
               </a>
             </div>
           </div>
-        )}
+        )} */}
+
+
+    
+{mobileMenu && (
+  <div className="mobile-menu-panel w-full sm:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
+    <div className="flex flex-col w-full">
+      <button
+        onClick={() => {
+          document
+            .getElementById("hero")
+            ?.scrollIntoView({ behavior: "smooth" });
+          setMobileMenu(false);
+        }}
+        className="block w-full flex items-center justify-center text-sm sm:text-base text-white hover:text-blue-400 px-4 py-4 rounded-none border-b border-white/10 hover:bg-white/10 transition-colors"
+      >
+        Get Started
+      </button>
+
+      <a
+        href="#features"
+        onClick={() => setMobileMenu(false)}
+        className="block w-full flex items-center justify-center text-sm sm:text-base text-white/80 hover:text-white px-4 py-4 rounded-none border-b border-white/10 hover:bg-white/10 transition-colors"
+      >
+        Features
+      </a>
+
+      <a
+        href="#pricing"
+        onClick={() => setMobileMenu(false)}
+        className="block w-full flex items-center justify-center text-sm sm:text-base text-white/80 hover:text-white px-4 py-4 rounded-none border-b border-white/10 hover:bg-white/10 transition-colors"
+      >
+        Pricing
+      </a>
+
+      <a
+        href="#faq"
+        onClick={() => setMobileMenu(false)}
+        className="block w-full flex items-center justify-center text-sm sm:text-base text-white/80 hover:text-white px-4 py-4 rounded-none hover:bg-white/10 transition-colors"
+      >
+        FAQ
+      </a>
+    </div>
+  </div>
+)}
+
+
+
+
       </div>
 
       {/* HERO SECTION */}
