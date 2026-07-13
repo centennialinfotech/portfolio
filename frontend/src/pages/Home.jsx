@@ -204,13 +204,23 @@ export default function Home() {
             )}
 
             {/* Show Go Premium only if NOT premium */}
+            <div className="flex items-center gap-2">
+              {(!userData || userData.premium !== true) && (
+                <button
+                  onClick={() => navigate("/pricing")}
+                  className="md:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-lg text-sm font-semibold"
+                >
+                  Go Premium
+                </button>
+              )}
 
-            <button
-              className="block sm:hidden hamburger-btn"
-              onClick={() => setMobileMenu(!mobileMenu)}
-            >
-              {mobileMenu ? <X size={28} /> : <Menu size={28} />}
-            </button>
+              <button
+                className="block md:hidden"
+                onClick={() => setMobileMenu(!mobileMenu)}
+              >
+                {mobileMenu ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
           </div>
         </nav>
 
