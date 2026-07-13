@@ -140,7 +140,7 @@ export default function Trial() {
     title: "Get In Touch",
     leftTitle: "Contact Information",
     rightTitle: "Send me a Message",
-    email: "johnmichael@gmail.com",
+    email: "johnmichael@example.com",
     phone: "+1 (212) 555-1234",
     location: "123 Main Street, Apt 4B Los Angeles, CA 90001, USA",
     opportunityTitle: "Open for Opportunities",
