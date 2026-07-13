@@ -1347,7 +1347,7 @@ export default function Trial() {
                   <small className="input-error-msg">{githubErrors.projectsGithubLink}</small>
                 )}
               </div>
-            <>
+            </>
           ) : (
             <>
               <p>{projectsSection.githubText}</p>
