@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 * {
   box-sizing: border-box;
 }
@@ -2835,7 +2836,7 @@ html {
 
   /* ===== NAVBAR ===== */
   .dashboard.header .navbar {
-    display: flex !important;
+    display: none !important;
     flex: 1 !important;
     justify-content: center !important;
     align-items: center !important;
@@ -2861,7 +2862,7 @@ html {
   }
 
   .dashboard.header .mobile-menu-btn {
-    display: none !important;
+    /*display: none !important;*/
   }
 
   /* ===== HEADER ACTIONS ===== */
