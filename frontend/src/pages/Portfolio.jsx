@@ -348,7 +348,8 @@ export default function Trial() {
           {editMode ? (
             <div className="logo-edit">
               <input
-                className="bg-white text-black w-72 rounded-lg px-3"
+                type="text"
+                className="bg-white text-black rounded-lg px-3"
                 value={headerSection.logo}
                 onChange={(e) =>
                   setHeaderSection({ ...headerSection, logo: e.target.value })
