@@ -747,10 +747,8 @@ nav .nav-right {
   button:hover {
     transform: none !important;
   }
-<<<<<<< HEAD
 }
-=======
-}
+
 
 /* ====================================
    ULTRA SMALL DEVICES
@@ -786,6 +784,30 @@ nav .nav-right {
     padding-top: 6px !important;
     padding-bottom: 6px !important;
     font-size: 10px !important;
+  }
+}
+/* Galaxy Z Fold (folded: ~344px) */
+@media (max-width: 360px) {
+  .sticky-nav nav {
+    padding: 0.5rem 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .sticky-nav nav h1 {
+    font-size: 1rem !important;
+  }
+
+  .sticky-nav nav p {
+    display: none !important;
+  }
+
+  .nav-right {
+    gap: 0.4rem !important;
+  }
+
+  .go-premium-btn {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.7rem !important;
   }
 }
 
@@ -908,4 +930,3 @@ nav .nav-right {
     height: 24px !important;
   }
 }
->>>>>>> ec92591383cb6d707c872a09494024e263d202ee
