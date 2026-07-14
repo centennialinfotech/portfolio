@@ -353,7 +353,7 @@ export default function Home() {
               {/* HEADER */}
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <h3 className="text-3xl font-black">Michael Anderson</h3>
+                  <h3 className="text-3xl font-black">Emma Johnson</h3>
 
                   <p className="text-white/70 mt-2">Senior UI/UX Designer</p>
 
