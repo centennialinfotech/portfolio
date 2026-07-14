@@ -2092,7 +2092,7 @@ html {
 
   .customize-btn {
     font-size: 0;
-    padding: 8px;
+    /*padding: 8px;*/
     min-width: 38px;
   }
 
