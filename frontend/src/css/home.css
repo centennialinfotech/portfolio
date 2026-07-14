@@ -246,6 +246,30 @@ button {
     font-size: 10px !important;
   }
 }
+/* Galaxy Z Fold (folded: ~344px) */
+@media (max-width: 360px) {
+  .sticky-nav nav {
+    padding: 0.5rem 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .sticky-nav nav h1 {
+    font-size: 1rem !important;
+  }
+
+  .sticky-nav nav p {
+    display: none !important;
+  }
+
+  .nav-right {
+    gap: 0.4rem !important;
+  }
+
+  .go-premium-btn {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.7rem !important;
+  }
+}
 
 /* iPad mini / iPad Air (portrait) navbar spacing tweak: add small gap between links and actions */
 @media only screen and (width: 768px) and (orientation: portrait) {
