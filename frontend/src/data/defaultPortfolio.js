@@ -6,15 +6,15 @@ export const defaultPortfolio = {
 
   heroSection: {
     greeting: "Hi, I'm",
-    firstName: "Ashwani",
-    lastName: "Kumar Chauhan",
+    firstName: "Emma",
+    lastName: "Johnson",
     role: "MERN Stack Developer",
     description: "Passionate about creating responsive applications.",
     githubUsername: "yourusername",
     linkedinUsername: "yourusername",
     showGithub: true,
     showLinkedin: true,
-    image: "/profile.png",
+    image: "/default-profile.png",
     cv: "",
   },
 
@@ -96,16 +96,16 @@ export const defaultPortfolio = {
     title: "Get In Touch",
     leftTitle: "Contact Information",
     rightTitle: "Send me a Message",
-    email: "Ashwanikumarchauhan014@gmail.com",
-    phone: "9616129738",
-    location: "U.P, INDIA",
+    email: "emmajohnson@example.com",
+    phone: "+1 (212) 555-1234",
+    location: "123 Main Street, Los Angeles, CA 90001, USA",
     opportunityTitle: "Open for Opportunities",
     opportunityDescription:
       "I'm actively looking for entry-level MERN Stack Developer roles and internship opportunities. If you have an exciting project or role, feel free to connect with me!",
   },
 
   footerSection: {
-    name: "ashwani",
+    name: "Emma Johnson",
     description: "Building digital experiences with precision and passion.",
     githubUsername: "yourusername",
     linkedinUsername: "yourusername",
@@ -113,8 +113,8 @@ export const defaultPortfolio = {
     showGithub: true,
     showLinkedin: true,
     showEmail: true,
-    copyright: "© 2026 Ashwani kumar chauhan. All rights reserved.",
-    location: "Lucknow, Uttar Pradesh, India",
+    copyright: "© 2026 Emma Johnson. All rights reserved.",
+    location: "123 Main Street, Los Angeles, CA 90001, USA",
   },
 
   updatedAt: Date.now(),

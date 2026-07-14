@@ -151,6 +151,8 @@ export default function Home() {
               <button
                 onClick={() => navigate("/pricing")}
                 className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-lg md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl whitespace-nowrap"
+                className="hidden md:block go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
+
               >
               Go Premium
               </button>
@@ -349,7 +351,7 @@ export default function Home() {
               {/* HEADER */}
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <h3 className="text-3xl font-black">Michael Anderson</h3>
+                  <h3 className="text-3xl font-black">Emma Johnson</h3>
 
                   <p className="text-white/70 mt-2">Senior UI/UX Designer</p>
 
