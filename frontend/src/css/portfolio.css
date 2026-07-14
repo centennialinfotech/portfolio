@@ -2755,7 +2755,7 @@ html {
   /* ===== LOGO - MORE SPACE ===== */
   .dashboard.header .logo {
     flex: 0 0 auto !important;
-    max-width: 90px !important;
+    max-width: 100% !important;
     display: flex !important;
     align-items: center !important;
     gap: 5px !important;
@@ -2774,8 +2774,8 @@ html {
 
   /* ===== LOGO EDIT - GOOD ALIGNMENT ===== */
   .dashboard.header .logo-edit {
-    display: flex !important;
-    flex-direction: row !important;
+    /* display: flex !important; 
+    flex-direction: row !important;*/
     align-items: center !important;
     gap: 4px !important;
     flex-wrap: nowrap !important;
