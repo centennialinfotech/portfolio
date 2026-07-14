@@ -273,13 +273,9 @@ button {
   }
 }
 
-/* Galaxy Z Fold5 (folded) — narrow range: 900–1100px
-   Keep the desktop layout intact and leave the menu control hidden there. */
-@media only screen and (min-width: 900px) and (max-width: 1100px) {
-  nav .nav-links {
-    display: none !important;
-  }
 
+/* Galaxy Z Fold5 (folded) — narrow range: 900–1100px handled by lg breakpoint in JSX */
+@media only screen and (min-width: 900px) and (max-width: 1100px) {
   nav .go-premium-btn {
     padding-left: 6px !important;
     padding-right: 6px !important;
@@ -294,6 +290,7 @@ button {
     gap: 6px !important;
   }
 }
+
 
 /* Very narrow phones / folded small view (e.g. Folded Z Fold widths ~340px)
    Keep the navbar compact without showing the menu button outside mobile. */
