@@ -18,7 +18,7 @@ import {
   FaCog,
   FaPaintBrush,
 } from "react-icons/fa";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Settings, Save } from "lucide-react";
 import RemoveBtnPortfolio from "../components/RemoveBtnPortfolio";
 
 export default function Trial() {
@@ -348,7 +348,8 @@ export default function Trial() {
           {editMode ? (
             <div className="logo-edit">
               <input
-                className="bg-white text-black w-72 rounded-lg px-3"
+                type="text"
+                className="bg-white text-black rounded-lg px-3"
                 value={headerSection.logo}
                 onChange={(e) =>
                   setHeaderSection({ ...headerSection, logo: e.target.value })
@@ -1669,8 +1670,7 @@ export default function Trial() {
                 )}
 
                 {footerSection.showEmail && (
-                  <a href={`mailto:${footerSection.email}`}
-                  target="_blank">
+                  <a href={`mailto:${footerSection.email}`} target="_blank">
                     <FaEnvelope />
                   </a>
                 )}

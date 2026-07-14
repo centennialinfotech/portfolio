@@ -1426,7 +1426,7 @@ html {
     /* Logo - smaller */
     .dashboard.header .logo {
       flex: 0 0 auto !important;
-      max-width: 80px !important;
+      max-width: 100% !important;
     }
 
     .dashboard.header .logo-display {
@@ -1435,21 +1435,21 @@ html {
 
     /* Logo edit - horizontal */
     .dashboard.header .logo-edit {
-      display: flex !important;
-      flex-direction: row !important;
+      /* display: flex !important; */
+      /* flex-direction: row !important; */
       align-items: center !important;
       gap: 4px !important;
       flex-wrap: nowrap !important;
     }
 
     .dashboard.header .logo-edit input[type="text"] {
-      width: 60px !important;
-      font-size: 10px !important;
+      width: 160px !important;
+      font-size: 15px !important;
       padding: 3px 5px !important;
-      background: #0f1a33 !important;
-      color: white !important;
+      background: #ffffff !important;
+      color: black !important;
       border: 1px solid #2a3a55 !important;
-      border-radius: 4px !important;
+      border-radius: 6px !important;
     }
 
     .dashboard.header .logo-edit input[type="file"] {
@@ -1577,7 +1577,7 @@ html {
     }
 
     .dashboard.header .logo-edit input[type="text"] {
-      width: 50px !important;
+      width: 150px !important;
       font-size: 9px !important;
     }
 
@@ -1955,7 +1955,7 @@ html {
 
   .logo-edit {
     width: 100px;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     gap: 4px;
     overflow: hidden;
@@ -2092,7 +2092,7 @@ html {
 
   .customize-btn {
     font-size: 0;
-    padding: 8px;
+    /*padding: 8px;*/
     min-width: 38px;
   }
 
@@ -2159,7 +2159,7 @@ html {
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   /* Add space between logo and navbar links */
   .dashboard.header .logo {
-    margin-right: 100px !important;
+    margin-right: 20px !important;
   }
 
   .dashboard.header .navbar {
@@ -2241,8 +2241,8 @@ html {
   }
 
   .dashboard.header .logo-edit input[type="text"] {
-    width: 50px !important;
-    font-size: 9px !important;
+    width: 150px !important;
+    font-size: 10px !important;
   }
 
   .dashboard.header .logo-edit input[type="file"] {
@@ -2755,7 +2755,7 @@ html {
   /* ===== LOGO - MORE SPACE ===== */
   .dashboard.header .logo {
     flex: 0 0 auto !important;
-    max-width: 90px !important;
+    max-width: 100% !important;
     display: flex !important;
     align-items: center !important;
     gap: 5px !important;
@@ -2774,22 +2774,22 @@ html {
 
   /* ===== LOGO EDIT - GOOD ALIGNMENT ===== */
   .dashboard.header .logo-edit {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
+    /* display: flex !important; 
+    flex-direction: row !important;*/
+    /* align-items: center !important; */
     gap: 4px !important;
     flex-wrap: nowrap !important;
   }
 
   .dashboard.header .logo-edit input[type="text"] {
-    width: 45px !important;
-    font-size: 9px !important;
-    padding: 2px 4px !important;
+    width: 160px !important;
+    font-size: 12px !important;
+    /* padding: 2px 4px !important; */
     height: 22px !important;
-    background: #0f1a33 !important;
-    color: white !important;
+    background: #ffffff !important;
+    color: black !important;
     border: 1px solid #2a3a55 !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
   }
 
   /* FILE INPUT - COMPACT */
@@ -2836,7 +2836,7 @@ html {
 
   /* ===== NAVBAR ===== */
   .dashboard.header .navbar {
-    display: flex !important;
+    display: none !important;
     flex: 1 !important;
     justify-content: center !important;
     align-items: center !important;
@@ -2862,7 +2862,7 @@ html {
   }
 
   .dashboard.header .mobile-menu-btn {
-    display: none !important;
+    display: block !important;
   }
 
   /* ===== HEADER ACTIONS ===== */
@@ -2875,7 +2875,7 @@ html {
 
   /* ===== CUSTOMIZE BUTTON - GEAR ICON ===== */
   .dashboard.header .header-actions .customize-btn {
-    font-size: 0 !important;
+    /* font-size: 0 !important;
     padding: 3px !important;
     min-width: 26px !important;
     height: 26px !important;
@@ -2887,13 +2887,22 @@ html {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s ease !important; */
+        min-width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        padding-right: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
   }
 
   .dashboard.header .header-actions .customize-btn::before {
     content: "⚙️" !important;
     font-size: 13px !important;
     display: inline-block !important;
+     font-size: 18px;
+    line-height: 1;
   }
 
   /* Edit Mode - Change to Save */
@@ -3019,7 +3028,7 @@ html {
   }
 
   .dashboard.header .logo-edit input[type="text"] {
-    width: 55px !important;
+    width: 160px !important;
     font-size: 11px !important;
     height: 26px !important;
   }
@@ -3097,7 +3106,7 @@ html {
   }
 
   .dashboard.header .logo-edit input[type="text"] {
-    width: 65px !important;
+    width: 160px !important;
     font-size: 12px !important;
     height: 28px !important;
   }
