@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../css/home.css";
-// import "../css/home2morestyles.css";
+import "../css/home2morestyles.css";
 import {
   User,
   Briefcase,

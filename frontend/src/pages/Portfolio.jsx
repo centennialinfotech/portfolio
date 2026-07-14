@@ -334,6 +334,8 @@ export default function Trial() {
     window.location.href = "/login?type=register";
   };
 
+  console.log("Footer Email:", footerSection.email);
+
   return (
     <>
       {/* Header */}
@@ -1661,7 +1663,8 @@ export default function Trial() {
                 )}
 
                 {footerSection.showEmail && (
-                  <a href={`mailto:${footerSection.email}`}>
+                  <a href={`mailto:${footerSection.email}`}
+                  target="_blank">
                     <FaEnvelope />
                   </a>
                 )}
