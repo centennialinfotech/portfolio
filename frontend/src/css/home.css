@@ -277,7 +277,8 @@ button {
    Keep the desktop layout intact and leave the menu control hidden there. */
 @media only screen and (min-width: 900px) and (max-width: 1100px) {
   nav .nav-links {
-    display: none !important;
+    display: flex !important;
+    padding-left: 1rem !important;
   }
 
   nav .go-premium-btn {
@@ -291,7 +292,7 @@ button {
   }
 
   nav .nav-right {
-    gap: 6px !important;
+    margin-left: 1.25rem !important;
   }
 }
 
