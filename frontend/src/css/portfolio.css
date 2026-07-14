@@ -2875,7 +2875,7 @@ html {
 
   /* ===== CUSTOMIZE BUTTON - GEAR ICON ===== */
   .dashboard.header .header-actions .customize-btn {
-    font-size: 0 !important;
+    /* font-size: 0 !important;
     padding: 3px !important;
     min-width: 26px !important;
     height: 26px !important;
@@ -2887,13 +2887,22 @@ html {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s ease !important; */
+        min-width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        padding-right: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
   }
 
   .dashboard.header .header-actions .customize-btn::before {
     content: "⚙️" !important;
     font-size: 13px !important;
     display: inline-block !important;
+     font-size: 18px;
+    line-height: 1;
   }
 
   /* Edit Mode - Change to Save */

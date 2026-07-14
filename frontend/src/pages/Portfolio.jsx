@@ -18,7 +18,7 @@ import {
   FaCog,
   FaPaintBrush,
 } from "react-icons/fa";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Settings, Save } from "lucide-react";
 import RemoveBtnPortfolio from "../components/RemoveBtnPortfolio";
 
 export default function Trial() {
@@ -1669,8 +1669,7 @@ export default function Trial() {
                 )}
 
                 {footerSection.showEmail && (
-                  <a href={`mailto:${footerSection.email}`}
-                  target="_blank">
+                  <a href={`mailto:${footerSection.email}`} target="_blank">
                     <FaEnvelope />
                   </a>
                 )}
