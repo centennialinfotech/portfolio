@@ -68,6 +68,24 @@ export default function Trial() {
     }
   };
 
+  // LinkedIn validation state
+  const [linkedinErrors, setLinkedinErrors] = useState({
+    heroLinkedin: "",
+    footerLinkedin: "",
+  });
+
+  // Validate LinkedIn username (no URL, only valid chars)
+  const validateLinkedinUsername = (value) => {
+    if (!value) return "";
+    if (value.includes("linkedin.com") || value.includes("http") || value.includes("/")) {
+      return "⚠️ Enter only your username, not the full URL";
+    }
+    if (!/^[a-zA-Z0-9-]{3,100}$/.test(value)) {
+      return "⚠️ Invalid username. Use only letters, numbers, and hyphens.";
+    }
+    return "";
+  };
+
   const iconMap = {
     code: <FaCode />,
     learn: <FaGraduationCap />,
@@ -588,20 +606,21 @@ export default function Trial() {
                 <div className="url-input-wrapper">
                   <span className="url-prefix">https://linkedin.com/in/</span>
                   <input
-                    className="url-username-input"
+                    className={`url-username-input${linkedinErrors.heroLinkedin ? " input-error" : ""}`}
                     value={heroSection.linkedinUsername}
-                    onChange={(e) =>
-                      setHeroSection({
-                        ...heroSection,
-                        linkedinUsername: e.target.value,
-                      })
-                    }
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setHeroSection({ ...heroSection, linkedinUsername: val });
+                      setLinkedinErrors((prev) => ({ ...prev, heroLinkedin: validateLinkedinUsername(val) }));
+                    }}
                     placeholder="yourusername"
                   />
                 </div>
-                <small className="input-hint">
-                  💡 Only enter your username (e.g., johnmichael)
-                </small>
+                {linkedinErrors.heroLinkedin ? (
+                  <small className="input-error-msg">{linkedinErrors.heroLinkedin}</small>
+                ) : (
+                  <small className="input-hint">💡 Only enter your username (e.g., johnmichael)</small>
+                )}
               </div>
 
               {/* ✅ FIX: Ensure checkboxes are saving properly */}
@@ -1615,16 +1634,19 @@ export default function Trial() {
                   <div className="url-input-wrapper">
                     <span className="url-prefix">https://linkedin.com/in/</span>
                     <input
+                      className={linkedinErrors.footerLinkedin ? "input-error" : ""}
                       value={footerSection.linkedinUsername}
-                      onChange={(e) =>
-                        setFooterSection({
-                          ...footerSection,
-                          linkedinUsername: e.target.value,
-                        })
-                      }
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setFooterSection({ ...footerSection, linkedinUsername: val });
+                        setLinkedinErrors((prev) => ({ ...prev, footerLinkedin: validateLinkedinUsername(val) }));
+                      }}
                       placeholder="yourusername"
                     />
                   </div>
+                  {linkedinErrors.footerLinkedin && (
+                    <small className="input-error-msg">{linkedinErrors.footerLinkedin}</small>
+                  )}
                 </div>
 
                 <input
