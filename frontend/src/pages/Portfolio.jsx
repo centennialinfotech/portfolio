@@ -18,7 +18,7 @@ import {
   FaCog,
   FaPaintBrush,
 } from "react-icons/fa";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Settings, Save } from "lucide-react";
 import RemoveBtnPortfolio from "../components/RemoveBtnPortfolio";
 
 export default function Trial() {
@@ -61,8 +61,8 @@ export default function Trial() {
 
   const [heroSection, setHeroSection] = useState({
     greeting: "Hi, I'm",
-    firstName: "John",
-    lastName: "Michael",
+    firstName: "Emma",
+    lastName: "Johnson",
     role: "MERN Stack Developer",
     description: "Passionate about creating responsive applications.",
     githubUsername: "yourusername",
@@ -151,16 +151,16 @@ export default function Trial() {
     title: "Get In Touch",
     leftTitle: "Contact Information",
     rightTitle: "Send me a Message",
-    email: "johnmichael@gmail.com",
+    email: "emmajohnson@example.com",
     phone: "+1 (212) 555-1234",
-    location: "123 Main Street, Apt 4B Los Angeles, CA 90001, USA",
+    location: "123 Main Street, Los Angeles, CA 90001, USA",
     opportunityTitle: "Open for Opportunities",
     opportunityDescription:
       "I'm actively looking for entry-level MERN Stack Developer roles and internship opportunities. If you have an exciting project or role, feel free to connect with me!",
   });
 
   const [footerSection, setFooterSection] = useState({
-    name: "John Michael",
+    name: "Emma Johnson",
     description: "Building digital experiences with precision and passion.",
     githubUsername: "yourusername",
     linkedinUsername: "yourusername",
@@ -168,8 +168,8 @@ export default function Trial() {
     showGithub: true,
     showLinkedin: true,
     showEmail: true,
-    copyright: "© 2026 John Michael. All rights reserved.",
-    location: "123 Main Street, Apt 4B Los Angeles, CA 90001, USA",
+    copyright: "© 2026 Emma Johnson. All rights reserved.",
+    location: "123 Main Street, Los Angeles, CA 90001, USA",
   });
 
   // Image upload handlers
@@ -209,9 +209,13 @@ export default function Trial() {
 
   // NEW: Remove Profile Image with input reset
   const removeProfileImage = () => {
-    setHeroSection({ ...heroSection, image: "/profile.png" });
+    setHeroSection((prev) => ({
+      ...prev,
+      image: "/default-profile.jpg",
+    }));
+
     if (imageInputRef.current) {
-      imageInputRef.current.value = ""; // Reset the file input
+      imageInputRef.current.value = "";
     }
   };
 
@@ -351,6 +355,8 @@ export default function Trial() {
     await signOut(auth);
     window.location.href = "/login?type=register";
   };
+
+  console.log("Footer Email:", footerSection.email);
 
   return (
     <>
@@ -619,10 +625,11 @@ export default function Trial() {
                     style={{ flex: 1 }}
                   />
                   <RemoveBtnPortfolio
-                    onClick={removeProfileImage} // ← USE NEW FUNCTION
+                    onClick={removeProfileImage}
                     label="Profile Image"
                     show={
-                      heroSection.image && heroSection.image !== "/profile.png"
+                      heroSection.image &&
+                      heroSection.image !== "/default-profile.jpg"
                     }
                   />
                 </div>
@@ -657,9 +664,10 @@ export default function Trial() {
           ) : (
             <>
               <h1>
-                {heroSection.greeting} <span>{heroSection.firstName}</span>
-                <br />
-                {heroSection.lastName}
+                {heroSection.greeting} <br />
+                <span>
+                  {heroSection.firstName} {heroSection.lastName}
+                </span>
               </h1>
               <h2>{heroSection.role}</h2>
               <p>{heroSection.description}</p>
@@ -1669,7 +1677,7 @@ export default function Trial() {
                 )}
 
                 {footerSection.showEmail && (
-                  <a href={`mailto:${footerSection.email}`}>
+                  <a href={`mailto:${footerSection.email}`} target="_blank">
                     <FaEnvelope />
                   </a>
                 )}
