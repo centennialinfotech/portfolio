@@ -41,7 +41,7 @@ export default function Support() {
           </div>
 
           {/* Support Options */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-rows-3 gap-5 ">
             {/* Email */}
             <div className="bg-white/[0.05] border border-white/10 rounded-[24px] p-8 text-center">
               <div className="text-5xl mb-5">📧</div>
