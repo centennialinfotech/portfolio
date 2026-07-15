@@ -3,7 +3,19 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss({
+    config: {
+      theme: {
+        extend: {
+          screens: {
+            'fold-folded': { raw: '(width: 344px) and (height: 882px)' },
+
+
+          }
+        }
+      }
+    }
+  })],
 
   build: {
     cssCodeSplit: true,

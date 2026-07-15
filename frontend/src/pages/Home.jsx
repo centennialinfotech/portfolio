@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "../css/home.css";
-import "../css/home2morestyles.css";
 import {
   User,
   Briefcase,
@@ -102,7 +101,7 @@ export default function Home() {
           <div className="flex-shrink-0">
             <h1 className="text-[18px] sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
               Centennial
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+              <span className=" bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
                 Portfolio
               </span>
             </h1>
@@ -149,7 +148,7 @@ export default function Home() {
             {(!userData || userData.premium !== true) && (
               <button
                 onClick={() => navigate("/pricing")}
-                className="hidden md:block go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
+                className="hidden md:block go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm  md:text-base font-semibold transition-all shadow-2xl md:block "
               >
                 Go Premium
               </button>
