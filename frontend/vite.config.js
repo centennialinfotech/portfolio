@@ -3,7 +3,20 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss({
+    config: {
+      theme: {
+        extend: {
+          screens: {
+            // iPad Mini ONLY (413px - 768px)
+            'ipad-mini': { 'min': '641px', 'max': '767px' },
+
+
+          }
+        }
+      }
+    }
+  })],
 
   build: {
     cssCodeSplit: true,
