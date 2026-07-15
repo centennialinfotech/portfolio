@@ -8,7 +8,8 @@ export default defineConfig({
       theme: {
         extend: {
           screens: {
-            'fold-folded': { raw: '(width: 344px) and (height: 882px)' },
+            // iPad Mini ONLY (413px - 768px)
+            'ipad-mini': { 'min': '641px', 'max': '767px' },
 
 
           }

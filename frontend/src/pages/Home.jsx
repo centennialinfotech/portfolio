@@ -101,7 +101,7 @@ export default function Home() {
           <div className="flex-shrink-0">
             <h1 className="text-[18px] sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
               Centennial
-              <span className=" bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
                 Portfolio
               </span>
             </h1>
