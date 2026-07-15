@@ -35,6 +35,17 @@ export default function Trial() {
   const [userData, setUserData] = useState(null);
   const firstName = userData?.name?.split(" ")[0] || "";
 
+  const [phoneError, setPhoneError] = useState("");
+
+  const validatePhone = (value) => {
+    if (!value) return "";
+    const phoneRegex = /^\+?[0-9\s\-()]{7,15}$/;
+    if (!phoneRegex.test(value)) {
+      return "⚠️ Enter a valid mobile number (7-15 digits, optional +).";
+    }
+    return "";
+  };
+
   const iconMap = {
     code: <FaCode />,
     learn: <FaGraduationCap />,
@@ -293,6 +304,13 @@ export default function Trial() {
   // ✅ FIXED Save function
   const savePortfolio = async () => {
     if (!currentUser) return;
+
+    const phoneValErr = validatePhone(contactSection.phone);
+    if (phoneValErr) {
+      setPhoneError(phoneValErr);
+      alert("Please fix the validation errors before saving. ⚠️");
+      return;
+    }
 
     try {
       // Debug: Check what we're saving
@@ -1381,16 +1399,24 @@ export default function Trial() {
                 <span>PHONE</span>
 
                 {editMode ? (
-                  <input
-                    value={contactSection.phone}
-                    onChange={(e) =>
-                      setContactSection({
-                        ...contactSection,
-                        phone: e.target.value,
-                      })
-                    }
-                    placeholder="Enter Contact Number"
-                  />
+                  <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "100%" }}>
+                    <input
+                      className={phoneError ? "input-error" : ""}
+                      value={contactSection.phone}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setContactSection({
+                          ...contactSection,
+                          phone: val,
+                        });
+                        setPhoneError(validatePhone(val));
+                      }}
+                      placeholder="Enter Contact Number"
+                    />
+                    {phoneError && (
+                      <small className="input-error-msg">{phoneError}</small>
+                    )}
+                  </div>
                 ) : (
                   <p>{contactSection.phone}</p>
                 )}
@@ -1569,7 +1595,6 @@ export default function Trial() {
                 </div>
 
                 <input
-                  placeholder="Email"
                   value={footerSection.email}
                   onChange={(e) =>
                     setFooterSection({
