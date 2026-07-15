@@ -35,6 +35,17 @@ export default function Trial() {
   const [userData, setUserData] = useState(null);
   const firstName = userData?.name?.split(" ")[0] || "";
 
+  const [phoneError, setPhoneError] = useState("");
+
+  const validatePhone = (value) => {
+    if (!value) return "";
+    const phoneRegex = /^\+?[0-9\s\-()]{7,15}$/;
+    if (!phoneRegex.test(value)) {
+      return "⚠️ Enter a valid mobile number (7-15 digits, optional +).";
+    }
+    return "";
+  };
+
   const iconMap = {
     code: <FaCode />,
     learn: <FaGraduationCap />,
@@ -298,6 +309,13 @@ export default function Trial() {
   const savePortfolio = async () => {
     if (!currentUser) return;
 
+    const phoneValErr = validatePhone(contactSection.phone);
+    if (phoneValErr) {
+      setPhoneError(phoneValErr);
+      alert("Please fix the validation errors before saving. ⚠️");
+      return;
+    }
+
     try {
       // Debug: Check what we're saving
       console.log("Saving heroSection:", heroSection);
@@ -348,47 +366,29 @@ export default function Trial() {
           {editMode ? (
             <div className="logo-edit">
               <input
-                type="text"
-                className="bg-white text-black rounded-lg px-3"
                 value={headerSection.logo}
                 onChange={(e) =>
                   setHeaderSection({ ...headerSection, logo: e.target.value })
                 }
                 placeholder="Enter Logo Name"
               />
-              <div className="flex items-center gap-3 pt-2">
-                <label className="cursor-pointer w-40">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleLogoUpload}
-                    className="hidden"
-                  />
-
-                  <div className="border border-dashed border-gray-400 rounded-lg px-4 py-2 bg-white hover:bg-gray-50 transition flex items-center justify-center text-sm text-black">
-                    📷 Upload Logo
-                  </div>
-                </label>
-
-                {headerSection.logoImage && (
-                  <button className="remove-btn" onClick={removeLogo}>
-                    Remove
-                  </button>
-                )}
-              </div>
+              <input type="file" accept="image/*" onChange={handleLogoUpload} />
+              {headerSection.logoImage && (
+                <button className="remove-btn" onClick={removeLogo}>
+                  Remove
+                </button>
+              )}
             </div>
           ) : (
             <>
-              <div className="flex items-center gap-2">
-                {headerSection.logoImage && (
-                  <img
-                    src={headerSection.logoImage}
-                    alt="logo"
-                    className="logo-img"
-                  />
-                )}
-                <span className="logo-display pr-1"> {headerSection.logo}</span>
-              </div>
+              {headerSection.logoImage && (
+                <img
+                  src={headerSection.logoImage}
+                  alt="logo"
+                  className="logo-img"
+                />
+              )}
+              <span className="logo-display">{headerSection.logo}</span>
             </>
           )}
         </div>
@@ -487,7 +487,7 @@ export default function Trial() {
 
       {/* Hero Section */}
       <section className="hero" id="home">
-        <div className={`hero-left ${editMode ? "pt-10" : ""}`}>
+        <div className="hero-left">
           {editMode ? (
             <div className="hero-edit">
               <input
@@ -1407,16 +1407,24 @@ export default function Trial() {
                 <span>PHONE</span>
 
                 {editMode ? (
-                  <input
-                    value={contactSection.phone}
-                    onChange={(e) =>
-                      setContactSection({
-                        ...contactSection,
-                        phone: e.target.value,
-                      })
-                    }
-                    placeholder="Enter Contact Number"
-                  />
+                  <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "100%" }}>
+                    <input
+                      className={phoneError ? "input-error" : ""}
+                      value={contactSection.phone}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setContactSection({
+                          ...contactSection,
+                          phone: val,
+                        });
+                        setPhoneError(validatePhone(val));
+                      }}
+                      placeholder="Enter Contact Number"
+                    />
+                    {phoneError && (
+                      <small className="input-error-msg">{phoneError}</small>
+                    )}
+                  </div>
                 ) : (
                   <p>{contactSection.phone}</p>
                 )}
@@ -1595,7 +1603,6 @@ export default function Trial() {
                 </div>
 
                 <input
-                  placeholder="Email"
                   value={footerSection.email}
                   onChange={(e) =>
                     setFooterSection({
