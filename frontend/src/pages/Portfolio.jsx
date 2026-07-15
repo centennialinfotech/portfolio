@@ -35,57 +35,6 @@ export default function Trial() {
   const [userData, setUserData] = useState(null);
   const firstName = userData?.name?.split(" ")[0] || "";
 
-  // GitHub validation state
-  const [githubErrors, setGithubErrors] = useState({
-    heroGithub: "",
-    projectsGithubLink: "",
-    footerGithub: "",
-  });
-
-  // Validate GitHub username (no URL, only valid chars)
-  const validateGithubUsername = (value) => {
-    if (!value) return "";
-    if (value.includes("github.com") || value.includes("http") || value.includes("/")) {
-      return "⚠️ Enter only your username, not the full URL (e.g. johndoe)";
-    }
-    if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(value)) {
-      return "⚠️ Invalid username. Use only letters, numbers, and hyphens (no spaces).";
-    }
-    return "";
-  };
-
-  // Validate full GitHub URL
-  const validateGithubUrl = (value) => {
-    if (!value) return "";
-    try {
-      const url = new URL(value);
-      if (!url.hostname.includes("github.com")) {
-        return "⚠️ Must be a GitHub URL (e.g. https://github.com/yourusername)";
-      }
-      return "";
-    } catch {
-      return "⚠️ Enter a valid URL (e.g. https://github.com/yourusername)";
-    }
-  };
-
-  // LinkedIn validation state
-  const [linkedinErrors, setLinkedinErrors] = useState({
-    heroLinkedin: "",
-    footerLinkedin: "",
-  });
-
-  // Validate LinkedIn username (no URL, only valid chars)
-  const validateLinkedinUsername = (value) => {
-    if (!value) return "";
-    if (value.includes("linkedin.com") || value.includes("http") || value.includes("/")) {
-      return "⚠️ Enter only your username, not the full URL";
-    }
-    if (!/^[a-zA-Z0-9-]{3,100}$/.test(value)) {
-      return "⚠️ Invalid username. Use only letters, numbers, and hyphens.";
-    }
-    return "";
-  };
-
   const iconMap = {
     code: <FaCode />,
     learn: <FaGraduationCap />,
@@ -393,46 +342,29 @@ export default function Trial() {
           {editMode ? (
             <div className="logo-edit">
               <input
-                className="bg-white text-black w-72 rounded-lg px-3"
                 value={headerSection.logo}
                 onChange={(e) =>
                   setHeaderSection({ ...headerSection, logo: e.target.value })
                 }
                 placeholder="Enter Logo Name"
               />
-              <div className="flex items-center gap-3 pt-2">
-                <label className="cursor-pointer w-40">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleLogoUpload}
-                    className="hidden"
-                  />
-
-                  <div className="border border-dashed border-gray-400 rounded-lg px-4 py-2 bg-white hover:bg-gray-50 transition flex items-center justify-center text-sm text-black">
-                    📷 Upload Logo
-                  </div>
-                </label>
-
-                {headerSection.logoImage && (
-                  <button className="remove-btn" onClick={removeLogo}>
-                    Remove
-                  </button>
-                )}
-              </div>
+              <input type="file" accept="image/*" onChange={handleLogoUpload} />
+              {headerSection.logoImage && (
+                <button className="remove-btn" onClick={removeLogo}>
+                  Remove
+                </button>
+              )}
             </div>
           ) : (
             <>
-              <div className="flex items-center gap-2">
-                {headerSection.logoImage && (
-                  <img
-                    src={headerSection.logoImage}
-                    alt="logo"
-                    className="logo-img"
-                  />
-                )}
-                <span className="logo-display pr-1"> {headerSection.logo}</span>
-              </div>
+              {headerSection.logoImage && (
+                <img
+                  src={headerSection.logoImage}
+                  alt="logo"
+                  className="logo-img"
+                />
+              )}
+              <span className="logo-display">{headerSection.logo}</span>
             </>
           )}
         </div>
@@ -531,7 +463,7 @@ export default function Trial() {
 
       {/* Hero Section */}
       <section className="hero" id="home">
-        <div className={`hero-left ${editMode ? "pt-10" : ""}`}>
+        <div className="hero-left">
           {editMode ? (
             <div className="hero-edit">
               <input
@@ -581,21 +513,20 @@ export default function Trial() {
                 <div className="url-input-wrapper">
                   <span className="url-prefix">https://github.com/</span>
                   <input
-                    className={`url-username-input${githubErrors.heroGithub ? " input-error" : ""}`}
+                    className="url-username-input"
                     value={heroSection.githubUsername}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      setHeroSection({ ...heroSection, githubUsername: val });
-                      setGithubErrors((prev) => ({ ...prev, heroGithub: validateGithubUsername(val) }));
-                    }}
+                    onChange={(e) =>
+                      setHeroSection({
+                        ...heroSection,
+                        githubUsername: e.target.value,
+                      })
+                    }
                     placeholder="yourusername"
                   />
                 </div>
-                {githubErrors.heroGithub ? (
-                  <small className="input-error-msg">{githubErrors.heroGithub}</small>
-                ) : (
-                  <small className="input-hint">💡 Only enter your username (e.g., johnmichael)</small>
-                )}
+                <small className="input-hint">
+                  💡 Only enter your username (e.g., johnmichael)
+                </small>
               </div>
 
               {/* LinkedIn Username Input */}
@@ -606,21 +537,20 @@ export default function Trial() {
                 <div className="url-input-wrapper">
                   <span className="url-prefix">https://linkedin.com/in/</span>
                   <input
-                    className={`url-username-input${linkedinErrors.heroLinkedin ? " input-error" : ""}`}
+                    className="url-username-input"
                     value={heroSection.linkedinUsername}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      setHeroSection({ ...heroSection, linkedinUsername: val });
-                      setLinkedinErrors((prev) => ({ ...prev, heroLinkedin: validateLinkedinUsername(val) }));
-                    }}
+                    onChange={(e) =>
+                      setHeroSection({
+                        ...heroSection,
+                        linkedinUsername: e.target.value,
+                      })
+                    }
                     placeholder="yourusername"
                   />
                 </div>
-                {linkedinErrors.heroLinkedin ? (
-                  <small className="input-error-msg">{linkedinErrors.heroLinkedin}</small>
-                ) : (
-                  <small className="input-hint">💡 Only enter your username (e.g., johnmichael)</small>
-                )}
+                <small className="input-hint">
+                  💡 Only enter your username (e.g., johnmichael)
+                </small>
               </div>
 
               {/* ✅ FIX: Ensure checkboxes are saving properly */}
@@ -1351,21 +1281,16 @@ export default function Trial() {
                 placeholder="Enter More Projects title"
               />
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                <input
-                  className={githubErrors.projectsGithubLink ? "input-error" : ""}
-                  value={projectsSection.githubLink}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    setProjectsSection({ ...projectsSection, githubLink: val });
-                    setGithubErrors((prev) => ({ ...prev, projectsGithubLink: validateGithubUrl(val) }));
-                  }}
-                  placeholder="https://github.com/yourusername"
-                />
-                {githubErrors.projectsGithubLink && (
-                  <small className="input-error-msg">{githubErrors.projectsGithubLink}</small>
-                )}
-              </div>
+              <input
+                value={projectsSection.githubLink}
+                onChange={(e) =>
+                  setProjectsSection({
+                    ...projectsSection,
+                    githubLink: e.target.value,
+                  })
+                }
+                placeholder="Enter More Projects URL"
+              />
             </>
           ) : (
             <>
@@ -1614,19 +1539,16 @@ export default function Trial() {
                   <div className="url-input-wrapper">
                     <span className="url-prefix">https://github.com/</span>
                     <input
-                      className={githubErrors.footerGithub ? "input-error" : ""}
                       value={footerSection.githubUsername}
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        setFooterSection({ ...footerSection, githubUsername: val });
-                        setGithubErrors((prev) => ({ ...prev, footerGithub: validateGithubUsername(val) }));
-                      }}
+                      onChange={(e) =>
+                        setFooterSection({
+                          ...footerSection,
+                          githubUsername: e.target.value,
+                        })
+                      }
                       placeholder="yourusername"
                     />
                   </div>
-                  {githubErrors.footerGithub && (
-                    <small className="input-error-msg">{githubErrors.footerGithub}</small>
-                  )}
                 </div>
 
                 <div className="url-input-group">
@@ -1634,19 +1556,16 @@ export default function Trial() {
                   <div className="url-input-wrapper">
                     <span className="url-prefix">https://linkedin.com/in/</span>
                     <input
-                      className={linkedinErrors.footerLinkedin ? "input-error" : ""}
                       value={footerSection.linkedinUsername}
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        setFooterSection({ ...footerSection, linkedinUsername: val });
-                        setLinkedinErrors((prev) => ({ ...prev, footerLinkedin: validateLinkedinUsername(val) }));
-                      }}
+                      onChange={(e) =>
+                        setFooterSection({
+                          ...footerSection,
+                          linkedinUsername: e.target.value,
+                        })
+                      }
                       placeholder="yourusername"
                     />
                   </div>
-                  {linkedinErrors.footerLinkedin && (
-                    <small className="input-error-msg">{linkedinErrors.footerLinkedin}</small>
-                  )}
                 </div>
 
                 <input
