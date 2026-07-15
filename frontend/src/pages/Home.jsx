@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../css/home.css";
+import usePageCSS from "../hooks/usePageCSS";
 import {
   User,
   Briefcase,
@@ -20,7 +20,9 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
+
 export default function Home() {
+  usePageCSS("/css/home.css");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const [loading, setLoading] = useState(true);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/login.css";
+import usePageCSS from "../hooks/usePageCSS";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import {
@@ -15,6 +15,7 @@ import { auth, db } from "../services/firebase";
 //console.log("DB OBJECT:", db);
 
 export default function Login() {
+  usePageCSS("/css/login.css");
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
