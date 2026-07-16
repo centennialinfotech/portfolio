@@ -113,7 +113,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="hidden lg:flex flex-1 items-center justify-center gap-6 text-white/80 nav-links">
+          <div className="hidden [min-width:721px]:flex flex-1 items-center justify-center gap-6 text-white/80 nav-links">
             <button
               onClick={() =>
                 document
@@ -150,7 +150,7 @@ export default function Home() {
             {(!userData || userData.premium !== true) && (
               <button
                 onClick={() => navigate("/pricing")}
-                className="hidden lg:block go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
+                className="hidden [min-width:721px]:block go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
               >
                 Go Premium
               </button>
@@ -210,14 +210,14 @@ export default function Home() {
               {(!userData || userData.premium !== true) && (
                 <button
                   onClick={() => navigate("/pricing")}
-                  className="lg:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-lg text-sm font-semibold"
+                  className="[min-width:721px]:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-lg text-sm font-semibold"
                 >
                   Go Premium
                 </button>
               )}
 
               <button
-                className="block lg:hidden"
+                className="block [min-width:721px]:hidden hamburger-btn"
                 onClick={() => setMobileMenu(!mobileMenu)}
               >
                 {mobileMenu ? <X size={28} /> : <Menu size={28} />}
@@ -228,7 +228,7 @@ export default function Home() {
 
         {/* Mobile Menu - Sticky below navbar */}
         {mobileMenu && (
-          <div className="lg:hidden bg-black/95 backdrop-blur-xl -mt-1 border-0">
+          <div className="[min-width:721px]:hidden bg-black/95 backdrop-blur-xl -mt-1 border-0">
             <div className="flex flex-row flex-wrap items-stretch p-0 gap-0">
               <button
                 onClick={() => {
