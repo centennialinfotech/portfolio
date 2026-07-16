@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
+import "../css/portfolio.css";
 
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
+
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -19,11 +21,9 @@ import {
   FaPaintBrush,
 } from "react-icons/fa";
 import { Menu, X, Settings, Save } from "lucide-react";
-import usePageCSS from "../hooks/usePageCSS";
 import RemoveBtnPortfolio from "../components/RemoveBtnPortfolio";
 
 export default function Trial() {
-  usePageCSS("/css/portfolio.css");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isPremium, setIsPremium] = useState(false);
