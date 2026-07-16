@@ -1,7 +1,12 @@
 import React from "react";
 
-import usePageCSS from "../hooks/usePageCSS";
+import React from "react";
+
 import { useEffect, useState } from "react";
+import { Download } from "lucide-react";
+import { HiMenu, HiX } from "react-icons/hi";
+import "../css/demo_dashboard.css";
+import "../css/demoMobile.css";import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import { HiMenu, HiX } from "react-icons/hi";
 import {
@@ -21,7 +26,6 @@ import {
 import githubLogo from "../assets/github.png";
 import linkedinLogo from "../assets/linkedin.png";
 const HeroSection = () => {
-  usePageCSS("/css/dashboard.css");
   const iconMap = {
     code: <FaCode />,
     learn: <FaGraduationCap />,
