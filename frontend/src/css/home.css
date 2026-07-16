@@ -409,19 +409,8 @@ nav .nav-right {
   }
 } */
 
+/* This block is now superseded by the 721–1024px rule below */
 @media (min-width: 821px) and (max-width: 899px) {
-  nav.logged-in .nav-links {
-    display: none !important;
-  }
-
-  nav.logged-in .hamburger-btn {
-    display: flex !important;
-  }
-
-  nav.logged-in .nav-right {
-    margin-left: auto !important;
-  }
-
   nav.logged-out .nav-links {
     display: flex !important;
   }
@@ -436,25 +425,12 @@ nav .nav-right {
 ==================================== */
 
 @media (min-width: 900px) and (max-width: 1024px) {
-  nav.logged-out .nav-links {
+  nav .nav-links {
     display: flex !important;
-    gap: 18px;
   }
 
-  nav.logged-out .nav-links a {
-    font-size: 13px;
-  }
-
-  nav.logged-out .hamburger-btn {
+  nav .hamburger-btn {
     display: none !important;
-  }
-
-  nav.logged-in .nav-links {
-    display: none !important;
-  }
-
-  nav.logged-in .hamburger-btn {
-    display: flex !important;
   }
 
   nav.logged-in .nav-right {
@@ -1030,5 +1006,46 @@ nav .nav-right {
 
   .sticky-nav nav .nav-links {
     gap: 12px !important;
+  }
+}
+
+/* ============================================
+   TABLET & SMALL DESKTOP (721px – 1024px)
+   Always show nav links, never show hamburger
+   ============================================ */
+
+@media (min-width: 721px) and (max-width: 1024px) {
+  nav .nav-links {
+    display: flex !important;
+  }
+
+  nav .hamburger-btn {
+    display: none !important;
+  }
+
+  nav .nav-links a,
+  nav .nav-links button {
+    font-size: 12px !important;
+    padding: 4px 8px !important;
+    white-space: nowrap;
+  }
+
+  nav {
+    gap: 10px;
+  }
+
+  .sticky-nav nav .nav-links {
+    display: flex !important;
+    gap: 10px !important;
+  }
+
+  .sticky-nav nav .hamburger-btn {
+    display: none !important;
+  }
+
+  .sticky-nav nav .nav-links a,
+  .sticky-nav nav .nav-links button {
+    font-size: 12px !important;
+    padding: 4px 8px !important;
   }
 }
