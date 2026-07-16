@@ -1798,7 +1798,7 @@ html {
     background: #07122b;
     padding: 6px 0 0;
     position: sticky;
-    top: 56px;
+    top: 40px;
     z-index: 999;
   }
 
@@ -3108,7 +3108,7 @@ html {
   }
 
   .dashboard.header .logo {
-    max-width: 90px !important;
+    max-width: 160px !important;
   }
 
   .dashboard.header .logo-display {

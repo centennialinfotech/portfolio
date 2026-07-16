@@ -368,18 +368,40 @@ export default function Trial() {
           {editMode ? (
             <div className="logo-edit">
               <input
+                type="text"
+                className="bg-white text-black w-full pl-1"
                 value={headerSection.logo}
                 onChange={(e) =>
                   setHeaderSection({ ...headerSection, logo: e.target.value })
                 }
                 placeholder="Enter Logo Name"
               />
-              <input type="file" accept="image/*" onChange={handleLogoUpload} />
-              {headerSection.logoImage && (
-                <button className="remove-btn" onClick={removeLogo}>
-                  Remove
-                </button>
-              )}
+              <div className="flex items-center gap-1">
+                <label className="w-full cursor-pointer bg-white text-black px-4 py-2 rounded hover:bg-white-700 text-[10px]">
+                  Choose Logo
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleLogoUpload}
+                    className="hidden"
+                  />
+                </label>
+
+                <span className="text-sm text-gray-600">
+                  {headerSection.logoImage
+                    ? headerSection.logoImage.name
+                    : "No file chosen"}
+                </span>
+
+                {headerSection.logoImage && (
+                  <button
+                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-[10px]"
+                    onClick={removeLogo}
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
             </div>
           ) : (
             <>
