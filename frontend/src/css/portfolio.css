@@ -1181,14 +1181,17 @@ html {
     padding: 16px 20px;
   }
 
-  .dashboard.header .navbar {
-    display: none !important;
-  }
+  /* Only hide navbar and show hamburger at <=720px */
+  @media (max-width: 720px) {
+    .dashboard.header .navbar {
+      display: none !important;
+    }
 
-  .dashboard.header .mobile-menu-btn {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
+    .dashboard.header .mobile-menu-btn {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .hero {
@@ -1427,8 +1430,8 @@ html {
    IPAD AIR - FIX EDIT MODE
    ============================================ */
 
-  /* iPad Air - Fix header when in edit mode */
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
+  /* iPad Air / Tablet (721px-1024px) - show desktop navbar, hide hamburger */
+  @media screen and (min-width: 721px) and (max-width: 1024px) {
     /* Header - keep everything in one row */
     .dashboard.header {
       display: flex !important;
@@ -1453,16 +1456,14 @@ html {
 
     /* Logo edit - horizontal */
     .dashboard.header .logo-edit {
-      /* display: flex !important; */
-      /* flex-direction: row !important; */
       align-items: center !important;
       gap: 4px !important;
       flex-wrap: nowrap !important;
     }
 
     .dashboard.header .logo-edit input[type="text"] {
-      width: 160px !important;
-      font-size: 15px !important;
+      width: 100px !important;
+      font-size: 12px !important;
       padding: 3px 5px !important;
       background: #ffffff !important;
       color: black !important;
@@ -1486,14 +1487,30 @@ html {
       cursor: pointer !important;
     }
 
-    /* Desktop navbar - HIDE on iPad */
+    /* Show desktop navbar links */
     .dashboard.header .navbar {
+      display: flex !important;
+      visibility: visible !important;
+      gap: 10px !important;
+      flex-shrink: 1 !important;
+    }
+
+    .dashboard.header .navbar a {
+      font-size: 12px !important;
+      padding: 4px 6px !important;
+      white-space: nowrap !important;
+      color: white !important;
+      text-decoration: none !important;
+    }
+
+    /* Hide hamburger - not needed above 720px */
+    .dashboard.header .mobile-menu-btn {
       display: none !important;
     }
 
-    /* Show mobile nav panel if toggled */
+    /* Hide mobile nav panel */
     .mobile-nav-panel {
-      display: block !important;
+      display: none !important;
     }
 
     /* Header actions - SHOW ALL buttons */
@@ -1536,11 +1553,6 @@ html {
       font-weight: 600 !important;
       border: none !important;
       cursor: pointer !important;
-    }
-
-    /* Mobile menu button - SHOW on iPad */
-    .dashboard.header .header-actions .mobile-menu-btn {
-      display: flex !important;
     }
 
     /* Hero padding */
