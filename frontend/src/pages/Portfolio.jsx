@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import usePageCSS from "../hooks/usePageCSS";
+import "../css/portfolio.css";
+
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
-import "../css/portfolio.css";
+
 import {
   FaGithub,
-  FaExternalLinkAlt,
-  FaRocket,
   FaLinkedin,
   FaEnvelope,
   FaPhoneAlt,
@@ -18,6 +17,8 @@ import {
   FaGraduationCap,
   FaCog,
   FaPaintBrush,
+  FaExternalLinkAlt,
+  FaRocket,
 } from "react-icons/fa";
 import { Menu, X, Settings, Save } from "lucide-react";
 import RemoveBtnPortfolio from "../components/RemoveBtnPortfolio";
