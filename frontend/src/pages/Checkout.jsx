@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../css/checkout.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../services/firebase";
 import { loadStripe } from "@stripe/stripe-js";
+import usePageCSS from "../hooks/usePageCSS";
 import {
   collection,
   addDoc,
@@ -183,6 +183,7 @@ const countries = [
 ];
 
 export default function Checkout() {
+  usePageCSS("/css/checkout.css");
   const navigate = useNavigate();
   const { planId } = useParams();
 

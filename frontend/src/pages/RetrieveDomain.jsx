@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../css/retrievedomain.css";
+import usePageCSS from "../hooks/usePageCSS";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const BASE_DOMAIN = "centennialinfotech.com";
 
 export default function RetrieveDomain() {
+  usePageCSS("/css/retrievedomain.css");
   const [email, setEmail] = useState("");
   const [domains, setDomains] = useState([]);
   const [loading, setLoading] = useState(false);

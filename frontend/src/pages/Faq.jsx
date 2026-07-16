@@ -1,6 +1,8 @@
 import PublicLayout from "../layouts/PublicLayout";
-import "../css/faq.css";
+import usePageCSS from "../hooks/usePageCSS";
 export default function FAQ() {
+  usePageCSS("/css/faq.css");
+
   const faqs = [
     {
       q: "How long does it take to build my portfolio?",

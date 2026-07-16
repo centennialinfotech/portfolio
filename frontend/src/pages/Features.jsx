@@ -1,5 +1,5 @@
 import PublicLayout from "../layouts/PublicLayout";
-import "../css/feature.css";
+import usePageCSS from "../hooks/usePageCSS";
 import { useNavigate } from "react-router-dom";
 import {
   Globe,
@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 export default function Features() {
+  usePageCSS("/css/features.css");
   const navigate = useNavigate();
 
   const features = [

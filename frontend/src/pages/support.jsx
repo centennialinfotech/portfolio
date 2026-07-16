@@ -1,8 +1,9 @@
 import PublicLayout from "../layouts/PublicLayout";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import "../css/support.css";
+import usePageCSS from "../hooks/usePageCSS";
 export default function Support() {
+  usePageCSS("/css/support.css");
   const navigate = useNavigate();
 
   useEffect(() => {

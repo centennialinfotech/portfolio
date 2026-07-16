@@ -1,9 +1,10 @@
 import PublicLayout from "../layouts/PublicLayout";
 import React from "react";
-import "../css/plandetail.css";
+import usePageCSS from "../hooks/usePageCSS";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function PlanDetails() {
+  usePageCSS("/css/planDetails.css");
   const navigate = useNavigate();
   const { planId } = useParams();
   const [agreed, setAgreed] = React.useState(false);
