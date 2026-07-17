@@ -3550,4 +3550,13 @@ html {
   }
 }
 
+
+
+/* Force navbar full width on all devices */
+.dashboard.header {
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
 /* //completed */
