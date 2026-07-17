@@ -3506,7 +3506,6 @@ html {
 /* Asus Zenbook Fold (2560x1920) */
 @media only screen and (min-width: 853) and (min-height: 1280) {
   .dashboard.header .logo-edit {
-    display: none !important;
     flex-direction: row !important;
     align-items: center !important;
     gap: 15px !important;
