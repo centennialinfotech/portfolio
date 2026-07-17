@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../css/portfolio.css";
-import "../css/demoMobile.css";
+import "../css/portfolio2.css";
 
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -364,11 +364,12 @@ export default function Trial() {
   return (
     <>
       {/* Header */}
-      <header className="dashboard header">
+      <header className="dashboard header sm:w-full">
         <div className="logo">
           {editMode ? (
-            <div className="logo-edit">
+            <div className="logo-edit  ">
               <input
+                className="editinput"
                 value={headerSection.logo}
                 onChange={(e) =>
                   setHeaderSection({ ...headerSection, logo: e.target.value })
@@ -377,7 +378,10 @@ export default function Trial() {
               />
               <input type="file" accept="image/*" onChange={handleLogoUpload} />
               {headerSection.logoImage && (
-                <button className="remove-btn" onClick={removeLogo}>
+                <button
+                  className={`remove-btn ${editMode ? "editRemovebtn" : ""}`}
+                  onClick={removeLogo}
+                >
                   Remove
                 </button>
               )}
@@ -396,7 +400,9 @@ export default function Trial() {
           )}
         </div>
 
-        <nav className={`navbar ${mobileMenu ? "mobile-open" : ""}`}>
+        <nav
+          className={` navbar ${mobileMenu ? "mobile-open" : ""} ${editMode ? "editlinks" : ""}`}
+        >
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
@@ -435,7 +441,9 @@ export default function Trial() {
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
                 {userData?.name?.charAt(0).toUpperCase()}
               </div>
-              <span className="hidden md:block text-white">{firstName}</span>
+              <span className="hidden md:block text-white firstnameClass">
+                {firstName}
+              </span>
             </button>
 
             {userMenu && (
@@ -1735,3 +1743,5 @@ export default function Trial() {
     </>
   );
 }
+
+// ended
