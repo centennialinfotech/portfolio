@@ -422,15 +422,6 @@ export default function Trial() {
         <div className="logo">
           {editMode ? (
             <div className="logo-edit">
-              <input
-                type="text"
-                className="editinput bg-white text-black mt-2 mb-2 pl-10 rounded-[5px]"
-                value={headerSection.logo}
-                onChange={(e) =>
-                  setHeaderSection({ ...headerSection, logo: e.target.value })
-                }
-                placeholder="Enter Logo Name"
-              />
               <div className="flex items-center gap-2">
                 {!headerSection.logoImage ? (
                   <label className="cursor-pointer bg-white text-black px-4 py-2 rounded text-[10px]">
@@ -460,15 +451,15 @@ export default function Trial() {
                   </>
                 )}
               </div>
-              {/*  <input type="file" accept="image/*" onChange={handleLogoUpload} />
-              {headerSection.logoImage && (
-                <button
-                  className={`remove-btn ${editMode ? "editRemovebtn" : ""}`}
-                  onClick={removeLogo}
-                >
-                  Remove
-                </button>
-              )} */}
+              <input
+                type="text"
+                className="editinput bg-white text-black mt-2 mb-2 pl-10 rounded-[5px]"
+                value={headerSection.logo}
+                onChange={(e) =>
+                  setHeaderSection({ ...headerSection, logo: e.target.value })
+                }
+                placeholder="Enter Logo Name"
+              />
             </div>
           ) : (
             <>
