@@ -1253,6 +1253,9 @@ html {
   }
 
   /* Hero */
+  .logo img{ 
+    width: 100px;
+  } 
   .hero {
     padding: 130px 40px 60px !important;
     gap: 30px !important;
@@ -1442,7 +1445,6 @@ html {
       justify-content: space-between !important;
       padding: 8px 15px !important;
       min-height: 50px !important;
-      height: 80px !important;
       gap: 8px !important;
     }
 
@@ -2676,7 +2678,7 @@ html {
   }
 
   .dashboard.header .logo-display {
-    font-size: 18px !important;
+    font-size: 12px !important;
   }
 
   .dashboard.header .logo-img {
@@ -2687,7 +2689,7 @@ html {
   .dashboard.header .navbar {
     display: flex !important;
     background: transparent;
-    position: absolute;
+    /* position: absolute; */
     left: 196px;
   }
 
@@ -2976,7 +2978,7 @@ html {
   }
 
   .dashboard.header .logo-display {
-    font-size: 18px !important;
+    font-size: 10px !important;
     white-space: nowrap !important;
     font-weight: 700 !important;
   }
@@ -2995,11 +2997,7 @@ html {
   .dashboard.header .logo-edit input[type="text"] {
     width: 160px !important;
     font-size: 12px !important;
-    /* padding: 2px 4px !important; */
-    height: 22px !important;
-    background: #000000 !important;
-    color: black !important;
-    border: 1px solid #2a3a55 !important;
+    height: 22px !important;  
     border-radius: 6px !important;
   }
   .dashboard.header .logo-edit .editinput {
@@ -3597,5 +3595,31 @@ html {
     width: 142px;
     position: relative;
     top: 9px;
+  }
+}
+.saving-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,.65);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.saving-overlay svg {
+  width: 80px;
+  height: 80px;
+}
+
+.spinner_SoJz {
+  transform-origin: center;
+  animation: spinnerRotate 1s linear infinite;
+}
+
+@keyframes spinnerRotate {
+  to {
+    transform: rotate(360deg);
   }
 }
