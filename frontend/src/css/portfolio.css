@@ -2957,7 +2957,7 @@ html {
     position: sticky !important;
     top: 0 !important;
     z-index: 1000 !important;
-    width: 432px !important;
+    width: 541px !important;
   }
 
   /* ===== LOGO - MORE SPACE ===== */
@@ -3501,7 +3501,7 @@ html {
 /* Asus Zenbook Fold (2560x1920) */
 @media only screen and (min-width: 853) and (min-height: 1280) {
   .dashboard.header .logo-edit {
-    display: flex !important;
+    display: none !important;
     flex-direction: row !important;
     align-items: center !important;
     gap: 15px !important;

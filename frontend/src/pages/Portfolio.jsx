@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../css/portfolio.css";
-import "../css/portfolio2.css";
 
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
