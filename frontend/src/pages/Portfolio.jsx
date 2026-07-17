@@ -420,13 +420,12 @@ export default function Trial() {
   return (
     <>
       {/* Header */}
-      <header className="dashboard header">
+      <header className="dashboard header sm:w-full">
         <div className="logo">
           {editMode ? (
-            <div className="logo-edit">
+            <div className="logo-edit  ">
               <input
-                type="text"
-                className="bg-white text-black w-full pl-1"
+                className="editinput"
                 value={headerSection.logo}
                 onChange={(e) =>
                   setHeaderSection({ ...headerSection, logo: e.target.value })
@@ -457,6 +456,15 @@ export default function Trial() {
                   </button>
                 )}
               </div>
+              <input type="file" accept="image/*" onChange={handleLogoUpload} />
+              {headerSection.logoImage && (
+                <button
+                  className={`remove-btn ${editMode ? "editRemovebtn" : ""}`}
+                  onClick={removeLogo}
+                >
+                  Remove
+                </button>
+              )}
             </div>
           ) : (
             <>
@@ -472,7 +480,9 @@ export default function Trial() {
           )}
         </div>
 
-        <nav className={`navbar ${mobileMenu ? "mobile-open" : ""}`}>
+        <nav
+          className={` navbar ${mobileMenu ? "mobile-open" : ""} ${editMode ? "editlinks" : ""}`}
+        >
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
@@ -482,7 +492,7 @@ export default function Trial() {
 
         <div className="header-actions">
           <button
-            className="customize-btn flex items-center gap-1 md:gap-2"
+            className={`customize-btn flex items-center gap-1 md:gap-2 ${editMode ? "editsave-btn" : ""}`}
             onClick={async () => {
               if (editMode) {
                 await savePortfolio();
@@ -511,7 +521,9 @@ export default function Trial() {
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
                 {userData?.name?.charAt(0).toUpperCase()}
               </div>
-              <span className="hidden md:block text-white">{firstName}</span>
+              <span className="hidden md:block text-white firstnameClass">
+                {firstName}
+              </span>
             </button>
 
             {userMenu && (
@@ -1812,3 +1824,5 @@ export default function Trial() {
     </>
   );
 }
+
+// ended

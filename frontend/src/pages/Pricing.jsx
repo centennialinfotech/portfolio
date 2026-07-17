@@ -1,10 +1,8 @@
 import PublicLayout from "../layouts/PublicLayout";
 import { useState } from "react";
-import usePageCSS from "../hooks/usePageCSS";
 import { useNavigate } from "react-router-dom";
 
 export default function Pricing() {
-  usePageCSS("/css/pricing.css");
   const navigate = useNavigate();
 
   return (
