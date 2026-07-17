@@ -411,7 +411,7 @@ export default function Trial() {
 
         <div className="header-actions">
           <button
-            className="customize-btn flex items-center gap-1 md:gap-2"
+            className={`customize-btn flex items-center gap-1 md:gap-2 ${editMode ? "editsave-btn" : ""}`}
             onClick={async () => {
               if (editMode) {
                 await savePortfolio();
