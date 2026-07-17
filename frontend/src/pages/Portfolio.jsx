@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa";
 import { Menu, X, Settings, Save } from "lucide-react";
 import RemoveBtnPortfolio from "../components/RemoveBtnPortfolio";
+import imageCompression from "browser-image-compression";
 
 export default function Trial() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -33,6 +34,7 @@ export default function Trial() {
   const [editMode, setEditMode] = useState(false);
   const imageInputRef = useRef(null);
   const cvInputRef = useRef(null);
+  const phoneInputRef = useRef(null);
   const [userMenu, setUserMenu] = useState(false);
   const [userData, setUserData] = useState(null);
   const firstName = userData?.name?.split(" ")[0] || "";
@@ -59,6 +61,7 @@ export default function Trial() {
   const [headerSection, setHeaderSection] = useState({
     logo: "Portfolio",
     logoImage: "",
+    logoFileName: "",
   });
 
   const [heroSection, setHeroSection] = useState({
@@ -175,14 +178,39 @@ export default function Trial() {
   });
 
   // Image upload handlers
-  const handleLogoUpload = (e) => {
+  const handleLogoUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setHeaderSection({ ...headerSection, logoImage: reader.result });
-    };
-    reader.readAsDataURL(file);
+
+    try {
+      const compressedFile = await imageCompression(file, {
+        maxSizeMB: 0.1,
+        maxWidthOrHeight: 300,
+        useWebWorker: true,
+      });
+
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setHeaderSection({
+          ...headerSection,
+          logoImage: reader.result,
+          logoFileName: file.name,
+        });
+      };
+
+      reader.readAsDataURL(compressedFile);
+
+      console.log("Original:", (file.size / 1024 / 1024).toFixed(2), "MB");
+
+      console.log(
+        "Compressed:",
+        (compressedFile.size / 1024 / 1024).toFixed(2),
+        "MB",
+      );
+    } catch (error) {
+      console.error("Logo compression error:", error);
+    }
   };
 
   const removeLogo = () => {
@@ -312,20 +340,49 @@ export default function Trial() {
     if (!currentUser) return;
 
     const phoneValErr = validatePhone(contactSection.phone);
+
     if (phoneValErr) {
       setPhoneError(phoneValErr);
-      alert("Please fix the validation errors before saving. ⚠️");
+
+      alert("Please correct your phone number.");
+
+      setTimeout(() => {
+        if (phoneInputRef.current) {
+          phoneInputRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+
+          phoneInputRef.current.focus();
+        }
+      }, 300);
+
       return;
     }
 
     try {
       // Debug: Check what we're saving
-      console.log("Saving heroSection:", heroSection);
-      console.log("showGithub:", heroSection.showGithub);
-      console.log("showLinkedin:", heroSection.showLinkedin);
+      console.log(
+        "Image size:",
+        heroSection.image
+          ? (heroSection.image.length / 1024 / 1024).toFixed(2)
+          : "No image",
+        "MB",
+      );
+
+      console.log(
+        "Logo size:",
+        headerSection.logoImage
+          ? (headerSection.logoImage.length / 1024 / 1024).toFixed(2)
+          : "No logo",
+        "MB",
+      );
 
       await setDoc(doc(db, "trialData", currentUser.uid), {
-        headerSection,
+        headerSection: {
+          logo: headerSection.logo,
+          logoImage: headerSection.logoImage,
+        },
         heroSection: {
           ...heroSection,
           // Ensure booleans are explicitly saved
@@ -388,9 +445,7 @@ export default function Trial() {
                 </label>
 
                 <span className="text-sm text-gray-600">
-                  {headerSection.logoImage
-                    ? headerSection.logoImage.name
-                    : "No file chosen"}
+                  {headerSection.logoFileName || "No file chosen"}
                 </span>
 
                 {headerSection.logoImage && (
@@ -1440,6 +1495,7 @@ export default function Trial() {
                     }}
                   >
                     <input
+                      ref={phoneInputRef}
                       className={phoneError ? "input-error" : ""}
                       value={contactSection.phone}
                       onChange={(e) => {
