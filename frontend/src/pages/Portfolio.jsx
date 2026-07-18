@@ -418,7 +418,7 @@ export default function Trial() {
           </svg>
         </div>
       )}
-      <header className="dashboard header sm:w-full">
+      <header className="dashboard header w-40 sm:w-full md:w-1/2 lg:w-1/3 ">
         <div className="logo">
           {editMode ? (
             <div className="logo-edit">
