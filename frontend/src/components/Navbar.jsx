@@ -72,9 +72,9 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-28 py-6 border-b border-white/10 bg-black">
-        <div onClick={() => navigate("/")} className="cursor-pointer">
-          <h1 className="text-2xl sm:text-3xl font-black">
+      <nav className="sticky top-0 z-50 flex items-center justify-between gap-4 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16 py-6 border-b border-white/10 bg-black front-sans">
+        <div onClick={() => navigate("/")} className="cursor-pointer shrink-0">
+          <h1 className="text-xl sm:text-2xl xl:text-3xl font-black whitespace-nowrap">
             Centennial
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
               Portfolio
@@ -97,8 +97,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-5">
           <button
             onClick={() => navigate("/")}
-            className="text-white/70 hover:text-white"
-          >
+            className= "text-white/70 hover:text-white font-[Arial]">
             Home
           </button>
 
@@ -146,6 +145,11 @@ export default function Navbar() {
           )}
         </div>
       </nav>
+
+
+
+
+      
 
       {menuOpen && (
         <div className="lg:hidden bg-black/95 backdrop-blur-xl border-b border-white/10">
