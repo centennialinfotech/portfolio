@@ -353,7 +353,6 @@
     gap: 18px !important;
     flex: 1 !important;
     justify-content: center !important;
-    padding-left: 300px;
   }
 
   nav.sticky .hidden.lg\:flex button {

@@ -3068,7 +3068,7 @@ html {
     padding: 16px 30px !important;
   }
   .dashboard.header .logo-edit input[type="file"] {
-    display: flex;
+    display: none;
     width: 3px;
     height: 28px;
     position: absolute;
