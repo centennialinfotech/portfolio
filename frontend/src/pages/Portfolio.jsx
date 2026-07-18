@@ -459,6 +459,7 @@ export default function Trial() {
                   setHeaderSection({ ...headerSection, logo: e.target.value })
                 }
                 placeholder="Enter Logo Name"
+                maxLength={15}
               />
             </div>
           ) : (
