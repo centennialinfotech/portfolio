@@ -3517,7 +3517,7 @@ html {
     background: #ffffff !important;
     color: black !important;
     border-radius: 8px !important;
-    position: absolute !important;
+    /* position: absolute !important; */
   }
   .dashboard.header .logo-edit input[type="file"] {
     width: auto !important;
