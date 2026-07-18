@@ -366,7 +366,7 @@ export default function Trial() {
       <header className="dashboard header sm:w-full">
         <div className="logo">
           {editMode ? (
-            <div className="logo-edit  ">
+            <div className="logo-edit ">
               <input
                 className="editinput"
                 value={headerSection.logo}
