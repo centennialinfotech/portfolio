@@ -2339,7 +2339,7 @@ html {
 
   /* LOGO EDIT - Fix alignment */
   .dashboard.header .logo-edit {
-    display: flex !important;
+    /* display: flex !important; */
     flex-direction: row !important;
     align-items: center !important;
     gap: 10px !important;
@@ -2673,7 +2673,7 @@ html {
     font-size: 9px !important;
     padding: 8px 14px !important;
     width: 41px !important;
-    height: 72px;
+    height: auto;
   }
 
   .dashboard.header .logo-display {
