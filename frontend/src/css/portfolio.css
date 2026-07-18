@@ -150,7 +150,7 @@ body {
 
 /* HERO */
 .hero {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 140px 80px 80px;
   display: flex;
   justify-content: space-between;
