@@ -150,7 +150,7 @@ export default function Home() {
             {(!userData || userData.premium !== true) && (
               <button
                 onClick={() => navigate("/pricing")}
-                className="hidden [min-width:721px]:block go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
+                className="hidden [min-width:721px]: px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
               >
                 Go Premium
               </button>

@@ -763,7 +763,7 @@ nav .nav-right {
   }
 
   .sticky-nav nav .go-premium-btn {
-    display: block !important;
+    display: none !important;
     padding: 6px 14px !important;
     font-size: 12px !important;
     border-radius: 8px !important;
@@ -826,7 +826,7 @@ nav .nav-right {
 
   /* GO PREMIUM BUTTON */
   .sticky-nav nav .go-premium-btn {
-    display: block !important;
+    display: none !important;
     padding: 6px 14px !important;
     font-size: 12px !important;
     border-radius: 8px !important;
@@ -892,7 +892,7 @@ nav .nav-right {
 
   /* GO PREMIUM BUTTON */
   .sticky-nav nav .go-premium-btn {
-    display: block !important;
+    display: none !important;
     padding: 10px 20px !important;
     font-size: 14px !important;
     border-radius: 12px !important;
@@ -959,7 +959,7 @@ nav .nav-right {
 
   /* GO PREMIUM BUTTON */
   .sticky-nav nav .go-premium-btn {
-    display: block !important;
+    display: none !important;
     padding: 8px 16px !important;
     font-size: 13px !important;
     border-radius: 10px !important;

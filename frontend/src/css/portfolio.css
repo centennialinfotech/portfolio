@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 * {
   box-sizing: border-box;
 }
@@ -61,6 +59,7 @@ body {
   left: 0;
   background: #07122b;
   z-index: 1000;
+  height: 65px;
 }
 
 .logo {
@@ -151,7 +150,6 @@ body {
 
 /* HERO */
 .hero {
-  min-height: 100vh;
   padding: 140px 80px 80px;
   display: flex;
   justify-content: space-between;
@@ -1252,6 +1250,9 @@ html {
   }
 
   /* Hero */
+  .logo img {
+    width: 100px;
+  }
   .hero {
     padding: 130px 40px 60px !important;
     gap: 30px !important;
@@ -1441,7 +1442,6 @@ html {
       justify-content: space-between !important;
       padding: 8px 15px !important;
       min-height: 50px !important;
-      height: 80px !important;
       gap: 8px !important;
     }
 
@@ -1465,13 +1465,13 @@ html {
       height: 32px;
       font-size: 19px !important;
       padding: 3px 5px !important;
-      background: #ababab !important;
       color: black !important;
       border: 1px solid #2a3a55 !important;
       border-radius: 6px !important;
       position: absolute;
       top: 15.5px;
       left: 15px;
+      margin-top: 50px;
     }
 
     .dashboard.header .logo-edit input[type="file"] {
@@ -2206,6 +2206,7 @@ html {
   .dashboard.header .logo-edit input[type="text"] {
     width: 90px !important;
     font-size: 10px !important;
+    margin-top: 50px;
   }
 
   .dashboard.header .logo-edit input[type="file"] {
@@ -2236,7 +2237,7 @@ html {
 
   /* LOGO EDIT - Fix alignment */
   .dashboard.header .logo-edit {
-    display: flex !important;
+    /* display: flex !important; */
     flex-direction: row !important;
     align-items: center !important;
     gap: 10px !important;
@@ -2329,13 +2330,12 @@ html {
   }
 
   .dashboard.header .logo-edit input[type="text"] {
-    width: 70px !important;
     font-size: 11px !important;
   }
 
-  .hero {
+  /* .hero {
     padding-top: 85px !important;
-  }
+  } */
 }
 
 /* ============================================
@@ -2353,11 +2353,11 @@ html {
     font-size: 9px !important;
     padding: 8px 14px !important;
     width: 41px !important;
-    height: 72px;
+    height: auto;
   }
 
   .dashboard.header .logo-display {
-    font-size: 18px !important;
+    font-size: 12px !important;
   }
 
   .dashboard.header .logo-img {
@@ -2368,7 +2368,7 @@ html {
   .dashboard.header .navbar {
     display: flex !important;
     background: transparent;
-    position: absolute;
+    /* position: absolute; */
     left: 196px;
   }
 
@@ -2642,7 +2642,7 @@ html {
   }
 
   .dashboard.header .logo-display {
-    font-size: 18px !important;
+    font-size: 10px !important;
     white-space: nowrap !important;
     font-weight: 700 !important;
   }
@@ -2661,11 +2661,7 @@ html {
   .dashboard.header .logo-edit input[type="text"] {
     width: 160px !important;
     font-size: 12px !important;
-    /* padding: 2px 4px !important; */
     height: 22px !important;
-    background: #000000 !important;
-    color: black !important;
-    border: 1px solid #2a3a55 !important;
     border-radius: 6px !important;
   }
   .dashboard.header .logo-edit .editinput {
@@ -2914,7 +2910,6 @@ html {
     width: 160px !important;
     font-size: 25px !important;
     height: 35px !important;
-    background-color: #777777;
   }
 
   .dashboard.header .logo-edit input[type="file"] {
@@ -2969,16 +2964,16 @@ html {
     display: none !important;
   }
 
-  .hero {
+  /* .hero {
     padding-top: 70px !important;
-  }
+  } */
 }
 
 /* Surface Duo 2 - Unfolded */
 @media screen and (min-width: 1100px) and (max-width: 1368px) and (orientation: landscape) {
   .dashboard.header {
     padding: 8px 25px !important;
-    min-height: 60px !important;
+    min-height: auto !important;
     gap: 15px !important;
   }
 
@@ -3046,9 +3041,9 @@ html {
     display: none !important;
   }
 
-  .hero {
+  /* .hero {
     padding-top: 75px !important;
-  }
+  } */
 }
 .edit-mode-padding {
   padding-top: 140px;
@@ -3142,11 +3137,10 @@ html {
     height: 28px !important;
     font-size: 14px !important;
     padding: 2px 8px !important;
-    background: #d0d0d0 !important;
     color: black !important;
     border-radius: 5px !important;
-    position: relative;
-    top: -12px;
+    position: absolute;
+    top: 50px;
     left: 23px;
   }
   .dashboard.header .logo-edit input[type="file"] {
@@ -3177,7 +3171,6 @@ html {
 /* Asus Zenbook Fold (2560x1920) */
 @media only screen and (min-width: 853) and (min-height: 1280) {
   .dashboard.header .logo-edit {
-    display: none !important;
     flex-direction: row !important;
     align-items: center !important;
     gap: 15px !important;
@@ -3191,7 +3184,7 @@ html {
     background: #ffffff !important;
     color: black !important;
     border-radius: 8px !important;
-    position: static !important;
+    /* position: absolute !important; */
   }
   .dashboard.header .logo-edit input[type="file"] {
     width: auto !important;
@@ -3231,4 +3224,40 @@ html {
   width: 100% !important;
   left: 0 !important;
   right: 0 !important;
+}
+
+/* Desktop/Laptop ONLY - excludes Nest Hub, iPads, Surface, etc. */
+@media only screen and (min-width: 1281px) {
+  .dashboard.header {
+    display: flex;
+  }
+
+  .dashboard.header .editinput {
+    height: 38px;
+    width: auto;
+    position: relative;
+    top: 13px;
+    border: 2px solid white;
+  }
+
+  .dashboard.header .editRemovebtn {
+    display: flex;
+    height: 24px;
+    width: 43px;
+    background-color: red;
+    position: relative;
+    font-size: 11px;
+    position: relative;
+    top: -16px;
+    left: 142px;
+  }
+  .dashboard.header input[type="file"] {
+    display: flex;
+    background-color: #ffff;
+    color: #000;
+    height: 27px;
+    width: 142px;
+    position: relative;
+    top: 9px;
+  }
 }
