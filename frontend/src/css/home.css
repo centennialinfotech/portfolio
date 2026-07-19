@@ -311,7 +311,7 @@ nav .nav-right {
 
     padding: 0 10px !important;
 
-    border-radius: 9999px !important;
+    border-radius: 8px !important;
 
     font-size: 11px !important;
     line-height: 1 !important;
@@ -717,7 +717,7 @@ nav .nav-right {
     font-size: 11px !important;
     align-items: center !important;
     justify-content: center !important;
-    border-radius: 9999px !important;
+    border-radius: 8px !important;
   }
 
   /* Explicitly keep the desktop-only "hidden md:block" button hidden */
