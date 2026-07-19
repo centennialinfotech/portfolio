@@ -1,9 +1,10 @@
 import PublicLayout from "../layouts/PublicLayout";
 
 import React from "react";
-import "../css/refundpolicy.css";
+import usePageCSS from "../hooks/usePageCSS";
 
 export default function RefundPolicy() {
+  usePageCSS("/css/refundPolicy.css");
   return (
     <PublicLayout>
       <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">

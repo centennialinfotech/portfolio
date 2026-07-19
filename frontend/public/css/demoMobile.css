@@ -1,0 +1,1282 @@
+/* ============================================
+   ASUS ZENBOOK FOLD - FIX LOGO & FILE UPLOAD
+   ============================================ */
+
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+  /* ===== HEADER ===== */
+  .dashboard.header {
+    padding: 6px 15px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    min-height: 48px !important;
+    width: 100% !important;
+  }
+
+  /* ===== LOGO + FILE UPLOAD ===== */
+  .dashboard.header .logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex: 0 0 auto !important;
+    max-width: 180px !important;
+  }
+
+  .dashboard.header .logo-display {
+    font-size: 15px !important;
+    white-space: nowrap !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 28px !important;
+    width: auto !important;
+  }
+
+  /* ===== FILE UPLOAD BUTTON - VISIBLE NEXT TO LOGO ===== */
+  .dashboard.header .logo-edit {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 4px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 60px !important;
+    font-size: 10px !important;
+    padding: 3px 5px !important;
+    height: 26px !important;
+    background: #0f1a33 !important;
+    color: white !important;
+    border: 1px solid #2a3a55 !important;
+    border-radius: 4px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"] {
+    display: inline-block !important;
+    max-width: 55px !important;
+    font-size: 7px !important;
+    padding: 2px !important;
+    height: 26px !important;
+    background: transparent !important;
+    color: white !important;
+    border: 1px solid #2a3a55 !important;
+    border-radius: 4px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"]::file-selector-button {
+    font-size: 6px !important;
+    padding: 2px 4px !important;
+    background: #1a2a44 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 6px !important;
+    padding: 2px 4px !important;
+    height: 20px !important;
+    background: #ff4d4f !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+  }
+
+  /* ===== NAVBAR - CENTERED ===== */
+  .dashboard.header .navbar {
+    display: flex !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 0 10px !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 13px !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 4px 8px !important;
+    white-space: nowrap !important;
+  }
+
+  .dashboard.header .navbar a:hover {
+    color: #22d3ee !important;
+  }
+
+  /* ===== HIDE MOBILE MENU ===== */
+  .dashboard.header .mobile-nav-panel {
+    display: none !important;
+  }
+
+  .dashboard.header .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* ===== HEADER ACTIONS - RIGHT ===== */
+  .dashboard.header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* ===== CUSTOMIZE/SAVE BUTTON ===== */
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 10px !important;
+    padding: 4px 10px !important;
+    min-width: 65px !important;
+    height: 30px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ===== GO PREMIUM BUTTON ===== */
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 9px !important;
+    padding: 4px 10px !important;
+    height: 30px !important;
+    min-width: 75px !important;
+    border-radius: 5px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: black !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+}
+
+/* ============================================
+   ASUS ZENBOOK FOLD - LANDSCAPE
+   ============================================ */
+@media screen and (min-width: 1300px) and (max-width: 1500px) and (orientation: landscape) {
+  .dashboard.header {
+    padding: 8px 25px !important;
+    min-height: 54px !important;
+    gap: 12px !important;
+  }
+
+  .dashboard.header .logo {
+    max-width: 200px !important;
+  }
+
+  .dashboard.header .logo-display {
+    font-size: 18px !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 32px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 70px !important;
+    font-size: 11px !important;
+    height: 28px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"] {
+    max-width: 60px !important;
+    font-size: 8px !important;
+    height: 28px !important;
+  }
+
+  .dashboard.header .navbar {
+    gap: 18px !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 15px !important;
+    padding: 5px 10px !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 11px !important;
+    padding: 5px 12px !important;
+    min-width: 75px !important;
+    height: 34px !important;
+  }
+
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 10px !important;
+    padding: 4px 12px !important;
+    height: 34px !important;
+    min-width: 85px !important;
+  }
+}
+
+/* ============================================
+   ASUS ZENBOOK FOLD - PORTRAIT
+   ============================================ */
+@media screen and (min-width: 800px) and (max-width: 1300px) and (orientation: portrait) {
+  .dashboard.header {
+    padding: 5px 10px !important;
+    min-height: 42px !important;
+    gap: 5px !important;
+  }
+
+  .dashboard.header .logo {
+    max-width: 150px !important;
+  }
+
+  .dashboard.header .logo-display {
+    font-size: 13px !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 24px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 45px !important;
+    font-size: 9px !important;
+    height: 22px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"] {
+    max-width: 40px !important;
+    font-size: 6px !important;
+    height: 22px !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 6px !important;
+    padding: 1px 3px !important;
+    height: 18px !important;
+  }
+
+  .dashboard.header .navbar {
+    gap: 6px !important;
+    padding: 0 5px !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 17px !important;
+    padding: 3px 5px !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 8px !important;
+    padding: 3px 8px !important;
+    min-width: 50px !important;
+    height: 26px !important;
+  }
+
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 7px !important;
+    padding: 3px 6px !important;
+    height: 26px !important;
+    min-width: 55px !important;
+  }
+}
+
+/* ============================================
+   IPAD MINI - GEAR ICON FOR CUSTOMIZE BUTTON
+   ============================================ */
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 820px) {
+  /* ===== CUSTOMIZE BUTTON - SHOW GEAR ICON IN BOTH MODES ===== */
+
+  /* Non-edit mode - show gear icon */
+  .dashboard.header .header-actions .customize-btn:not(.edit-mode) {
+    font-size: 0 !important;
+    padding: 8px !important;
+    min-width: 38px !important;
+    height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn:not(.edit-mode)::before {
+    content: "⚙️" !important;
+    font-size: 18px !important;
+    display: inline-block !important;
+  }
+
+  /* Edit mode - show gear icon with save text */
+  .dashboard.header .header-actions .customize-btn.edit-mode {
+    font-size: 11px !important;
+    padding: 6px 12px !important;
+    min-width: 70px !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    background: #4caf50 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn.edit-mode::before {
+    content: "⚙️ " !important;
+    font-size: 14px !important;
+    display: inline-block !important;
+  }
+
+  /* ===== HIDE MOBILE MENU ON IPAD MINI ===== */
+  .dashboard.header .mobile-menu-btn {
+    display: none !important;
+  }
+
+  .dashboard.header .mobile-nav-panel {
+    display: none !important;
+  }
+
+  /* ===== SHOW DESKTOP NAVBAR ===== */
+  .dashboard.header .navbar {
+    display: flex !important;
+  }
+}
+
+/* ============================================
+   IPAD MINI - FILE INPUT WITH COLOR
+   ============================================ */
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 820px) {
+  /* ===== HEADER ===== */
+  .dashboard.header {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 6px 12px !important;
+    min-height: 46px !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  /* ===== LOGO ===== */
+  .dashboard.header .logo {
+    flex: 0 0 auto !important;
+    max-width: 70px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .dashboard.header .logo-display {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 24px !important;
+    width: auto !important;
+  }
+
+  /* ===== FILE INPUT - BIGGER WITH COLOR ===== */
+  .dashboard.header .logo-edit {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 35px !important;
+    font-size: 8px !important;
+    padding: 2px 3px !important;
+    height: 15px !important;
+    background: #0f1a33 !important;
+    color: white !important;
+    border: 1px solid #2a3a55 !important;
+    border-radius: 3px !important;
+  }
+
+  /* CHOOSE INPUT - BIGGER WITH COLOR */
+  .dashboard.header .logo-edit input[type="file"] {
+    display: inline-block !important;
+    max-width: 55px !important; /* ← BIGGER */
+    width: 60px !important; /* ← BIGGER */
+    font-size: 9px !important;
+    padding: 2px 8px 2px 8px !important; /* top right bottom left */
+    height: 34px !important;
+    background: #1a2a44 !important; /* ← ADDED COLOR */
+    color: white !important;
+    border: 1px solid #3a5a7a !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"]::file-selector-button {
+    font-size: 5px !important;
+    padding: 2px 4px !important;
+    background: #2a4a6a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 2px !important;
+    width: 100% !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 5px !important;
+    padding: 1px 3px !important;
+    height: 18px !important;
+    background: #ff4d4f !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 2px !important;
+    cursor: pointer !important;
+  }
+
+  /* ===== NAVBAR - CENTERED ===== */
+  .dashboard.header .navbar {
+    display: flex !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important; /* ← MORE SPACE */
+    padding: 0 8px !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 11px !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 3px 6px !important;
+    white-space: nowrap !important;
+  }
+
+  .dashboard.header .navbar a:hover {
+    color: #22d3ee !important;
+  }
+
+  /* ===== HIDE MOBILE MENU ===== */
+  .dashboard.header .mobile-nav-panel {
+    display: none !important;
+  }
+
+  .dashboard.header .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* ===== HEADER ACTIONS - RIGHT ===== */
+  .dashboard.header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* ===== CUSTOMIZE BUTTON ===== */
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 9px !important;
+    padding: 3px 8px !important;
+    min-width: 50px !important;
+    height: 28px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn::before {
+    content: "⚙️ " !important;
+    font-size: 11px !important;
+    display: inline-block !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn.edit-mode {
+    background: #4caf50 !important;
+  }
+
+  /* ===== GO PREMIUM BUTTON ===== */
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 8px !important;
+    padding: 3px 8px !important;
+    height: 28px !important;
+    min-width: 60px !important;
+    border-radius: 4px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: black !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+}
+
+/* ============================================
+   SURFACE PRO 7 - FIX CHOOSE INPUT IN EDIT MODE
+   ============================================ */
+
+@media screen and (min-width: 1200px) and (max-width: 1500px) and (min-resolution: 200dpi) {
+  /* ===== HEADER ===== */
+  .dashboard.header {
+    padding: 8px 20px !important;
+    min-height: 50px !important;
+    gap: 10px !important;
+  }
+
+  /* ===== LOGO ===== */
+  .dashboard.header .logo {
+    flex: 0 0 auto !important;
+    max-width: 80px !important;
+  }
+
+  .dashboard.header .logo-display {
+    font-size: 16px !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 30px !important;
+  }
+
+  /* ===== LOGO EDIT - ENLARGE CHOOSE INPUT ===== */
+  .dashboard.header .logo-edit {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 5px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 55px !important;
+    font-size: 10px !important;
+    padding: 3px 5px !important;
+    height: 26px !important;
+    background: #0f1a33 !important;
+    color: white !important;
+    border: 1px solid #2a3a55 !important;
+    border-radius: 4px !important;
+  }
+
+  /* CHOOSE INPUT - ENLARGED BUT NOT TOUCHING HOME */
+  .dashboard.header .logo-edit input[type="file"] {
+    display: inline-block !important;
+    max-width: 65px !important; /* ENLARGED */
+    width: 65px !important; /* ENLARGED */
+    font-size: 8px !important; /* BIGGER TEXT */
+    padding: 3px 6px !important;
+    height: 26px !important;
+    background: #1a2a44 !important;
+    color: white !important;
+    border: 1px solid #3a5a7a !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"]::file-selector-button {
+    font-size: 7px !important;
+    padding: 2px 4px !important;
+    background: #2a4a6a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+    width: 100% !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 7px !important;
+    padding: 2px 5px !important;
+    height: 22px !important;
+    background: #ff4d4f !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+  }
+
+  /* ===== NAVBAR - CENTERED WITH SPACE ===== */
+  .dashboard.header .navbar {
+    display: flex !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important;
+    padding: 0 12px !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 14px !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 4px 8px !important;
+    white-space: nowrap !important;
+  }
+
+  /* ===== HIDE MOBILE MENU ===== */
+  .dashboard.header .mobile-nav-panel {
+    display: none !important;
+  }
+
+  .dashboard.header .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* ===== HEADER ACTIONS - RIGHT ===== */
+  .dashboard.header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* ===== CUSTOMIZE BUTTON ===== */
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 11px !important;
+    padding: 5px 12px !important;
+    min-width: 65px !important;
+    height: 32px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn.edit-mode {
+    background: #4caf50 !important;
+  }
+
+  /* ===== GO PREMIUM BUTTON ===== */
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 10px !important;
+    padding: 4px 12px !important;
+    height: 32px !important;
+    min-width: 75px !important;
+    border-radius: 5px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: black !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding-top: 85px !important;
+  }
+}
+
+/* ============================================
+   NEST HUB - FIX CHOOSE INPUT POSITION
+   ============================================ */
+
+@media screen and (min-width: 1000px) and (max-width: 1100px) and (max-height: 650px) {
+  /* ===== HEADER - FIX LAYOUT ===== */
+  .dashboard.header {
+    padding: 8px 20px !important;
+    min-height: 48px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    position: relative !important;
+  }
+
+  /* ===== LOGO - COMPACT WITH FLEX COLUMN FOR EDIT MODE ===== */
+  .dashboard.header .logo {
+    flex: 0 0 auto !important;
+    max-width: 100px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .dashboard.header .logo-display {
+    font-size: 14px !important;
+    white-space: nowrap !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 26px !important;
+    width: auto !important;
+  }
+
+  /* ===== LOGO EDIT - FIX POSITION ===== */
+  .dashboard.header .logo-edit {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    position: relative !important;
+  }
+
+  /* Text input for logo name */
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 70px !important;
+    font-size: 10px !important;
+    padding: 3px 5px !important;
+    height: 24px !important;
+    background: #0f1a33 !important;
+    color: white !important;
+    border: 1px solid #2a3a55 !important;
+    border-radius: 3px !important;
+  }
+
+  /* ===== CHOOSE FILE INPUT - POSITIONED BELOW LOGO NAME ===== */
+  .dashboard.header .logo-edit input[type="file"] {
+    display: block !important;
+    max-width: 70px !important;
+    width: 70px !important;
+    font-size: 7px !important;
+    padding: 2px 4px !important;
+    height: 20px !important;
+    background: #1a2a44 !important;
+    color: white !important;
+    border: 1px solid #3a5a7a !important;
+    border-radius: 3px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    /* This ensures it stays below the text input */
+  }
+
+  .dashboard.header .logo-edit input[type="file"]::file-selector-button {
+    font-size: 5px !important;
+    padding: 1px 3px !important;
+    background: #2a4a6a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 2px !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 5px !important;
+    padding: 1px 3px !important;
+    height: 18px !important;
+    background: #ff4d4f !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 2px !important;
+    cursor: pointer !important;
+    /* Position below file input */
+    margin-top: 0 !important;
+  }
+
+  /* ===== ENSURE NAVBAR STAYS ALIGNED ===== */
+  .dashboard.header .navbar {
+    display: flex !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 16px !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+    position: static !important;
+    background: transparent !important;
+    width: auto !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 14px !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 4px 8px !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  .dashboard.header .navbar a:hover {
+    color: #22d3ee !important;
+  }
+
+  /* ===== HIDE MOBILE MENU ===== */
+  .dashboard.header .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* ===== HEADER ACTIONS - RIGHT SIDE ===== */
+  .dashboard.header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+  }
+
+  /* ===== CUSTOMIZE BUTTON ===== */
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 11px !important;
+    padding: 4px 12px !important;
+    min-width: 50px !important;
+    height: 30px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn.edit-mode {
+    background: #4caf50 !important;
+  }
+
+  /* ===== GO PREMIUM BUTTON ===== */
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 9px !important;
+    padding: 4px 10px !important;
+    height: 30px !important;
+    min-width: 65px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: black !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  /* ===== HERO SECTION - ADJUST FOR SMALL SCREEN ===== */
+  .hero {
+    padding-top: 70px !important;
+    min-height: auto !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+
+  .hero-left h1 {
+    font-size: 48px !important;
+  }
+
+  .hero-left h2 {
+    font-size: 28px !important;
+  }
+
+  .image-circle {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+
+/* ============================================
+   NEST HUB MAX (1280 x 800) - SPECIFIC TARGETING
+   ============================================ */
+
+@media screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
+  /* ===== HEADER - FIX LAYOUT ===== */
+  .dashboard.header {
+    padding: 10px 30px !important;
+    min-height: 55px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    position: relative !important;
+  }
+
+  /* ===== LOGO - COMPACT WITH FLEX COLUMN FOR EDIT MODE ===== */
+  .dashboard.header .logo {
+    flex: 0 0 auto !important;
+    max-width: 120px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .dashboard.header .logo-display {
+    font-size: 18px !important;
+    white-space: nowrap !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 32px !important;
+    width: auto !important;
+  }
+
+  /* ===== LOGO EDIT - FIX POSITION ===== */
+  .dashboard.header .logo-edit {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    position: relative !important;
+  }
+
+  /* Text input for logo name */
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 80px !important;
+    font-size: 12px !important;
+    padding: 4px 6px !important;
+    height: 26px !important;
+    background: #0f1a33 !important;
+    color: white !important;
+    border: 1px solid #2a3a55 !important;
+    border-radius: 4px !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"] {
+    display: block !important;
+    max-width: 397px !important;
+    width: 332px !important;
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    /* height: auto !important; */
+    height: -30px !important;
+    line-height: 3.5 !important;
+
+    color: white !important;
+    border: 1px solid #3a5a7a !important;
+    border-radius: 73px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"]::file-selector-button {
+    font-size: 6px !important;
+    padding: 1px 4px !important;
+    background: #2a4a6a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 6px !important;
+    padding: 1px 4px !important;
+    height: 20px !important;
+    background: #ff4d4f !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+    margin-top: 0 !important;
+  }
+
+  /* ===== ENSURE NAVBAR STAYS ALIGNED ===== */
+  .dashboard.header .navbar {
+    display: flex !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 24px !important;
+    padding: 0 15px !important;
+    margin: 0 !important;
+    position: static !important;
+    background: transparent !important;
+    width: auto !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 16px !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 5px 10px !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  .dashboard.header .navbar a:hover {
+    color: #22d3ee !important;
+  }
+
+  /* ===== HIDE MOBILE MENU ===== */
+  .dashboard.header .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* ===== HEADER ACTIONS - RIGHT SIDE ===== */
+  .dashboard.header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+  }
+
+  /* ===== CUSTOMIZE BUTTON ===== */
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 12px !important;
+    padding: 5px 14px !important;
+    min-width: 55px !important;
+    height: 34px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn.edit-mode {
+    background: #4caf50 !important;
+  }
+
+  /* ===== GO PREMIUM BUTTON ===== */
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 10px !important;
+    padding: 5px 12px !important;
+    height: 34px !important;
+    min-width: 75px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: black !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  /* ===== HERO SECTION - ADJUST FOR NEST HUB MAX ===== */
+  .hero {
+    padding-top: 80px !important;
+    min-height: auto !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+
+  .hero-left h1 {
+    font-size: 52px !important;
+  }
+
+  .hero-left h2 {
+    font-size: 32px !important;
+  }
+
+  .hero-left p {
+    font-size: 18px !important;
+  }
+
+  .image-circle {
+    width: 280px !important;
+    height: 280px !important;
+  }
+}
+
+/* ============================================
+   DESKTOP - FIX CHOOSE INPUT UNDER LOGO
+   ============================================ */
+
+@media screen and (min-width: 1025px) {
+  /* Force the logo-edit to stack vertically */
+  .dashboard.header .logo-edit {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    width: auto !important;
+    min-width: 140px !important;
+  }
+
+  /* Hide the desktop navbar when in edit mode - show on separate line */
+  .dashboard.header.edit-mode .navbar {
+    display: flex !important;
+  }
+
+  /* Logo text input */
+  .dashboard.header .logo-edit input[type="text"] {
+    width: 140px !important;
+    font-size: 14px !important;
+    padding: 6px 10px !important;
+    height: 32px !important;
+    background: #0f1a33 !important;
+    color: white !important;
+    border: 1px solid #2a3a55 !important;
+    border-radius: 6px !important;
+    display: block !important;
+  }
+
+  /* CHOOSE FILE INPUT - Force below logo */
+  .dashboard.header .logo-edit input[type="file"] {
+    display: block !important;
+    max-width: 200px !important;
+    width: 200px !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+    height: 30px !important;
+    background: #1a2a44 !important;
+    color: white !important;
+    border: 1px solid #3a5a7a !important;
+    border-radius: 6px !important;
+    margin: 0 !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+  }
+
+  .dashboard.header .logo-edit input[type="file"]::file-selector-button {
+    font-size: 9px !important;
+    padding: 2px 6px !important;
+    background: #2a4a6a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+  }
+
+  .dashboard.header .logo-edit .remove-btn {
+    font-size: 9px !important;
+    padding: 3px 8px !important;
+    height: 26px !important;
+    background: #ff4d4f !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+    margin-top: 2px !important;
+  }
+
+  /* Make sure logo container allows column layout */
+  .dashboard.header .logo {
+    display: flex !important;
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    max-width: 200px !important;
+    min-width: 140px !important;
+  }
+
+  /* Logo display (non-edit mode) */
+  .dashboard.header .logo-display {
+    font-size: 22px !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .dashboard.header .logo-img {
+    height: 40px !important;
+    width: auto !important;
+  }
+
+  /* ===== NAVBAR - CENTERED ===== */
+  .dashboard.header .navbar {
+    display: flex !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 30px !important;
+    padding: 0 20px !important;
+    margin: 0 !important;
+    position: static !important;
+    background: transparent !important;
+    width: auto !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .dashboard.header .navbar a {
+    font-size: 16px !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 6px 12px !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+    font-weight: 500 !important;
+  }
+
+  .dashboard.header .navbar a:hover {
+    color: #22d3ee !important;
+  }
+
+  /* ===== HIDE MOBILE MENU ===== */
+  .dashboard.header .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* ===== HEADER ACTIONS - RIGHT SIDE ===== */
+  .dashboard.header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+  }
+
+  /* ===== CUSTOMIZE/SAVE BUTTON ===== */
+  .dashboard.header .header-actions .customize-btn {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+    min-width: 70px !important;
+    height: 36px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .dashboard.header .header-actions .customize-btn.edit-mode {
+    background: #4caf50 !important;
+  }
+
+  /* ===== GO PREMIUM BUTTON ===== */
+  .dashboard.header .header-actions .go-premium-btn {
+    font-size: 12px !important;
+    padding: 6px 14px !important;
+    height: 36px !important;
+    min-width: 90px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: black !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding-top: 90px !important;
+  }
+}

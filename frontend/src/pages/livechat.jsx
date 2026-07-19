@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import "../css/livechat.css";
+import usePageCSS from "../hooks/usePageCSS";
 export default function LiveChat() {
-  useEffect(() => {
-    const script = document.createElement("script");
+  (usePageCSS("/css/livechat.css"),
+    useEffect(() => {
+      const script = document.createElement("script");
 
-    script.src = "https://embed.tawk.to/6a2915d68705f01c35099884/1jqo7qk7h";
-    script.async = true;
-    script.charset = "UTF-8";
-    script.setAttribute("crossorigin", "*");
+      script.src = "https://embed.tawk.to/6a2915d68705f01c35099884/1jqo7qk7h";
+      script.async = true;
+      script.charset = "UTF-8";
+      script.setAttribute("crossorigin", "*");
 
-    document.body.appendChild(script);
+      document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+      return () => {
+        document.body.removeChild(script);
+      };
+    }, []));
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center">

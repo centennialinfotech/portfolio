@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import usePageCSS from "../hooks/usePageCSS";
 
 export default function Register() {
+  usePageCSS("/css/register.css");
   const [formData, setFormData] = useState({
     name: "",
     email: "",

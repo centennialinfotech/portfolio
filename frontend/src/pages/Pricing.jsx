@@ -1,6 +1,5 @@
 import PublicLayout from "../layouts/PublicLayout";
 import { useState } from "react";
-import "../css/pricing.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Pricing() {

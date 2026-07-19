@@ -1,10 +1,9 @@
 import React from "react";
-// import "../css/demo_dashboard.css";
-// import "../css/demoMobile.css";
-import "../css/portfolio.css";
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import { HiMenu, HiX } from "react-icons/hi";
+import "../css/demo_dashboard.css";
+import "../css/demoMobile.css";
 import {
   FaGithub,
   FaExternalLinkAlt,

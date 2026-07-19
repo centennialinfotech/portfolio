@@ -1,8 +1,9 @@
 import PublicLayout from "../layouts/PublicLayout";
 import React from "react";
-import "../css/privacypolicy.css";
+import usePageCSS from "../hooks/usePageCSS";
 
 export default function PrivacyPolicy() {
+  usePageCSS("/css/privacyPolicy.css");
   return (
     <PublicLayout>
       <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">

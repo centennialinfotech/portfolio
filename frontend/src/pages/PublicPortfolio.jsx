@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../css/portfolio.css";
+import usePageCSS from "../hooks/usePageCSS";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import {
@@ -28,6 +28,7 @@ import {
 import { Menu, X } from "lucide-react";
 
 export default function PublicPortfolio() {
+  usePageCSS("/css/dashboard.css");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isPremium, setIsPremium] = useState(false);

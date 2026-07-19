@@ -1,11 +1,10 @@
-@import "tailwindcss";
-
 /* ====================================
    GLOBAL RESET
 ==================================== */
 
 * {
   box-sizing: border-box;
+  
 }
 
 html,
@@ -311,13 +310,14 @@ nav .nav-right {
 
     padding: 0 10px !important;
 
-    border-radius: 9999px !important;
+    border-radius: 8px !important;
 
     font-size: 11px !important;
     line-height: 1 !important;
 
     white-space: nowrap;
   }
+
   .hamburger-btn svg {
     width: 24px !important;
     height: 24px !important;
@@ -341,6 +341,15 @@ nav .nav-right {
   nav .nav-right {
     margin-left: auto !important;
     gap: 6px !important;
+  }
+
+  nav .go-premium-btn {
+    min-width: 0 !important;
+
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+
+    font-size: 11px !important;
   }
 }
 
@@ -399,8 +408,19 @@ nav .nav-right {
   }
 } */
 
-/* This block is now superseded by the 721–1024px rule below */
 @media (min-width: 821px) and (max-width: 899px) {
+  nav.logged-in .nav-links {
+    display: none !important;
+  }
+
+  nav.logged-in .hamburger-btn {
+    display: flex !important;
+  }
+
+  nav.logged-in .nav-right {
+    margin-left: auto !important;
+  }
+
   nav.logged-out .nav-links {
     display: flex !important;
   }
@@ -415,12 +435,25 @@ nav .nav-right {
 ==================================== */
 
 @media (min-width: 900px) and (max-width: 1024px) {
-  nav .nav-links {
+  nav.logged-out .nav-links {
     display: flex !important;
+    gap: 18px;
   }
 
-  nav .hamburger-btn {
+  nav.logged-out .nav-links a {
+    font-size: 13px;
+  }
+
+  nav.logged-out .hamburger-btn {
     display: none !important;
+  }
+
+  nav.logged-in .nav-links {
+    display: none !important;
+  }
+
+  nav.logged-in .hamburger-btn {
+    display: flex !important;
   }
 
   nav.logged-in .nav-right {
@@ -627,6 +660,16 @@ nav .nav-right {
 /* Very narrow phones / folded small view (e.g. Folded Z Fold widths ~340px)
    Keep the navbar compact without showing the menu button outside mobile. */
 @media (max-width: 420px) {
+  nav .go-premium-btn {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+    padding-top: 4px !important;
+    padding-bottom: 2px !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    min-width: 0 !important;
+  }
+
   nav .nav-right {
     margin-left: auto !important;
     gap: 1px !important;
@@ -697,7 +740,7 @@ nav .nav-right {
     font-size: 11px !important;
     align-items: center !important;
     justify-content: center !important;
-    border-radius: 9999px !important;
+    border-radius: 8px !important;
   }
 
   /* Explicitly keep the desktop-only "hidden md:block" button hidden */
@@ -939,7 +982,7 @@ nav .nav-right {
 
   /* GO PREMIUM BUTTON */
   .sticky-nav nav .go-premium-btn {
-    display: none !important;
+    display: block !important;
     padding: 8px 16px !important;
     font-size: 13px !important;
     border-radius: 10px !important;
@@ -986,46 +1029,5 @@ nav .nav-right {
 
   .sticky-nav nav .nav-links {
     gap: 12px !important;
-  }
-}
-
-/* ============================================
-   TABLET & SMALL DESKTOP (721px – 1024px)
-   Always show nav links, never show hamburger
-   ============================================ */
-
-@media (min-width: 721px) and (max-width: 1024px) {
-  nav .nav-links {
-    display: flex !important;
-  }
-
-  nav .hamburger-btn {
-    display: none !important;
-  }
-
-  nav .nav-links a,
-  nav .nav-links button {
-    font-size: 12px !important;
-    padding: 4px 8px !important;
-    white-space: nowrap;
-  }
-
-  nav {
-    gap: 10px;
-  }
-
-  .sticky-nav nav .nav-links {
-    display: flex !important;
-    gap: 10px !important;
-  }
-
-  .sticky-nav nav .hamburger-btn {
-    display: none !important;
-  }
-
-  .sticky-nav nav .nav-links a,
-  .sticky-nav nav .nav-links button {
-    font-size: 12px !important;
-    padding: 4px 8px !important;
   }
 }

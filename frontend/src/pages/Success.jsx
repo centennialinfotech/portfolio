@@ -1,7 +1,9 @@
-import "../css/success.css";
+import React from "react";
+import usePageCSS from "../hooks/usePageCSS";
 import { useNavigate } from "react-router-dom";
 
 export default function Success() {
+  usePageCSS("/css/success.css");
   const navigate = useNavigate();
   const premiumUser = JSON.parse(localStorage.getItem("premiumUser")) || {};
 
