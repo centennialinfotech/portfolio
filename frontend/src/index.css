@@ -1,0 +1,27 @@
+﻿/* ===========================================
+   GLOBAL PREMIUM BUTTON - FULLY ROUNDED PILL
+   Forces oval/pill shape on ALL screen sizes & ratios
+   =========================================== */
+
+/* Universal selector - covers all premium buttons globally */
+html body .go-premium-btn,
+html body .premium-btn,
+html body button.go-premium-btn,
+html body button.premium-btn,
+html body nav .go-premium-btn,
+html body nav .premium-btn,
+html body nav.sticky .go-premium-btn,
+html body nav.sticky .premium-btn,
+html body .sticky-nav nav .nav-right .go-premium-btn,
+html body .dashboard .header-actions .go-premium-btn,
+html body .dashboard .header-actions .premium-btn {
+  border-radius: 9999px !important;
+}
+
+/* Catch-all for all screen sizes */
+@media (max-width: 9999px) {
+  .go-premium-btn,
+  .premium-btn {
+    border-radius: 9999px !important;
+  }
+}
