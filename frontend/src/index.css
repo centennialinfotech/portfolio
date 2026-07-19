@@ -1,0 +1,36 @@
+﻿/* ===========================================
+   GLOBAL PREMIUM BUTTON - FULLY ROUNDED PILL
+   Forces oval/pill shape on ALL screen sizes
+   =========================================== */
+
+/* Base Tailwind reset - rounded-full for all premium buttons */
+html body .go-premium-btn,
+html body .premium-btn,
+html body button.go-premium-btn,
+html body button.premium-btn {
+  border-radius: 9999px !important;
+}
+
+/* Navbar sticky - desktop & mobile buttons */
+html body nav .go-premium-btn,
+html body nav .premium-btn,
+html body nav.sticky .go-premium-btn,
+html body nav.sticky .premium-btn,
+html body nav.sticky button[class*='rounded'],
+html body .sticky-nav nav .nav-right .go-premium-btn {
+  border-radius: 9999px !important;
+}
+
+/* Dashboard header */
+html body .dashboard.header .header-actions .go-premium-btn,
+html body .dashboard.header .header-actions .premium-btn {
+  border-radius: 9999px !important;
+}
+
+/* All screen sizes - make it fully round everywhere */
+@media (max-width: 9999px) {
+  .go-premium-btn,
+  .premium-btn {
+    border-radius: 9999px !important;
+  }
+}
