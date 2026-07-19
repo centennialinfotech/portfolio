@@ -496,7 +496,7 @@ export default function Trial() {
               setEditMode(!editMode);
             }}
           >
-            {editMode ? "💾 Save" : "⚙️ Customize"}
+            {editMode ? "💾 Save " : "⚙️ Customize"}
           </button>
 
           {!isPremium && (
