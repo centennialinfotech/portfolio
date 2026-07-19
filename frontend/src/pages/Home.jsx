@@ -14,6 +14,7 @@ import {
   Star,
   Menu,
   X,
+  Leaf,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -147,73 +148,68 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-3 nav-right flex-shrink-0">
-            {(!userData || userData.premium !== true) && (
-              <button
-                onClick={() => navigate("/pricing")}
-                className="hidden [min-width:721px]: px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl"
-              >
-                Go Premium
-              </button>
-            )}
-
-            {/* Show avatar for any logged-in user */}
-            {userData && (
-              <div className="relative">
-                <button
-                  onClick={() => setUserMenu(!userMenu)}
-                  className="flex items-center gap-1 md:gap-2"
-                >
-                  <div className="flex-shrink-0 w-8 h-8 md:w-9 md:h-9 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
-                    {userData.name?.charAt(0).toUpperCase()}
-                  </div>
-
-                  <span className="hidden md:block text-white">
-                    {firstName}
-                  </span>
-                </button>
-
-                {userMenu && (
-                  <div className="absolute -right-20 mt-3 w-50 bg-black border border-white/10 rounded-xl shadow-xl p-3 z-50">
-                    <div className="mb-3 border-b border-white/10 pb-3">
-                      <p className="text-white font-semibold break-words">
-                        {userData?.name}
-                      </p>
-
-                      <p className="text-white/50 text-sm break-words">
-                        {userData?.email}
-                      </p>
-                    </div>
-
-                    <button
-                      onClick={() => navigate("/retrieve-domain")}
-                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10"
-                    >
-                      My Domains
-                    </button>
-
-                    <button
-                      onClick={async () => {
-                        await signOut(auth);
-                        setUserMenu(false);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-lg text-red-400 hover:bg-white/10"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
-
             {/* Show Go Premium only if NOT premium */}
             <div className="flex items-center gap-2">
               {(!userData || userData.premium !== true) && (
                 <button
                   onClick={() => navigate("/pricing")}
-                  className="[min-width:721px]:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-lg text-sm font-semibold"
+                  className="[min-width:721px]:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-lg text-sm font-semibold  "
+                  style={{
+                    height: "36px",
+                    width: "90px",
+                    fontSize: "10px",
+                  }}
                 >
                   Go Premium
                 </button>
+              )}
+              {/* Show avatar for any logged-in user */}
+              {userData && (
+                <div className="relative">
+                  <button
+                    onClick={() => setUserMenu(!userMenu)}
+                    className="flex items-center gap-1 md:gap-2"
+                  >
+                    <div className="flex-shrink-0 w-8 h-8 md:w-9 md:h-9 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
+                      {userData.name?.charAt(0).toUpperCase()}
+                    </div>
+
+                    <span className="hidden md:block text-white">
+                      {firstName}
+                    </span>
+                  </button>
+
+                  {userMenu && (
+                    <div className="absolute -right-20 mt-3 w-50 bg-black border border-white/10 rounded-xl shadow-xl p-3 z-50">
+                      <div className="mb-3 border-b border-white/10 pb-3">
+                        <p className="text-white font-semibold break-words">
+                          {userData?.name}
+                        </p>
+
+                        <p className="text-white/50 text-sm break-words">
+                          {userData?.email}
+                        </p>
+                      </div>
+
+                      <button
+                        onClick={() => navigate("/retrieve-domain")}
+                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10"
+                      >
+                        My Domains
+                      </button>
+
+                      <button
+                        onClick={async () => {
+                          await signOut(auth);
+                          setUserMenu(false);
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-lg text-red-400 hover:bg-white/10"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
               )}
 
               <button
