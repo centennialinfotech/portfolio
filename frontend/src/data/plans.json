@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Basic",
+    "price": "$19",
+    "features": ["Responsive Portfolio", "Free Hosting", "Resume Upload", "Contact Section", "Mobile Friendly"],
+    "btnText": "Get Started",
+    "route": "/plan/basic",
+    "popular": false
+  },
+  {
+    "name": "Professional",
+    "price": "$35",
+    "features": ["Custom Domain", "Premium Design", "SEO Optimization", "Unlimited Projects", "Priority Support"],
+    "btnText": "Contact Support",
+    "route": "/support",
+    "popular": true
+  },
+  {
+    "name": "Business",
+    "price": "$49",
+    "features": ["Advanced Portfolio", "Admin Dashboard", "Blog Support", "Analytics", "Premium Hosting"],
+    "btnText": "Contact Sales",
+    "route": "/support",
+    "popular": false
+  }
+]
