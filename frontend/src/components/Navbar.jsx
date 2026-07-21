@@ -107,7 +107,7 @@ export default function Navbar() {
         {!hidePremiumButton && !loading && !isPremium && (
           <button
             onClick={() => navigate("/pricing")}
-            className="lg:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-xl text-sm font-semibold"
+            className="lg:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-full text-sm font-semibold"
           >
             Upgrade
           </button>
@@ -160,7 +160,7 @@ export default function Navbar() {
           {!hidePremiumButton && !loading && !isPremium && (
             <button
               onClick={() => navigate("/pricing")}
-              className="bg-gradient-to-r from-yellow-500 to-orange-500 px-5 py-2 rounded-xl font-semibold"
+              className="bg-gradient-to-r from-yellow-500 to-orange-500 px-5 py-2 rounded-full font-semibold"
             >
               Go Premium
             </button>

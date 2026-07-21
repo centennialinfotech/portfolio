@@ -1,0 +1,8 @@
+[
+  { "title": "Custom Domain", "desc": "Use your own domain name for better branding.", "icon": "Globe" },
+  { "title": "Modern Templates", "desc": "Beautiful responsive designs optimized for hiring.", "icon": "Sparkles" },
+  { "title": "Resume Upload", "desc": "Upload resume PDF with recruiter download access.", "icon": "FileText" },
+  { "title": "Fast Hosting", "desc": "Optimized servers with excellent loading speed.", "icon": "Rocket" },
+  { "title": "Mobile Responsive", "desc": "Perfect look across desktop, tablet and mobile.", "icon": "Smartphone" },
+  { "title": "Easy Dashboard", "desc": "Manage skills, projects and bio in one place.", "icon": "LayoutDashboard" }
+]
