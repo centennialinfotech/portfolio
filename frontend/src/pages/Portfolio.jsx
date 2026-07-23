@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../css/portfolio.css";
+import portfolioDefault from "../data/portfolioDefault.json";
 
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -12,34 +13,49 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
-  FaPaperPlane,
   FaCode,
   FaGraduationCap,
   FaCog,
   FaPaintBrush,
   FaExternalLinkAlt,
-  FaRocket,
+  FaPaperPlane,
+  FaLock,
 } from "react-icons/fa";
-import { Menu, X, Settings, Save } from "lucide-react";
-import RemoveBtnPortfolio from "../components/RemoveBtnPortfolio";
+import { Menu, X, Plus, Trash2 } from "lucide-react";
 import imageCompression from "browser-image-compression";
 
-export default function Trial() {
+const NAV_LINKS = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+
+export default function Portfolio() {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [isPremium, setIsPremium] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [username, setUsername] = useState("");
-  const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+  const [userMenu, setUserMenu] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const navigate = useNavigate();
+
   const imageInputRef = useRef(null);
   const cvInputRef = useRef(null);
   const phoneInputRef = useRef(null);
-  const [userMenu, setUserMenu] = useState(false);
-  const [userData, setUserData] = useState(null);
+
+  const [headerSection, setHeaderSection] = useState(portfolioDefault.headerSection);
+  const [heroSection, setHeroSection] = useState(portfolioDefault.heroSection);
+  const [aboutSection, setAboutSection] = useState(portfolioDefault.aboutSection);
+  const [skillsSection, setSkillsSection] = useState(portfolioDefault.skillsSection);
+  const [projectsSection, setProjectsSection] = useState(portfolioDefault.projectsSection);
+  const [contactSection, setContactSection] = useState(portfolioDefault.contactSection);
+  const [footerSection, setFooterSection] = useState(portfolioDefault.footerSection);
+
   const firstName = userData?.name?.split(" ")[0] || "";
-  const [phoneError, setPhoneError] = useState("");
-  const [isSaving, setIsSaving] = useState(false);
 
   const validatePhone = (value) => {
     if (!value) return "";
@@ -58,126 +74,12 @@ export default function Trial() {
   };
   const getIcon = (key) => iconMap[key] || <FaCode />;
 
-  const [headerSection, setHeaderSection] = useState({
-    logo: "Portfolio",
-    logoImage: "",
-    logoFileName: "",
-  });
+  const contactItems = [
+    { label: "Email", value: contactSection.email, icon: <FaEnvelope /> },
+    { label: "Phone", value: contactSection.phone, icon: <FaPhoneAlt /> },
+    { label: "Location", value: contactSection.location, icon: <FaMapMarkerAlt /> },
+  ];
 
-  const [heroSection, setHeroSection] = useState({
-    greeting: "Hi, I'm",
-    firstName: "Emma",
-    lastName: "Johnson",
-    role: "MERN Stack Developer",
-    description: "Passionate about creating responsive applications.",
-    githubUsername: "yourusername",
-    linkedinUsername: "yourusername",
-    showGithub: true,
-    showLinkedin: true,
-    image: "/profile.png",
-    cv: "",
-  });
-
-  const [aboutSection, setAboutSection] = useState({
-    title: "About Me",
-    cards: [
-      {
-        id: 1,
-        icon: "code",
-        title: "Web Development",
-        description: "Passionate about creating responsive applications.",
-      },
-      {
-        id: 2,
-        icon: "learn",
-        title: "Continuous Learning",
-        description: "Always eager to learn new technologies.",
-      },
-      {
-        id: 3,
-        icon: "cog",
-        title: "Problem Solving",
-        description: "Enjoy tackling complex challenges.",
-      },
-      {
-        id: 4,
-        icon: "hobby",
-        title: "My Hobby",
-        description: "My aim is clear to become full stack developer.",
-      },
-    ],
-  });
-
-  const [skillsSection, setSkillsSection] = useState({
-    title: "Skills & Technologies",
-    leftTitle: "Technical Proficiency",
-    rightTitle: "Technologies I Work With",
-    skills: [
-      { id: 1, name: "AI", percentage: 85 },
-      { id: 2, name: "ABC", percentage: 80 },
-      { id: 3, name: "MERN Stack", percentage: 90 },
-      { id: 4, name: "Generative AI", percentage: 70 },
-      { id: 5, name: "HTML", percentage: 90 },
-      { id: 6, name: "CSS", percentage: 79 },
-    ],
-    technologies: ["AI", "ABC", "MERN Stack", "Generative AI", "HTML", "CSS"],
-  });
-
-  const [projectsSection, setProjectsSection] = useState({
-    title: "Recent Projects",
-    githubText: "WANT TO SEE MORE OF MY WORK?",
-    githubLink: "https://github.com/",
-    projects: [
-      {
-        id: 1,
-        title: "Sales Funnel Optimization",
-        description:
-          "Improved a company's sales funnel to increase conversions.",
-        tag: "Funnel steps (lead → call → close)",
-        code: "#",
-        demo: "#",
-        showCode: true,
-        showDemo: true,
-      },
-      {
-        id: 2,
-        title: "CRM Management Project",
-        description: "Managed leads using tools like HubSpot or Salesforce.",
-        tag: "Lead tracking system",
-        code: "#",
-        demo: "#",
-        showCode: true,
-        showDemo: true,
-      },
-    ],
-  });
-
-  const [contactSection, setContactSection] = useState({
-    title: "Get In Touch",
-    leftTitle: "Contact Information",
-    rightTitle: "Send me a Message",
-    email: "emmajohnson@example.com",
-    phone: "+1 (212) 555-1234",
-    location: "123 Main Street, Los Angeles, CA 90001, USA",
-    opportunityTitle: "Open for Opportunities",
-    opportunityDescription:
-      "I'm actively looking for entry-level MERN Stack Developer roles and internship opportunities. If you have an exciting project or role, feel free to connect with me!",
-  });
-
-  const [footerSection, setFooterSection] = useState({
-    name: "Emma Johnson",
-    description: "Building digital experiences with precision and passion.",
-    githubUsername: "yourusername",
-    linkedinUsername: "yourusername",
-    email: "yourmail@gmail.com",
-    showGithub: true,
-    showLinkedin: true,
-    showEmail: true,
-    copyright: "© 2026 Emma Johnson. All rights reserved.",
-    location: "123 Main Street, Los Angeles, CA 90001, USA",
-  });
-
-  // Image upload handlers
   const handleLogoUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -190,31 +92,21 @@ export default function Trial() {
       });
 
       const reader = new FileReader();
-
       reader.onloadend = () => {
-        setHeaderSection({
-          ...headerSection,
+        setHeaderSection((prev) => ({
+          ...prev,
           logoImage: reader.result,
           logoFileName: file.name,
-        });
+        }));
       };
-
       reader.readAsDataURL(compressedFile);
-
-      console.log("Original:", (file.size / 1024 / 1024).toFixed(2), "MB");
-
-      console.log(
-        "Compressed:",
-        (compressedFile.size / 1024 / 1024).toFixed(2),
-        "MB",
-      );
     } catch (error) {
       console.error("Logo compression error:", error);
     }
   };
 
   const removeLogo = () => {
-    setHeaderSection({ ...headerSection, logoImage: "" });
+    setHeaderSection((prev) => ({ ...prev, logoImage: "" }));
   };
 
   const handleImageUpload = (e) => {
@@ -222,7 +114,7 @@ export default function Trial() {
     if (!file) return;
     const reader = new FileReader();
     reader.onloadend = () => {
-      setHeroSection({ ...heroSection, image: reader.result });
+      setHeroSection((prev) => ({ ...prev, image: reader.result }));
     };
     reader.readAsDataURL(file);
   };
@@ -232,32 +124,21 @@ export default function Trial() {
     if (!file) return;
     const reader = new FileReader();
     reader.onloadend = () => {
-      setHeroSection({ ...heroSection, cv: reader.result });
+      setHeroSection((prev) => ({ ...prev, cv: reader.result }));
     };
     reader.readAsDataURL(file);
   };
 
-  // NEW: Remove Profile Image with input reset
   const removeProfileImage = () => {
-    setHeroSection((prev) => ({
-      ...prev,
-      image: "/default-profile.jpg",
-    }));
-
-    if (imageInputRef.current) {
-      imageInputRef.current.value = "";
-    }
+    setHeroSection((prev) => ({ ...prev, image: "/default-profile.jpg" }));
+    if (imageInputRef.current) imageInputRef.current.value = "";
   };
 
-  // NEW: Remove CV with input reset
   const removeCV = () => {
-    setHeroSection({ ...heroSection, cv: "" });
-    if (cvInputRef.current) {
-      cvInputRef.current.value = ""; // Reset the file input
-    }
+    setHeroSection((prev) => ({ ...prev, cv: "" }));
+    if (cvInputRef.current) cvInputRef.current.value = "";
   };
 
-  // Firebase Auth & Data
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
@@ -269,13 +150,9 @@ export default function Trial() {
       try {
         await user.getIdToken();
         setCurrentUser(user);
-        setUsername(user.displayName || user.email.split("@")[0]);
 
-        const portfolioRef = doc(db, "trialData", user.uid);
-        const portfolioSnap = await getDoc(portfolioRef);
-
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
+        const portfolioSnap = await getDoc(doc(db, "trialData", user.uid));
+        const userSnap = await getDoc(doc(db, "users", user.uid));
 
         if (userSnap.exists()) {
           const data = userSnap.data();
@@ -287,43 +164,23 @@ export default function Trial() {
           const data = portfolioSnap.data();
 
           if (data.headerSection) setHeaderSection(data.headerSection);
-
           if (data.heroSection) {
-            // ✅ FIX: Ensure booleans are preserved
             setHeroSection({
               ...data.heroSection,
-              showGithub:
-                data.heroSection.showGithub !== undefined
-                  ? data.heroSection.showGithub
-                  : true,
-              showLinkedin:
-                data.heroSection.showLinkedin !== undefined
-                  ? data.heroSection.showLinkedin
-                  : true,
+              showGithub: data.heroSection.showGithub ?? true,
+              showLinkedin: data.heroSection.showLinkedin ?? true,
             });
           }
-
           if (data.aboutSection) setAboutSection(data.aboutSection);
           if (data.skillsSection) setSkillsSection(data.skillsSection);
           if (data.projectsSection) setProjectsSection(data.projectsSection);
           if (data.contactSection) setContactSection(data.contactSection);
-
           if (data.footerSection) {
-            // ✅ FIX: Ensure booleans are preserved
             setFooterSection({
               ...data.footerSection,
-              showGithub:
-                data.footerSection.showGithub !== undefined
-                  ? data.footerSection.showGithub
-                  : true,
-              showLinkedin:
-                data.footerSection.showLinkedin !== undefined
-                  ? data.footerSection.showLinkedin
-                  : true,
-              showEmail:
-                data.footerSection.showEmail !== undefined
-                  ? data.footerSection.showEmail
-                  : true,
+              showGithub: data.footerSection.showGithub ?? true,
+              showLinkedin: data.footerSection.showLinkedin ?? true,
+              showEmail: data.footerSection.showEmail ?? true,
             });
           }
         }
@@ -333,34 +190,27 @@ export default function Trial() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [navigate]);
 
-  // ✅ FIXED Save function
   const savePortfolio = async () => {
     if (!currentUser || isSaving) return;
 
     const phoneValErr = validatePhone(contactSection.phone);
-
     if (phoneValErr) {
       setPhoneError(phoneValErr);
-
       alert("Please correct your phone number.");
-
       setTimeout(() => {
         phoneInputRef.current?.scrollIntoView({
           behavior: "smooth",
           block: "center",
         });
-
         phoneInputRef.current?.focus();
       }, 300);
-
       return;
     }
 
     try {
       setIsSaving(true);
-
       await setDoc(doc(db, "trialData", currentUser.uid), {
         headerSection: {
           logo: headerSection.logo,
@@ -398,233 +248,326 @@ export default function Trial() {
     window.location.href = "/login?type=register";
   };
 
-  console.log("Footer Email:", footerSection.email);
+  const addAboutCard = () => {
+    setAboutSection((prev) => ({
+      ...prev,
+      cards: [
+        ...prev.cards,
+        {
+          id: Date.now(),
+          icon: "code",
+          title: "New Skill",
+          description: "Description here...",
+        },
+      ],
+    }));
+  };
+
+  const removeAboutCard = (id) => {
+    setAboutSection((prev) => ({
+      ...prev,
+      cards: prev.cards.filter((card) => card.id !== id),
+    }));
+  };
+
+  const addSkill = () => {
+    setSkillsSection((prev) => ({
+      ...prev,
+      skills: [
+        ...prev.skills,
+        { id: Date.now(), name: "New Skill", percentage: 80 },
+      ],
+    }));
+  };
+
+  const removeSkill = (id) => {
+    setSkillsSection((prev) => ({
+      ...prev,
+      skills: prev.skills.filter((s) => s.id !== id),
+    }));
+  };
+
+  const addProject = () => {
+    setProjectsSection((prev) => ({
+      ...prev,
+      projects: [
+        ...prev.projects,
+        {
+          id: Date.now(),
+          title: "New Project",
+          description: "Project description...",
+          tag: "Tag",
+          code: "#",
+          demo: "#",
+          showCode: true,
+          showDemo: true,
+        },
+      ],
+    }));
+  };
+
+  const removeProject = (id) => {
+    setProjectsSection((prev) => ({
+      ...prev,
+      projects: prev.projects.filter((p) => p.id !== id),
+    }));
+  };
 
   return (
-    <>
-      {/* Header */}
+    <div className="portfolio-bg">
       {isSaving && (
         <div className="saving-overlay">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              className="spinner_SoJz"
-              d="M20.27,4.74a4.93,4.93,0,0,1,1.52,4.61,5.32,5.32,0,0,1-4.1,4.51,5.12,5.12,0,0,1-5.2-1.5,5.53,5.53,0,0,0,6.13-1.48A5.66,5.66,0,0,0,20.27,4.74ZM12.32,11.53a5.49,5.49,0,0,0-1.47-6.2A5.57,5.57,0,0,0,4.71,3.72,5.17,5.17,0,0,1,9.53,2.2,5.52,5.52,0,0,1,13.9,6.45,5.28,5.28,0,0,1,12.32,11.53ZM19.2,20.29a4.92,4.92,0,0,1-4.72,1.49,5.32,5.32,0,0,1-4.34-4.05A5.2,5.2,0,0,1,11.6,12.5a5.6,5.6,0,0,0,1.51,6.13A5.63,5.63,0,0,0,19.2,20.29ZM3.79,19.38A5.18,5.18,0,0,1,2.32,14a5.3,5.3,0,0,1,4.59-4,5,5,0,0,1,4.58,1.61,5.55,5.55,0,0,0-6.32,1.69A5.46,5.46,0,0,0,3.79,19.38ZM12.23,12a5.11,5.11,0,0,0,3.66-5,5.75,5.75,0,0,0-3.18-6,5,5,0,0,1,4.42,2.3,5.21,5.21,0,0,1,.24,5.92A5.4,5.4,0,0,1,12.23,12ZM11.76,12a5.18,5.18,0,0,0-3.68,5.09,5.58,5.58,0,0,0,3.19,5.79c-1,.35-2.9-.46-4-1.68A5.51,5.51,0,0,1,11.76,12ZM23,12.63a5.07,5.07,0,0,1-2.35,4.52,5.23,5.23,0,0,1-5.91.2,5.24,5.24,0,0,1-2.67-4.77,5.51,5.51,0,0,0,5.45,3.33A5.52,5.52,0,0,0,23,12.63ZM1,11.23a5,5,0,0,1,2.49-4.5,5.23,5.23,0,0,1,5.81-.06,5.3,5.3,0,0,1,2.61,4.74A5.56,5.56,0,0,0,6.56,8.06,5.71,5.71,0,0,0,1,11.23Z"
-            />
-          </svg>
+          <div className="flex flex-col items-center gap-3">
+            <div className="saving-spinner border-4 border-cyan-400 border-t-transparent rounded-full"></div>
+            <p className="font-semibold text-lg">Saving Portfolio...</p>
+          </div>
         </div>
       )}
-      <header className="dashboard header w-40 sm:w-full md:w-1/2 lg:w-1/3 ">
-        <div className="logo">
-          {editMode ? (
-            <div className="logo-edit">
-              <div className="flex items-center gap-2">
-                {!headerSection.logoImage ? (
-                  <label className="cursor-pointer bg-white text-black px-4 py-2 rounded text-[10px]">
-                    Choose Logo
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleLogoUpload}
-                      className="hidden"
-                    />
-                  </label>
-                ) : (
-                  <>
-                    <img
-                      src={headerSection.logoImage}
-                      alt="Logo Preview"
-                      className="w-10 h-10 object-contain rounded border"
-                    />
 
-                    <button
-                      type="button"
-                      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-[10px]"
-                      onClick={removeLogo}
-                    >
-                      Remove
-                    </button>
-                  </>
-                )}
-              </div>
-              <input
-                type="text"
-                className="editinput bg-white text-black mt-2 mb-2 pl-10 rounded-[5px]"
-                value={headerSection.logo}
-                onChange={(e) =>
-                  setHeaderSection({ ...headerSection, logo: e.target.value })
-                }
-                placeholder="Enter Logo Name"
-                maxLength={15}
+      <header className="portfolio-header">
+        <div className="header-container">
+          <div className="header-logo" onClick={() => navigate("/")}>
+            {headerSection.logoImage ? (
+              <img
+                src={headerSection.logoImage}
+                alt="Logo"
+                className="logo-img"
               />
-            </div>
-          ) : (
-            <>
-              {headerSection.logoImage && (
-                <img
-                  src={headerSection.logoImage}
-                  alt="logo"
-                  className="logo-img pr-1"
-                />
-              )}
-              <span className="logo-display"> {headerSection.logo}</span>
-            </>
-          )}
-        </div>
-
-        <nav
-          className={` navbar ${mobileMenu ? "mobile-open" : ""} ${editMode ? "editlinks" : ""}`}
-        >
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div className="header-actions">
-          <button
-            className={`customize-btn flex items-center gap-1 md:gap-2 ${editMode ? "editsave-btn" : ""}`}
-            onClick={async () => {
-              if (editMode) {
-                await savePortfolio();
-              }
-              setEditMode(!editMode);
-            }}
-          >
-            {editMode ? "💾 Save " : "⚙️ Customize"}
-          </button>
-
-          {!isPremium && (
-            <button
-              className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all shadow-2xl"
-              onClick={() => navigate("/pricing")}
-            >
-              Go Premium
-            </button>
-          )}
-
-          {/* User Menu */}
-          <div className="relative">
-            <button
-              onClick={() => setUserMenu(!userMenu)}
-              className="flex items-center gap-1 md:gap-2"
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
-                {userData?.name?.charAt(0).toUpperCase()}
-              </div>
-              <span className="hidden md:block text-white firstnameClass">
-                {firstName}
-              </span>
-            </button>
-
-            {userMenu && (
-              <div className="absolute right-0 mt-2 w-56 bg-[#1b1b1b] border border-white/10 rounded-xl shadow-xl z-50 overflow-hidden">
-                <div className="px-4 py-3 border-b border-white/10">
-                  <p className="text-white font-semibold break-words">
-                    {userData?.name || "User"}
-                  </p>
-
-                  <p className="text-xs text-white/60 break-all">
-                    {userData?.email}
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => navigate("/retrieve-domain")}
-                  className="w-full text-left px-4 py-3 hover:bg-white/10"
-                >
-                  My Domains
-                </button>
-
-                <button
-                  onClick={logout}
-                  className="w-full text-left px-4 py-3 text-red-400 hover:bg-white/10"
-                >
-                  Logout
-                </button>
-              </div>
-            )}
+            ) : null}
+            <span>{headerSection.logo}</span>
           </div>
 
-          <button
-            className="mobile-menu-btn hamburgeree"
-            onClick={() => setMobileMenu(!mobileMenu)}
-          >
-            {mobileMenu ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <nav className="header-nav">
+            {NAV_LINKS.map((link) => (
+              <a key={link.label} href={link.href} className="header-nav-link">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="header-actions">
+            <button
+              className={`btn-customize ${editMode ? "btn-customize-active" : ""}`}
+              onClick={async () => {
+                if (editMode) await savePortfolio();
+                setEditMode(!editMode);
+              }}
+            >
+              {editMode ? "💾 Save" : "⚙️ Customize"}
+            </button>
+
+            {!isPremium && (
+              <button
+                className="btn-premium"
+                onClick={() => navigate("/pricing")}
+              >
+                Go Premium
+              </button>
+            )}
+
+            <div className="relative">
+              <button
+                onClick={() => setUserMenu(!userMenu)}
+                className="user-avatar-btn"
+              >
+                <div className="user-avatar-circle">
+                  {userData?.name?.charAt(0).toUpperCase() || "U"}
+                </div>
+                <span className="hidden md:block text-sm text-white font-medium">
+                  {firstName}
+                </span>
+              </button>
+
+              {userMenu && (
+                <div className="user-dropdown-menu">
+                  <div className="p-3 border-b border-white/10">
+                    <p className="font-semibold text-sm text-white break-words">
+                      {userData?.name || "User"}
+                    </p>
+                    <p className="text-xs text-white/60 break-all mt-0.5">
+                      {userData?.email}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => navigate("/retrieve-domain")}
+                    className="w-full text-left px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all rounded-lg mt-1"
+                  >
+                    My Domains
+                  </button>
+                  <button
+                    onClick={logout}
+                    className="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 transition-all rounded-lg"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <button
+              className="hamburger-btn"
+              onClick={() => setMobileMenu(!mobileMenu)}
+            >
+              {mobileMenu ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+        </div>
+
+        <div className={`mobile-menu-drawer ${mobileMenu ? "mobile-menu-drawer-open" : ""}`}>
+          <div className="mobile-menu-content">
+            {!isPremium && (
+              <button
+                className="btn-premium-mobile"
+                onClick={() => {
+                  setMobileMenu(false);
+                  navigate("/pricing");
+                }}
+              >
+                👑 Go Premium
+              </button>
+            )}
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenu(false)}
+                className="mobile-menu-link"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </header>
 
-      {mobileMenu && (
-        <div className="mobile-nav-panel">
-          <div className="mobile-nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
-      )}
-
-      {/* Hero Section */}
-      <section className="hero" id="home">
-        <div className="hero-left">
-          {editMode ? (
-            <div className="hero-edit">
-              <input
-                value={heroSection.greeting}
-                onChange={(e) =>
-                  setHeroSection({ ...heroSection, greeting: e.target.value })
-                }
-                placeholder="Enter Greeting"
-              />
-              <input
-                value={heroSection.firstName}
-                onChange={(e) =>
-                  setHeroSection({ ...heroSection, firstName: e.target.value })
-                }
-                placeholder="Enter First Name"
-              />
-              <input
-                value={heroSection.lastName}
-                onChange={(e) =>
-                  setHeroSection({ ...heroSection, lastName: e.target.value })
-                }
-                placeholder="Enter Last Name"
-              />
-              <input
-                value={heroSection.role}
-                onChange={(e) =>
-                  setHeroSection({ ...heroSection, role: e.target.value })
-                }
-                placeholder="Enter Role"
-              />
-              <textarea
-                value={heroSection.description}
-                onChange={(e) =>
-                  setHeroSection({
-                    ...heroSection,
-                    description: e.target.value,
-                  })
-                }
-                placeholder="Enter Your Professional Tagline"
-              />
-
-              {/* GitHub Username Input */}
-              <div className="url-input-group">
-                <label className="input-label">
-                  <FaGithub /> GitHub Username
-                </label>
-                <div className="url-input-wrapper">
-                  <span className="url-prefix">https://github.com/</span>
+      <section className="portfolio-hero" id="home">
+        <div className="hero-grid">
+          <div className="hero-left">
+            {editMode ? (
+              <div className="edit-box">
+                <input
+                  type="text"
+                  className="edit-input"
+                  value={heroSection.greeting}
+                  onChange={(e) =>
+                    setHeroSection({ ...heroSection, greeting: e.target.value })
+                  }
+                  placeholder="Greeting"
+                />
+                <div className="grid grid-cols-2 gap-2">
                   <input
-                    className="url-username-input"
+                    type="text"
+                    className="edit-input"
+                    value={heroSection.firstName}
+                    onChange={(e) =>
+                      setHeroSection({
+                        ...heroSection,
+                        firstName: e.target.value,
+                      })
+                    }
+                    placeholder="First Name"
+                  />
+                  <input
+                    type="text"
+                    className="edit-input"
+                    value={heroSection.lastName}
+                    onChange={(e) =>
+                      setHeroSection({
+                        ...heroSection,
+                        lastName: e.target.value,
+                      })
+                    }
+                    placeholder="Last Name"
+                  />
+                </div>
+                <input
+                  type="text"
+                  className="edit-input"
+                  value={heroSection.role}
+                  onChange={(e) =>
+                    setHeroSection({ ...heroSection, role: e.target.value })
+                  }
+                  placeholder="Role"
+                />
+                <textarea
+                  className="edit-textarea"
+                  value={heroSection.description}
+                  onChange={(e) =>
+                    setHeroSection({
+                      ...heroSection,
+                      description: e.target.value,
+                    })
+                  }
+                  placeholder="Description"
+                />
+              </div>
+            ) : (
+              <>
+                <p className="hero-greeting">{heroSection.greeting}</p>
+                <h1 className="hero-name">
+                  {heroSection.firstName} {heroSection.lastName}
+                </h1>
+                <h2 className="hero-role">{heroSection.role}</h2>
+                <p className="hero-desc">{heroSection.description}</p>
+              </>
+            )}
+
+            <div className="hero-buttons">
+              {heroSection.cv ? (
+                isPremium ? (
+                  <a
+                    href={heroSection.cv}
+                    download="Resume.pdf"
+                    className="btn-primary flex items-center gap-2"
+                  >
+                    <FaPaperPlane /> Download CV
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      alert("🔒 Upgrade to Premium to download CV!");
+                      navigate("/pricing");
+                    }}
+                    className="btn-primary flex items-center gap-2 cursor-pointer opacity-90 hover:opacity-100 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-yellow-500/10"
+                  >
+                    <FaLock className="text-yellow-400 animate-pulse" /> Download CV
+                  </button>
+                )
+              ) : null}
+
+              {heroSection.showGithub && (
+                <a
+                  href={`https://github.com/${heroSection.githubUsername}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary flex items-center gap-2"
+                >
+                  <FaGithub /> GitHub
+                </a>
+              )}
+
+              {heroSection.showLinkedin && (
+                <a
+                  href={`https://linkedin.com/in/${heroSection.linkedinUsername}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary flex items-center gap-2"
+                >
+                  <FaLinkedin /> LinkedIn
+                </a>
+              )}
+            </div>
+
+            {editMode && (
+              <div className="edit-box mt-4">
+                <p className="text-xs font-semibold text-cyan-300 uppercase">
+                  Hero Settings & Links
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  <input
+                    type="text"
+                    className="edit-input"
                     value={heroSection.githubUsername}
                     onChange={(e) =>
                       setHeroSection({
@@ -632,23 +575,11 @@ export default function Trial() {
                         githubUsername: e.target.value,
                       })
                     }
-                    placeholder="yourusername"
+                    placeholder="GitHub Username"
                   />
-                </div>
-                <small className="input-hint">
-                  💡 Only enter your username (e.g., johnmichael)
-                </small>
-              </div>
-
-              {/* LinkedIn Username Input */}
-              <div className="url-input-group">
-                <label className="input-label">
-                  <FaLinkedin /> LinkedIn Username
-                </label>
-                <div className="url-input-wrapper">
-                  <span className="url-prefix">https://linkedin.com/in/</span>
                   <input
-                    className="url-username-input"
+                    type="text"
+                    className="edit-input"
                     value={heroSection.linkedinUsername}
                     onChange={(e) =>
                       setHeroSection({
@@ -656,513 +587,304 @@ export default function Trial() {
                         linkedinUsername: e.target.value,
                       })
                     }
-                    placeholder="yourusername"
+                    placeholder="LinkedIn Username"
                   />
                 </div>
-                <small className="input-hint">
-                  💡 Only enter your username (e.g., johnmichael)
-                </small>
-              </div>
-
-              {/* ✅ FIX: Ensure checkboxes are saving properly */}
-              <label className="toggle-row">
-                <input
-                  type="checkbox"
-                  checked={heroSection.showGithub === true}
-                  onChange={(e) =>
-                    setHeroSection({
-                      ...heroSection,
-                      showGithub: e.target.checked,
-                    })
-                  }
-                />
-                Show GitHub Icon
-              </label>
-
-              <label className="toggle-row">
-                <input
-                  type="checkbox"
-                  checked={heroSection.showLinkedin === true}
-                  onChange={(e) =>
-                    setHeroSection({
-                      ...heroSection,
-                      showLinkedin: e.target.checked,
-                    })
-                  }
-                />
-                Show LinkedIn Icon
-              </label>
-
-              {/* Profile Image Upload with Remove Button */}
-              <div className="file-upload-wrapper">
-                <label>Upload Profile Image</label>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    width: "100%",
-                  }}
-                >
-                  <input
-                    ref={imageInputRef} // ← ADD THIS
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    style={{ flex: 1 }}
-                  />
-                  <RemoveBtnPortfolio
-                    onClick={removeProfileImage}
-                    label="Profile Image"
-                    show={
-                      heroSection.image &&
-                      heroSection.image !== "/default-profile.jpg"
-                    }
-                  />
-                </div>
-              </div>
-
-              {/* CV Upload with Remove Button */}
-              <div className="file-upload-wrapper">
-                <label>Upload CV</label>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    width: "100%",
-                  }}
-                >
-                  <input
-                    ref={cvInputRef} // ← ADD THIS
-                    type="file"
-                    accept=".pdf,.doc,.docx"
-                    onChange={handleCVUpload}
-                    style={{ flex: 1 }}
-                  />
-                  <RemoveBtnPortfolio
-                    onClick={removeCV} // ← USE NEW FUNCTION
-                    label="CV"
-                    show={heroSection.cv && heroSection.cv !== ""}
-                  />
-                </div>
-              </div>
-            </div>
-          ) : (
-            <>
-              <h1>
-                {heroSection.greeting} <br />
-                <span>
-                  {heroSection.firstName} {heroSection.lastName}
-                </span>
-              </h1>
-              <h2>{heroSection.role}</h2>
-              <p>{heroSection.description}</p>
-            </>
-          )}
-
-          <div className="hero-buttons">
-            <button
-              className="cv-btn"
-              onClick={() => {
-                if (!isPremium) {
-                  alert("Upgrade to premium to download CV");
-                  return;
-                }
-                if (heroSection.cv) {
-                  const link = document.createElement("a");
-                  link.href = heroSection.cv;
-                  link.download = "resume";
-                  link.click();
-                } else {
-                  alert("No CV uploaded");
-                }
-              }}
-            >
-              {isPremium ? "DOWNLOAD CV" : "PREMIUM ONLY"}
-            </button>
-
-            {/* ✅ Social Icons - Now using heroSection directly */}
-            <div className="social-icons">
-              {heroSection.showGithub === true && (
-                <a
-                  href={`https://github.com/${heroSection.githubUsername}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaGithub size={28} />
-                </a>
-              )}
-
-              {heroSection.showLinkedin === true && (
-                <a
-                  href={`https://linkedin.com/in/${heroSection.linkedinUsername}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaLinkedin size={28} />
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="hero-right">
-          <div className="image-circle">
-            <img src={heroSection.image} alt="profile" />
-            {!isPremium && <div className="image-watermark">TRIAL</div>}
-          </div>
-        </div>
-      </section>
-      <section className="about-section" id="about">
-        <div className="section-title">
-          <h2>
-            {editMode ? (
-              <input
-                className="title-input"
-                value={aboutSection.title}
-                onChange={(e) =>
-                  setAboutSection({
-                    ...aboutSection,
-                    title: e.target.value,
-                  })
-                }
-                placeholder="Enter About Section title"
-              />
-            ) : (
-              aboutSection.title
-            )}
-          </h2>
-          <div className="underline"></div>
-        </div>
-
-        <div className="about-container">
-          {aboutSection.cards.map((card, index) => (
-            <div className="about-card" key={card.id}>
-              <div className="icon">
-                {editMode ? (
-                  <select
-                    value={card.icon}
-                    onChange={(e) => {
-                      const updated = [...aboutSection.cards];
-                      updated[index].icon = e.target.value;
-
-                      setAboutSection({
-                        ...aboutSection,
-                        cards: updated,
-                      });
-                    }}
-                  >
-                    <option value="">Select Icons</option>
-                    <option value="code">Code</option>
-                    <option value="learn">Learn</option>
-                    <option value="cog">Cog</option>
-                    <option value="hobby">Hobby</option>
-                  </select>
-                ) : (
-                  getIcon(card.icon)
-                )}
-              </div>
-
-              {editMode ? (
-                <>
-                  <input
-                    value={card.title}
-                    onChange={(e) => {
-                      const updated = [...aboutSection.cards];
-
-                      updated[index].title = e.target.value;
-
-                      setAboutSection({
-                        ...aboutSection,
-                        cards: updated,
-                      });
-                    }}
-                    placeholder="Enter Skill"
-                  />
-
-                  <textarea
-                    value={card.description}
-                    onChange={(e) => {
-                      const updated = [...aboutSection.cards];
-
-                      updated[index].description = e.target.value;
-
-                      setAboutSection({
-                        ...aboutSection,
-                        cards: updated,
-                      });
-                    }}
-                    placeholder="Enter Description"
-                  />
-
-                  <button
-                    className="delete-btn"
-                    onClick={() => {
-                      const updated = aboutSection.cards.filter(
-                        (item) => item.id !== card.id,
-                      );
-
-                      setAboutSection({
-                        ...aboutSection,
-                        cards: updated,
-                      });
-                    }}
-                  >
-                    🗑 Delete
-                  </button>
-                </>
-              ) : (
-                <>
-                  <h3>{card.title}</h3>
-
-                  <p>{card.description}</p>
-                </>
-              )}
-            </div>
-          ))}
-          {editMode && (
-            <button
-              className="add-btn"
-              onClick={() => {
-                const newCard = {
-                  id: Date.now(),
-                  icon: "✨",
-                  title: "New Skill",
-                  description: "Add description here.",
-                };
-
-                setAboutSection({
-                  ...aboutSection,
-                  cards: [...aboutSection.cards, newCard],
-                });
-              }}
-            >
-              + Add Card
-            </button>
-          )}
-        </div>
-      </section>
-      <section className="skills-section" id="skills">
-        <div className="skills-title">
-          <h2>
-            {editMode ? (
-              <input
-                className="title-input"
-                value={skillsSection.title}
-                onChange={(e) =>
-                  setSkillsSection({
-                    ...skillsSection,
-                    title: e.target.value,
-                  })
-                }
-                placeholder="Enter Skill Section Title"
-              />
-            ) : (
-              skillsSection.title
-            )}
-          </h2>
-
-          <div className="skills-line"></div>
-        </div>
-
-        <div className="skills-container">
-          {/* LEFT */}
-
-          <div className="skills-left">
-            {editMode ? (
-              <input
-                className="title-input"
-                value={skillsSection.leftTitle}
-                onChange={(e) =>
-                  setSkillsSection({
-                    ...skillsSection,
-                    leftTitle: e.target.value,
-                  })
-                }
-                placeholder="Enter Skills & Technology Title"
-              />
-            ) : (
-              <h3>{skillsSection.leftTitle}</h3>
-            )}
-
-            {skillsSection.skills.map((skill, index) => (
-              <div className="skill" key={skill.id}>
-                <div className="skill-info">
-                  {editMode ? (
-                    <>
-                      <input
-                        value={skill.name}
-                        onChange={(e) => {
-                          const updated = [...skillsSection.skills];
-
-                          updated[index].name = e.target.value;
-
-                          setSkillsSection({
-                            ...skillsSection,
-                            skills: updated,
-                          });
-                        }}
-                        placeholder="Enter Skill"
-                      />
-
-                      <input
-                        type="number"
-                        value={skill.percentage}
-                        onChange={(e) => {
-                          const updated = [...skillsSection.skills];
-
-                          updated[index].percentage = e.target.value;
-
-                          setSkillsSection({
-                            ...skillsSection,
-                            skills: updated,
-                          });
-                        }}
-                        placeholder="Enter Proficiency Value"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <span>{skill.name}</span>
-
-                      <span>{skill.percentage}%</span>
-                    </>
-                  )}
-                </div>
-
-                <div className="progress-bar">
-                  <div
-                    className="progress"
-                    style={{
-                      width: `${skill.percentage}%`,
-                    }}
-                  ></div>
-                </div>
-                {editMode && (
-                  <button
-                    className="delete-btn"
-                    onClick={() => {
-                      const updated = skillsSection.skills.filter(
-                        (s) => s.id !== skill.id,
-                      );
-
-                      setSkillsSection({
-                        ...skillsSection,
-                        skills: updated,
-                      });
-                    }}
-                  >
-                    🗑
-                  </button>
-                )}
-              </div>
-            ))}
-            {editMode && (
-              <button
-                className="add-btn"
-                onClick={() => {
-                  const newSkill = {
-                    id: Date.now(),
-                    name: "New Skill",
-                    percentage: 50,
-                  };
-
-                  setSkillsSection({
-                    ...skillsSection,
-                    skills: [...skillsSection.skills, newSkill],
-                  });
-                }}
-              >
-                + Add Skill
-              </button>
-            )}
-          </div>
-
-          {/* RIGHT */}
-
-          <div className="skills-right">
-            {editMode ? (
-              <input
-                className="title-input"
-                value={skillsSection.rightTitle}
-                onChange={(e) =>
-                  setSkillsSection({
-                    ...skillsSection,
-                    rightTitle: e.target.value,
-                  })
-                }
-                placeholder="Enter Technology Title"
-              />
-            ) : (
-              <h3>{skillsSection.rightTitle}</h3>
-            )}
-
-            <div className="tech-grid">
-              {skillsSection.technologies.map((tech, index) => (
-                <div className="tech-card" key={index}>
-                  {editMode ? (
+                <div className="flex gap-4 pt-2">
+                  <label className="text-xs text-white/70 flex items-center gap-2 cursor-pointer">
                     <input
-                      value={tech}
-                      onChange={(e) => {
-                        const updated = [...skillsSection.technologies];
-                        updated[index] = e.target.value;
-
-                        setSkillsSection({
-                          ...skillsSection,
-                          technologies: updated,
-                        });
-                      }}
-                      placeholder="Enter Skill"
+                      type="checkbox"
+                      checked={heroSection.showGithub}
+                      onChange={(e) =>
+                        setHeroSection({
+                          ...heroSection,
+                          showGithub: e.target.checked,
+                        })
+                      }
                     />
-                  ) : (
-                    tech
-                  )}
+                    Show GitHub
+                  </label>
+                  <label className="text-xs text-white/70 flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={heroSection.showLinkedin}
+                      onChange={(e) =>
+                        setHeroSection({
+                          ...heroSection,
+                          showLinkedin: e.target.checked,
+                        })
+                      }
+                    />
+                    Show LinkedIn
+                  </label>
+                </div>
+              </div>
+            )}
+          </div>
 
-                  {/* DELETE BUTTON MOVED HERE (AFTER TEXT) */}
-                  {editMode && (
+          <div className="hero-right flex flex-col items-center justify-center">
+            <div className="profile-img-box">
+              <img
+                src={heroSection.image || "/profile.png"}
+                alt="Profile"
+                className="profile-img"
+              />
+            </div>
+
+            {editMode && (
+              <div className="mt-6 space-y-2">
+                <div className="flex justify-center gap-2">
+                  <label className="cursor-pointer bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium">
+                    Upload Photo
+                    <input
+                      ref={imageInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
+                  </label>
+                  <button
+                    type="button"
+                    className="remove-btn"
+                    onClick={removeProfileImage}
+                  >
+                    Remove
+                  </button>
+                </div>
+
+                <div className="flex justify-center gap-2 pt-2">
+                  <label className="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium">
+                    Upload CV (PDF)
+                    <input
+                      ref={cvInputRef}
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleCVUpload}
+                      className="hidden"
+                    />
+                  </label>
+                  {heroSection.cv && (
                     <button
-                      className="delete-btn"
-                      onClick={() => {
-                        const updated = skillsSection.technologies.filter(
-                          (_, i) => i !== index,
-                        );
-
-                        setSkillsSection({
-                          ...skillsSection,
-                          technologies: updated,
-                        });
-                      }}
+                      type="button"
+                      className="remove-btn"
+                      onClick={removeCV}
                     >
-                      🗑
+                      Remove CV
                     </button>
                   )}
                 </div>
-              ))}
-            </div>
-
-            {/* ADD BUTTON */}
-            {editMode && (
-              <button
-                className="add-btn"
-                onClick={() => {
-                  setSkillsSection({
-                    ...skillsSection,
-                    technologies: [...skillsSection.technologies, "New Tech"],
-                  });
-                }}
-              >
-                + Add Tech
-              </button>
+              </div>
             )}
           </div>
         </div>
       </section>
-      <section className="projects-section" id="projects">
-        <h1 className="section-title">
+
+      <section className="section-container" id="about">
+        <div className="section-max">
           {editMode ? (
             <input
-              className="title-input"
+              type="text"
+              className="edit-input text-center max-w-md mx-auto text-2xl font-bold mb-6"
+              value={aboutSection.title}
+              onChange={(e) =>
+                setAboutSection({ ...aboutSection, title: e.target.value })
+              }
+            />
+          ) : (
+            <h2 className="section-title">{aboutSection.title}</h2>
+          )}
+
+          <div className="about-grid">
+            {aboutSection.cards.map((card) => (
+              <div key={card.id} className="about-card relative">
+                {editMode ? (
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <select
+                        className="edit-input text-xs w-auto"
+                        value={card.icon}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setAboutSection((prev) => ({
+                            ...prev,
+                            cards: prev.cards.map((c) =>
+                              c.id === card.id ? { ...c, icon: val } : c
+                            ),
+                          }));
+                        }}
+                      >
+                        <option value="code">Code</option>
+                        <option value="learn">Learn</option>
+                        <option value="cog">Cog</option>
+                        <option value="hobby">Hobby</option>
+                      </select>
+                      <button
+                        className="remove-btn"
+                        onClick={() => removeAboutCard(card.id)}
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                    <input
+                      type="text"
+                      className="edit-input"
+                      value={card.title}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setAboutSection((prev) => ({
+                          ...prev,
+                          cards: prev.cards.map((c) =>
+                            c.id === card.id ? { ...c, title: val } : c
+                          ),
+                        }));
+                      }}
+                    />
+                    <textarea
+                      className="edit-textarea"
+                      value={card.description}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setAboutSection((prev) => ({
+                          ...prev,
+                          cards: prev.cards.map((c) =>
+                            c.id === card.id ? { ...c, description: val } : c
+                          ),
+                        }));
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <div className="card-icon-wrapper">
+                      {getIcon(card.icon)}
+                    </div>
+                    <h3 className="about-card-title">{card.title}</h3>
+                    <p className="about-card-desc">{card.description}</p>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {editMode && (
+            <button className="add-btn mx-auto" onClick={addAboutCard}>
+              <Plus size={16} /> Add Card
+            </button>
+          )}
+        </div>
+      </section>
+
+      <section className="section-container" id="skills">
+        <div className="section-max">
+          {editMode ? (
+            <input
+              type="text"
+              className="edit-input text-center max-w-md mx-auto text-2xl font-bold mb-6"
+              value={skillsSection.title}
+              onChange={(e) =>
+                setSkillsSection({ ...skillsSection, title: e.target.value })
+              }
+            />
+          ) : (
+            <h2 className="section-title">{skillsSection.title}</h2>
+          )}
+
+          <div className="skills-grid">
+            <div className="skills-card">
+              <h3 className="text-xl font-bold text-white mb-6">
+                {skillsSection.leftTitle}
+              </h3>
+              <div className="space-y-4">
+                {skillsSection.skills.map((skill) => (
+                  <div key={skill.id} className="space-y-1">
+                    {editMode ? (
+                      <div className="flex gap-2 items-center">
+                        <input
+                          type="text"
+                          className="edit-input"
+                          value={skill.name}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setSkillsSection((prev) => ({
+                              ...prev,
+                              skills: prev.skills.map((s) =>
+                                s.id === skill.id ? { ...s, name: val } : s
+                              ),
+                            }));
+                          }}
+                        />
+                        <input
+                          type="number"
+                          className="edit-input w-20"
+                          value={skill.percentage}
+                          onChange={(e) => {
+                            const val = Number(e.target.value);
+                            setSkillsSection((prev) => ({
+                              ...prev,
+                              skills: prev.skills.map((s) =>
+                                s.id === skill.id
+                                  ? { ...s, percentage: val }
+                                  : s
+                              ),
+                            }));
+                          }}
+                        />
+                        <button
+                          className="remove-btn"
+                          onClick={() => removeSkill(skill.id)}
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex justify-between text-sm font-medium">
+                          <span>{skill.name}</span>
+                          <span className="text-cyan-400 font-bold">
+                            {skill.percentage}%
+                          </span>
+                        </div>
+                        <div className="skill-bar-container">
+                          <div
+                            className="skill-bar-fill"
+                            style={{ width: `${skill.percentage}%` }}
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+              {editMode && (
+                <button className="add-btn" onClick={addSkill}>
+                  <Plus size={16} /> Add Skill
+                </button>
+              )}
+            </div>
+
+            <div className="skills-card">
+              <h3 className="text-xl font-bold text-white mb-6">
+                {skillsSection.rightTitle}
+              </h3>
+              <div className="tech-tags-list">
+                {skillsSection.technologies.map((tech, index) => (
+                  <span key={index} className="tech-tag">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-container" id="projects">
+        <div className="section-max">
+          {editMode ? (
+            <input
+              type="text"
+              className="edit-input text-center max-w-md mx-auto text-2xl font-bold mb-6"
               value={projectsSection.title}
               onChange={(e) =>
                 setProjectsSection({
@@ -1170,304 +892,153 @@ export default function Trial() {
                   title: e.target.value,
                 })
               }
-              placeholder="Enter Project Section Title"
             />
           ) : (
-            projectsSection.title
+            <h2 className="section-title">{projectsSection.title}</h2>
           )}
-        </h1>
 
-        <div className="projects-grid">
-          {projectsSection.projects.map((project, index) => (
-            <div className="project-card" key={project.id}>
-              <h2>
-                <FaRocket className="rocket-icon" />
-
+          <div className="projects-grid">
+            {projectsSection.projects.map((proj) => (
+              <div key={proj.id} className="project-card">
                 {editMode ? (
-                  <input
-                    value={project.title}
-                    onChange={(e) => {
-                      const updated = [...projectsSection.projects];
-
-                      updated[index].title = e.target.value;
-
-                      setProjectsSection({
-                        ...projectsSection,
-                        projects: updated,
-                      });
-                    }}
-                    placeholder="Enter Project Title"
-                  />
-                ) : (
-                  project.title
-                )}
-              </h2>
-
-              {editMode ? (
-                <textarea
-                  value={project.description}
-                  onChange={(e) => {
-                    const updated = [...projectsSection.projects];
-
-                    updated[index].description = e.target.value;
-
-                    setProjectsSection({
-                      ...projectsSection,
-                      projects: updated,
-                    });
-                  }}
-                  placeholder="Enter Project Description"
-                />
-              ) : (
-                <p>{project.description}</p>
-              )}
-
-              {editMode ? (
-                <input
-                  value={project.tag}
-                  onChange={(e) => {
-                    const updated = [...projectsSection.projects];
-
-                    updated[index].tag = e.target.value;
-
-                    setProjectsSection({
-                      ...projectsSection,
-                      projects: updated,
-                    });
-                  }}
-                  placeholder="Enter Project Tag"
-                />
-              ) : (
-                <span className="project-tag">{project.tag}</span>
-              )}
-
-              <div className="project-buttons">
-                {editMode ? (
-                  <>
-                    {project.showCode && (
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
                       <input
-                        value={project.code}
+                        type="text"
+                        className="edit-input font-bold"
+                        value={proj.title}
                         onChange={(e) => {
-                          const updated = [...projectsSection.projects];
-                          updated[index].code = e.target.value;
-
-                          setProjectsSection({
-                            ...projectsSection,
-                            projects: updated,
-                          });
-                        }}
-                        placeholder="Enter Project URL"
-                      />
-                    )}
-
-                    <button
-                      className="delete-btn"
-                      onClick={() => {
-                        const updated = [...projectsSection.projects];
-
-                        updated[index] = {
-                          ...updated[index],
-                          showCode: !updated[index].showCode,
-                        };
-
-                        setProjectsSection({
-                          ...projectsSection,
-                          projects: updated,
-                        });
-                      }}
-                    >
-                      🗑 Toggle Code Button
-                    </button>
-
-                    {project.showDemo && (
-                      <input
-                        placeholder="Enter Project Demo URL"
-                        value={project.demo}
-                        onChange={(e) => {
-                          const updated = [...projectsSection.projects];
-                          updated[index].demo = e.target.value;
-
-                          setProjectsSection({
-                            ...projectsSection,
-                            projects: updated,
-                          });
+                          const val = e.target.value;
+                          setProjectsSection((prev) => ({
+                            ...prev,
+                            projects: prev.projects.map((p) =>
+                              p.id === proj.id ? { ...p, title: val } : p
+                            ),
+                          }));
                         }}
                       />
-                    )}
-
-                    <button
-                      className="delete-btn"
-                      onClick={() => {
-                        const updated = [...projectsSection.projects];
-
-                        updated[index] = {
-                          ...updated[index],
-                          showDemo: !updated[index].showDemo,
-                        };
-
-                        setProjectsSection({
-                          ...projectsSection,
-                          projects: updated,
-                        });
-                      }}
-                    >
-                      🗑 Toggle Demo Button
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    {project.showCode && (
-                      <a href={project.code} className="btn-outline">
-                        <FaGithub /> CODE
-                      </a>
-                    )}
-
-                    {project.showDemo && (
-                      <a
-                        href={project.demo}
-                        className="btn-filled"
-                        target="_blank"
-                        rel="noreferrer"
+                      <button
+                        className="remove-btn"
+                        onClick={() => removeProject(proj.id)}
                       >
-                        <FaExternalLinkAlt /> LIVE DEMO
-                      </a>
-                    )}
-                  </>
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                    <textarea
+                      className="edit-textarea"
+                      value={proj.description}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setProjectsSection((prev) => ({
+                          ...prev,
+                          projects: prev.projects.map((p) =>
+                            p.id === proj.id ? { ...p, description: val } : p
+                          ),
+                        }));
+                      }}
+                    />
+                    <input
+                      type="text"
+                      className="edit-input"
+                      placeholder="Tag"
+                      value={proj.tag}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setProjectsSection((prev) => ({
+                          ...prev,
+                          projects: prev.projects.map((p) =>
+                            p.id === proj.id ? { ...p, tag: val } : p
+                          ),
+                        }));
+                      }}
+                    />
+                    <input
+                      type="text"
+                      className="edit-input"
+                      placeholder="Demo Link"
+                      value={proj.demo}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setProjectsSection((prev) => ({
+                          ...prev,
+                          projects: prev.projects.map((p) =>
+                            p.id === proj.id ? { ...p, demo: val } : p
+                          ),
+                        }));
+                      }}
+                    />
+                    <input
+                      type="text"
+                      className="edit-input"
+                      placeholder="Code Link"
+                      value={proj.code}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setProjectsSection((prev) => ({
+                          ...prev,
+                          projects: prev.projects.map((p) =>
+                            p.id === proj.id ? { ...p, code: val } : p
+                          ),
+                        }));
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <h3 className="project-title">{proj.title}</h3>
+                    <p className="project-desc">{proj.description}</p>
+                    <span className="project-tag">{proj.tag}</span>
+                    <div className="project-links">
+                      {proj.showDemo && (
+                        <a
+                          href={proj.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold"
+                        >
+                          Live Demo <FaExternalLinkAlt size={10} />
+                        </a>
+                      )}
+                      {proj.showCode && (
+                        <a
+                          href={proj.code}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs text-white/70 hover:text-white flex items-center gap-1 font-semibold"
+                        >
+                          Source Code <FaGithub size={12} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 )}
               </div>
-              {editMode && (
-                <button
-                  className="delete-btn"
-                  onClick={() => {
-                    const updated = projectsSection.projects.filter(
-                      (p) => p.id !== project.id,
-                    );
+            ))}
+          </div>
 
-                    setProjectsSection({
-                      ...projectsSection,
-                      projects: updated,
-                    });
-                  }}
-                >
-                  🗑 Delete Project
-                </button>
-              )}
-            </div>
-          ))}
           {editMode && (
-            <button
-              className="add-btn"
-              onClick={() => {
-                const newProject = {
-                  id: Date.now(),
-                  title: "New Project",
-                  description: "Project description here...",
-                  tag: "New Tag",
-                  code: "#",
-                  demo: "#",
-                  showCode: true,
-                  showDemo: true,
-                };
-
-                setProjectsSection({
-                  ...projectsSection,
-                  projects: [...projectsSection.projects, newProject],
-                });
-              }}
-            >
-              + Add Project
+            <button className="add-btn mx-auto" onClick={addProject}>
+              <Plus size={16} /> Add Project
             </button>
           )}
         </div>
-
-        <div className="github-section">
-          {editMode ? (
-            <>
-              <input
-                value={projectsSection.githubText}
-                onChange={(e) =>
-                  setProjectsSection({
-                    ...projectsSection,
-                    githubText: e.target.value,
-                  })
-                }
-                placeholder="Enter More Projects title"
-              />
-
-              <input
-                value={projectsSection.githubLink}
-                onChange={(e) =>
-                  setProjectsSection({
-                    ...projectsSection,
-                    githubLink: e.target.value,
-                  })
-                }
-                placeholder="Enter More Projects URL"
-              />
-            </>
-          ) : (
-            <>
-              <p>{projectsSection.githubText}</p>
-
-              <a href={projectsSection.githubLink} className="github-btn">
-                <FaGithub />
-                VISIT MY GITHUB
-              </a>
-            </>
-          )}
-        </div>
       </section>
-      <section className="contact-section" id="contact">
-        <h1 className="contact-title">
-          {editMode ? (
-            <input
-              className="title-input"
-              value={contactSection.title}
-              onChange={(e) =>
-                setContactSection({
-                  ...contactSection,
-                  title: e.target.value,
-                })
-              }
-              placeholder="Enter Contact Title"
-            />
-          ) : (
-            contactSection.title
-          )}
-        </h1>
 
-        <div className="contact-container">
-          {/* LEFT */}
+      <section className="section-container" id="contact">
+        <div className="section-max">
+          <h2 className="section-title">{contactSection.title}</h2>
 
-          <div className="contact-left">
-            {editMode ? (
-              <input
-                className="title-input"
-                value={contactSection.leftTitle}
-                onChange={(e) =>
-                  setContactSection({
-                    ...contactSection,
-                    leftTitle: e.target.value,
-                  })
-                }
-                placeholder="Enter Contact Sub Title"
-              />
-            ) : (
-              <h2>{contactSection.leftTitle}</h2>
-            )}
+          <div className="contact-grid">
+            <div className="contact-info-card">
+              <h3 className="text-xl font-bold text-white mb-6">
+                {contactSection.leftTitle}
+              </h3>
 
-            {/* EMAIL */}
-
-            <div className="info-card">
-              <div className="icon-box">
-                <FaEnvelope />
-              </div>
-
-              <div>
-                <span>EMAIL</span>
-
-                {editMode ? (
+              {editMode ? (
+                <div className="space-y-3">
                   <input
+                    type="email"
+                    className="edit-input"
                     value={contactSection.email}
                     onChange={(e) =>
                       setContactSection({
@@ -1475,69 +1046,28 @@ export default function Trial() {
                         email: e.target.value,
                       })
                     }
-                    placeholder="Enter Contact Email"
+                    placeholder="Email"
                   />
-                ) : (
-                  <p>{contactSection.email}</p>
-                )}
-              </div>
-            </div>
-
-            {/* PHONE */}
-
-            <div className="info-card">
-              <div className="icon-box">
-                <FaPhoneAlt />
-              </div>
-
-              <div>
-                <span>PHONE</span>
-
-                {editMode ? (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "4px",
-                      width: "100%",
-                    }}
-                  >
+                  <div>
                     <input
                       ref={phoneInputRef}
-                      className={phoneError ? "input-error" : ""}
+                      type="text"
+                      className="edit-input"
                       value={contactSection.phone}
                       onChange={(e) => {
                         const val = e.target.value;
-                        setContactSection({
-                          ...contactSection,
-                          phone: val,
-                        });
+                        setContactSection({ ...contactSection, phone: val });
                         setPhoneError(validatePhone(val));
                       }}
-                      placeholder="Enter Contact Number"
+                      placeholder="Phone (+1...)"
                     />
                     {phoneError && (
-                      <small className="input-error-msg">{phoneError}</small>
+                      <p className="text-red-400 text-xs mt-1">{phoneError}</p>
                     )}
                   </div>
-                ) : (
-                  <p>{contactSection.phone}</p>
-                )}
-              </div>
-            </div>
-
-            {/* LOCATION */}
-
-            <div className="info-card">
-              <div className="icon-box">
-                <FaMapMarkerAlt />
-              </div>
-
-              <div>
-                <span>LOCATION</span>
-
-                {editMode ? (
                   <input
+                    type="text"
+                    className="edit-input"
                     value={contactSection.location}
                     onChange={(e) =>
                       setContactSection({
@@ -1545,280 +1075,93 @@ export default function Trial() {
                         location: e.target.value,
                       })
                     }
-                    placeholder="Enter Contact Address"
+                    placeholder="Location"
                   />
-                ) : (
-                  <p>{contactSection.location}</p>
-                )}
-              </div>
-            </div>
-
-            {/* OPPORTUNITY */}
-
-            <div className="opportunity-card">
-              {editMode ? (
-                <>
-                  <input
-                    value={contactSection.opportunityTitle}
-                    onChange={(e) =>
-                      setContactSection({
-                        ...contactSection,
-                        opportunityTitle: e.target.value,
-                      })
-                    }
-                    placeholder="Enter Opportunity Title"
-                  />
-
-                  <textarea
-                    value={contactSection.opportunityDescription}
-                    onChange={(e) =>
-                      setContactSection({
-                        ...contactSection,
-                        opportunityDescription: e.target.value,
-                      })
-                    }
-                    placeholder="Enter Opportunity Description"
-                  />
-                </>
+                </div>
               ) : (
-                <>
-                  <h3>{contactSection.opportunityTitle}</h3>
-
-                  <p>{contactSection.opportunityDescription}</p>
-                </>
+                <div>
+                  {contactItems.map((item, idx) => (
+                    <div key={idx} className="contact-item">
+                      <div className="contact-item-icon">{item.icon}</div>
+                      <div>
+                        <p className="text-xs text-white/40 uppercase">
+                          {item.label}
+                        </p>
+                        <p className="text-sm sm:text-base text-white font-medium">
+                          {item.value}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
-          </div>
 
-          {/* RIGHT */}
-
-          <div className="contact-right">
-            {editMode ? (
-              <input
-                className="title-input"
-                value={contactSection.rightTitle}
-                onChange={(e) =>
-                  setContactSection({
-                    ...contactSection,
-                    rightTitle: e.target.value,
-                  })
-                }
-                placeholder="Enter Send Message Title"
-              />
-            ) : (
-              <h2>{contactSection.rightTitle}</h2>
-            )}
-
-            <form className="contact-form">
-              <input type="text" placeholder="Your Name" />
-
-              <input type="email" placeholder="Email Address" />
-
-              <textarea rows="6" placeholder="Your Message"></textarea>
-
-              <button type="submit">
-                <FaPaperPlane />
-                SEND MESSAGE
-              </button>
-            </form>
+            <div className="contact-info-card">
+              <h3 className="text-xl font-bold text-white mb-6">
+                {contactSection.rightTitle}
+              </h3>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  alert("Message sent! (Demo)");
+                }}
+                className="space-y-4"
+              >
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  required
+                  className="w-full bg-[#050b18] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  required
+                  className="w-full bg-[#050b18] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                />
+                <textarea
+                  placeholder="Your Message"
+                  rows={4}
+                  required
+                  className="w-full bg-[#050b18] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 resize-y"
+                />
+                <button type="submit" className="btn-primary w-full">
+                  Send Message
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
-      <footer className="footer">
-        <div className="footer-top">
-          <div className="footer-left">
-            {editMode ? (
-              <>
-                <input
-                  value={footerSection.name}
-                  onChange={(e) =>
-                    setFooterSection({
-                      ...footerSection,
-                      name: e.target.value,
-                    })
-                  }
-                  placeholder="Enter Name"
-                />
 
-                <textarea
-                  value={footerSection.description}
-                  onChange={(e) =>
-                    setFooterSection({
-                      ...footerSection,
-                      description: e.target.value,
-                    })
-                  }
-                  placeholder="Enter Experience description"
-                />
-              </>
-            ) : (
-              <>
-                <h1>{footerSection.name}</h1>
-
-                <p>{footerSection.description}</p>
-              </>
+      <footer className="portfolio-footer">
+        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>{footerSection.copyright}</p>
+          <div className="flex gap-4">
+            {footerSection.showGithub && (
+              <a
+                href={`https://github.com/${footerSection.githubUsername}`}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-cyan-400 transition-colors"
+              >
+                GitHub
+              </a>
+            )}
+            {footerSection.showLinkedin && (
+              <a
+                href={`https://linkedin.com/in/${footerSection.linkedinUsername}`}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-cyan-400 transition-colors"
+              >
+                LinkedIn
+              </a>
             )}
           </div>
-
-          <div className="footer-icons">
-            {editMode ? (
-              <div className="footer-edit-links">
-                <div className="url-input-group">
-                  <label className="input-label">GitHub Username</label>
-                  <div className="url-input-wrapper">
-                    <span className="url-prefix">https://github.com/</span>
-                    <input
-                      value={footerSection.githubUsername}
-                      onChange={(e) =>
-                        setFooterSection({
-                          ...footerSection,
-                          githubUsername: e.target.value,
-                        })
-                      }
-                      placeholder="yourusername"
-                    />
-                  </div>
-                </div>
-
-                <div className="url-input-group">
-                  <label className="input-label">LinkedIn Username</label>
-                  <div className="url-input-wrapper">
-                    <span className="url-prefix">https://linkedin.com/in/</span>
-                    <input
-                      value={footerSection.linkedinUsername}
-                      onChange={(e) =>
-                        setFooterSection({
-                          ...footerSection,
-                          linkedinUsername: e.target.value,
-                        })
-                      }
-                      placeholder="yourusername"
-                    />
-                  </div>
-                </div>
-
-                <input
-                  value={footerSection.email}
-                  onChange={(e) =>
-                    setFooterSection({
-                      ...footerSection,
-                      email: e.target.value,
-                    })
-                  }
-                  placeholder="Enter Email"
-                />
-                <label className="toggle-row">
-                  <input
-                    type="checkbox"
-                    checked={footerSection.showGithub}
-                    onChange={(e) =>
-                      setFooterSection({
-                        ...footerSection,
-                        showGithub: e.target.checked,
-                      })
-                    }
-                  />
-                  Show GitHub
-                </label>
-
-                <label className="toggle-row">
-                  <input
-                    type="checkbox"
-                    checked={footerSection.showLinkedin}
-                    onChange={(e) =>
-                      setFooterSection({
-                        ...footerSection,
-                        showLinkedin: e.target.checked,
-                      })
-                    }
-                  />
-                  Show LinkedIn
-                </label>
-
-                <label className="toggle-row">
-                  <input
-                    type="checkbox"
-                    checked={footerSection.showEmail}
-                    onChange={(e) =>
-                      setFooterSection({
-                        ...footerSection,
-                        showEmail: e.target.checked,
-                      })
-                    }
-                  />
-                  Show Email
-                </label>
-              </div>
-            ) : (
-              <>
-                {footerSection.showGithub && (
-                  <a
-                    href={`https://github.com/${footerSection.githubUsername}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <FaGithub />
-                  </a>
-                )}
-
-                {footerSection.showLinkedin && (
-                  <a
-                    href={`https://linkedin.com/in/${footerSection.linkedinUsername}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <FaLinkedin />
-                  </a>
-                )}
-
-                {footerSection.showEmail && (
-                  <a href={`mailto:${footerSection.email}`} target="_blank">
-                    <FaEnvelope />
-                  </a>
-                )}
-              </>
-            )}
-          </div>
-        </div>
-
-        <div className="footer-line"></div>
-
-        <div className="footer-bottom">
-          {editMode ? (
-            <>
-              <input
-                value={footerSection.copyright}
-                onChange={(e) =>
-                  setFooterSection({
-                    ...footerSection,
-                    copyright: e.target.value,
-                  })
-                }
-                placeholder="Enter Copyright Title URL"
-              />
-
-              <input
-                value={footerSection.location}
-                onChange={(e) =>
-                  setFooterSection({
-                    ...footerSection,
-                    location: e.target.value,
-                  })
-                }
-                placeholder="Enter Location"
-              />
-            </>
-          ) : (
-            <>
-              <p>{footerSection.copyright}</p>
-
-              <span>{footerSection.location}</span>
-            </>
-          )}
         </div>
       </footer>
-    </>
+    </div>
   );
 }
-
-// ended
