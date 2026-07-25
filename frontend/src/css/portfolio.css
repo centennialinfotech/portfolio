@@ -2,19 +2,19 @@
 @import "tailwindcss";
 
 .portfolio-bg {
-  @apply min-h-screen bg-[#050b18] text-white font-['Plus_Jakarta_Sans',sans-serif] selection:bg-cyan-500/30 overflow-x-hidden;
+  @apply min-h-screen bg-black text-white font-['Plus_Jakarta_Sans',sans-serif] selection:bg-white/20 overflow-x-hidden;
 }
 
 .saving-overlay {
-  @apply fixed inset-0 z-[2000] bg-[#050b18]/90 backdrop-blur-md flex items-center justify-center text-white;
+  @apply fixed inset-0 z-[2000] bg-black/90 backdrop-blur-md flex items-center justify-center text-white;
 }
 
 .saving-spinner {
-  @apply w-12 h-12 animate-spin text-cyan-400;
+  @apply w-12 h-12 animate-spin text-white;
 }
 
 .portfolio-header {
-  @apply fixed top-0 left-0 right-0 w-full z-[1000] bg-[#07122b]/95 backdrop-blur-xl border-b border-cyan-500/15 transition-all duration-300;
+  @apply fixed top-0 left-0 right-0 w-full z-[1000] bg-black/90 backdrop-blur-xl border-b border-white/10 transition-all duration-300;
 }
 
 .header-container {
@@ -30,11 +30,11 @@
 }
 
 .header-nav {
-  @apply hidden lg:flex items-center justify-center gap-8 text-white/80;
+  @apply hidden lg:flex items-center justify-center gap-8 text-white/70;
 }
 
 .header-nav-link {
-  @apply hover:text-cyan-400 transition-colors duration-200 font-semibold text-base relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2.5px] after:bg-cyan-400 hover:after:w-full after:transition-all after:duration-300;
+  @apply hover:text-white transition-colors duration-200 font-semibold text-base relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-white hover:after:w-full after:transition-all after:duration-300;
 }
 
 .header-actions {
@@ -42,19 +42,19 @@
 }
 
 .btn-customize {
-  @apply bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/25 text-cyan-300 font-bold px-2 py-1 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs md:text-sm transition-all duration-200 active:scale-95 flex items-center gap-1 whitespace-nowrap;
+  @apply bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-2 py-1 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs md:text-sm transition-all duration-200 active:scale-95 flex items-center gap-1 whitespace-nowrap;
 }
 
 .btn-customize-active {
-  @apply bg-cyan-500 hover:bg-cyan-400 border-cyan-300 text-black font-extrabold shadow-lg shadow-cyan-500/30;
+  @apply bg-white hover:bg-neutral-200 border-white text-black font-extrabold shadow-lg shadow-white/10;
 }
 
 .btn-premium {
-  @apply bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white font-extrabold px-2 py-1 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs md:text-sm transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 border border-white/10 block whitespace-nowrap;
+  @apply bg-white text-black font-extrabold px-2 py-1 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs md:text-sm transition-all duration-300 shadow-lg hover:scale-105 hover:bg-neutral-200 active:scale-95 border border-white block whitespace-nowrap;
 }
 
 .btn-premium-mobile {
-  @apply bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-sm transition-all duration-300 shadow-lg text-center block lg:hidden my-1;
+  @apply bg-white text-black font-extrabold px-4 py-2.5 rounded-xl text-sm transition-all duration-300 shadow-lg text-center block lg:hidden my-1 hover:bg-neutral-200;
 }
 
 .user-avatar-btn {
@@ -62,19 +62,19 @@
 }
 
 .user-avatar-circle {
-  @apply w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-[11px] sm:text-sm font-extrabold shadow-md shadow-cyan-500/20;
+  @apply w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-neutral-900 border border-white/20 flex items-center justify-center text-white text-[11px] sm:text-sm font-extrabold shadow-md;
 }
 
 .user-dropdown-menu {
-  @apply absolute right-0 top-full mt-3 w-56 bg-[#07122b]/95 backdrop-blur-xl border border-cyan-500/20 rounded-2xl shadow-2xl p-3 z-50;
+  @apply absolute right-0 top-full mt-3 w-56 bg-neutral-950 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl p-3 z-50;
 }
 
 .hamburger-btn {
-  @apply block lg:hidden text-white/90 hover:text-cyan-400 transition-colors active:scale-95 p-0.5;
+  @apply block lg:hidden text-white/90 hover:text-white transition-colors active:scale-95 p-0.5;
 }
 
 .mobile-menu-drawer {
-  @apply lg:hidden bg-[#07122b]/95 backdrop-blur-xl border-b border-cyan-500/15 overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out;
+  @apply lg:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out;
 }
 
 .mobile-menu-drawer-open {
@@ -86,7 +86,7 @@
 }
 
 .mobile-menu-link {
-  @apply text-base text-white/80 hover:text-cyan-400 px-4 py-3 rounded-xl hover:bg-cyan-500/10 transition-all font-semibold text-left;
+  @apply text-base text-white/70 hover:text-white px-4 py-3 rounded-xl hover:bg-white/10 transition-all font-semibold text-left;
 }
 
 .portfolio-hero {
@@ -98,7 +98,7 @@
 }
 
 .hero-greeting {
-  @apply text-cyan-400 font-black text-lg sm:text-2xl tracking-wider uppercase;
+  @apply text-neutral-400 font-black text-lg sm:text-2xl tracking-wider uppercase;
 }
 
 .hero-name {
@@ -106,7 +106,7 @@
 }
 
 .hero-role {
-  @apply text-2xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 text-transparent bg-clip-text mt-3 sm:mt-4 break-words;
+  @apply text-2xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-white via-neutral-200 to-neutral-400 text-transparent bg-clip-text mt-3 sm:mt-4 break-words;
 }
 
 .hero-desc {
@@ -118,19 +118,19 @@
 }
 
 .btn-primary {
-  @apply bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white px-7 py-3.5 sm:px-10 sm:py-4.5 rounded-2xl font-extrabold text-sm sm:text-lg hover:scale-[1.03] hover:shadow-xl hover:shadow-cyan-500/25 active:scale-95 transition-all duration-300;
+  @apply bg-white text-black hover:bg-neutral-200 px-7 py-3.5 sm:px-10 sm:py-4.5 rounded-2xl font-extrabold text-sm sm:text-lg hover:scale-[1.03] hover:shadow-xl hover:shadow-white/10 active:scale-95 transition-all duration-300;
 }
 
 .btn-secondary {
-  @apply px-7 py-3.5 sm:px-10 sm:py-4.5 rounded-2xl border border-cyan-500/25 bg-cyan-500/5 hover:bg-cyan-500/15 hover:border-cyan-400 active:scale-95 transition-all duration-300 font-bold text-sm sm:text-lg text-white;
+  @apply px-7 py-3.5 sm:px-10 sm:py-4.5 rounded-2xl border border-white/20 bg-white/5 hover:bg-white/15 hover:border-white/40 active:scale-95 transition-all duration-300 font-bold text-sm sm:text-lg text-white;
 }
 
 .profile-card {
-  @apply relative w-full max-w-md mx-auto bg-gradient-to-b from-[#0b1d47]/80 to-[#07122b]/80 border border-cyan-500/20 backdrop-blur-2xl rounded-[36px] p-5 sm:p-7 shadow-2xl hover:border-cyan-400/40 transition-all duration-500 text-center;
+  @apply relative w-full max-w-md mx-auto bg-neutral-950 border border-white/15 backdrop-blur-2xl rounded-[36px] p-5 sm:p-7 shadow-2xl hover:border-white/30 transition-all duration-500 text-center;
 }
 
 .profile-img-box {
-  @apply w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto rounded-full overflow-hidden border-4 sm:border-8 border-cyan-500/30 shadow-2xl shadow-cyan-500/30 relative bg-[#050b18] flex items-center justify-center hover:scale-[1.03] transition-transform duration-500;
+  @apply w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto rounded-full overflow-hidden border-4 sm:border-8 border-white/20 shadow-2xl shadow-white/5 relative bg-neutral-950 flex items-center justify-center hover:scale-[1.03] transition-transform duration-500;
 }
 
 .profile-img {
@@ -138,7 +138,7 @@
 }
 
 .section-container {
-  @apply relative z-10 px-4 sm:px-12 md:px-16 lg:px-28 py-16 sm:py-20 border-t border-cyan-500/10;
+  @apply relative z-10 px-4 sm:px-12 md:px-16 lg:px-28 py-16 sm:py-20 border-t border-white/10;
 }
 
 .section-max {
@@ -158,11 +158,11 @@
 }
 
 .about-card {
-  @apply bg-[#07122b]/70 border border-cyan-500/15 rounded-3xl p-6 sm:p-8 backdrop-blur-xl hover:-translate-y-2 hover:bg-[#0b1d47]/90 hover:border-cyan-400/35 transition-all duration-300;
+  @apply bg-neutral-950 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-xl hover:-translate-y-2 hover:bg-neutral-900 hover:border-white/30 transition-all duration-300;
 }
 
 .card-icon-wrapper {
-  @apply h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 mb-5 sm:mb-6 flex items-center justify-center shadow-lg shadow-cyan-500/20 text-white text-xl sm:text-2xl;
+  @apply h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-white mb-5 sm:mb-6 flex items-center justify-center shadow-lg shadow-white/10 text-black text-xl sm:text-2xl;
 }
 
 .about-card-title {
@@ -178,7 +178,7 @@
 }
 
 .skills-card {
-  @apply bg-[#07122b]/70 border border-cyan-500/15 rounded-3xl p-6 sm:p-8 backdrop-blur-xl;
+  @apply bg-neutral-950 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-xl;
 }
 
 .skill-bar-container {
@@ -186,7 +186,7 @@
 }
 
 .skill-bar-fill {
-  @apply bg-gradient-to-r from-cyan-400 to-blue-600 h-full rounded-full transition-all duration-500;
+  @apply bg-white h-full rounded-full transition-all duration-500;
 }
 
 .tech-tags-list {
@@ -194,7 +194,7 @@
 }
 
 .tech-tag {
-  @apply px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-base rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 font-semibold hover:text-white hover:border-cyan-400 transition-all;
+  @apply px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-base rounded-full bg-white/5 border border-white/15 text-white/90 font-semibold hover:text-white hover:border-white/40 transition-all;
 }
 
 .projects-grid {
@@ -202,7 +202,7 @@
 }
 
 .project-card {
-  @apply bg-[#07122b]/70 border border-cyan-500/15 rounded-3xl p-6 sm:p-8 backdrop-blur-xl hover:-translate-y-2 hover:border-cyan-400/35 hover:bg-[#0b1d47]/90 transition-all duration-300 flex flex-col justify-between;
+  @apply bg-neutral-950 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-xl hover:-translate-y-2 hover:border-white/30 hover:bg-neutral-900 transition-all duration-300 flex flex-col justify-between;
 }
 
 .project-title {
@@ -214,11 +214,11 @@
 }
 
 .project-tag {
-  @apply inline-block px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 mb-5 sm:mb-6;
+  @apply inline-block px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full bg-white/10 border border-white/20 text-white mb-5 sm:mb-6;
 }
 
 .project-links {
-  @apply flex gap-5 pt-4 sm:pt-5 border-t border-cyan-500/10;
+  @apply flex gap-5 pt-4 sm:pt-5 border-t border-white/10;
 }
 
 .contact-grid {
@@ -226,31 +226,31 @@
 }
 
 .contact-info-card {
-  @apply bg-[#07122b]/70 border border-cyan-500/15 rounded-3xl p-6 sm:p-10 backdrop-blur-xl;
+  @apply bg-neutral-950 border border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-xl;
 }
 
 .contact-item {
-  @apply flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-cyan-500/5 border border-cyan-500/15 mb-4;
+  @apply flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 mb-4;
 }
 
 .contact-item-icon {
-  @apply w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cyan-500/20 border border-cyan-500/35 flex items-center justify-center text-cyan-400 text-lg sm:text-xl flex-shrink-0;
+  @apply w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white text-lg sm:text-xl flex-shrink-0;
 }
 
 .edit-input {
-  @apply w-full bg-[#050b18] border border-cyan-500/30 text-white px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors my-1 font-medium;
+  @apply w-full bg-black border border-white/20 text-white px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:border-white transition-colors my-1 font-medium;
 }
 
 .edit-textarea {
-  @apply w-full bg-[#050b18] border border-cyan-500/30 text-white px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors my-1 resize-y min-h-[100px] font-medium;
+  @apply w-full bg-black border border-white/20 text-white px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:border-white transition-colors my-1 resize-y min-h-[100px] font-medium;
 }
 
 .edit-box {
-  @apply bg-[#07122b]/90 border border-cyan-500/30 p-4 sm:p-5 rounded-2xl my-4 space-y-3;
+  @apply bg-neutral-950 border border-white/20 p-4 sm:p-5 rounded-2xl my-4 space-y-3;
 }
 
 .add-btn {
-  @apply bg-cyan-500/20 hover:bg-cyan-500/40 border border-cyan-500/40 text-cyan-300 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 mt-6 cursor-pointer;
+  @apply bg-white/10 hover:bg-white/20 border border-white/20 text-white px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 mt-6 cursor-pointer;
 }
 
 .remove-btn {
@@ -258,7 +258,7 @@
 }
 
 .portfolio-footer {
-  @apply relative z-10 border-t border-cyan-500/15 py-10 sm:py-12 px-6 text-center text-white/60 text-sm sm:text-base font-medium bg-[#07122b];
+  @apply relative z-10 border-t border-white/10 py-10 sm:py-12 px-6 text-center text-white/60 text-sm sm:text-base font-medium bg-black;
 }
 
 @media (max-width: 360px) {
