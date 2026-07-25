@@ -41,14 +41,22 @@ function App() {
   ];
 
   let subdomain = null;
+  const searchSubdomain = new URLSearchParams(window.location.search).get("subdomain");
 
   if (!isLocalhost && host.endsWith(".centennialinfotech.com")) {
     const firstPart = host.split(".")[0];
-
     if (!reservedSubdomains.includes(firstPart)) {
       subdomain = firstPart;
     }
+  } else if (isLocalhost && host.includes(".localhost")) {
+    const firstPart = host.split(".")[0];
+    if (!reservedSubdomains.includes(firstPart)) {
+      subdomain = firstPart;
+    }
+  } else if (isLocalhost && searchSubdomain) {
+    subdomain = searchSubdomain;
   }
+
   if (subdomain) {
     return (
       <Suspense fallback={<div>Loading...</div>}>
@@ -67,6 +75,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/demo" element={<Dashboard />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/p/:subdomain" element={<PublicPortfolio />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/plan/:planId" element={<PlanDetails />} />
           <Route path="/checkout/:planId" element={<Checkout />} />
