@@ -27,71 +27,240 @@ export default function Support() {
 
   return (
     <PublicLayout>
-      <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">
+      <div className="min-h-screen bg-black text-white px-4 sm:px-6 md:px-16 lg:px-28 py-16 sm:py-20">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-14">
-            <h1 className="text-4xl md:text-5xl font-black mb-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight px-2">
               Support Center
             </h1>
 
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            <p className="text-white/60 mt-5 text-sm sm:text-base md:text-xl max-w-2xl mx-auto font-light leading-7 px-2">
               Need assistance? Our support team is here to help. Choose the
               support option that works best for you.
             </p>
           </div>
 
           {/* Support Options */}
-          <div className="grid md:grid-rows-3 gap-5 ">
+          <div className="grid grid-cols-1 gap-5">
             {/* Email */}
-            <div className="bg-white/[0.05] border border-white/10 rounded-[24px] p-8 text-center">
-              <div className="text-5xl mb-5">📧</div>
+            <div className="
+            group
+            bg-white/[0.03]
+            border
+            border-white/5
+            rounded-[24px]
+            p-6
+            sm:p-8
+            backdrop-blur-lg
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:bg-white/5
+            hover:border-white/15
+            text-center
+            ">
+              <div
+                className="
+                  w-14
+                  h-14
+                  sm:w-16
+                  sm:h-16
+                  text-2xl
+                  sm:text-3xl
+                  mb-6
+                  sm:mb-8
+                  rounded-2xl
+                  bg-gradient-to-br
+                  from-blue-500
+                  to-purple-600
+                  flex
+                  items-center
+                  justify-center
+                  text-3xl
+                  mx-auto
+                  mb-8
+                  transition-transform
+                  duration-300
+                  group-hover:scale-110
+                "
+              >📧</div>
 
-              <h2 className="text-2xl font-bold mb-3">Email Support</h2>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white/90 mb-3">Email Support</h2>
 
-              <p className="text-white/60 mb-6">
+              <p className="text-white/50 leading-relaxed mb-6">
                 Contact our support team directly via email.
               </p>
 
               <a
                 href="mailto:support@centennialinfotech.com"
-                className="inline-block px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition text-sm max-w-full break-all whitespace-normal min-w-[120px]"
+                className="
+                w-full
+                rounded-xl
+                bg-gradient-to-r
+                from-blue-600
+                to-purple-600
+                px-4
+                py-3
+                text-xs
+                sm:text-sm
+                font-semibold
+                text-white
+                text-center
+                break-all
+                transition-all
+                duration-300
+                hover:shadow-xl
+                hover:shadow-purple-500/20
+                "
               >
                 support@centennialinfotech.com
               </a>
             </div>
 
             {/* Live Chat */}
-            <div className="bg-white/[0.05] border border-white/10 rounded-[24px] p-8 text-center">
-              <div className="text-5xl mb-5">💬</div>
+              <div className="
+              group
+              bg-white/[0.03]
+              border
+              border-white/5
+              rounded-[24px]
+              p-6
+              sm:p-8
+              backdrop-blur-lg
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:bg-white/5
+              hover:border-white/15
+              text-center
+              ">
+              <div
+                className="
+                  w-14
+                  h-14
+                  sm:w-16
+                  sm:h-16
+                  text-2xl
+                  sm:text-3xl
+                  mb-6
+                  sm:mb-8
+                  rounded-2xl
+                  bg-gradient-to-br
+                  from-blue-500
+                  to-purple-600
+                  flex
+                  items-center
+                  justify-center
+                  text-3xl
+                  mx-auto
+                  mb-8
+                  transition-transform
+                  duration-300
+                  group-hover:scale-110
+                "
+              >💬</div>
 
-              <h2 className="text-2xl font-bold mb-3">Live Chat</h2>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white/90 mb-3">Live Chat</h2>
 
-              <p className="text-white/60 mb-6">
+              <p className="text-white/50 leading-relaxed mb-6">
                 Chat with our team in real time for quick assistance.
               </p>
 
               <button
                 onClick={openChat}
-                className="px-6 py-3 rounded-xl bg-green-500 hover:bg-green-600 transition"
+                className="
+                inline-flex
+                items-center
+                justify-center
+                rounded-xl
+                bg-gradient-to-r
+                from-green-500
+                to-emerald-600
+                px-6
+                py-3
+                font-semibold
+                text-white
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-xl
+                hover:shadow-green-500/20
+                "
               >
                 Start Live Chat
               </button>
             </div>
 
             {/* Ticket */}
-            <div className="bg-white/[0.05] border border-white/10 rounded-[24px] p-8 text-center">
-              <div className="text-5xl mb-5">🎫</div>
+            <div className="
+            group
+            bg-white/[0.03]
+            border
+            border-white/5
+            rounded-[24px]
+            p-6
+            sm:p-8
+            backdrop-blur-lg
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:bg-white/5
+            hover:border-white/15
+            text-center
+            ">
+              <div
+                className="
+                  w-14
+                  h-14
+                  sm:w-16
+                  sm:h-16
+                  text-2xl
+                  sm:text-3xl
+                  mb-6
+                  sm:mb-8
+                  rounded-2xl
+                  bg-gradient-to-br
+                  from-blue-500
+                  to-purple-600
+                  flex
+                  items-center
+                  justify-center
+                  text-3xl
+                  mx-auto
+                  mb-8
+                  transition-transform
+                  duration-300
+                  group-hover:scale-110
+                "
+              >🎫</div>
 
-              <h2 className="text-2xl font-bold mb-3">Create a Ticket</h2>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white/90 mb-3">Create a Ticket</h2>
 
-              <p className="text-white/60 mb-6">
+              <p className="text-white/50 leading-relaxed mb-6">
                 Submit a support request and we'll get back to you.
               </p>
 
               <button
                 onClick={() => navigate("/ticket")}
-                className="px-6 py-3 rounded-xl bg-purple-500 hover:bg-purple-600 transition"
+                className="
+                inline-flex
+                items-center
+                justify-center
+                rounded-xl
+                bg-gradient-to-r
+                from-purple-600
+                to-pink-600
+                px-6
+                py-3
+                font-semibold
+                text-white
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-xl
+                hover:shadow-pink-500/20
+                "
               >
                 Create Ticket
               </button>
@@ -99,10 +268,20 @@ export default function Support() {
           </div>
 
           {/* Help Section */}
-          <div className="mt-14 bg-white/[0.05] border border-white/10 rounded-[24px] p-8">
-            <h3 className="text-2xl font-bold mb-4">Response Times</h3>
+          <div className="
+          mt-16
+          bg-white/[0.03]
+          border
+          border-white/5
+          rounded-3xl
+          p-8
+          backdrop-blur-lg
+          ">
+            <h3 className="text-2xl font-bold tracking-tight text-white/90 mb-3">Response Times</h3>
 
-            <div className="space-y-3 text-white/70">
+            <div className="space-y-3
+            text-white/60
+            leading-relaxed">
               <p>📧 Email Support: Within 24 hours</p>
 
               <p>💬 Live Chat: Usually within a few minutes</p>

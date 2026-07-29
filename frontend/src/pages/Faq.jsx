@@ -34,23 +34,35 @@ export default function FAQ() {
     <PublicLayout>
       <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-black text-center mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight text-center">
             Frequently Asked Questions
           </h1>
 
-          <p className="text-white/70 text-center mb-16">
+          <p className="text-white/60 text-base sm:text-xl mt-6 font-light text-center mb-16">
             Find answers to common questions.
           </p>
 
-          <div className="space-y-6">
+          <div className="space-y-6 max-w-4xl mx-auto">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white/[0.05] border border-white/10 rounded-[24px] p-8"
+                className="
+                bg-white/[0.02]
+                border
+                border-white/5
+                rounded-[24px]
+                p-6
+                sm:p-8
+                backdrop-blur-xl
+                hover:border-white/20
+                hover:bg-white/[0.05]
+                transition-all
+                duration-300
+                "
               >
-                <h3 className="text-xl font-bold mb-3">{faq.q}</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-white/90 mb-4">{faq.q}</h3>
 
-                <p className="text-white/70">{faq.a}</p>
+                <p className="text-white/50 text-sm sm:text-base leading-relaxed font-light">{faq.a}</p>
               </div>
             ))}
           </div>

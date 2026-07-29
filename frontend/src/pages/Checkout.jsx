@@ -410,13 +410,23 @@ export default function Checkout() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white px-6 md:px-16 lg:px-28 py-20">
-      <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10">
+    <div className="min-h-screen bg-black text-white px-4 sm:px-6 md:px-16 lg:px-28 py-16 sm:py-20">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
         {/* LEFT */}
-        <div className="bg-white/[0.05] border border-white/10 rounded-[32px] p-10">
-          <h1 className="text-4xl font-black mb-4">Checkout</h1>
+        <div className="bg-white/[0.03]
+        border
+        border-white/5
+        rounded-[32px]
+        p-6
+        sm:p-8
+        lg:p-10
+        backdrop-blur-xl
+        hover:border-white/15
+        transition-all
+        duration-300">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">Checkout</h1>
 
-          <p className="text-white/60 mb-10">
+          <p className="text-white/50 text-sm sm:text-base leading-relaxed mb-8">
             Complete your purchase securely.
           </p>
 
@@ -432,7 +442,7 @@ export default function Checkout() {
                   name: e.target.value,
                 })
               }
-              className={`w-full p-4 rounded-2xl bg-black/40 border ${
+              className={`w-full px-5 py-4 rounded-xl text-sm sm:text-base bg-black/40 border border-white/10 focus:border-purple-500 focus:outline-none transition-all bg-black/40 border ${
                 error && !customer.name ? "border-red-500" : "border-white/10"
               }`}
             />
@@ -447,7 +457,7 @@ export default function Checkout() {
                   email: e.target.value,
                 })
               }
-              className={`w-full p-4 rounded-2xl bg-black/40 text-white border ${
+              className={`w-full px-5 py-4 rounded-xl text-sm sm:text-base bg-black/40 border border-white/10 focus:border-purple-500 focus:outline-none transition-all bg-black/40 text-white border ${
                 (error && !customer.email) ||
                 (customer.email && !customer.email.endsWith("@gmail.com"))
                   ? "border-red-500"
@@ -462,7 +472,7 @@ export default function Checkout() {
                   country: e.target.value,
                 })
               }
-              className={`w-full p-4 rounded-2xl bg-black/40 text-white border ${
+              className={`w-full px-5 py-4 rounded-xl text-sm sm:text-base bg-black/40 border border-white/10 focus:border-purple-500 focus:outline-none transition-all bg-black/40 text-white border ${
                 error && !customer.country
                   ? "border-red-500"
                   : "border-white/10"
@@ -481,18 +491,18 @@ export default function Checkout() {
             <input
               type="text"
               placeholder="Coupon Code (Optional)"
-              className="w-full p-4 rounded-2xl bg-black/40 border border-white/10"
+              className="w-full px-5 py-4 rounded-xl text-sm sm:text-base bg-black/40 border border-white/10 focus:border-purple-500 focus:outline-none transition-all bg-black/40 border border-white/10"
             />
           </div>
 
           {/* PAYMENT */}
           <div className="mt-10">
-            <h2 className="text-2xl font-bold mb-5">Payment Method</h2>
+            <h2 className="text-xl sm:text-2xl font-bold mb-5">Payment Method</h2>
 
             <div className="space-y-4">
               <button
                 onClick={() => setPaymentMethod("card")}
-                className={`w-full border rounded-2xl p-5 text-left transition ${
+                className={`w-full border rounded-xl px-5 py-4 text-sm sm:text-base hover:border-white/20 transition-all duration-300 text-left transition ${
                   paymentMethod === "card"
                     ? "border-blue-500 bg-blue-500/10"
                     : "border-white/10 bg-white/[0.03]"
@@ -503,7 +513,7 @@ export default function Checkout() {
 
               <button
                 onClick={() => setPaymentMethod("razorpay")}
-                className={`w-full border rounded-2xl p-5 text-left transition ${
+                className={`w-full border rounded-xl px-5 py-4 text-sm sm:text-base hover:border-white/20 transition-all duration-300 text-left transition ${
                   paymentMethod === "razorpay"
                     ? "border-purple-500 bg-purple-500/10"
                     : "border-white/10 bg-white/[0.03]"
@@ -514,7 +524,7 @@ export default function Checkout() {
 
               <button
                 onClick={() => setPaymentMethod("paypal")}
-                className={`w-full border rounded-2xl p-5 text-left transition ${
+                className={`w-full border rounded-xl px-5 py-4 text-sm sm:text-base hover:border-white/20 transition-all duration-300 text-left transition ${
                   paymentMethod === "paypal"
                     ? "border-green-500 bg-green-500/10"
                     : "border-white/10 bg-white/[0.03]"
@@ -527,23 +537,33 @@ export default function Checkout() {
         </div>
 
         {/* RIGHT */}
-        <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-white/10 rounded-[32px] p-10 h-fit sticky top-10">
-          <h2 className="text-3xl font-black">Order Summary</h2>
+        <div className="bg-white/[0.03]
+          border
+          border-white/5
+          rounded-[32px]
+          p-6
+          sm:p-8
+          lg:p-10
+          backdrop-blur-xl
+          h-fit
+          lg:sticky
+          lg:top-24">
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight font-black">Order Summary</h2>
 
           <div className="mt-10 space-y-5">
-            <div className="flex justify-between">
+            <div className="flex items-center justify-between text-sm sm:text-base">
               <span className="text-white/60">Plan</span>
 
               <span className="font-semibold">{plan.name}</span>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex items-center justify-between text-sm sm:text-base">
               <span className="text-white/60">Billing</span>
 
               <span>One Time</span>
             </div>
 
-            <div className="border-t border-white/10 pt-5 flex justify-between text-2xl font-bold">
+            <div className="border-t border-white/10 pt-5 flex justify-between text-xl sm:text-2xl font-bold">
               <span>Total</span>
 
               <span>{plan.price}</span>
@@ -559,7 +579,7 @@ export default function Checkout() {
           <button
             onClick={handleCheckout}
             disabled={loading}
-            className="w-full mt-10 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 font-semibold text-lg hover:opacity-90 transition-opacity"
+            className="w-full mt-10 py-4 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 font-bold hover:opacity-95 active:scale-95 transition-all duration-200 shadow-lg shadow-purple-500/20 font-semibold text-lg hover:opacity-90 transition-opacity"
           >
             {loading ? "Processing..." : "Proceed to Payment"}
           </button>
@@ -570,7 +590,7 @@ export default function Checkout() {
           </p>
 
           {/* LINKS */}
-          <div className="flex justify-center gap-5 mt-6 text-sm text-white/50">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-5 text-xs sm:text-sm mt-6 text-sm text-white/50">
             <button
               onClick={() => navigate("/privacy-policy")}
               className="hover:text-white"

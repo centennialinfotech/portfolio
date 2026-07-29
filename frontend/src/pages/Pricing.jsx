@@ -10,58 +10,121 @@ export default function Pricing() {
       {/* PRICING */}
       <section
         id="pricing"
-        className="relative z-10 px-4 sm:px-6 md:px-12 lg:px-28 py-16 sm:py-20 md:py-24 border-t border-white/[0.03]"
+        className="relative z-10 px-6 md:px-16 lg:px-28 py-16 border-t border-white/5"
       >
         {" "}
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-[1180px]  mx-auto">
           {" "}
           <div className="text-center mb-20">
             {" "}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl sm:text-5xl md:text-6xl font-black">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none">
               Simple Pricing
             </h2>{" "}
-            <p className="text-white/70 text-base sm:text-lg md:text-xl mt-4 sm:mt-6 max-w-2xl mx-auto">
+            <p
+              className="
+                mt-6
+                max-w-2xl
+                mx-auto
+                text-base
+                sm:text-xl
+                text-white/60
+                font-normal
+                leading-relaxed
+              "
+            >
               {" "}
               Affordable portfolio websites designed to help you stand out.{" "}
             </p>{" "}
           </div>{" "}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
             {" "}
             {/* BASIC */}{" "}
-            <div className="bg-white/[0.06] border border-white/10 rounded-[32px] p-6 sm:p-8 md:p-10 backdrop-blur-xl">
+            <div className="
+            border
+            bg-white/[0.03]
+            border-white/5
+            rounded-[30px]
+            px-8
+            pt-8
+            pb-8
+            min-h-[580px]
+            flex
+            flex-col
+            transition-all
+            duration-300
+            hover:bg-[#0d0d0d]
+            hover:border-white/15
+            ">
               {" "}
-              <h3 className="text-2xl sm:text-3xl font-black">Basic</h3>{" "}
+              <h3 className="text-2xl sm:text-3xl font-black text-center">Basic</h3>{" "}
               <div className="flex items-end gap-2 mt-8">
                 {" "}
-                <span className="text-4xl sm:text-5xl md:text-4xl sm:text-5xl md:text-6xl font-black">
+                <span className="
+                  text-5xl
+                  sm:text-6xl
+                  font-black
+                  bg-gradient-to-r
+                  from-white
+                  to-white/80
+                  bg-clip-text
+                  text-transparent
+                  ">
                   $19
                 </span>{" "}
-                <span className="text-white/70 mb-2">one time</span>{" "}
+                <span className="uppercase tracking-wider font-semibold text-white/40 mb-2">one time</span>{" "}
               </div>{" "}
-              <div className="space-y-5 mt-10 text-white/80">
+              <div className="mt-8 pt-8 border-t border-white/5">
+                <div className="text-lg space-y-4 text-center">
                 {" "}
-                <p>✔ Responsive Portfolio</p> <p>✔ Free Hosting</p>{" "}
-                <p>✔ Resume Upload</p> <p>✔ Contact Section</p>{" "}
-                <p>✔ Mobile Friendly</p>{" "}
+                <p className="text-white/70">✔ Responsive Portfolio</p> <p className="text-white/70">✔ Free Hosting</p>{" "}
+                <p className="text-white/70">✔ Resume Upload</p> <p className="text-white/70">✔ Contact Section</p>{" "}
+                <p className="text-white/70">✔ Mobile Friendly</p>{" "}
+                </div>
               </div>{" "}
               <button
                 onClick={() => navigate("/plan/basic")}
-                className="w-full mt-8 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-white text-black font-semibold hover:scale-[1.02] transition-transform"
+                className="w-full mt-22 py-3 sm:py-4 rounded-xl font-bold py-4 shadow-lg transition-all duration-300 text-sm sm:text-base bg-white text-black font-semibold hover:bg-white/90 active:scale-95 transition-transform"
               >
                 {" "}
                 View Plan and Checkout{" "}
               </button>{" "}
             </div>{" "}
             {/* PRO */}{" "}
-            <div className="relative rounded-[32px] p-[1px] bg-gradient-to-br from-blue-500 to-purple-600">
+            <div className="
+              relative
+              rounded-[32px]
+              p-[1.5px]
+              bg-gradient-to-br
+              from-blue-500
+              via-purple-600
+              to-pink-500
+              shadow-2xl
+              min-h-[580px]
+              shadow-purple-500/10
+              hover:shadow-purple-500/20
+              hover:scale-[1.01]
+              transition-all
+              duration-300
+              ">
               {" "}
-              <div className="bg-black rounded-[32px] p-6 sm:p-8 md:p-10 h-full">
+              <div
+                className="
+                bg-black
+                rounded-[29px]
+                px-8
+                pt-8
+                pb-8
+                min-h-[560px]
+                flex
+                flex-col
+                "
+              >
                 {" "}
-                <div className="inline-flex px-4 py-2 rounded-full bg-white text-black font-semibold mb-6">
+                <div className=" px-4 py-2 rounded-full bg-white text-black font-medium uppercase tracking-wider text-xs mb-6 text-center">
                   {" "}
                   Most Popular{" "}
                 </div>{" "}
-                <h3 className="text-2xl sm:text-3xl font-black">
+                <h3 className="text-2xl sm:text-3xl font-black text-center">
                   Professional
                 </h3>{" "}
                 <div className="flex items-end gap-2 mt-8">
@@ -69,17 +132,19 @@ export default function Pricing() {
                   <span className="text-4xl sm:text-5xl md:text-6xl font-black">
                     $35
                   </span>{" "}
-                  <span className="text-white/70 mb-2">one time</span>{" "}
+                  <span className="uppercase tracking-wider font-semibold text-white/40 mb-2">one time</span>{" "}
                 </div>{" "}
-                <div className="space-y-5 mt-10 text-white/80">
+                <div className="mt-8 pt-8 border-t border-white/5">
+                  <div className="text-lg space-y-4 text-center">
                   {" "}
-                  <p>✔ Custom Domain</p> <p>✔ Premium Design</p>{" "}
-                  <p>✔ SEO Optimization</p> <p>✔ Unlimited Projects</p>{" "}
-                  <p>✔ Priority Support</p>{" "}
+                  <p className="text-white/70">✔ Custom Domain</p> <p className="text-white/70">✔ Premium Design</p>{" "}
+                  <p className="text-white/70">✔ SEO Optimization</p> <p className="text-white/70">✔ Unlimited Projects</p>{" "}
+                  <p className="text-white/70">✔ Priority Support</p>{" "}
+                  </div>
                 </div>{" "}
                 <button
                   onClick={() => navigate("/support")}
-                  className="w-full mt-8 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 font-semibold hover:opacity-90 transition-opacity"
+                  className="w-full mt-8 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 font-semibold hover:opacity-90 transition-opacity"
                 >
                   {" "}
                   Contact Sales{" "}
@@ -87,25 +152,42 @@ export default function Pricing() {
               </div>{" "}
             </div>{" "}
             {/* BUSINESS */}{" "}
-            <div className="bg-white/[0.06] border border-white/10 rounded-[32px] p-6 sm:p-8 md:p-10 backdrop-blur-xl">
+            <div className="
+              border
+              bg-white/[0.03]
+              border-white/5
+              rounded-[30px]
+              px-8
+              pt-8
+              pb-8
+              min-h-[580px]
+              flex
+              flex-col
+              transition-all
+              duration-300
+              hover:bg-[#0d0d0d]
+              hover:border-white/15
+              ">
               {" "}
-              <h3 className="text-2xl sm:text-3xl font-black">Business</h3>{" "}
+              <h3 className="text-2xl sm:text-3xl font-black text-center">Business</h3>{" "}
               <div className="flex items-end gap-2 mt-8">
                 {" "}
                 <span className="text-4xl sm:text-5xl md:text-6xl font-black">
                   $49
                 </span>{" "}
-                <span className="text-white/70 mb-2">one time</span>{" "}
+                <span className="uppercase tracking-wider font-semibold text-white/40 mb-2">one time</span>{" "}
               </div>{" "}
-              <div className="space-y-5 mt-10 text-white/80">
+              <div className="mt-8 pt-8 border-t border-white/5">
+                <div className="text-lg space-y-4 text-center">
                 {" "}
-                <p>✔ Advanced Portfolio</p> <p>✔ Admin Dashboard</p>{" "}
-                <p>✔ Blog Support</p> <p>✔ Analytics</p>{" "}
-                <p>✔ Premium Hosting</p>{" "}
+                <p className="text-white/70">✔ Advanced Portfolio</p> <p className="text-white/70">✔ Admin Dashboard</p>{" "}
+                <p className="text-white/70">✔ Blog Support</p> <p className="text-white/70">✔ Analytics</p>{" "}
+                <p className="text-white/70">✔ Premium Hosting</p>{" "}
+                </div>
               </div>{" "}
               <button
                 onClick={() => navigate("/support")}
-                className="w-full mt-8 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-white text-black font-semibold hover:scale-[1.02] transition-transform"
+                className="w-full mt-22 py-3 sm:py-4 rounded-2xl text-sm sm:text-base bg-white text-black font-semibold hover:bg-white/90 active:scale-95 transition-transform"
               >
                 {" "}
                 Contact Sales{" "}

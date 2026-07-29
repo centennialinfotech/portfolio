@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { auth, db } from "../services/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import "../css/navbar-mobile.css";
 
@@ -20,6 +20,7 @@ export default function Navbar() {
   const [loading, setLoading] = useState(true);
   const [userMenu, setUserMenu] = useState(false);
   const [userData, setUserData] = useState(null);
+  const mobileMenuRef = useRef(null);
   const firstName = userData?.name?.split(" ")[0] || "";
 
   const hidePremiumButton =
@@ -90,77 +91,255 @@ export default function Navbar() {
     window.location.href = "/login?type=register";
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
+        toggleMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-28 py-6 border-b border-white/10 bg-black">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between px-3 md:px-10 lg:px-20 py-4 lg:py-3">
         {/* Logo */}
-        <div onClick={() => navigate("/")} className="cursor-pointer">
-          <h1 className="text-2xl sm:text-3xl font-black">
+        <div
+          onClick={() => navigate("/")}
+          className="cursor-pointer select-none "
+        >
+          <h1 className="text-[17px] lg:text-[27px] font-black tracking-tight">
             Centennial
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               Portfolio
             </span>
           </h1>
+
+          <p className="hidden lg:block text-[11px] uppercase tracking-[3px] text-white/40 ">
+            Build Your Digital Identity
+          </p>
         </div>
 
-        {/* Mobile Upgrade Button */}
-        {!hidePremiumButton && !loading && !isPremium && (
-          <button
-            onClick={() => navigate("/pricing")}
-            className="lg:hidden bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-full text-sm font-semibold"
-          >
-            Upgrade
-          </button>
-        )}
+        {/* Mobile Right Section */}
+        <div className="flex items-center gap-2 xl:hidden">
+          {!hidePremiumButton && !loading && !isPremium && (
+            <button
+              onClick={() => navigate("/pricing")}
+              className="
+                bg-gradient-to-r
+                from-yellow-500
+                via-orange-500
+                to-red-500
+                text-white
+                text-xs
+                font-bold
+                px-4
+                py-2
+                rounded-full
+                border
+                border-white/10
+                shadow-lg
+                transition-all
+                duration-300
+              "
+            >
+              Upgrade
+            </button>
+          )}
 
-        {/* Mobile Menu Toggle */}
-        <button className="lg:hidden" onClick={toggleMenu}>
-          {menuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
-        </button>
+          <button
+            onClick={toggleMenu}
+            className="
+              w-10
+              h-10
+              flex
+              items-center
+              justify-center
+              text-white
+              rounded-lg
+              hover:bg-white/5
+              transition-all
+            "
+          >
+            {menuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+          </button>
+        </div>
 
         {/* Desktop Nav Links */}
-        <div className="hidden lg:flex items-center gap-5">
-          <button
+        <div className="hidden xl:flex items-center gap-30">
+          <div className="hidden xl:flex flex-1 items-center justify-center gap-8">
+            <button
             onClick={() => navigate("/")}
-            className="text-white/70 hover:text-white"
+            className="
+            relative
+            text-sm
+            font-bold
+            text-white/70
+            hover:text-white
+            transition-all
+            duration-300
+            after:absolute
+            after:left-0
+            after:-bottom-1
+            after:h-[2px]
+            after:w-0
+            after:bg-purple-500
+            after:transition-all
+            after:duration-300
+            hover:after:w-full
+          "
           >
             Home
           </button>
           <button
             onClick={() => navigate("/login?type=demo")}
-            className="text-white/70 hover:text-white"
-          >
+            className="
+            relative
+            text-sm
+            font-bold
+            text-white/70
+            hover:text-white
+            transition-all
+            duration-300
+            after:absolute
+            after:left-0
+            after:-bottom-1
+            after:h-[2px]
+            after:w-0
+            after:bg-purple-500
+            after:transition-all
+            after:duration-300
+            hover:after:w-full
+          "
+                  >
             Try Demo
           </button>
           <button
             onClick={() => navigate("/login?type=register")}
-            className="text-white/70 hover:text-white"
+            className="
+              relative
+              text-sm
+              font-bold
+              text-white/70
+              hover:text-white
+              transition-all
+              duration-300
+              after:absolute
+              after:left-0
+              after:-bottom-1
+              after:h-[2px]
+              after:w-0
+              after:bg-purple-500
+              after:transition-all
+              after:duration-300
+              hover:after:w-full
+            "
           >
             Use Trial
           </button>
           <button
             onClick={() => navigate("/features")}
-            className="text-white/70 hover:text-white"
+            className="
+              relative
+              text-sm
+              font-bold
+              text-white/70
+              hover:text-white
+              transition-all
+              duration-300
+              after:absolute
+              after:left-0
+              after:-bottom-1
+              after:h-[2px]
+              after:w-0
+              after:bg-purple-500
+              after:transition-all
+              after:duration-300
+              hover:after:w-full
+            "
           >
             Features
           </button>
           <button
             onClick={() => navigate("/faq")}
-            className="text-white/70 hover:text-white"
+            className="
+              relative
+              text-sm
+              font-bold
+              text-white/70
+              hover:text-white
+              transition-all
+              duration-300
+              after:absolute
+              after:left-0
+              after:-bottom-1
+              after:h-[2px]
+              after:w-0
+              after:bg-purple-500
+              after:transition-all
+              after:duration-300
+              hover:after:w-full
+            "
           >
             FAQ
           </button>
           <button
             onClick={() => navigate("/support")}
-            className="text-white/70 hover:text-white"
+            className="
+              relative
+              text-sm
+              font-bold
+              text-white/70
+              hover:text-white
+              transition-all
+              duration-300
+              after:absolute
+              after:left-0
+              after:-bottom-1
+              after:h-[2px]
+              after:w-0
+              after:bg-purple-500
+              after:transition-all
+              after:duration-300
+              hover:after:w-full
+            "
           >
             Support
           </button>
+          </div>
 
           {!hidePremiumButton && !loading && !isPremium && (
             <button
               onClick={() => navigate("/pricing")}
-              className="bg-gradient-to-r from-yellow-500 to-orange-500 px-5 py-2 rounded-full font-semibold"
+              className="
+                bg-gradient-to-r
+                from-yellow-500
+                via-orange-500
+                to-red-500
+                text-white
+                font-bold
+                px-6
+                py-2.5
+                rounded-full
+                text-sm
+                border
+                border-white/10
+                shadow-lg
+                hover:scale-105
+                active:scale-95
+                transition-all
+                duration-300
+              "
             >
               Go Premium
             </button>
@@ -211,50 +390,150 @@ export default function Navbar() {
             )}
           </div>
         )}
+        </div>
       </nav>
 
       {/* Mobile Menu Panel */}
       {menuOpen && (
-        <div className="lg:hidden bg-black/95 backdrop-blur-xl border-b border-white/10">
+        <div
+          ref={mobileMenuRef}
+          className="
+            fixed
+            top-[72px]
+            left-0
+            right-0
+            z-40
+            lg:hidden
+            bg-black/95
+            backdrop-blur-xl
+            border-t
+            border-white/10
+            shadow-2xl
+          "
+        >
           {/* ✅ User Info in Mobile Menu */}
 
-          <div className="flex flex-row flex-nowrap items-center justify-between gap-1 px-2 py-2 w-full">
-            <a
-              href="/?menu=open"
-              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+          <div className="max-w-[1400px] mx-auto px-4 py-4 flex flex-col gap-1">
+            <Link
+              to="/?menu=open"
+              className="
+                block
+                w-full
+                rounded-xl
+                px-5
+                py-3
+                text-left
+                text-base
+                font-medium
+                text-white/80
+                hover:bg-white/5
+                hover:text-white
+                transition-all
+                duration-300
+              "
             >
               Home
-            </a>
-            <a
-              href="/login?type=demo&menu=open"
-              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            </Link>
+            <Link
+              to="/login?type=demo&menu=open"
+              className="
+                block
+                w-full
+                rounded-xl
+                px-5
+                py-3
+                text-left
+                text-base
+                font-medium
+                text-white/80
+                hover:bg-white/5
+                hover:text-white
+                transition-all
+                duration-300
+              "
             >
               Demo
-            </a>
-            <a
-              href="/login?type=register&menu=open"
-              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            </Link>
+            <Link
+              to="/login?type=register&menu=open"
+              className="
+                block
+                w-full
+                rounded-xl
+                px-5
+                py-3
+                text-left
+                text-base
+                font-medium
+                text-white/80
+                hover:bg-white/5
+                hover:text-white
+                transition-all
+                duration-300
+              "
             >
               Trial
-            </a>
-            <a
-              href="/features?menu=open"
-              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            </Link>
+            <Link
+              to="/features?menu=open"
+              className="
+                block
+                w-full
+                rounded-xl
+                px-5
+                py-3
+                text-left
+                text-base
+                font-medium
+                text-white/80
+                hover:bg-white/5
+                hover:text-white
+                transition-all
+                duration-300
+              "
             >
               Features
-            </a>
-            <a
-              href="/faq?menu=open"
-              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            </Link>
+            <Link
+              to="/faq?menu=open"
+              className="
+                block
+                w-full
+                rounded-xl
+                px-5
+                py-3
+                text-left
+                text-base
+                font-medium
+                text-white/80
+                hover:bg-white/5
+                hover:text-white
+                transition-all
+                duration-300
+              "
             >
               FAQ
-            </a>
-            <a
-              href="/support?menu=open"
-              className="flex-1 text-center text-[10px] sm:text-xs text-white/80 hover:text-white px-1 py-1.5 whitespace-nowrap"
+            </Link>
+            <Link
+              to="/support?menu=open"
+              className="
+                block
+                w-full
+                rounded-xl
+                px-5
+                py-3
+                text-left
+                text-base
+                font-medium
+                text-white/80
+                hover:bg-white/5
+                hover:text-white
+                transition-all
+                duration-300
+              "
             >
               Support
-            </a>
+            </Link>
           </div>
         </div>
       )}
