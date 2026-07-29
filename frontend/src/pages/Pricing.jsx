@@ -76,9 +76,14 @@ export default function Pricing() {
               <div className="mt-8 pt-8 border-t border-white/5">
                 <div className="text-lg space-y-4 text-center">
                 {" "}
-                <p className="text-white/70">✔ Responsive Portfolio</p> <p className="text-white/70">✔ Free Hosting</p>{" "}
-                <p className="text-white/70">✔ Resume Upload</p> <p className="text-white/70">✔ Contact Section</p>{" "}
-                <p className="text-white/70">✔ Mobile Friendly</p>{" "}
+                <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Responsive Portfolio</p> <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Free Hosting</p>{" "}
+                <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Resume Upload</p> <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Contact Section</p>{" "}
+                <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Mobile Friendly</p>{" "}
                 </div>
               </div>{" "}
               <button
@@ -137,9 +142,14 @@ export default function Pricing() {
                 <div className="mt-8 pt-8 border-t border-white/5">
                   <div className="text-lg space-y-4 text-center">
                   {" "}
-                  <p className="text-white/70">✔ Custom Domain</p> <p className="text-white/70">✔ Premium Design</p>{" "}
-                  <p className="text-white/70">✔ SEO Optimization</p> <p className="text-white/70">✔ Unlimited Projects</p>{" "}
-                  <p className="text-white/70">✔ Priority Support</p>{" "}
+                  <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Custom Domain</p> <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Premium Design</p>{" "}
+                  <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> SEO Optimization</p> <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Unlimited Projects</p>{" "}
+                  <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Priority Support</p>{" "}
                   </div>
                 </div>{" "}
                 <button
@@ -180,9 +190,14 @@ export default function Pricing() {
               <div className="mt-8 pt-8 border-t border-white/5">
                 <div className="text-lg space-y-4 text-center">
                 {" "}
-                <p className="text-white/70">✔ Advanced Portfolio</p> <p className="text-white/70">✔ Admin Dashboard</p>{" "}
-                <p className="text-white/70">✔ Blog Support</p> <p className="text-white/70">✔ Analytics</p>{" "}
-                <p className="text-white/70">✔ Premium Hosting</p>{" "}
+                <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Advanced Portfolio</p> <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Admin Dashboard</p>{" "}
+                <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Blog Support</p> <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Analytics</p>{" "}
+                <p className="text-white/70">
+                <span className="text-white/50 font-bold">✓</span> Premium Hosting</p>{" "}
                 </div>
               </div>{" "}
               <button
