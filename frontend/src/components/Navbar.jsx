@@ -116,9 +116,9 @@ export default function Navbar() {
         {/* Logo */}
         <div
           onClick={() => navigate("/")}
-          className="cursor-pointer select-none "
+          className="cursor-pointer select-none min-w-0 flex-1"
         >
-          <h1 className="text-[17px] lg:text-[27px] font-black tracking-tight">
+          <h1 className="text-[15px] min-[390px]:text-[17px] lg:text-[27px] font-black tracking-tight">
             Centennial
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               Portfolio
@@ -131,7 +131,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Right Section */}
-        <div className="flex items-center gap-2 xl:hidden">
+        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0 xl:hidden">
           {!hidePremiumButton && !loading && !isPremium && (
             <button
               onClick={() => navigate("/pricing")}
@@ -143,8 +143,9 @@ export default function Navbar() {
                 text-white
                 text-xs
                 font-bold
-                px-4
-                py-2
+                px-2.5 py-1.5 text-[11px]
+                min-[390px]:px-4
+                min-[390px]:py-2
                 rounded-full
                 border
                 border-white/10
@@ -156,6 +157,50 @@ export default function Navbar() {
               Upgrade
             </button>
           )}
+
+        {userData && (
+          <div className="relative user-menu-wrapper">
+            <button
+              onClick={() => setUserMenu(!userMenu)}
+              className="flex items-center gap-2"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold">
+                {userData?.name?.charAt(0).toUpperCase()}
+              </div>
+              <span className="text-white/70 text-sm hidden sm:block">
+                {firstName}
+              </span>
+            </button>
+
+            {/* ✅ User Dropdown Menu */}
+            {userMenu && (
+              <div className="absolute right-0 mt-2 w-56 bg-[#1b1b1b] border border-white/10 rounded-xl shadow-xl z-50 overflow-hidden">
+                <div className="px-4 py-3 border-b border-white/10">
+                  <p className="text-white font-semibold break-words">
+                    {userData?.name || "User"}
+                  </p>
+                  <p className="text-xs text-white/60 break-all">
+                    {userData?.email}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => navigate("/retrieve-domain")}
+                  className="w-full text-left px-4 py-3 hover:bg-white/10 text-white"
+                >
+                  My Domains
+                </button>
+
+                <button
+                  onClick={logout}
+                  className="w-full text-left px-4 py-3 text-red-400 hover:bg-white/10"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        )}
 
           <button
             onClick={toggleMenu}
@@ -318,6 +363,7 @@ export default function Navbar() {
           </button>
           </div>
 
+          <div className="flex items-center gap-4">
           {!hidePremiumButton && !loading && !isPremium && (
             <button
               onClick={() => navigate("/pricing")}
@@ -344,10 +390,9 @@ export default function Navbar() {
               Go Premium
             </button>
           )}
-        </div>
 
-        {/* ✅ User Avatar with Dropdown - Desktop */}
-        {userData && (
+          <div className="hidden xl:block">
+                {userData && (
           <div className="relative user-menu-wrapper">
             <button
               onClick={() => setUserMenu(!userMenu)}
@@ -391,6 +436,9 @@ export default function Navbar() {
           </div>
         )}
         </div>
+        </div>
+        </div>
+        </div>
       </nav>
 
       {/* Mobile Menu Panel */}
@@ -403,7 +451,7 @@ export default function Navbar() {
             left-0
             right-0
             z-40
-            lg:hidden
+            xl:hidden
             bg-black/95
             backdrop-blur-xl
             border-t

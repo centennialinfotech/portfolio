@@ -18,11 +18,20 @@
 }
 
 .header-container {
-  @apply max-w-[1400px] mx-auto flex items-center justify-between px-2.5 sm:px-6 md:px-10 py-3 gap-1.5 sm:gap-4;
+  @apply max-w-[1400px] mx-auto flex items-center justify-between px-2.5 sm:px-6 md:px-10 py-3 gap-1.5 sm:gap-4 w-full overflow-hidden;
 }
 
 .header-logo {
-  @apply flex items-center gap-1.5 sm:gap-2 font-black text-base sm:text-2xl md:text-3xl text-white tracking-tight cursor-pointer shrink-0;
+  @apply flex items-center gap-1.5 sm:gap-2
+  font-black
+  text-base
+  sm:text-2xl
+  md:text-3xl
+  text-white
+  tracking-tight
+  cursor-pointer
+  min-w-0
+  flex-1;
 }
 
 .logo-img {
@@ -38,7 +47,7 @@
 }
 
 .header-actions {
-  @apply flex items-center gap-1 sm:gap-3 shrink-0;
+  @apply flex items-center gap-1 sm:gap-3 flex-shrink-0;
 }
 
 .btn-customize {
@@ -226,11 +235,21 @@
 }
 
 .contact-info-card {
-  @apply bg-neutral-950 border border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-xl;
+  @apply bg-neutral-950 border border-white/10 rounded-3xl
+         p-4
+         sm:p-6
+         lg:p-10;
 }
 
 .contact-item {
-  @apply flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 mb-4;
+  @apply flex items-center gap-3.5 sm:gap-4
+         p-4 sm:p-5
+         rounded-2xl
+         bg-white/5
+         border
+         border-white/10
+         mb-4
+         min-w-0;
 }
 
 .contact-item-icon {

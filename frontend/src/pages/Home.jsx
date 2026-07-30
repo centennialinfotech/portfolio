@@ -105,7 +105,9 @@ export default function Home() {
               <div className="relative">
                 <button onClick={() => setUserMenu(!userMenu)} className="avatar-btn">
                   <div className="avatar-circle">{userData.name?.charAt(0).toUpperCase()}</div>
-                  <span className="avatar-name">{firstName}</span>
+                  <span className="hidden min-[380px]:inline avatar-name">
+                    {firstName}
+                  </span>
                 </button>
                 {userMenu && (
                   <div className="user-dropdown">

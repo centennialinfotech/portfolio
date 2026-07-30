@@ -1083,11 +1083,11 @@ export default function Portfolio() {
                   {contactItems.map((item, idx) => (
                     <div key={idx} className="contact-item">
                       <div className="contact-item-icon">{item.icon}</div>
-                      <div>
+                      <div className="flex-1 min-w-0">
                         <p className="text-xs text-white/40 uppercase">
                           {item.label}
                         </p>
-                        <p className="text-sm sm:text-base text-white font-medium">
+                        <p className="text-sm sm:text-base text-white font-medium break-words">
                           {item.value}
                         </p>
                       </div>
