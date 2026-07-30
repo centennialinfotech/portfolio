@@ -18,7 +18,7 @@
 }
 
 .header-container {
-  @apply max-w-[1400px] mx-auto flex items-center justify-between px-2.5 sm:px-6 md:px-10 py-3 gap-1.5 sm:gap-4 w-full overflow-hidden;
+  @apply max-w-[1400px] mx-auto flex items-center justify-between px-2.5 sm:px-6 md:px-10 py-3 gap-1.5 sm:gap-4 w-full;
 }
 
 .header-logo {

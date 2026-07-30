@@ -460,7 +460,19 @@ export default function Navbar() {
         >
           {/* ✅ User Info in Mobile Menu */}
 
-          <div className="max-w-[1400px] mx-auto px-4 py-4 flex flex-wrap justify-center gap-3">
+          <div className="max-w-[1400px] mx-auto px-4 py-4 overflow-x-auto md:overflow-visible">
+            <div
+              className="
+                flex
+                flex-nowrap
+                md:flex-wrap
+                justify-start
+                md:justify-center
+                gap-4
+                min-w-max
+                md:min-w-0
+              "
+            >
             <Link
               to="/?menu=open"
               className="
@@ -569,6 +581,7 @@ export default function Navbar() {
             >
               Support
             </Link>
+            </div>
           </div>
         </div>
       )}
