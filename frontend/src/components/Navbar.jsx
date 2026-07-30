@@ -24,7 +24,6 @@ export default function Navbar() {
   const firstName = userData?.name?.split(" ")[0] || "";
 
   const hidePremiumButton =
-    location.pathname.startsWith("/pricing") ||
     location.pathname.startsWith("/checkout") ||
     location.pathname.startsWith("/plan/basic");
 
@@ -461,23 +460,21 @@ export default function Navbar() {
         >
           {/* ✅ User Info in Mobile Menu */}
 
-          <div className="max-w-[1400px] mx-auto px-4 py-4 flex flex-col gap-1">
+          <div className="max-w-[1400px] mx-auto px-4 py-4 flex flex-wrap justify-center gap-3">
             <Link
               to="/?menu=open"
               className="
-                block
-                w-full
-                rounded-xl
-                px-5
-                py-3
-                text-left
-                text-base
-                font-medium
-                text-white/80
-                hover:bg-white/5
-                hover:text-white
-                transition-all
-                duration-300
+              rounded-lg
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white/80
+              hover:text-white
+              hover:bg-white/5
+              transition-all
+              duration-300
+              whitespace-nowrap
               "
             >
               Home
@@ -485,19 +482,17 @@ export default function Navbar() {
             <Link
               to="/login?type=demo&menu=open"
               className="
-                block
-                w-full
-                rounded-xl
-                px-5
-                py-3
-                text-left
-                text-base
-                font-medium
-                text-white/80
-                hover:bg-white/5
-                hover:text-white
-                transition-all
-                duration-300
+              rounded-lg
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white/80
+              hover:text-white
+              hover:bg-white/5
+              transition-all
+              duration-300
+              whitespace-nowrap
               "
             >
               Demo
@@ -505,19 +500,17 @@ export default function Navbar() {
             <Link
               to="/login?type=register&menu=open"
               className="
-                block
-                w-full
-                rounded-xl
-                px-5
-                py-3
-                text-left
-                text-base
-                font-medium
-                text-white/80
-                hover:bg-white/5
-                hover:text-white
-                transition-all
-                duration-300
+              rounded-lg
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white/80
+              hover:text-white
+              hover:bg-white/5
+              transition-all
+              duration-300
+              whitespace-nowrap
               "
             >
               Trial
@@ -525,19 +518,17 @@ export default function Navbar() {
             <Link
               to="/features?menu=open"
               className="
-                block
-                w-full
-                rounded-xl
-                px-5
-                py-3
-                text-left
-                text-base
-                font-medium
-                text-white/80
-                hover:bg-white/5
-                hover:text-white
-                transition-all
-                duration-300
+              rounded-lg
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white/80
+              hover:text-white
+              hover:bg-white/5
+              transition-all
+              duration-300
+              whitespace-nowrap
               "
             >
               Features
@@ -545,19 +536,17 @@ export default function Navbar() {
             <Link
               to="/faq?menu=open"
               className="
-                block
-                w-full
-                rounded-xl
-                px-5
-                py-3
-                text-left
-                text-base
-                font-medium
-                text-white/80
-                hover:bg-white/5
-                hover:text-white
-                transition-all
-                duration-300
+              rounded-lg
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white/80
+              hover:text-white
+              hover:bg-white/5
+              transition-all
+              duration-300
+              whitespace-nowrap
               "
             >
               FAQ
@@ -565,19 +554,17 @@ export default function Navbar() {
             <Link
               to="/support?menu=open"
               className="
-                block
-                w-full
-                rounded-xl
-                px-5
-                py-3
-                text-left
-                text-base
-                font-medium
-                text-white/80
-                hover:bg-white/5
-                hover:text-white
-                transition-all
-                duration-300
+              rounded-lg
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white/80
+              hover:text-white
+              hover:bg-white/5
+              transition-all
+              duration-300
+              whitespace-nowrap
               "
             >
               Support

@@ -23,6 +23,7 @@ const FAQ = lazy(() => import("./pages/Faq"));
 const ChooseSubdomain = lazy(() => import("./pages/ChooseSubdomain"));
 const PublicPortfolio = lazy(() => import("./pages/PublicPortfolio"));
 const RetrieveDomain = lazy(() => import("./pages/RetrieveDomain"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
   const host = window.location.hostname;
@@ -59,7 +60,19 @@ function App() {
 
   if (subdomain) {
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="flex flex-col items-center gap-5">
+        <div className="w-14 h-14 rounded-full border-4 border-white/20 border-t-purple-500 animate-spin"></div>
+
+        <h2 className="text-white text-xl font-bold">
+          Loading...
+        </h2>
+
+        <p className="text-white/50 text-sm">
+          Please wait a moment
+        </p>
+      </div>
+    </div>}>
         <PublicPortfolio subdomain={subdomain} />
       </Suspense>
     );
@@ -69,9 +82,22 @@ function App() {
     <>
       <CookieBanner />
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={ <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="flex flex-col items-center gap-5">
+        <div className="w-14 h-14 rounded-full border-4 border-white/20 border-t-purple-500 animate-spin"></div>
+
+        <h2 className="text-white text-xl font-bold">
+          Loading...
+        </h2>
+
+        <p className="text-white/50 text-sm">
+          Please wait a moment
+        </p>
+      </div>
+    </div>}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="/login" element={<Login />} />
           <Route path="/demo" element={<Dashboard />} />
           <Route path="/portfolio" element={<Portfolio />} />

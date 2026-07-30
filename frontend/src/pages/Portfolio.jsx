@@ -41,6 +41,7 @@ export default function Portfolio() {
   const [editMode, setEditMode] = useState(false);
   const [phoneError, setPhoneError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [showHeaderEditor, setShowHeaderEditor] = useState(false);
   const navigate = useNavigate();
 
   const imageInputRef = useRef(null);
@@ -106,8 +107,12 @@ export default function Portfolio() {
   };
 
   const removeLogo = () => {
-    setHeaderSection((prev) => ({ ...prev, logoImage: "" }));
-  };
+  setHeaderSection((prev) => ({
+    ...prev,
+    logoImage: "",
+    logoFileName: "",
+  }));
+};
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -326,15 +331,31 @@ export default function Portfolio() {
 
       <header className="portfolio-header">
         <div className="header-container">
-          <div className="header-logo" onClick={() => navigate("/")}>
-            {headerSection.logoImage ? (
-              <img
-                src={headerSection.logoImage}
-                alt="Logo"
-                className="logo-img"
-              />
-            ) : null}
-            <span>{headerSection.logo}</span>
+          <div className="header-logo flex items-center gap-2">
+            <div
+              onClick={() => navigate("/")}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              {headerSection.logoImage ? (
+                <img
+                  src={headerSection.logoImage}
+                  alt="Logo"
+                  className="logo-img"
+                />
+              ) : (
+                <span>{headerSection.logo}</span>
+              )}
+            </div>
+
+            {editMode && (
+              <button
+                onClick={() => setShowHeaderEditor(!showHeaderEditor)}
+                className="text-cyan-400 hover:text-cyan-300 transition"
+                title="Edit Logo"
+              >
+                ✏️
+              </button>
+            )}
           </div>
 
           <nav className="header-nav">
@@ -415,17 +436,6 @@ export default function Portfolio() {
 
         <div className={`mobile-menu-drawer ${mobileMenu ? "mobile-menu-drawer-open" : ""}`}>
           <div className="mobile-menu-content">
-            {!isPremium && (
-              <button
-                className="btn-premium-mobile"
-                onClick={() => {
-                  setMobileMenu(false);
-                  navigate("/pricing");
-                }}
-              >
-                👑 Go Premium
-              </button>
-            )}
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
@@ -439,6 +449,86 @@ export default function Portfolio() {
           </div>
         </div>
       </header>
+
+      {editMode && showHeaderEditor && (
+          <div className="
+            fixed
+            top-20
+            left-1/2
+            -translate-x-1/2
+            z-50
+            w-[92%]
+            max-w-sm
+            bg-neutral-900
+            border border-white/10
+            rounded-2xl
+            p-5
+            shadow-2xl
+            ">
+
+            <h3 className="text-lg font-bold text-white mb-4">
+              Header Settings
+            </h3>
+
+            <div className="space-y-5">
+
+              {/* Logo Name */}
+              <div>
+                <label className="text-sm text-white/70 mb-2 block">
+                  Logo Name
+                </label>
+
+                <input
+                  type="text"
+                  className="edit-input"
+                  placeholder="Portfolio"
+                  value={headerSection.logo}
+                  onChange={(e) =>
+                    setHeaderSection({
+                      ...headerSection,
+                      logo: e.target.value,
+                    })
+                  }
+                />
+              </div>
+
+              {/* Logo Image */}
+              <div>
+                <label className="text-sm text-white/70 mb-2 block">
+                  Logo Image
+                </label>
+
+                {headerSection.logoImage && (
+                  <img
+                    src={headerSection.logoImage}
+                    alt="Logo Preview"
+                    className="w-20 h-20 object-contain rounded-xl border border-white/10 mb-3"
+                  />
+                )}
+
+                <label className="flex justify-center items-center rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white py-3 cursor-pointer">
+                  Upload Logo
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleLogoUpload}
+                    className="hidden"
+                  />
+                </label>
+
+                {headerSection.logoImage && (
+                  <button
+                    onClick={removeLogo}
+                    className="remove-btn w-full mt-3"
+                  >
+                    Remove Logo
+                  </button>
+                )}
+              </div>
+
+            </div>
+          </div>
+        )}
 
       <section className="portfolio-hero" id="home">
         <div className="hero-grid">
@@ -500,6 +590,7 @@ export default function Portfolio() {
                   }
                   placeholder="Description"
                 />
+                
               </div>
             ) : (
               <>

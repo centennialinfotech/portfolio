@@ -31,7 +31,14 @@
 }
 
 .nav-logo {
-  @apply text-base min-[380px]:text-lg sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap hover:opacity-90 transition-opacity cursor-pointer;
+  @apply text-base
+         min-[380px]:text-lg
+         sm:text-2xl
+         md:text-2xl
+         lg:text-3xl
+         font-black
+         tracking-tight
+         whitespace-nowrap;
 }
 
 .nav-logo-gradient {
@@ -48,7 +55,25 @@
 }
 
 .nav-link {
-  @apply hover:text-white transition-colors duration-200 font-medium text-sm relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-purple-500 hover:after:w-full after:transition-all after:duration-300 cursor-pointer;
+  @apply
+  whitespace-nowrap
+  hover:text-white
+  transition-colors
+  duration-200
+  font-medium
+  text-sm
+  relative
+  after:content-['']
+  after:absolute
+  after:bottom-[-4px]
+  after:left-0
+  after:w-0
+  after:h-[2px]
+  after:bg-purple-500
+  hover:after:w-full
+  after:transition-all
+  after:duration-300
+  cursor-pointer;
 }
 
 .nav-right {
@@ -115,11 +140,56 @@
 }
 
 .mobile-menu-container {
-  @apply flex flex-col p-3 gap-1;
+  @apply flex flex-row justify-center items-center
+         gap-1 min-[360px]:gap-3
+         p-3;
 }
 
 .mobile-menu-link {
-  @apply text-sm text-white/70 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition-all font-medium text-left;
+  @apply whitespace-nowrap
+         text-[11px]
+         min-[360px]:text-xs
+         px-1
+         min-[360px]:px-2
+         py-2;
+}
+
+@media (min-width: 360px) and (max-width: 390px) {
+  .mobile-menu-container {
+    @apply gap-2 px-3;
+  }
+
+  .mobile-menu-link {
+    @apply text-[11px] px-1;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1180px) {
+
+  .nav-links {
+    display: flex;
+    gap: 18px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .nav-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .avatar-name {
+    display: none;
+  }
+
+  .go-premium-btn,
+  .premium-btn {
+    padding: 8px 18px;
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 1024px) {
