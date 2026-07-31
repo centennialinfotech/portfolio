@@ -220,7 +220,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Nav Links */}
-        <div className="hidden xl:flex items-center gap-30">
+        <div className="hidden xl:flex items-center gap-20 ">
           <div className="hidden xl:flex flex-1 items-center justify-center gap-8">
             <button
             onClick={() => navigate("/")}
