@@ -89,7 +89,18 @@ export default function Home() {
           <div className="nav-links">
             <button onClick={() => scroll.scrollToTop({ duration: 500, smooth: true })} className="nav-link">Get Started</button>
             {navLinks.map((l) => (
-              <a key={l.label} href={l.href} className="nav-link">{l.label}</a>
+              <button
+                key={l.label}
+                className="nav-link"
+                onClick={() => {
+                  document.querySelector(l.href)?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
+              >
+                {l.label}
+              </button>
             ))}
             {auth.currentUser && <a href="/retrieve-domain" className="nav-link">My Domains</a>}
           </div>
@@ -137,7 +148,20 @@ export default function Home() {
               Get Started
             </button>
             {navLinks.map((l) => (
-              <a key={l.label} href={l.href} onClick={() => setMobileMenu(false)} className="mobile-menu-link">{l.label}</a>
+              <button
+                key={l.label}
+                className="mobile-menu-link"
+                onClick={() => {
+                  setMobileMenu(false);
+
+                  document.querySelector(l.href)?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
+              >
+                {l.label}
+              </button>
             ))}
             {auth.currentUser && (
               <a href="/retrieve-domain" onClick={() => setMobileMenu(false)} className="mobile-menu-link">My Domains</a>
