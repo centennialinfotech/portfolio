@@ -331,7 +331,7 @@ export default function Portfolio() {
 
       <header className="portfolio-header">
         <div className="header-container">
-          <div className="header-logo flex items-center gap-2">
+          <div className="header-logo flex items-center gap-2 min-w-0 flex-1">
             <div
               onClick={() => navigate("/")}
               className="flex items-center gap-2 cursor-pointer"
@@ -343,7 +343,9 @@ export default function Portfolio() {
                   className="logo-img"
                 />
               ) : (
-                <span>{headerSection.logo}</span>
+                <span className="truncate max-w-[90px] sm:max-w-[180px] md:max-w-none">
+                  {headerSection.logo}
+                </span>
               )}
             </div>
 
@@ -655,59 +657,78 @@ export default function Portfolio() {
                 <p className="text-xs font-semibold text-cyan-300 uppercase">
                   Hero Settings & Links
                 </p>
-                <div className="grid grid-cols-2 gap-2">
-                  <input
-                    type="text"
-                    className="edit-input"
-                    value={heroSection.githubUsername}
-                    onChange={(e) =>
-                      setHeroSection({
-                        ...heroSection,
-                        githubUsername: e.target.value,
-                      })
-                    }
-                    placeholder="GitHub Username"
-                  />
-                  <input
-                    type="text"
-                    className="edit-input"
-                    value={heroSection.linkedinUsername}
-                    onChange={(e) =>
-                      setHeroSection({
-                        ...heroSection,
-                        linkedinUsername: e.target.value,
-                      })
-                    }
-                    placeholder="LinkedIn Username"
-                  />
-                </div>
-                <div className="flex gap-4 pt-2">
-                  <label className="text-xs text-white/70 flex items-center gap-2 cursor-pointer">
+                <div className="space-y-3">
+
+                  {/* GitHub */}
+                  <div className="flex items-center rounded-xl border border-white/20 bg-black overflow-hidden">
+                    <span className="px-3 text-xs text-white/50 whitespace-nowrap">
+                      https://github.com/
+                    </span>
+
                     <input
-                      type="checkbox"
-                      checked={heroSection.showGithub}
+                      type="text"
+                      className="flex-1 bg-transparent text-white py-3 text-xs focus:outline-none"
+                      placeholder="yourusername"
+                      value={heroSection.githubUsername}
                       onChange={(e) =>
                         setHeroSection({
                           ...heroSection,
-                          showGithub: e.target.checked,
+                          githubUsername: e.target.value,
                         })
                       }
                     />
-                    Show GitHub
-                  </label>
-                  <label className="text-xs text-white/70 flex items-center gap-2 cursor-pointer">
+                  </div>
+
+                  {/* LinkedIn */}
+                  <div className="flex items-center rounded-xl border border-white/20 bg-black overflow-hidden">
+                    <span className="px-3 text-xs text-white/50 whitespace-nowrap">
+                      https://linkedin.com/in/
+                    </span>
+
                     <input
-                      type="checkbox"
-                      checked={heroSection.showLinkedin}
+                      type="text"
+                      className="flex-1 bg-transparent text-white py-3 text-xs focus:outline-none"
+                      placeholder="yourusername"
+                      value={heroSection.linkedinUsername}
                       onChange={(e) =>
                         setHeroSection({
                           ...heroSection,
-                          showLinkedin: e.target.checked,
+                          linkedinUsername: e.target.value,
                         })
                       }
                     />
-                    Show LinkedIn
-                  </label>
+                  </div>
+
+                  <div className="flex flex-wrap gap-4 pt-2">
+                    <label className="text-xs text-white/70 flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={heroSection.showGithub}
+                        onChange={(e) =>
+                          setHeroSection({
+                            ...heroSection,
+                            showGithub: e.target.checked,
+                          })
+                        }
+                      />
+                      Show GitHub
+                    </label>
+
+                    <label className="text-xs text-white/70 flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={heroSection.showLinkedin}
+                        onChange={(e) =>
+                          setHeroSection({
+                            ...heroSection,
+                            showLinkedin: e.target.checked,
+                          })
+                        }
+                      />
+                      Show LinkedIn
+                    </label>
+                  </div>
+
                 </div>
               </div>
             )}
@@ -1178,7 +1199,7 @@ export default function Portfolio() {
                         <p className="text-xs text-white/40 uppercase">
                           {item.label}
                         </p>
-                        <p className="text-sm sm:text-base text-white font-medium break-words">
+                        <p className="text-sm sm:text-base text-white font-medium break-all">
                           {item.value}
                         </p>
                       </div>

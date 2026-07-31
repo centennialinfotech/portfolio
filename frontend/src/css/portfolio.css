@@ -22,7 +22,10 @@
 }
 
 .header-logo {
-  @apply flex items-center gap-1.5 sm:gap-2
+  @apply flex
+  items-center
+  gap-1.5
+  sm:gap-2
   font-black
   text-base
   sm:text-2xl
@@ -30,12 +33,13 @@
   text-white
   tracking-tight
   cursor-pointer
+  flex-1
   min-w-0
-  flex-1;
+  overflow-hidden;
 }
 
 .logo-img {
-  @apply w-10 h-10 sm:w-12 sm:h-12 object-contain;
+  @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain flex-shrink-0;
 }
 
 .header-nav {

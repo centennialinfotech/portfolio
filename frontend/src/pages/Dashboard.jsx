@@ -29,6 +29,7 @@ const HeroSection = () => {
   };
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showHeaderSettings, setShowHeaderSettings] = useState(false);
   const getIcon = (key) => iconMap[key] || <FaCode />;
 
   const [editMode, setEditMode] = useState(false);
@@ -369,37 +370,28 @@ const HeroSection = () => {
       {/* Header */}
       <header className="dashboard header">
         <div className="logo">
-          {editMode ? (
-            <div className="logo-edit">
-              <input
-                value={headerSection.logo}
-                onChange={(e) =>
-                  setHeaderSection({
-                    ...headerSection,
-                    logo: e.target.value,
-                  })
-                }
+          <div className="logo-display">
+            {headerSection.logoImage ? (
+              <img
+                src={headerSection.logoImage}
+                alt="logo"
+                className="logo-img"
               />
-              <input type="file" accept="image/*" onChange={handleLogoUpload} />
-              {headerSection.logoImage && (
-                <button className="remove-btn" onClick={removeLogo}>
-                  Remove Logo
-                </button>
-              )}
-            </div>
-          ) : (
-            <div className="logo-display">
-              {headerSection.logoImage ? (
-                <img
-                  src={headerSection.logoImage}
-                  alt="logo"
-                  className="logo-img"
-                />
-              ) : (
-                headerSection.logo
-              )}
-            </div>
-          )}
+            ) : (
+              <span className="logo-text">
+                {headerSection.logo}
+              </span>
+            )}
+
+            {editMode && (
+              <button
+                className="edit-header-btn"
+                onClick={() => setShowHeaderSettings(true)}
+              >
+                ✏️
+              </button>
+            )}
+          </div>
         </div>
 
         <nav className={`navbar ${menuOpen ? "mobile-open" : ""}`}>
@@ -412,12 +404,29 @@ const HeroSection = () => {
 
         <div className="header-actions">
           <button
-            className="customize-btn"
+            className="customize-btn lg:ml-4"
             onClick={() => setEditMode(!editMode)}
           >
             {editMode ? "💾 Save" : "⚙️"}
           </button>
-          <button className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold transition-all shadow-2xl">
+          <button
+            className="
+            go-premium-btn
+            bg-gradient-to-r
+            from-yellow-500
+            to-orange-500
+            px-2
+            sm:px-3
+            md:px-6
+            py-2
+            rounded-xl
+            text-[11px]
+            sm:text-sm
+            md:text-base
+            font-semibold
+            whitespace-nowrap
+            "
+          >
             Go Premium
           </button>{" "}
           <button
@@ -428,6 +437,54 @@ const HeroSection = () => {
           </button>
         </div>
       </header>
+      {showHeaderSettings && (
+        <div className="header-settings-overlay">
+          <div className="header-settings-modal">
+            <h3>Header Settings</h3>
+
+            <label>Logo Name</label>
+
+            <input
+              type="text"
+              value={headerSection.logo}
+              onChange={(e) =>
+                setHeaderSection({
+                  ...headerSection,
+                  logo: e.target.value,
+                })
+              }
+            />
+
+            <label>Logo Image</label>
+
+            <label className="upload-btn">
+              Upload Logo
+              <input
+                type="file"
+                accept="image/*"
+                hidden
+                onChange={handleLogoUpload}
+              />
+            </label>
+
+            {headerSection.logoImage && (
+              <button
+                className="remove-btn"
+                onClick={removeLogo}
+              >
+                Remove Logo
+              </button>
+            )}
+
+            <button
+              className="close-btn"
+              onClick={() => setShowHeaderSettings(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="hero" id="home">
@@ -1217,7 +1274,7 @@ const HeroSection = () => {
                 <FaEnvelope />
               </div>
 
-              <div>
+              <div className="flex-1 min-w-0">
                 <span>EMAIL</span>
 
                 {editMode ? (
@@ -1232,7 +1289,7 @@ const HeroSection = () => {
                     placeholder="Enter Email"
                   />
                 ) : (
-                  <p>{contactSection.email}</p>
+                  <p className="break-all">{contactSection.email}</p>
                 )}
               </div>
             </div>
@@ -1244,7 +1301,7 @@ const HeroSection = () => {
                 <FaPhoneAlt />
               </div>
 
-              <div>
+              <div className="flex-1 min-w-0">
                 <span>PHONE</span>
 
                 {editMode ? (
@@ -1259,7 +1316,7 @@ const HeroSection = () => {
                     placeholder="Enter Phone"
                   />
                 ) : (
-                  <p>{contactSection.phone}</p>
+                  <p className="break-all">{contactSection.phone}</p>
                 )}
               </div>
             </div>
@@ -1271,7 +1328,7 @@ const HeroSection = () => {
                 <FaMapMarkerAlt />
               </div>
 
-              <div>
+              <div className="flex-1 min-w-0">
                 <span>LOCATION</span>
 
                 {editMode ? (
@@ -1285,7 +1342,7 @@ const HeroSection = () => {
                     }
                   />
                 ) : (
-                  <p>{contactSection.location}</p>
+                  <p className="break-all">{contactSection.location}</p>
                 )}
               </div>
             </div>

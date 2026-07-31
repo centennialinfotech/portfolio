@@ -16,23 +16,54 @@ html, body, #root {
 }
 
 .dashboard.header {
-  @apply fixed top-0 left-0 right-0 w-full z-[1000] bg-black/90 backdrop-blur-xl border-b border-white/10 px-4 sm:px-8 py-3 sm:py-4 flex items-center justify-between gap-4 transition-all duration-300;
+  @apply
+  fixed
+  top-0
+  left-0
+  right-0
+  z-[1000]
+  bg-black/90
+  backdrop-blur-xl
+  border-b
+  border-white/10
+  flex
+  items-center
+  justify-between
+  px-3
+  sm:px-6
+  py-3
+  gap-2;
 }
 
 .logo {
-  @apply flex items-center gap-2 text-white font-extrabold text-xl sm:text-2xl tracking-tight cursor-pointer shrink-0;
+  @apply flex
+  items-center
+  flex-1
+  min-w-0;
 }
 
 .logo-display {
-  @apply flex items-center gap-2 text-white font-extrabold text-lg sm:text-xl truncate max-w-[200px] sm:max-w-xs;
+  @apply flex
+  items-center
+  gap-2
+  min-w-0;
+}
+
+.logo-text {
+  @apply
+  flex-1
+  min-w-0
+  truncate
+  whitespace-nowrap
+  overflow-hidden
+  text-ellipsis
+  font-extrabold
+  text-sm
+  sm:text-lg;
 }
 
 .logo-img {
   @apply h-8 sm:h-10 w-auto object-contain rounded-lg border border-white/20;
-}
-
-.logo-edit {
-  @apply flex items-center gap-2 flex-wrap;
 }
 
 .navbar {
@@ -278,7 +309,15 @@ html, body, #root {
 }
 
 .info-card {
-  @apply flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 mb-4;
+  @apply flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 mb-4 min-w-0 overflow-hidden;
+}
+
+.info-card span {
+  @apply text-xs text-white/60 uppercase tracking-wide;
+}
+
+.info-card p {
+  @apply text-sm sm:text-base text-white font-medium break-all;
 }
 
 .icon-box {
@@ -367,5 +406,88 @@ html, body, #root {
 }
 
 .remove-btn {
-  @apply bg-red-500/20 hover:bg-red-500/40 border border-red-500/30 text-red-300 px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer;
+  @apply bg-red-500/20 hover:bg-red-500/40 border border-red-500/30 text-red-300 px-3 py-[9px] rounded-lg text-xs font-semibold transition-all cursor-pointer;
+}
+
+.edit-header-btn {
+  @apply ml-2
+  w-8
+  h-8
+  rounded-full
+  bg-white/10
+  hover:bg-white/20
+  border
+  border-white/20
+  flex
+  items-center
+  justify-center
+  text-sm
+  cursor-pointer;
+}
+
+.header-settings-overlay {
+  @apply fixed inset-0 bg-black/60 z-[9999]
+  flex items-start justify-center pt-20;
+}
+
+.header-settings-modal {
+  @apply w-[92%]
+  max-w-sm
+  rounded-2xl
+  bg-neutral-900
+  border
+  border-white/10
+  p-5
+  shadow-2xl
+  space-y-4;
+}
+
+.header-settings-modal h3 {
+  @apply text-xl font-bold text-white;
+}
+
+.header-settings-modal label {
+  @apply block text-sm text-white/70 mb-2;
+}
+
+.header-settings-modal input[type="text"] {
+  @apply w-full
+  rounded-xl
+  border
+  border-white/10
+  bg-black
+  text-white
+  px-4
+  py-3;
+}
+
+.upload-btn {
+  @apply
+  w-full
+  flex
+  items-center
+  justify-center
+  rounded-xl
+  bg-sky-600
+  hover:bg-sky-700
+  text-white
+  font-semibold
+  py-3
+  px-3
+  cursor-pointer
+  transition-all;
+}
+
+.close-btn {
+  @apply
+  px-4
+  py-1
+  m-2
+  rounded-lg
+  border
+  border-white/30
+  text-white
+  hover:bg-white/10
+  transition-all;
+  
 }
