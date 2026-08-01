@@ -67,7 +67,7 @@ export default function Home() {
   return (
     <div className="home-bg">
       {show && (
-        <div className="fixed bottom-8 right-0 z-50">
+        <div className="fixed bottom-8 left-0 z-50">
           <button onClick={() => scroll.scrollToTop({ duration: 500, smooth: true })} className="scroll-top-btn">
             Go to <br /> top
           </button>
@@ -88,15 +88,34 @@ export default function Home() {
 
           <div className="nav-links">
             <button onClick={() => scroll.scrollToTop({ duration: 500, smooth: true })} className="nav-link">Get Started</button>
+            {!userData && (
+              <button
+                onClick={() => navigate("/login?type=login")}
+                className="nav-link"
+              >
+                Login
+              </button>
+            )}
             {navLinks.map((l) => (
               <button
                 key={l.label}
                 className="nav-link"
                 onClick={() => {
-                  document.querySelector(l.href)?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
+                  if (window.location.pathname !== "/") {
+                    navigate("/");
+
+                    setTimeout(() => {
+                      document.querySelector(l.href)?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }, 300);
+                  } else {
+                    document.querySelector(l.href)?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }
                 }}
               >
                 {l.label}
@@ -147,6 +166,17 @@ export default function Home() {
             >
               Get Started
             </button>
+            {!userData && (
+              <button
+                onClick={() => {
+                  setMobileMenu(false);
+                  navigate("/login?type=login");
+                }}
+                className="mobile-menu-link"
+              >
+                Login
+              </button>
+            )}
             {navLinks.map((l) => (
               <button
                 key={l.label}

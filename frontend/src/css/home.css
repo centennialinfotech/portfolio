@@ -6,7 +6,7 @@
 }
 
 .scroll-top-btn {
-  @apply bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-3 rounded-l-full font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300;
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-3 rounded-e-full font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300;
 }
 
 .glow-blue,
@@ -136,22 +136,33 @@
 }
 
 .mobile-menu-open {
-  max-height: 240px;
+  max-height: 70px;
 }
 
 .mobile-menu-container {
-  @apply flex flex-row justify-center items-center
-         gap-1 min-[360px]:gap-3
-         p-3;
+  @apply flex flex-nowrap items-center gap-3 px-4 py-3;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.mobile-menu-container::-webkit-scrollbar {
+  display: none;
 }
 
 .mobile-menu-link {
   @apply whitespace-nowrap
-         text-[11px]
-         min-[360px]:text-xs
-         px-1
-         min-[360px]:px-2
-         py-2;
+         flex-shrink-0
+         px-4
+         py-2
+         rounded-lg
+         text-sm
+         text-white/80
+         hover:bg-white/10
+         hover:text-white
+         transition-all;
 }
 
 @media (min-width: 360px) and (max-width: 390px) {
@@ -160,7 +171,7 @@
   }
 
   .mobile-menu-link {
-    @apply text-[11px] px-1;
+    @apply text-[11px] px-4;
   }
 }
 

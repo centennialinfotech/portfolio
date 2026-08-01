@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -33,6 +34,7 @@ const HeroSection = () => {
   const getIcon = (key) => iconMap[key] || <FaCode />;
 
   const [editMode, setEditMode] = useState(false);
+  const navigate = useNavigate();
 
   const [headerSection, setHeaderSection] = useState(() => {
     const saved = localStorage.getItem("headerSection");
@@ -410,22 +412,8 @@ const HeroSection = () => {
             {editMode ? "💾 Save" : "⚙️"}
           </button>
           <button
-            className="
-            go-premium-btn
-            bg-gradient-to-r
-            from-yellow-500
-            to-orange-500
-            px-2
-            sm:px-3
-            md:px-6
-            py-2
-            rounded-xl
-            text-[11px]
-            sm:text-sm
-            md:text-base
-            font-semibold
-            whitespace-nowrap
-            "
+            className="go-premium-btn bg-gradient-to-r from-yellow-500 to-orange-500 px-2 sm:px-3 md:px-6 py-2 rounded-xl text-[11px] sm:text-sm md:text-base font-semibold whitespace-nowrap"
+            onClick={() => navigate("/pricing")}
           >
             Go Premium
           </button>{" "}
