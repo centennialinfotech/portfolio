@@ -103,7 +103,7 @@
 }
 
 .portfolio-hero {
-  @apply pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-12 md:px-16 lg:px-28 relative z-10;
+  @apply pt-28 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-12 md:px-16 lg:px-28 relative z-10;
 }
 
 .hero-grid {
@@ -115,7 +115,18 @@
 }
 
 .hero-name {
-  @apply text-4xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight mt-2 sm:mt-3 leading-tight sm:leading-none break-words;
+  @apply text-4xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight mt-3 sm:mt-4 leading-tight sm:leading-none;
+  word-break: normal;
+  overflow-wrap: normal;
+  max-width: 600px;
+}
+
+.hero-name-medium {
+  @apply lg:text-7xl;
+}
+
+.hero-name-small {
+  @apply lg:text-6xl sm:text-5xl text-4xl;
 }
 
 .hero-role {
@@ -151,7 +162,15 @@
 }
 
 .section-container {
-  @apply relative z-10 px-4 sm:px-12 md:px-16 lg:px-28 py-16 sm:py-20 border-t border-white/10;
+  @apply relative z-10
+         px-4
+         sm:px-12
+         md:px-16
+         lg:px-28
+         py-20
+         lg:py-24
+         border-t
+         border-white/10;
 }
 
 .section-max {
@@ -159,15 +178,14 @@
 }
 
 .section-title {
-  @apply text-3xl sm:text-6xl font-black text-center tracking-tight mb-4 text-white;
+  @apply text-3xl sm:text-6xl font-black text-center tracking-tight mb-6 text-white;
 }
-
 .section-subtitle {
   @apply text-white/70 text-center text-base sm:text-xl max-w-2xl mx-auto mb-10 sm:mb-14 font-medium;
 }
 
 .about-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 sm:mt-10;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6;
 }
 
 .about-card {
@@ -187,7 +205,7 @@
 }
 
 .skills-grid {
-  @apply grid md:grid-cols-2 gap-8 sm:gap-10 mt-8 sm:mt-10;
+  @apply grid md:grid-cols-2 gap-8 mt-6;
 }
 
 .skills-card {
@@ -211,7 +229,7 @@
 }
 
 .projects-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-10;
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6;
 }
 
 .project-card {
@@ -235,7 +253,7 @@
 }
 
 .contact-grid {
-  @apply grid lg:grid-cols-2 gap-8 sm:gap-12 mt-8 sm:mt-10;
+  @apply grid lg:grid-cols-2 gap-8 mt-6;
 }
 
 .contact-info-card {
@@ -281,7 +299,7 @@
 }
 
 .portfolio-footer {
-  @apply relative z-10 border-t border-white/10 py-10 sm:py-12 px-6 text-center text-white/60 text-sm sm:text-base font-medium bg-black;
+  @apply relative z-10 border-t border-white/10 py-16 px-6 text-center text-white/60 text-sm sm:text-base font-medium bg-black;
 }
 
 @media (max-width: 360px) {
@@ -290,16 +308,4 @@
   }
 }
 
-.hero-name {
-  @apply text-4xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight mt-3 sm:mt-4 leading-tight sm:leading-none;
-  word-break: normal;
-  overflow-wrap: normal;
-}
 
-.hero-name-medium {
-  @apply lg:text-7xl;
-}
-
-.hero-name-small {
-  @apply lg:text-6xl sm:text-5xl text-4xl;
-}
