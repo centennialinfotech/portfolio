@@ -87,15 +87,28 @@ export default function Home() {
           </div>
 
           <div className="nav-links">
-            <button onClick={() => scroll.scrollToTop({ duration: 500, smooth: true })} className="nav-link">Get Started</button>
-            {!userData && (
-              <button
-                onClick={() => navigate("/login?type=login")}
-                className="nav-link"
-              >
-                Login
-              </button>
-            )}
+            <button
+              onClick={() => {
+                if (window.location.pathname !== "/") {
+                  navigate("/");
+
+                  setTimeout(() => {
+                    document.querySelector("#get-started")?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }, 300);
+                } else {
+                  document.querySelector("#get-started")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
+              className="nav-link"
+            >
+              Get Started
+            </button>
             {navLinks.map((l) => (
               <button
                 key={l.label}
@@ -122,6 +135,14 @@ export default function Home() {
               </button>
             ))}
             {auth.currentUser && <a href="/retrieve-domain" className="nav-link">My Domains</a>}
+            {!userData && (
+              <button
+                onClick={() => navigate("/login?type=login")}
+                className="nav-link"
+              >
+                Login
+              </button>
+            )}
           </div>
 
           <div className="nav-right">
@@ -161,22 +182,27 @@ export default function Home() {
         <div className={`mobile-menu-overlay ${mobileMenu ? "mobile-menu-open" : ""}`}>
           <div className="mobile-menu-container">
             <button
-              onClick={() => { setMobileMenu(false); scroll.scrollToTop({ duration: 500, smooth: true }); }}
+              onClick={() => {
+                if (window.location.pathname !== "/") {
+                  navigate("/");
+
+                  setTimeout(() => {
+                    document.querySelector("#get-started")?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }, 300);
+                } else {
+                  document.querySelector("#get-started")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
               className="mobile-menu-link"
             >
               Get Started
             </button>
-            {!userData && (
-              <button
-                onClick={() => {
-                  setMobileMenu(false);
-                  navigate("/login?type=login");
-                }}
-                className="mobile-menu-link"
-              >
-                Login
-              </button>
-            )}
             {navLinks.map((l) => (
               <button
                 key={l.label}
@@ -196,6 +222,17 @@ export default function Home() {
             {auth.currentUser && (
               <a href="/retrieve-domain" onClick={() => setMobileMenu(false)} className="mobile-menu-link">My Domains</a>
             )}
+            {!userData && (
+              <button
+                onClick={() => {
+                  setMobileMenu(false);
+                  navigate("/login?type=login");
+                }}
+                className="mobile-menu-link"
+              >
+                Login
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -213,7 +250,7 @@ export default function Home() {
               Create a stunning portfolio website with modern recruiter-focused design and powerful personal branding.
             </p>
 
-            <div className="trust-strip">
+            <div id="get-started" className="trust-strip">
               {trustData.map((t, i) => <span key={i} className="trust-tag">{t.label}</span>)}
             </div>
 
