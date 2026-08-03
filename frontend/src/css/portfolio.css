@@ -289,3 +289,17 @@
     font-size: 14px;
   }
 }
+
+.hero-name {
+  @apply text-4xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight mt-3 sm:mt-4 leading-tight sm:leading-none;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.hero-name-medium {
+  @apply lg:text-7xl;
+}
+
+.hero-name-small {
+  @apply lg:text-6xl sm:text-5xl text-4xl;
+}

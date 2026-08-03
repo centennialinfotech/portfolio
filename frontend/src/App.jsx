@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 
 import CookieBanner from "./components/CookieBanner";
 
+
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));

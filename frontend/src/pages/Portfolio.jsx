@@ -318,6 +318,9 @@ export default function Portfolio() {
     }));
   };
 
+  const fullName = `${heroSection.firstName} ${heroSection.lastName}`.trim();
+  const nameLength = fullName.length;
+
   return (
     <div className="portfolio-bg">
       {isSaving && (
@@ -597,8 +600,16 @@ export default function Portfolio() {
             ) : (
               <>
                 <p className="hero-greeting">{heroSection.greeting}</p>
-                <h1 className="hero-name">
-                  {heroSection.firstName} {heroSection.lastName}
+                <h1
+                  className={`hero-name ${
+                    nameLength > 18
+                      ? "hero-name-small"
+                      : nameLength > 12
+                      ? "hero-name-medium"
+                      : ""
+                  }`}
+                >
+                  {fullName}
                 </h1>
                 <h2 className="hero-role">{heroSection.role}</h2>
                 <p className="hero-desc">{heroSection.description}</p>
