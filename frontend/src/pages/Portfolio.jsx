@@ -55,6 +55,8 @@ export default function Portfolio() {
   const [projectsSection, setProjectsSection] = useState(portfolioDefault.projectsSection);
   const [contactSection, setContactSection] = useState(portfolioDefault.contactSection);
   const [footerSection, setFooterSection] = useState(portfolioDefault.footerSection);
+  const [saveMessage, setSaveMessage] = useState("");
+  const [saveType, setSaveType] = useState("success");
 
   const firstName = userData?.name?.split(" ")[0] || "";
 
@@ -203,7 +205,12 @@ export default function Portfolio() {
     const phoneValErr = validatePhone(contactSection.phone);
     if (phoneValErr) {
       setPhoneError(phoneValErr);
-      alert("Please correct your phone number.");
+      setSaveType("error");
+      setSaveMessage("Please correct your phone number.");
+
+      setTimeout(() => {
+        setSaveMessage("");
+      }, 2500);
       setTimeout(() => {
         phoneInputRef.current?.scrollIntoView({
           behavior: "smooth",
@@ -239,10 +246,22 @@ export default function Portfolio() {
         updatedAt: Date.now(),
       });
 
-      alert("Portfolio saved successfully! ✅");
+      setSaveType("success");
+      setSaveMessage("✅ Portfolio saved successfully!");
+
+      setTimeout(() => {
+        setSaveMessage("");
+      }, 2500);
+
     } catch (error) {
       console.error(error);
-      alert(error.message);
+      setSaveType("error");
+      setSaveMessage("❌ Failed to save portfolio.");
+
+      setTimeout(() => {
+        setSaveMessage("");
+      }, 2500);
+
     } finally {
       setIsSaving(false);
     }
@@ -477,6 +496,20 @@ export default function Portfolio() {
           </div>
         </div>
       </header>
+
+      {saveMessage && (
+        <div className="save-message-container">
+          <div
+            className={`save-message ${
+              saveType === "success"
+                ? "save-message-success"
+                : "save-message-error"
+            }`}
+          >
+            {saveMessage}
+          </div>
+        </div>
+      )}
 
       {editMode && showHeaderEditor && (
           <div className="
@@ -921,7 +954,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section className="section-container" id="skills">
+      <section className="section-container-skills" id="skills">
         <div className="section-max">
           {editMode ? (
             <input
@@ -933,12 +966,12 @@ export default function Portfolio() {
               }
             />
           ) : (
-            <h2 className="section-title">{skillsSection.title}</h2>
+            <h2 className="section-skills-title">{skillsSection.title}</h2>
           )}
 
           <div className="skills-grid">
             <div className="skills-card">
-              <h3 className="text-xl font-bold text-white mb-6">
+              <h3 className="text-xl font-bold text-cyan-500 mb-6">
                 {skillsSection.leftTitle}
               </h3>
               <div className="space-y-4">
@@ -987,7 +1020,7 @@ export default function Portfolio() {
                       <>
                         <div className="flex justify-between text-sm font-medium">
                           <span>{skill.name}</span>
-                          <span className="text-cyan-400 font-bold">
+                          <span className="text-white font-bold">
                             {skill.percentage}%
                           </span>
                         </div>
@@ -1010,7 +1043,7 @@ export default function Portfolio() {
             </div>
 
             <div className="skills-card">
-              <h3 className="text-xl font-bold text-white mb-6">
+              <h3 className="text-xl font-bold text-cyan-500 mb-6">
                 {skillsSection.rightTitle}
               </h3>
               {editMode ? (
@@ -1213,7 +1246,7 @@ export default function Portfolio() {
 
           <div className="contact-grid">
             <div className="contact-info-card">
-              <h3 className="text-xl font-bold text-white mb-6">
+              <h3 className="text-xl font-bold text-blue-950 mb-6">
                 {contactSection.leftTitle}
               </h3>
 
@@ -1267,10 +1300,10 @@ export default function Portfolio() {
                     <div key={idx} className="contact-item">
                       <div className="contact-item-icon">{item.icon}</div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-white/40 uppercase">
+                        <p className="text-xs text-neutral-700 uppercase">
                           {item.label}
                         </p>
-                        <p className="text-sm sm:text-base text-white font-medium break-all">
+                        <p className="text-sm sm:text-base text-blue-950 font-medium break-all">
                           {item.value}
                         </p>
                       </div>
@@ -1280,14 +1313,20 @@ export default function Portfolio() {
               )}
             </div>
 
-            <div className="contact-info-card">
+            <div className="contact-info-card-right">
               <h3 className="text-xl font-bold text-white mb-6">
                 {contactSection.rightTitle}
               </h3>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  alert("Message sent! (Demo)");
+                  setSaveType("success");
+                  setSaveMessage("Message sent! (Demo)");
+
+                  setTimeout(() => {
+                    setSaveMessage("");
+                  }, 2500);
+            
                 }}
                 className="space-y-4"
               >
@@ -1295,21 +1334,21 @@ export default function Portfolio() {
                   type="text"
                   placeholder="Your Name"
                   required
-                  className="w-full bg-[#050b18] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-[#0d1e42] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
                   required
-                  className="w-full bg-[#050b18] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-[#0d1e42] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                 />
                 <textarea
                   placeholder="Your Message"
                   rows={4}
                   required
-                  className="w-full bg-[#050b18] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 resize-y"
+                  className="w-full bg-[#0d1e42] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 resize-y"
                 />
-                <button type="submit" className="btn-primary w-full">
+                <button type="submit" className="btn-primary-contact w-full">
                   Send Message
                 </button>
               </form>
