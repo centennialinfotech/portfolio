@@ -292,6 +292,29 @@ export default function Portfolio() {
     }));
   };
 
+  const addTechnology = () => {
+    setSkillsSection((prev) => ({
+      ...prev,
+      technologies: [...prev.technologies, "New Technology"],
+    }));
+  };
+
+  const removeTechnology = (index) => {
+    setSkillsSection((prev) => ({
+      ...prev,
+      technologies: prev.technologies.filter((_, i) => i !== index),
+    }));
+  };
+
+  const updateTechnology = (index, value) => {
+    setSkillsSection((prev) => ({
+      ...prev,
+      technologies: prev.technologies.map((tech, i) =>
+        i === index ? value : tech
+      ),
+    }));
+  };
+
   const addProject = () => {
     setProjectsSection((prev) => ({
       ...prev,
@@ -990,6 +1013,42 @@ export default function Portfolio() {
               <h3 className="text-xl font-bold text-white mb-6">
                 {skillsSection.rightTitle}
               </h3>
+              {editMode ? (
+              <>
+                <div className="space-y-3">
+                  {skillsSection.technologies.map((tech, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-2"
+                    >
+                      <input
+                        type="text"
+                        className="edit-input flex-1"
+                        value={tech}
+                        onChange={(e) =>
+                          updateTechnology(index, e.target.value)
+                        }
+                      />
+
+                      <button
+                        className="remove-btn"
+                        onClick={() => removeTechnology(index)}
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  className="add-btn mt-5"
+                  onClick={addTechnology}
+                >
+                  <Plus size={16} />
+                  Add Technology
+                </button>
+              </>
+            ) : (
               <div className="tech-tags-list">
                 {skillsSection.technologies.map((tech, index) => (
                   <span key={index} className="tech-tag">
@@ -997,6 +1056,7 @@ export default function Portfolio() {
                   </span>
                 ))}
               </div>
+            )}
             </div>
           </div>
         </div>

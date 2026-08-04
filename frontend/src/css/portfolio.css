@@ -103,7 +103,7 @@
 }
 
 .portfolio-hero {
-  @apply pt-28 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-12 md:px-16 lg:px-28 relative z-10;
+  @apply pt-25 lg:pt-32 pb-12 sm:pb-16 px-4 sm:px-12 md:px-16 lg:px-28 relative z-10;
 }
 
 .hero-grid {
