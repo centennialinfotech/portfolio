@@ -21,7 +21,7 @@ import {
   FaPaperPlane,
   FaLock,
 } from "react-icons/fa";
-import { Menu, X, Plus, Trash2 } from "lucide-react";
+import { Menu, X, Plus, Trash2, ArrowLeft } from "lucide-react";
 import imageCompression from "browser-image-compression";
 
 const NAV_LINKS = [
@@ -406,6 +406,13 @@ export default function Portfolio() {
           </div>
 
           <nav className="header-nav">
+            <button
+              onClick={() => navigate("/")}
+              className="header-back-btn"
+              title="Back to Homepage"
+            >
+              <ArrowLeft size={18} />
+            </button>
             {NAV_LINKS.map((link) => (
               <a key={link.label} href={link.href} className="header-nav-link">
                 {link.label}
@@ -483,6 +490,16 @@ export default function Portfolio() {
 
         <div className={`mobile-menu-drawer ${mobileMenu ? "mobile-menu-drawer-open" : ""}`}>
           <div className="mobile-menu-content">
+            <button
+              onClick={() => {
+                navigate("/");
+                setMobileMenu(false);
+              }}
+              className="mobile-menu-link flex items-center gap-2"
+            >
+              <ArrowLeft size={18} />
+              Back to Homepage
+            </button>
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
