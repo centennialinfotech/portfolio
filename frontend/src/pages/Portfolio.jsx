@@ -1240,13 +1240,13 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section className="section-container" id="contact">
+      <section className="section-container-contact" id="contact">
         <div className="section-max">
-          <h2 className="section-title">{contactSection.title}</h2>
+          <h2 className="section-title-contact">{contactSection.title}</h2>
 
           <div className="contact-grid">
             <div className="contact-info-card">
-              <h3 className="text-xl font-bold text-blue-950 mb-6">
+              <h3 className="text-xl font-bold text-white mb-7">
                 {contactSection.leftTitle}
               </h3>
 
@@ -1300,10 +1300,10 @@ export default function Portfolio() {
                     <div key={idx} className="contact-item">
                       <div className="contact-item-icon">{item.icon}</div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-neutral-700 uppercase">
+                        <p className="text-xs text-white/70 uppercase">
                           {item.label}
                         </p>
-                        <p className="text-sm sm:text-base text-blue-950 font-medium break-all">
+                        <p className="text-sm sm:text-base text-white font-medium break-all">
                           {item.value}
                         </p>
                       </div>
