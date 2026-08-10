@@ -3,8 +3,8 @@
    ============================================ */
 
 /* Hide default navbar */
-.dashboard.header {
-  display: none !important;
+body:has(.retrieve-domain-page) .dashboard.header {
+    display: none !important;
 }
 
 .retrieve-domain-page {
