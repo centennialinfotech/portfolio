@@ -31,7 +31,7 @@ const NAV_LINKS = [
 ];
 
 export default function PublicPortfolio({ subdomain: propSubdomain }) {
-  usePageCSS(publicPortfolioCSS);
+  usePageCSS(publicPortfolioCSS, "public-portfolio");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isPremium, setIsPremium] = useState(false);
