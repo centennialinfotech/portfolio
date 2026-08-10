@@ -39,6 +39,7 @@ const HeroSection = () => {
   const getIcon = (key) => iconMap[key] || <FaCode />;
 
   const [editMode, setEditMode] = useState(false);
+  const [showSaveMessage, setShowSaveMessage] = useState(false);
   const navigate = useNavigate();
 
   const [headerSection, setHeaderSection] = useState(() => {
@@ -371,6 +372,57 @@ const HeroSection = () => {
   }, [footerSection]);
 
   /*********footer section : end ******* */
+  const [errorMsg, setErrorMsg] = useState("");
+const [githubError, setGithubError] = useState("");
+const [linkedinError, setLinkedinError] = useState("");
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const githubRegex =
+  /^https?:\/\/(www\.)?github\.com\/[A-Za-z0-9-]+\/?$/;
+
+const linkedinRegex =
+  /^https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9-_%]+\/?$/;  
+
+
+ const handleSave = () => {
+  const email = contactSection.email.trim();
+  const github = heroSection.github.trim();
+  const linkedin = heroSection.linkedin.trim();
+
+  // Email validation
+  if (!emailRegex.test(email)) {
+    setErrorMsg("Please enter a valid email address.");
+    return;
+  }
+
+  // GitHub validation
+  if (!githubRegex.test(github)) {
+    setGithubError(
+      "Please enter a valid GitHub URL, e.g. https://github.com/username"
+    );
+    return;
+  }
+
+  // LinkedIn validation
+  if (!linkedinRegex.test(linkedin)) {
+    setLinkedinError(
+      "Please enter a valid LinkedIn URL, e.g. https://linkedin.com/in/username"
+    );
+    return;
+  }
+
+  // Clear errors
+  setErrorMsg("");
+  setGithubError("");
+  setLinkedinError("");
+
+  setEditMode(false);
+  setShowSaveMessage(true);
+
+  setTimeout(() => {
+    setShowSaveMessage(false);
+  }, 2500);
+};
 
   return (
     <>
@@ -378,13 +430,15 @@ const HeroSection = () => {
       <header className="dashboard header">
         <div className="logo">
           <div className="logo-display">
-            {headerSection.logoImage ? (
+            {headerSection.logoImage && (
               <img
                 src={headerSection.logoImage}
                 alt="logo"
                 className="logo-img"
               />
-            ) : (
+            )}
+
+            {headerSection.logo && (
               <span className="logo-text">
                 {headerSection.logo}
               </span>
@@ -412,7 +466,13 @@ const HeroSection = () => {
         <div className="header-actions">
           <button
             className="customize-btn lg:ml-4"
-            onClick={() => setEditMode(!editMode)}
+            onClick={() => {
+              if (editMode) {
+                handleSave();
+              } else {
+                setEditMode(true);
+              }
+            }}
           >
             {editMode ? "💾 Save" : "⚙️"}
           </button>
@@ -430,6 +490,11 @@ const HeroSection = () => {
           </button>
         </div>
       </header>
+      {showSaveMessage && (
+        <div className="save-message">
+          ✓ Portfolio has been saved successfully!
+        </div>
+      )}
       {showHeaderSettings && (
         <div className="header-settings-overlay">
           <div className="header-settings-modal">
@@ -540,26 +605,66 @@ const HeroSection = () => {
               />
 
               <input
+                type="url"
                 value={heroSection.github}
-                onChange={(e) =>
+                onChange={(e) => {
+                  const value = e.target.value;
+
                   setHeroSection({
                     ...heroSection,
-                    github: e.target.value,
-                  })
-                }
+                    github: value,
+                  });
+
+                  if (githubRegex.test(value.trim())) {
+                    setGithubError("");
+                  }
+                }}
                 placeholder="https://github.com/username"
               />
 
+              {githubError && (
+                <p
+                  style={{
+                    color: "#ff4d4d",
+                    fontSize: "13px",
+                    margin: "5px 0 8px",
+                    lineHeight: "1.4",
+                  }}
+                >
+                  {githubError}
+                </p>
+              )}
+
               <input
+                type="url"
                 value={heroSection.linkedin}
-                onChange={(e) =>
+                onChange={(e) => {
+                  const value = e.target.value;
+
                   setHeroSection({
                     ...heroSection,
-                    linkedin: e.target.value,
-                  })
-                }
+                    linkedin: value,
+                  });
+
+                  if (linkedinRegex.test(value.trim())) {
+                    setLinkedinError("");
+                  }
+                }}
                 placeholder="https://linkedin.com/in/username"
               />
+
+              {linkedinError && (
+                <p
+                  style={{
+                    color: "#ff4d4d",
+                    fontSize: "13px",
+                    margin: "5px 0 8px",
+                    lineHeight: "1.4",
+                  }}
+                >
+                  {linkedinError}
+                </p>
+              )}
 
               <label>Upload Profile Image</label>
 
@@ -568,6 +673,21 @@ const HeroSection = () => {
                 accept="image/*"
                 onChange={handleImageUpload}
               />
+
+              {heroSection.image && (
+                <button
+                  type="button"
+                  className="remove-image-btn"
+                  onClick={() => {
+                    setHeroSection({
+                      ...heroSection,
+                      image: "",
+                    });
+                  }}
+                >
+                  Remove Profile Image
+                </button>
+              )}
 
               <label>Upload CV</label>
 
@@ -1271,16 +1391,30 @@ const HeroSection = () => {
                 <span>EMAIL</span>
 
                 {editMode ? (
+                  <>
                   <input
+                    type="email"
                     value={contactSection.email}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setContactSection({
                         ...contactSection,
                         email: e.target.value,
-                      })
-                    }
-                    placeholder="Enter Email"
+                      });
+
+                      // Remove error while user is correcting
+                      if (emailRegex.test(e.target.value.trim())) {
+                        setErrorMsg("");
+                      }
+                    }}
+                    placeholder="Enter valid email"
+                    required
                   />
+                  {errorMsg && (
+                    <p className="email-error">
+                      {errorMsg}
+                    </p>
+                  )}
+                  </>
                 ) : (
                   <p className="break-all">{contactSection.email}</p>
                 )}
@@ -1299,11 +1433,13 @@ const HeroSection = () => {
 
                 {editMode ? (
                   <input
+                    type="tel"
+                    inputMode="numeric"
                     value={contactSection.phone}
                     onChange={(e) =>
                       setContactSection({
                         ...contactSection,
-                        phone: e.target.value,
+                        phone: e.target.value.replace(/\D/g, ""),
                       })
                     }
                     placeholder="Enter Phone"

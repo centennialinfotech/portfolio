@@ -182,14 +182,24 @@ export default function Login() {
   };
 
   const handleStartDemo = () => {
-    const demoUser = {
-      name: demoName.trim() || "Demo User",
-      type: "demo",
-      createdAt: Date.now(),
-    };
-    localStorage.setItem("demoUser", JSON.stringify(demoUser));
-    navigate("/demo");
+  setErrorMsg("");
+
+  const name = demoName.trim();
+
+  if (!name) {
+    setErrorMsg("Please enter your name to start the demo.");
+    return;
+  }
+
+  const demoUser = {
+    name,
+    type: "demo",
+    createdAt: Date.now(),
   };
+
+  localStorage.setItem("demoUser", JSON.stringify(demoUser));
+  navigate("/demo");
+};
 
   if (authLoading) {
     return (
@@ -207,7 +217,16 @@ export default function Login() {
       {isDemo && (
         <div className="login-card">
           <h1 className="login-title">Start Instant Demo</h1>
-          <p className="login-subtitle">Preview your interactive portfolio dashboard immediately.</p>
+
+          <p className="login-subtitle">
+            Preview your interactive portfolio dashboard immediately.
+          </p>
+
+          {errorMsg && (
+            <div className="login-status-error">
+              {errorMsg}
+            </div>
+          )}
 
           <input
             type="text"
