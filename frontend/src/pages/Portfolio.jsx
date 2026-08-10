@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../css/portfolio.css";
+import portfolioCss from "../css/portfolio.css?inline";
+import usePageCSS from "../hooks/usePageCSS";
 import portfolioDefault from "../data/portfolioDefault.json";
 
 import { useNavigate } from "react-router-dom";
@@ -33,6 +34,7 @@ const NAV_LINKS = [
 ];
 
 export default function Portfolio() {
+  usePageCSS(portfolioCss, "portfolio");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);

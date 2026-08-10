@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-@import "tailwindcss";
+@reference "tailwindcss";
 
 .home-bg {
   @apply min-h-screen bg-black text-white overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] selection:bg-purple-500/30;
@@ -226,19 +226,19 @@
   @apply pt-24 relative z-10 px-6 md:px-16 lg:px-28 pb-16;
 }
 
-.hero-grid {
+.home-hero-grid {
   @apply max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center;
 }
 
-.hero-left {
+.home-hero-left {
   @apply flex flex-col justify-center lg:min-h-[600px] py-8;
 }
 
-.hero-title {
+.home-hero-title {
   @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tight;
 }
 
-.hero-title-gradient {
+.home-title-gradient {
   @apply block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text;
 }
 
@@ -282,7 +282,7 @@
   @apply text-white/40 text-xs sm:text-sm font-medium mt-1 uppercase tracking-wider;
 }
 
-.hero-right {
+.home-hero-right {
   @apply relative flex items-center justify-center h-full py-8 lg:py-0;
 }
 

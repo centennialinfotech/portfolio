@@ -4,9 +4,12 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
-import "../css/navbar-mobile.css";
+// import "../css/navbar-mobile.css";
+import navbarMobilecss from "../css/navbar-mobile.css?inline";
+import usePageCSS from "../hooks/usePageCSS";
 
 export default function Navbar() {
+  usePageCSS(navbarMobilecss, "navbar-mobile");
   const navigate = useNavigate();
   const location = useLocation();
 

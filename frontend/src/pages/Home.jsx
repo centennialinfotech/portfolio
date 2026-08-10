@@ -238,11 +238,11 @@ export default function Home() {
       </div>
 
       <section className="hero-section">
-        <div className="hero-grid">
-          <div className="hero-left">
-            <h1 className="hero-title">
+        <div className="home-hero-grid">
+          <div className="home-hero-left">
+            <h1 className="home-hero-title">
               Get Your
-              <span className="hero-title-gradient">Dream Portfolio</span>
+              <span className="home-title-gradient">Dream Portfolio</span>
               <span className="hero-subtitle">Starting Less Than a Burger 🍔</span>
             </h1>
 
@@ -270,7 +270,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-right">
+          <div className="home-hero-right">
             <div className="card-container">
               <div className="card-header">
                 <div>

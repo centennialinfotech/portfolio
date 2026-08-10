@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
 
   build: {
-    cssCodeSplit: true,
+    cssCodeSplit: false,
 
     rollupOptions: {
       output: {

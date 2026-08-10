@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import { HiMenu, HiX } from "react-icons/hi";
-import "../css/demo_dashboard.css";
-import "../css/demoMobile.css";
+// import "../css/demo_dashboard.css";
+// import "../css/demoMobile.css";
+import demoDashboardCss from "../css/demo_dashboard.css?inline";
+import demoMobileCss from "../css/demoMobile.css?inline";
+import usePageCSS from "../hooks/usePageCSS";
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -22,6 +25,8 @@ import {
 import githubLogo from "../assets/github.png";
 import linkedinLogo from "../assets/linkedin.png";
 const HeroSection = () => {
+  usePageCSS(demoDashboardCss, "demo-dashboard");
+  usePageCSS(demoMobileCss, "demo-mobile");
   const iconMap = {
     code: <FaCode />,
     learn: <FaGraduationCap />,

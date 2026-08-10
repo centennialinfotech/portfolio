@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
-import "../css/choose-subdomain.css";
+// import "../css/choose-subdomain.css";
+import chooseSubdomainCss from "../css/choose-subdomain.css?inline";
+import usePageCSS from "../hooks/usePageCSS";
 import { defaultPortfolio } from "../data/defaultPortfolio";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function ChooseSubdomain() {
+  usePageCSS(chooseSubdomainCss, "choose-subdomain");
   const [subdomain, setSubdomain] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [checking, setChecking] = useState(false);

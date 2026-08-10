@@ -10,9 +10,11 @@ import {
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
-import "../css/login.css";
+import loginCss from "../css/login.css?inline";
+import usePageCSS from "../hooks/usePageCSS";
 
 export default function Login() {
+  usePageCSS(loginCss, "login");
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [authLoading, setAuthLoading] = useState(true);

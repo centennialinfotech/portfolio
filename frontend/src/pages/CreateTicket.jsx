@@ -1,9 +1,9 @@
-import "../css/ticket.css";
+import ticketCss from "../css/ticket.css?inline";
 import usePageCSS from "../hooks/usePageCSS";
 
 
 export default function CreateTicket() {
-   usePageCSS("/css/ticket.css");  
+   usePageCSS(ticketCss, "ticket");  
   return (
     <div className="bg-black pt-20">
       <iframe
