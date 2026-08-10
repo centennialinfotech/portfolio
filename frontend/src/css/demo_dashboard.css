@@ -96,35 +96,35 @@ html, body, #root {
   }
 }
 
-.hero {
+.demo-hero {
   @apply min-h-screen pt-28 sm:pt-36 pb-16 px-4 sm:px-12 md:px-16 lg:px-24 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16 max-w-[1400px] mx-auto relative z-10;
 }
 
-.hero-left {
+.demo-hero-left {
   @apply flex-1 w-full text-left;
 }
 
-.hero-greeting {
+.demo-hero-greeting {
   @apply text-neutral-400 font-black text-lg sm:text-2xl tracking-wider uppercase mb-2;
 }
 
-.hero-left h1 {
+.demo-hero-left h1 {
   @apply text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight mb-3 break-words;
 }
 
-.hero-left span {
+.demo-hero-left span {
   @apply text-white underline decoration-white/40 underline-offset-8;
 }
 
-.hero-left h2 {
+.demo-hero-left h2 {
   @apply text-2xl sm:text-4xl font-extrabold text-neutral-300 mt-2 mb-4 break-words;
 }
 
-.hero-left p {
+.demo-hero-left p {
   @apply text-white/70 text-base sm:text-xl leading-relaxed max-w-xl font-medium mb-8;
 }
 
-.hero-buttons {
+.demo-hero-buttons {
   @apply flex flex-wrap items-center gap-3 sm:gap-4;
 }
 
@@ -140,7 +140,7 @@ html, body, #root {
   @apply flex items-center gap-4 text-white/80 hover:text-white transition-colors text-2xl;
 }
 
-.hero-right {
+.demo-hero-right {
   @apply flex-1 w-full flex items-center justify-center;
 }
 

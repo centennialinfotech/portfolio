@@ -480,8 +480,8 @@ const HeroSection = () => {
       )}
 
       {/* Hero Section */}
-      <section className="hero" id="home">
-        <div className="hero-left">
+      <section className="demo-hero" id="home">
+        <div className="demo-hero-left">
           {editMode ? (
             <div className="hero-edit">
               <input
@@ -591,7 +591,7 @@ const HeroSection = () => {
             </>
           )}
 
-          <div className="hero-buttons">
+          <div className="demo-hero-buttons">
             <a
               href={heroSection.cv || "#"}
               className={`cv-btn ${!heroSection.cv ? "disabled" : ""}`}
@@ -617,7 +617,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="hero-right">
+        <div className="demo-hero-right">
           <div className="image-circle">
             <img src={heroSection.image} alt="profile" />
           </div>
