@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 // import "../css/portfolio.css";
-import publicPortfolioCSS from "../css/portfolio.css";
+import publicPortfolioCSS from "../css/portfolio.css?inline";
 import usePageCSS from "../hooks/usePageCSS";
 import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";

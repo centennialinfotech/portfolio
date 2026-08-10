@@ -107,11 +107,11 @@ html, body, #root {
 }
 
 .demo-hero-left {
-  @apply flex-1 w-full text-left;
+  @apply flex-none lg:flex-1 w-full text-left;
 }
 
-.demo-hero-greeting {
-  @apply text-neutral-400 font-black text-lg sm:text-2xl tracking-wider uppercase mb-2;
+.demo-hero-right {
+  @apply flex-none lg:flex-1 w-full flex items-center justify-center;
 }
 
 .demo-hero-left h1 {
