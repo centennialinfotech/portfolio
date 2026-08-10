@@ -97,7 +97,13 @@ html, body, #root {
 }
 
 .demo-hero {
-  @apply min-h-screen pt-28 sm:pt-36 pb-16 px-4 sm:px-12 md:px-16 lg:px-24 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16 max-w-[1400px] mx-auto relative z-10;
+  @apply min-h-screen pt-28 sm:pt-36 pb-16 px-4 sm:px-12 md:px-16 lg:px-24
+  flex flex-col lg:flex-row
+  items-center
+  justify-start lg:justify-between
+  gap-10 lg:gap-16
+  max-w-[1400px] mx-auto
+  relative z-10;
 }
 
 .demo-hero-left {

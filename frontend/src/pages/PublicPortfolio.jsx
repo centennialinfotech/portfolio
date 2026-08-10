@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 // import "../css/portfolio.css";
-import publicportfolioCSS from "../css/portfolio.css";
 import usePageCSS from "../hooks/usePageCSS";
 import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
@@ -31,7 +30,7 @@ const NAV_LINKS = [
 ];
 
 export default function PublicPortfolio({ subdomain: propSubdomain }) {
-  usePageCSS(publicportfolioCSS, "portfolio");
+  usePageCSS("src/css/portfolio.css");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isPremium, setIsPremium] = useState(false);
