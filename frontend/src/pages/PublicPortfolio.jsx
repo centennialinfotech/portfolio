@@ -302,9 +302,9 @@ export default function PublicPortfolio({ subdomain: propSubdomain }) {
         </div>
       </section>
 
-      <section className="section-container" id="skills">
-        <div className="section-max">
-          <h2 className="section-title">{skillsSection.title}</h2>
+      <section className="section-container-skills" id="skills">
+      <div className="section-max">
+        <h2 className="section-skills-title">{skillsSection.title}</h2>
 
           <div className="skills-grid">
             <div className="skills-card">
@@ -387,9 +387,9 @@ export default function PublicPortfolio({ subdomain: propSubdomain }) {
         </div>
       </section>
 
-      <section className="section-container" id="contact">
+      <section className="section-container-contact" id="contact">
         <div className="section-max">
-          <h2 className="section-title">{contactSection.title}</h2>
+          <h2 className="section-title-contact">{contactSection.title}</h2>
 
           <div className="contact-grid">
             <div className="contact-info-card">
@@ -399,12 +399,16 @@ export default function PublicPortfolio({ subdomain: propSubdomain }) {
               <div>
                 {contactItems.map((item, idx) => (
                   <div key={idx} className="contact-item">
-                    <div className="contact-item-icon">{item.icon}</div>
-                    <div>
-                      <p className="text-xs text-white/40 uppercase">
+                    <div className="contact-item-icon">
+                      {item.icon}
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-white/70 uppercase">
                         {item.label}
                       </p>
-                      <p className="text-sm sm:text-base text-white font-medium">
+
+                      <p className="text-sm sm:text-base text-white font-medium break-all">
                         {item.value}
                       </p>
                     </div>
@@ -413,7 +417,7 @@ export default function PublicPortfolio({ subdomain: propSubdomain }) {
               </div>
             </div>
 
-            <div className="contact-info-card">
+            <div className="contact-info-card-right">
               <h3 className="text-xl font-bold text-white mb-6">
                 {contactSection.rightTitle}
               </h3>
@@ -428,21 +432,24 @@ export default function PublicPortfolio({ subdomain: propSubdomain }) {
                   type="text"
                   placeholder="Your Name"
                   required
-                  className="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-sm text-black bg-white placeholder:text-black focus:outline-none focus:border-white font-medium"
+                  className="w-full bg-[#0d1e42] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                 />
+
                 <input
                   type="email"
-                  placeholder="Email Address"
+                  placeholder="Your Email"
                   required
-                  className="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-sm text-black bg-white placeholder:text-black focus:outline-none focus:border-white font-medium"
+                  className="w-full bg-[#0d1e42] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                 />
+
                 <textarea
                   placeholder="Your Message"
                   rows={4}
                   required
-                  className="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-sm text-black bg-white placeholder:text-black focus:outline-none focus:border-white font-medium resize-y"
+                  className="w-full bg-[#0d1e42] border border-cyan-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 resize-y"
                 />
-                <button type="submit" className="btn-primary w-full">
+
+                <button type="submit" className="btn-primary-contact w-full">
                   Send Message
                 </button>
               </form>
