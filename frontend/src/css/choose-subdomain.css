@@ -1089,22 +1089,40 @@ html {
 }
 
 .preview {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
   margin-top: 25px;
   padding: 20px;
+
   background: #101114;
   border: 1px solid #2a2a2f;
   border-radius: 14px;
+
+  overflow: hidden;
 }
 
 .preview small {
+  display: block;
   color: #9ca3af;
+  margin-bottom: 10px;
 }
 
 .preview strong {
   display: block;
-  margin-top: 10px;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
   color: #60a5fa;
   font-size: 18px;
+  line-height: 1.5;
+
+  /* Prevent long URL from going outside card */
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .status {
@@ -1211,6 +1229,18 @@ html {
 }
 
 @media (max-width: 768px) {
+  @media (max-width: 768px) {
+  .preview {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .preview strong {
+    font-size: 15px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
   .subdomain-card {
     padding: 25px;
   }

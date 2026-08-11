@@ -188,7 +188,7 @@ export default function ChooseSubdomain() {
         await setDoc(portfolioRef, defaultPortfolio);
       }
 
-      navigate("/portfolio");
+      navigate("/portfolio", { replace: true });
     } catch (err) {
       console.error(err);
       setMessage(`❌ ${err.message}`);

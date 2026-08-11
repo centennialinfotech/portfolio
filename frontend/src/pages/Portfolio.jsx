@@ -44,6 +44,9 @@ export default function Portfolio() {
   const [phoneError, setPhoneError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [showHeaderEditor, setShowHeaderEditor] = useState(false);
+  const [emailError, setEmailError] = useState("");
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const navigate = useNavigate();
 
   const imageInputRef = useRef(null);
@@ -204,6 +207,50 @@ export default function Portfolio() {
   const savePortfolio = async () => {
     if (!currentUser || isSaving) return;
 
+      const email = contactSection.email.trim();
+
+  if (!emailRegex.test(email)) {
+    setEmailError("⚠️ Please enter a valid email address.");
+    setSaveType("error");
+    setSaveMessage("Please correct your email address.");
+
+    setTimeout(() => {
+      setSaveMessage("");
+    }, 2500);
+
+    return;
+  }
+
+  setEmailError("");
+
+  const footerEmail = (footerSection.email || "").trim();
+
+if (footerSection.showEmail) {
+  if (!footerEmail) {
+    setEmailError("⚠️ Footer email is required.");
+    setSaveType("error");
+    setSaveMessage("Please enter a footer email address.");
+
+    setTimeout(() => {
+      setSaveMessage("");
+    }, 2500);
+
+    return false;
+  }
+
+  if (!emailRegex.test(footerEmail)) {
+    setEmailError("⚠️ Please enter a valid footer email address.");
+    setSaveType("error");
+    setSaveMessage("Please correct the footer email address.");
+
+    setTimeout(() => {
+      setSaveMessage("");
+    }, 2500);
+
+    return false;
+  }
+}
+
     const phoneValErr = validatePhone(contactSection.phone);
     if (phoneValErr) {
       setPhoneError(phoneValErr);
@@ -255,6 +302,8 @@ export default function Portfolio() {
         setSaveMessage("");
       }, 2500);
 
+      return true;
+
     } catch (error) {
       console.error(error);
       setSaveType("error");
@@ -263,6 +312,8 @@ export default function Portfolio() {
       setTimeout(() => {
         setSaveMessage("");
       }, 2500);
+
+      return false;
 
     } finally {
       setIsSaving(false);
@@ -426,9 +477,16 @@ export default function Portfolio() {
             <button
               className={`btn-customize ${editMode ? "btn-customize-active" : ""}`}
               onClick={async () => {
-                if (editMode) await savePortfolio();
-                setEditMode(!editMode);
-              }}
+              if (editMode) {
+                const saved = await savePortfolio();
+
+                if (saved) {
+                  setEditMode(false);
+                }
+              } else {
+                setEditMode(true);
+              }
+            }}
             >
               {editMode ? "💾 Save" : "⚙️ Customize"}
             </button>
@@ -1187,36 +1245,106 @@ export default function Portfolio() {
                         }));
                       }}
                     />
-                    <input
-                      type="text"
-                      className="edit-input"
-                      placeholder="Demo Link"
-                      value={proj.demo}
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        setProjectsSection((prev) => ({
-                          ...prev,
-                          projects: prev.projects.map((p) =>
-                            p.id === proj.id ? { ...p, demo: val } : p
-                          ),
-                        }));
-                      }}
-                    />
-                    <input
-                      type="text"
-                      className="edit-input"
-                      placeholder="Code Link"
-                      value={proj.code}
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        setProjectsSection((prev) => ({
-                          ...prev,
-                          projects: prev.projects.map((p) =>
-                            p.id === proj.id ? { ...p, code: val } : p
-                          ),
-                        }));
-                      }}
-                    />
+                    {/* Demo Link */}
+                    <div>
+                      <label className="text-xs text-white/60 mb-1 block">
+                        Demo Link
+                      </label>
+
+                      <input
+                        type="url"
+                        className="edit-input"
+                        placeholder="https://example.com/demo"
+                        value={proj.demo || ""}
+                        onChange={(e) => {
+                          const val = e.target.value;
+
+                          setProjectsSection((prev) => ({
+                            ...prev,
+                            projects: prev.projects.map((p) =>
+                              p.id === proj.id
+                                ? { ...p, demo: val }
+                                : p
+                            ),
+                          }));
+                        }}
+                      />
+                    </div>
+
+                    {/* Source Code Link */}
+                    <div>
+                      <label className="text-xs text-white/60 mb-1 block">
+                        Source Code Link
+                      </label>
+
+                      <input
+                        type="url"
+                        className="edit-input"
+                        placeholder="https://github.com/username/project"
+                        value={proj.code || ""}
+                        onChange={(e) => {
+                          const val = e.target.value;
+
+                          setProjectsSection((prev) => ({
+                            ...prev,
+                            projects: prev.projects.map((p) =>
+                              p.id === proj.id
+                                ? { ...p, code: val }
+                                : p
+                            ),
+                          }));
+                        }}
+                      />
+                    </div>
+
+                    {/* Button Visibility */}
+                    <div className="flex flex-wrap gap-4 pt-2">
+
+                      {/* Demo Button */}
+                      <label className="flex items-center gap-2 text-xs text-white/70 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={proj.showDemo ?? true}
+                          onChange={(e) => {
+                            const checked = e.target.checked;
+
+                            setProjectsSection((prev) => ({
+                              ...prev,
+                              projects: prev.projects.map((p) =>
+                                p.id === proj.id
+                                  ? { ...p, showDemo: checked }
+                                  : p
+                              ),
+                            }));
+                          }}
+                        />
+
+                        Show Demo Button
+                      </label>
+
+                      {/* Source Code Button */}
+                      <label className="flex items-center gap-2 text-xs text-white/70 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={proj.showCode ?? true}
+                          onChange={(e) => {
+                            const checked = e.target.checked;
+
+                            setProjectsSection((prev) => ({
+                              ...prev,
+                              projects: prev.projects.map((p) =>
+                                p.id === proj.id
+                                  ? { ...p, showCode: checked }
+                                  : p
+                              ),
+                            }));
+                          }}
+                        />
+
+                        Show Source Code
+                      </label>
+
+                    </div>
                   </div>
                 ) : (
                   <div>
@@ -1275,14 +1403,27 @@ export default function Portfolio() {
                     type="email"
                     className="edit-input"
                     value={contactSection.email}
-                    onChange={(e) =>
+                    onChange={(e) => {
+                      const value = e.target.value;
+
                       setContactSection({
                         ...contactSection,
-                        email: e.target.value,
-                      })
-                    }
+                        email: value,
+                      });
+
+                      // Clear error once valid
+                      if (emailRegex.test(value.trim())) {
+                        setEmailError("");
+                      }
+                    }}
                     placeholder="Email"
                   />
+
+                  {emailError && (
+                    <p className="text-red-400 text-xs mt-1">
+                      {emailError}
+                    </p>
+                  )}
                   <div>
                     <input
                       ref={phoneInputRef}
@@ -1377,10 +1518,200 @@ export default function Portfolio() {
       </section>
 
       <footer className="portfolio-footer">
+
+        {editMode && (
+          <div className="footer-editor">
+
+            <h3 className="footer-editor-title">
+              Footer Settings
+            </h3>
+
+            {/* Copyright */}
+            <div className="footer-editor-group">
+              <label className="footer-editor-label">
+                Copyright Text
+              </label>
+
+              <input
+                type="text"
+                className="footer-editor-input"
+                placeholder="© 2026 Your Name. All rights reserved."
+                value={footerSection.copyright || ""}
+                onChange={(e) =>
+                  setFooterSection({
+                    ...footerSection,
+                    copyright: e.target.value,
+                  })
+                }
+              />
+            </div>
+
+
+            {/* GitHub */}
+            <div className="footer-editor-group">
+
+              <label className="footer-editor-label">
+                GitHub
+              </label>
+
+              <div className="footer-url-input">
+
+                <span className="footer-url-prefix">
+                  https://github.com/
+                </span>
+
+                <input
+                  type="text"
+                  placeholder="yourusername"
+                  value={footerSection.githubUsername || ""}
+                  onChange={(e) =>
+                    setFooterSection({
+                      ...footerSection,
+                      githubUsername: e.target.value,
+                    })
+                  }
+                />
+
+              </div>
+
+            </div>
+
+
+            {/* LinkedIn */}
+            <div className="footer-editor-group">
+
+              <label className="footer-editor-label">
+                LinkedIn
+              </label>
+
+              <div className="footer-url-input">
+
+                <span className="footer-url-prefix">
+                  https://linkedin.com/in/
+                </span>
+
+                <input
+                  type="text"
+                  placeholder="yourusername"
+                  value={footerSection.linkedinUsername || ""}
+                  onChange={(e) =>
+                    setFooterSection({
+                      ...footerSection,
+                      linkedinUsername: e.target.value,
+                    })
+                  }
+                />
+
+              </div>
+
+            </div>
+
+
+            {/* Email */}
+            <div className="footer-editor-group">
+
+              <label className="footer-editor-label">
+                Email
+              </label>
+
+              <input
+                type="email"
+                className="footer-editor-input"
+                placeholder="your@email.com"
+                value={footerSection.email || ""}
+                onChange={(e) => {
+                  const value = e.target.value;
+
+                  setFooterSection({
+                    ...footerSection,
+                    email: value,
+                  });
+
+                  if (!value.trim()) {
+                    setEmailError("");
+                  } else if (!emailRegex.test(value.trim())) {
+                    setEmailError("⚠️ Please enter a valid email address.");
+                  } else {
+                    setEmailError("");
+                  }
+                }}
+              />
+
+              {emailError && (
+                <p className="footer-email-error">
+                  {emailError}
+                </p>
+              )}
+
+            </div>
+
+
+            {/* Visibility */}
+            <div className="footer-options">
+
+              <label className="footer-checkbox">
+                <input
+                  type="checkbox"
+                  checked={footerSection.showGithub ?? true}
+                  onChange={(e) =>
+                    setFooterSection({
+                      ...footerSection,
+                      showGithub: e.target.checked,
+                    })
+                  }
+                />
+
+                Show GitHub
+              </label>
+
+
+              <label className="footer-checkbox">
+                <input
+                  type="checkbox"
+                  checked={footerSection.showLinkedin ?? true}
+                  onChange={(e) =>
+                    setFooterSection({
+                      ...footerSection,
+                      showLinkedin: e.target.checked,
+                    })
+                  }
+                />
+
+                Show LinkedIn
+              </label>
+
+
+              <label className="footer-checkbox">
+                <input
+                  type="checkbox"
+                  checked={footerSection.showEmail ?? true}
+                  onChange={(e) =>
+                    setFooterSection({
+                      ...footerSection,
+                      showEmail: e.target.checked,
+                    })
+                  }
+                />
+
+                Show Email
+              </label>
+
+            </div>
+
+          </div>
+        )}
+
+
+        {/* Actual footer */}
         <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>{footerSection.copyright}</p>
+
+          <p>
+            {footerSection.copyright}
+          </p>
+
           <div className="flex gap-4">
-            {footerSection.showGithub && (
+
+            {footerSection.showGithub && footerSection.githubUsername && (
               <a
                 href={`https://github.com/${footerSection.githubUsername}`}
                 target="_blank"
@@ -1390,7 +1721,8 @@ export default function Portfolio() {
                 GitHub
               </a>
             )}
-            {footerSection.showLinkedin && (
+
+            {footerSection.showLinkedin && footerSection.linkedinUsername && (
               <a
                 href={`https://linkedin.com/in/${footerSection.linkedinUsername}`}
                 target="_blank"
@@ -1400,8 +1732,20 @@ export default function Portfolio() {
                 LinkedIn
               </a>
             )}
+
+            {footerSection.showEmail && footerSection.email && (
+              <a
+                href={`mailto:${footerSection.email}`}
+                className="hover:text-cyan-400 transition-colors"
+              >
+                Email
+              </a>
+            )}
+
           </div>
+
         </div>
+
       </footer>
     </div>
   );
