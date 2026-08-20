@@ -165,6 +165,9 @@ export default function PublicPortfolio({ subdomain: propSubdomain }) {
     { label: "Location", value: contactSection.location, icon: <FaMapMarkerAlt /> },
   ];
 
+  const fullName = `${heroSection.firstName} ${heroSection.lastName}`.trim();
+  const nameLength = fullName.length;
+
   return (
     <div className="portfolio-bg">
       <header className="portfolio-header">
@@ -218,8 +221,16 @@ export default function PublicPortfolio({ subdomain: propSubdomain }) {
         <div className="hero-grid">
           <div className="hero-left">
             <p className="hero-greeting">{heroSection.greeting}</p>
-            <h1 className="hero-name">
-              {heroSection.firstName} {heroSection.lastName}
+            <h1
+              className={`hero-name ${
+                nameLength > 18
+                  ? "hero-name-small"
+                  : nameLength > 12
+                  ? "hero-name-medium"
+                  : ""
+              }`}
+            >
+              {fullName}
             </h1>
             <h2 className="hero-role">{heroSection.role}</h2>
             <p className="hero-desc">{heroSection.description}</p>

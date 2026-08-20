@@ -184,7 +184,18 @@ export default function Portfolio() {
             });
           }
           if (data.aboutSection) setAboutSection(data.aboutSection);
-          if (data.skillsSection) setSkillsSection(data.skillsSection);
+          if (data.skillsSection) {
+            setSkillsSection({
+              ...data.skillsSection,
+              skills: (data.skillsSection.skills || []).map((skill) => ({
+                ...skill,
+                percentage: Math.min(
+                  100,
+                  Math.max(0, Number(skill.percentage) || 0)
+                ),
+              })),
+            });
+          }
           if (data.projectsSection) setProjectsSection(data.projectsSection);
           if (data.contactSection) setContactSection(data.contactSection);
           if (data.footerSection) {
@@ -1072,10 +1083,29 @@ if (footerSection.showEmail) {
                         />
                         <input
                           type="number"
+                          min="0"
+                          max="100"
                           className="edit-input w-20"
                           value={skill.percentage}
                           onChange={(e) => {
-                            const val = Number(e.target.value);
+                            const value = e.target.value;
+
+                            // Allow empty input while editing
+                            if (value === "") {
+                              setSkillsSection((prev) => ({
+                                ...prev,
+                                skills: prev.skills.map((s) =>
+                                  s.id === skill.id
+                                    ? { ...s, percentage: 0 }
+                                    : s
+                                ),
+                              }));
+                              return;
+                            }
+
+                            // Strictly limit percentage between 0 and 100
+                            const val = Math.min(100, Math.max(0, Number(value)));
+
                             setSkillsSection((prev) => ({
                               ...prev,
                               skills: prev.skills.map((s) =>
